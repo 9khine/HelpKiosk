@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="C:/Documents and Settings/Rock/Desktop/HelpKiosk/lib/ddmlib.jar" sourcepath="lib/ddmlib.jar"/>
+	<classpathentry kind="lib" path="C:/Documents and Settings/Rock/Desktop/HelpKiosk/lib/ddmuilib.jar" sourcepath="C:/Users/Vilia Ingriany/Desktop/ddmuilib.src.zip"/>
+	<classpathentry kind="lib" path="C:/Documents and Settings/Rock/Desktop/HelpKiosk/lib/hierarchyviewer.jar"/>
+	<classpathentry kind="lib" path="C:/Documents and Settings/Rock/Desktop/HelpKiosk/lib/accordion-1.0.jar"/>
+	<classpathentry kind="lib" path="C:/Documents and Settings/Rock/Desktop/HelpKiosk/lib/framework-1.0.jar"/>
+	<classpathentry kind="lib" path="C:/Documents and Settings/Rock/Desktop/HelpKiosk/lib/timingframework-1.0.jar"/>
+	<classpathentry kind="lib" path="C:/Documents and Settings/Rock/Desktop/HelpKiosk/lib/ddms.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

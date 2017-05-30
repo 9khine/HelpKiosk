@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
+	<classpathentry kind="lib" path="C:/Users/Vilia Ingriany/Downloads/accordion-1.0-download (1)/bin/aggregated/accordion-1.0-jar-with-dependencies.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Vilia Ingriany/Downloads/accordion-1.0-download (1)/bin/separate/accordion-1.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Vilia Ingriany/Downloads/accordion-1.0-download (1)/bin/separate/framework-1.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Vilia Ingriany/Downloads/accordion-1.0-download (1)/bin/separate/timingframework-1.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Vilia Ingriany/Documents/Eclipse Projects/hierarchyviewer/lib/ddmlib.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files/eclipse/android-sdk_r06-windows/android-sdk-windows/tools/lib/hierarchyviewer.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
