@@ -114,37 +114,39 @@ public class InstructionSingleton {
 		
 		mediaContainer.removeAll();
 		
+		String videoFolder = "/Users/pablo/git/HelpKioskKhine/video";
+		
 		URL mediaURL;
 		String videoUrl = null;
 		if(type=="openContact"){
-	        videoUrl = "file:/C:/Documents and Settings/Rock/Desktop/HelpKiosk/video/addContacts/OpenContactsHD.MPG";
+	        videoUrl = "file:"+videoFolder+"/addContacts/OpenContactsHD.MPG";
 		}else if(type=="newContact"){
-	        videoUrl = "file:/C:/Documents and Settings/Rock/Desktop/HelpKiosk/video/addContacts/new-contact.MPG";
+	        videoUrl = "file:"+videoFolder+"/addContacts/new-contact.MPG";
 		}else if(type=="newName"){
-	        videoUrl = "file:/C:/Documents and Settings/Rock/Desktop/HelpKiosk/video/addContacts/addname.MPG";
+	        videoUrl = "file:"+videoFolder+"/addContacts/addname.MPG";
 		}
 		else if(type=="addothercomponent"){
-	        videoUrl = "file:/C:/Documents and Settings/Rock/Desktop/HelpKiosk/video/addContacts/addothercomponent.MPG";
+	        videoUrl = "file:"+videoFolder+"/addContacts/addothercomponent.MPG";
 		}
 		else if(type=="contact_done"){
-	        videoUrl = "file:/C:/Documents and Settings/Rock/Desktop/HelpKiosk/video/addContacts/contact_done.MPG";
+	        videoUrl = "file:"+videoFolder+"/addContacts/contact_done.MPG";
 		}
 		else if(type=="openCam"){
-	        videoUrl = "file:/C:/Documents and Settings/Rock/Desktop/HelpKiosk/video/takePicture/cam.MPG";
+	        videoUrl = "file:"+videoFolder+"/takePicture/cam.MPG";
 		}else if(type=="takePicture"){
-	        videoUrl = "file:/C:/Documents and Settings/Rock/Desktop/HelpKiosk/video/takePicture/take-picture.MPG";
+	        videoUrl = "file:"+videoFolder+"/takePicture/take-picture.MPG";
 		}else if(type=="openClock"){
-	        videoUrl = "file:/C:/Documents and Settings/Rock/Desktop/HelpKiosk/video/clock/openclock.MPG";
+	        videoUrl = "file:"+videoFolder+"/clock/openclock.MPG";
 		}else if(type=="openAlarm"){
-	        videoUrl = "file:/C:/Documents and Settings/Rock/Desktop/HelpKiosk/video/clock/openalarm.MPG";
+	        videoUrl = "file:"+videoFolder+"/clock/openalarm.MPG";
 		}else if(type=="makeGreen"){
-	        videoUrl = "file:/C:/Documents and Settings/Rock/Desktop/HelpKiosk/video/clock/makegreen.MPG";
+	        videoUrl = "file:"+videoFolder+"/clock/makegreen.MPG";
 		}else if(type=="changeOrAdd"){
-	        videoUrl = "file:/C:/Documents and Settings/Rock/Desktop/HelpKiosk/video/clock/changeoradd.MPG";
+	        videoUrl = "file:"+videoFolder+"/changeoradd.MPG";
 		}else if(type=="clockdone"){
-	        videoUrl = "file:/C:/Documents and Settings/Rock/Desktop/HelpKiosk/video/clock/clock_done.MPG";
+	        videoUrl = "file:"+videoFolder+"/clock/clock_done.MPG";
 		}else if(type=="goBack"){
-	        videoUrl = "file:/C:/Documents and Settings/Rock/Desktop/HelpKiosk/video/clock/clock_back.MPG";
+	        videoUrl = "file:"+videoFolder+"/clock/clock_back.MPG";
 		}else if(type=="nothing"){
 			videoUrl = "";
 		}
