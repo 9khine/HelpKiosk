@@ -114,6 +114,7 @@ public class InstructionSingleton {
 		
 		mediaContainer.removeAll();
 		
+		// TODO: set this to local video folder
 		String videoFolder = "/Users/pablo/git/HelpKioskKhine/video";
 		
 		URL mediaURL;

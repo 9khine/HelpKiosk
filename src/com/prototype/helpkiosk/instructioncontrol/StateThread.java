@@ -63,8 +63,11 @@ public class StateThread extends Thread
 			{
 //				Runtime.getRuntime().exec("C:/Documents and Settings/Rock/android-sdk-windows/tools/adb logcat -c");
 //				Process p = Runtime.getRuntime().exec("C:/Documents and Settings/Rock/android-sdk-windows/tools/adb logcat");
-				Runtime.getRuntime().exec("/Users/pablo/android-sdks/platform-tools/adb logcat -c");
-				Process p = Runtime.getRuntime().exec("/Users/pablo/android-sdks/platform-tools/adb logcat");
+				
+				// TODO: set this to local android sdk folder
+				String androidSDKs = "/Users/pablo/android-sdks";
+				Runtime.getRuntime().exec(androidSDKs + "/platform-tools/adb logcat -c");
+				Process p = Runtime.getRuntime().exec(androidSDKs + "/platform-tools/adb logcat");
 				InputStream is = p.getInputStream();
 				InputStreamReader isr = new InputStreamReader(is);
 				BufferedReader br = new BufferedReader(isr);
