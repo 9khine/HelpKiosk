@@ -40,27 +40,27 @@ public class MediaPanel extends JPanel
 	      try
 	      {
 	    	  if(mediaURL!=null){
-		         // create a player to play the media specified in the URL
-		         mediaPlayer = Manager.createRealizedPlayer( mediaURL );
-		         
-		         // get the components for the video and the play-back controls
-		         Component video = mediaPlayer.getVisualComponent();
-		         mediaPlayer.getGainControl();
-		         mediaPlayer.addControllerListener((ControllerListener) mediaPlayer);
-		         Component controls = mediaPlayer.getControlPanelComponent();
-		         
-		         controls.setPreferredSize(new Dimension(controls.getWidth(), 20));
-		   
-		         video.addMouseListener(
-		        new MouseAdapter() {
-			        public void mousePressed(MouseEvent evt) {
-			        	mediaPlayer.setMediaTime(new Time(0));
-			            mediaPlayer.start();
-			         }
-			  
-			         public void mouseReleased(MouseEvent evt) {
-				     }
-		         });
+	    		  // create a player to play the media specified in the URL
+	    		  mediaPlayer = Manager.createRealizedPlayer( mediaURL );
+
+	    		  // get the components for the video and the play-back controls
+	    		  Component video = mediaPlayer.getVisualComponent();
+	    		  mediaPlayer.getGainControl();
+	    		  mediaPlayer.addControllerListener((ControllerListener) mediaPlayer);
+	    		  Component controls = mediaPlayer.getControlPanelComponent();
+
+	    		  controls.setPreferredSize(new Dimension(controls.getWidth(), 20));
+
+	    		  video.addMouseListener(
+	    				  new MouseAdapter() {
+	    					  public void mousePressed(MouseEvent evt) {
+	    						  mediaPlayer.setMediaTime(new Time(0));
+	    						  mediaPlayer.start();
+	    					  }
+
+	    					  public void mouseReleased(MouseEvent evt) {
+	    					  }
+	    				  });
 		         
 		         if ( video != null ) 
 		            add( video, BorderLayout.CENTER ); // add video component

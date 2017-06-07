@@ -18,20 +18,29 @@ public class StateThread extends Thread
 		public String DONE_TYPE = "W/EntityModifier";
 		public String SNAPSHOT = "V/camera  (  573): Start autofocus.";
 		
+		// TODO:
+		// change the device strings based on the device being used
+		// change the instruction strings based on the Android version you use for the prototype
+		//
+		// currently set for the LG phone running 4.0.2
+		
 		public static String ACT_APP_LAUNCH = "android.intent.action.MAIN";
 		public static String CAT_APP_LAUNCH = "android.intent.category.LAUNCHER";
 		
+		// Device strings
 		public static String CMP_LAUNCH_HOME = "com.android.launcher/com.android.launcher2.Launcher";
-		public static String CMP_LAUNCH_CONTACTS = "com.android.contacts/.DialtactsContactsEntryActivity";
-		public static String CMP_LAUNCH_CAMERA = "com.google.android.camera/com.android.camera.Camera";
-		public static String CMP_LAUNCH_CLOCK = "com.google.android.deskclock/com.android.deskclock.DeskClock";
+		
+		// Instruction strings
+		public static String CMP_LAUNCH_CONTACTS = "com.android.contacts/.activities.PeopleActivity";
+		public static String CMP_LAUNCH_CAMERA = "com.lge.camera/.CamLoading";
+		public static String CMP_LAUNCH_CLOCK = "com.lge.clock/.AlarmClockActivity";
 		
 		/*CLOCK*/
 		public static String CMP_ACTIVATE_ALARM = "com.google.android.deskclock/com.android.deskclock.AlarmClock";
 		public static String CMP_SET_ALARM = "com.google.android.deskclock/com.android.deskclock.SetAlarm";
 		
 		/*CONTACTS*/
-		public static String CMP_NEW_CONTACT = "com.android.contacts/.ui.EditContactActivity";
+		public static String CMP_NEW_CONTACT = "com.android.contacts/.activities.ContactEditorActivity}";
 		
 
 		public void run() {
@@ -51,14 +60,19 @@ public class StateThread extends Thread
 			int count_home = 0;
 			
 			try 
-			{
+			{				
+				// TODO: set this to local android sdk folder
+				String androidSDKs = "/Users/pablo/android-sdks";
+				Runtime.getRuntime().exec(androidSDKs + "/platform-tools/adb logcat -c");
+				Process p = Runtime.getRuntime().exec(androidSDKs + "/platform-tools/adb logcat");
+				
 //				Runtime.getRuntime().exec("C:/Documents and Settings/Rock/android-sdk-windows/tools/adb logcat -c");
 //				Process p = Runtime.getRuntime().exec("C:/Documents and Settings/Rock/android-sdk-windows/tools/adb logcat");
-//				Runtime.getRuntime().exec("../android-sdk/tools/adb ./adb logcat -c");
-//				Runtime.getRuntime().exec("C:/Users/khinehtwe/android-sdk/platform-tools/adb");
+		
+//				Runtime.getRuntime().exec("/Users/khinehtwe/android-sdks/platform-tools/adb logcat -c");
+//				Process p = Runtime.getRuntime().exec("/Users/khinehtwe/android-sdks/platform-tools/adb logcat");
+
 				
-				Runtime.getRuntime().exec("/Users/khinehtwe/android-sdks/platform-tools/adb logcat -c");
-				Process p = Runtime.getRuntime().exec("/Users/khinehtwe/android-sdks/platform-tools/adb logcat");
 				InputStream is = p.getInputStream();
 				InputStreamReader isr = new InputStreamReader(is);
 				BufferedReader br = new BufferedReader(isr);
@@ -131,7 +145,7 @@ public class StateThread extends Thread
 								instructionSingleton.updateLowerPanel("menu", false);
 							}
 							
-							//Click on new contact
+							//Click on activate alarm
 							else if (getCmp().equals(CMP_ACTIVATE_ALARM)){
 								instructionSingleton.getActiveView().getInstructionBox(1).instruction.setDone(true);
 								instructionSingleton.highlight("nothing", "contact");
