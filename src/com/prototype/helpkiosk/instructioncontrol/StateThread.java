@@ -52,8 +52,13 @@ public class StateThread extends Thread
 			
 			try 
 			{
-				Runtime.getRuntime().exec("C:/Documents and Settings/Rock/android-sdk-windows/tools/adb logcat -c");
-				Process p = Runtime.getRuntime().exec("C:/Documents and Settings/Rock/android-sdk-windows/tools/adb logcat");
+//				Runtime.getRuntime().exec("C:/Documents and Settings/Rock/android-sdk-windows/tools/adb logcat -c");
+//				Process p = Runtime.getRuntime().exec("C:/Documents and Settings/Rock/android-sdk-windows/tools/adb logcat");
+//				Runtime.getRuntime().exec("../android-sdk/tools/adb ./adb logcat -c");
+//				Runtime.getRuntime().exec("C:/Users/khinehtwe/android-sdk/platform-tools/adb");
+				
+				Runtime.getRuntime().exec("/Users/khinehtwe/android-sdks/platform-tools/adb logcat -c");
+				Process p = Runtime.getRuntime().exec("/Users/khinehtwe/android-sdks/platform-tools/adb logcat");
 				InputStream is = p.getInputStream();
 				InputStreamReader isr = new InputStreamReader(is);
 				BufferedReader br = new BufferedReader(isr);
