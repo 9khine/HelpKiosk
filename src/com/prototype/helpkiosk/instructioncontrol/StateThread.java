@@ -61,16 +61,9 @@ public class StateThread extends Thread
 			
 			try 
 			{				
-				// TODO: set this to local android sdk folder
-				String androidSDKs = "/Users/pablo/android-sdks";
-				Runtime.getRuntime().exec(androidSDKs + "/platform-tools/adb logcat -c");
-				Process p = Runtime.getRuntime().exec(androidSDKs + "/platform-tools/adb logcat");
-				
-//				Runtime.getRuntime().exec("C:/Documents and Settings/Rock/android-sdk-windows/tools/adb logcat -c");
-//				Process p = Runtime.getRuntime().exec("C:/Documents and Settings/Rock/android-sdk-windows/tools/adb logcat");
-		
-//				Runtime.getRuntime().exec("/Users/khinehtwe/android-sdks/platform-tools/adb logcat -c");
-//				Process p = Runtime.getRuntime().exec("/Users/khinehtwe/android-sdks/platform-tools/adb logcat");
+				String home = System.getProperty("user.home");
+				Runtime.getRuntime().exec(home + "/android-sdks/platform-tools/adb logcat -c");
+				Process p = Runtime.getRuntime().exec(home + "/android-sdks/platform-tools/adb logcat");
 
 				
 				InputStream is = p.getInputStream();
