@@ -151,6 +151,7 @@ public class MoreHelp {
 						"\n\nIf you have more than one account with contact information, " +
 						"Contacts merges duplicate contacts into a single entry. " +
 						"You can also manage that process manually.";
+		
 		aboutContent[2] = "You can add contacts on your phone and synchronize them with the contacts in your" +
 				"Google Account, Microsoft Exchange ActiveSync account, or other accounts that support syncing contacts." +
 				"\n\nWhen you reply to or forward an email message to an email address that is not in Contacts, " +
@@ -161,7 +162,7 @@ public class MoreHelp {
 		/*CAMERA*/
 		aboutContent[3] = "Camera is a combination camera and camcorder that you use to shoot " +
 							"and share pictures and videos. Pictures and videos are stored on " +
-							"the phone’s microSD card, so you must install microSD card " +
+							"the phoneï¿½s microSD card, so you must install microSD card " +
 							"to use Camera. You can copy your pictures and videos from " +
 							"the microSD card to a computer, as described in Connecting " +
 							"to a computer via USB.";
