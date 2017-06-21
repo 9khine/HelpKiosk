@@ -14,6 +14,7 @@ import javax.media.ControllerEvent;
 import javax.media.ControllerListener;
 import javax.media.EndOfMediaEvent;
 import javax.media.Manager;
+import javax.media.MediaLocator;
 import javax.media.NoPlayerException;
 import javax.media.Player;
 import javax.media.PrefetchCompleteEvent;
@@ -42,6 +43,10 @@ public class MediaPanel extends JPanel
 	    	  if(mediaURL!=null){
 	    		  // create a player to play the media specified in the URL
 	    		  mediaPlayer = Manager.createRealizedPlayer( mediaURL );
+	    		  
+	    		  System.out.println("mediaURL is " + mediaURL);
+	    		  
+	    		  System.out.println("mediaPlayer vis component: " + mediaPlayer.getVisualComponent());
 
 	    		  // get the components for the video and the play-back controls
 	    		  Component video = mediaPlayer.getVisualComponent();
@@ -60,14 +65,17 @@ public class MediaPanel extends JPanel
 
 	    					  public void mouseReleased(MouseEvent evt) {
 	    					  }
-	    				  });
-		         
-		         if ( video != null ) 
-		            add( video, BorderLayout.CENTER ); // add video component
-		         
-		         if ( controls != null ) 
-		            add( controls, BorderLayout.SOUTH ); // add controls
-	
+	    				  });	
+	    		  
+	    		  if ( video != null ) {
+	    			  add( video, BorderLayout.CENTER ); // add video component
+	    			  System.out.println("video is in CENTER");
+	    		  }
+			         
+	    		  if ( controls != null ) {
+	    			  add( controls, BorderLayout.SOUTH ); // add controls
+	    			  System.out.println("controls are in SOUTH");
+	    		  }
 	    	  }
 	      } // end try
 	      catch ( NoPlayerException noPlayerException )

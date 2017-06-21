@@ -13,7 +13,7 @@ public class AddContactInstruction {
 	private void populateInstruction() {
 		contactInstruction[0] = new Instruction("<html>Open your contacts.</html>", false, new int[]{0}, "addContact", 0, true);
 		
-		contactInstruction[1] = new Instruction("<html>Press Menu <img src=\"http://www.viliaingriany.com/menu.png\" /> and touch <b>New contact</b>.</html>"
+		contactInstruction[1] = new Instruction("<html>Press <b>New contact:</b> <img src=\"http://files.softicons.com/download/toolbar-icons/black-wireframe-toolbar-icons-by-gentleface/png/16/round_plus.png\"></html>"
 												, false, new int[]{0}, "addContact", 1, true);
 		
 		contactInstruction[2] = new Instruction("<html>Enter the contact's name.</html>", true, new int[]{1,11,12,13,2}, "addContact", 2, false);

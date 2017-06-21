@@ -15,32 +15,43 @@ public class StateThread extends Thread
 		private static String cat;
 		private static String cmp;
 		
-		public String DONE_TYPE = "W/EntityModifier";
-		public String SNAPSHOT = "V/camera  (  573): Start autofocus.";
-		
 		// TODO:
 		// change the device strings based on the device being used
 		// change the instruction strings based on the Android version you use for the prototype
 		//
 		// currently set for the LG phone running 4.0.2
 		
+		// TODO: update camera items for LG phone
+		public String DONE_TYPE = "W/EntityModifier";
+		public String SNAPSHOT = "V/camera  (  573): Start autofocus.";
+		
 		public static String ACT_APP_LAUNCH = "android.intent.action.MAIN";
 		public static String CAT_APP_LAUNCH = "android.intent.category.LAUNCHER";
+		public static String CAT_HOME_LAUNCH = "android.intent.category.HOME";
 		
 		// Device strings
-		public static String CMP_LAUNCH_HOME = "com.android.launcher/com.android.launcher2.Launcher";
+		public static String CMP_LAUNCH_HOME = "com.sec.android.app.launcher/.activities.LauncherActivity";
 		
 		// Instruction strings
 		public static String CMP_LAUNCH_CONTACTS = "com.android.contacts/.activities.PeopleActivity";
-		public static String CMP_LAUNCH_CAMERA = "com.lge.camera/.CamLoading";
-		public static String CMP_LAUNCH_CLOCK = "com.lge.clock/.AlarmClockActivity";
+		public static String CMP_LAUNCH_CAMERA = "com.sec.android.app.camera/.Camera";
+		public static String CMP_LAUNCH_CLOCK = "com.sec.android.app.clockpackage/.ClockPackage";
 		
 		/*CLOCK*/
 		public static String CMP_ACTIVATE_ALARM = "com.google.android.deskclock/com.android.deskclock.AlarmClock";
 		public static String CMP_SET_ALARM = "com.google.android.deskclock/com.android.deskclock.SetAlarm";
 		
+		// TODO: find new way to set alarm codes from logcat output
+		public static String NEW_ALARM_CODE = "";
+		// 06-21 13:24:35.594 23640 23640 D AlarmListView: resizeLayoutWithDrag : 2
+		// 06-21 13:25:54.054 23640 23640 D AlarmMainActivity: onSaveAlarm()
+		public static String ACTIVATE_ALARM_CODE = "";
+		// 06-21 13:14:04.904 23640 23640 D AlarmProvider: setAlarmActive()
+		public static String DEACTIVATE_ALARM_CODE = "";
+		//06-21 13:14:57.024 23640 23640 D AlarmProvider: setAlarmActive to false
+		
 		/*CONTACTS*/
-		public static String CMP_NEW_CONTACT = "com.android.contacts/.activities.ContactEditorActivity}";
+		public static String CMP_NEW_CONTACT = "com.android.contacts/.activities.ContactEditorActivity";
 		
 
 		public void run() {
@@ -64,7 +75,6 @@ public class StateThread extends Thread
 				String home = System.getProperty("user.home");
 				Runtime.getRuntime().exec(home + "/android-sdks/platform-tools/adb logcat -c");
 				Process p = Runtime.getRuntime().exec(home + "/android-sdks/platform-tools/adb logcat");
-
 				
 				InputStream is = p.getInputStream();
 				InputStreamReader isr = new InputStreamReader(is);
@@ -80,14 +90,14 @@ public class StateThread extends Thread
 					if(line.indexOf(this.SNAPSHOT)==0){
 						instructionSingleton.highlight("nothing", "contact");
 					}
-					if(line.indexOf("I/ActivityManager")==0)
+					if(line.indexOf("I ActivityManager")==31)
 					{
 						System.out.println(line);
 						setInfo(line);
 	
-						System.out.println("*** act = "+ getAct());
-						System.out.println("*** cat = "+ getCat());
-						System.out.println("*** cmp = "+ getCmp());
+						System.out.println("*** act = "+ this.act);
+						System.out.println("*** cat = "+ this.cat);
+						System.out.println("*** cmp = "+ this.cmp);
 						
 						if(getCmp()!=null)
 						{	
@@ -162,7 +172,7 @@ public class StateThread extends Thread
 			temp = input.split(" ");
 			for (int i=0 ; i<temp.length ; i++)
 			{
-				if(temp[i].indexOf("act=")==0)
+				if(temp[i].indexOf("act")==1)
 				{
 					setAct(temp[i].split("=")[1]);
 				}

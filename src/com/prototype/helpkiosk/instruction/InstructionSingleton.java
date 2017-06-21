@@ -114,23 +114,23 @@ public class InstructionSingleton {
 		
 		mediaContainer.removeAll();
 		
-		// TODO: set this to local video folder
+		// TODO: set this to local video folder		
 		String videoFolder = "/Users/pablo/git/HelpKioskKhine/video";
 		
 		URL mediaURL;
 		String videoUrl = null;
 		if(type=="openContact"){
-	        videoUrl = "file:"+videoFolder+"/addContacts/OpenContactsHD.MPG";
+	        videoUrl = "file:/"+videoFolder+"/addContacts/OpenContactsHD.MPG";
 		}else if(type=="newContact"){
-	        videoUrl = "file:"+videoFolder+"/addContacts/new-contact.MPG";
+	        videoUrl = "file://"+videoFolder+"/addContacts/new-contact.MPG";
 		}else if(type=="newName"){
-	        videoUrl = "file:"+videoFolder+"/addContacts/addname.MPG";
+	        videoUrl = "file://"+videoFolder+"/addContacts/addname.MPG";
 		}
 		else if(type=="addothercomponent"){
-	        videoUrl = "file:"+videoFolder+"/addContacts/addothercomponent.MPG";
+	        videoUrl = "file://"+videoFolder+"/addContacts/addothercomponent.MPG";
 		}
 		else if(type=="contact_done"){
-	        videoUrl = "file:"+videoFolder+"/addContacts/contact_done.MPG";
+	        videoUrl = "file://"+videoFolder+"/addContacts/contact_done.MPG";
 		}
 		else if(type=="openCam"){
 	        videoUrl = "file:"+videoFolder+"/takePicture/cam.MPG";
@@ -154,6 +154,7 @@ public class InstructionSingleton {
 		
 		try {
 			if(videoUrl!=""){
+				// TODO: use this.getClass().getResource("/path/to/our.mp3"); to get real URL
 				mediaURL = new URL(videoUrl);
 				this.mediaContainer.setURL(mediaURL);
 				mediaContainer.show();

@@ -47,7 +47,7 @@ public class Workspace extends JFrame implements WindowListener {
 		setFont(new Font("Helvetica", Font.PLAIN, 18));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.device = getCurrentDevice();
-		//Uncomment to hide top bar
+		// TODO: Uncomment to hide top bar for use on touch display
 		//setUndecorated(true); 
 		add(buildMainPanel());
 		pack();
