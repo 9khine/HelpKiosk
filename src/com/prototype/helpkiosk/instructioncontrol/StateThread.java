@@ -50,6 +50,8 @@ public class StateThread extends Thread
 		public static String DEACTIVATE_ALARM_CODE = "";
 		//06-21 13:14:57.024 23640 23640 D AlarmProvider: setAlarmActive to false
 		
+		private String alarmCode = null;
+		
 		/*CONTACTS*/
 		public static String CMP_NEW_CONTACT = "com.android.contacts/.activities.ContactEditorActivity";
 		
@@ -94,15 +96,16 @@ public class StateThread extends Thread
 					{
 						System.out.println(line);
 						setInfo(line);
+						
+						setAlarmInfo(line);
 	
 						System.out.println("*** act = "+ this.act);
 						System.out.println("*** cat = "+ this.cat);
 						System.out.println("*** cmp = "+ this.cmp);
 						
-						if(getCmp()!=null)
-						{	
+						if (getCmp()!=null) {	
 							//LAUNCHER
-							if (getCmp().equals(CMP_LAUNCH_HOME)){
+							if (getCmp().equals(CMP_LAUNCH_HOME)) {
 								System.out.println("HOME ACTIVE " + ++count_home + " TIMES ");
 								
 								//reset learn/do panel
@@ -117,7 +120,7 @@ public class StateThread extends Thread
 							}
 							
 							//LAUNCH CLOCK
-							else if (getCmp().equals(CMP_LAUNCH_CLOCK)){
+							else if (getCmp().equals(CMP_LAUNCH_CLOCK)) {
 								System.out.println("CLOCK ACTIVE " + ++count_clock + " TIMES ");
 								instructionSingleton.getActiveView().getInstructionBox(0).instruction.setDone(true);
 								instructionSingleton.highlight("nothing", "contact");
@@ -154,6 +157,11 @@ public class StateThread extends Thread
 								instructionSingleton.highlight("nothing", "contact");
 								instructionSingleton.showVideo("nothing");
 							}
+						} else if (alarmCode!=null) {
+							//TODO: check alarm stuff here
+							NEW_ALARM_CODE = "";
+							ACTIVATE_ALARM_CODE = "";
+							DEACTIVATE_ALARM_CODE = "";
 						}
 					}
 				}
@@ -166,6 +174,11 @@ public class StateThread extends Thread
 	
 		}
 	
+		private void setAlarmInfo(String line) {
+			// TODO Auto-generated method stub
+			
+		}
+
 		private static void setInfo(String input){
 			String[] temp = null;
 			String catTemp;
