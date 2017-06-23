@@ -18,10 +18,8 @@ public class StateThread extends Thread
 		// TODO:
 		// change the device strings based on the device being used
 		// change the instruction strings based on the Android version you use for the prototype
-		//
-		// currently set for the LG phone running 4.0.2
 		
-		// TODO: update camera items for LG phone
+		// TODO: update camera items for S7
 		public String DONE_TYPE = "W/EntityModifier";
 		public String SNAPSHOT = "V/camera  (  573): Start autofocus.";
 		
@@ -46,9 +44,12 @@ public class StateThread extends Thread
 		// 06-21 13:24:35.594 23640 23640 D AlarmListView: resizeLayoutWithDrag : 2
 		// 06-21 13:25:54.054 23640 23640 D AlarmMainActivity: onSaveAlarm()
 		public static String ACTIVATE_ALARM_CODE = "";
-		// 06-21 13:14:04.904 23640 23640 D AlarmProvider: setAlarmActive()
+		// 06-23 12:00:29.986 12047 12047 D AlarmProvider: setAlarmActive() - id: 4,willChangeButtonActive: true,activeNow: 0
 		public static String DEACTIVATE_ALARM_CODE = "";
-		//06-21 13:14:57.024 23640 23640 D AlarmProvider: setAlarmActive to false
+		// 06-21 13:14:57.024 23640 23640 D AlarmProvider: setAlarmActive to false
+		
+		// Alt option
+		// cmp = com.sec.android.app.clockpackage/.alarm.activity.AlarmEditActivity
 		
 		private String alarmCode = null;
 		
@@ -86,18 +87,32 @@ public class StateThread extends Thread
 	
 				while ((line = br.readLine()) != null) 
 				{
-					if(line.indexOf(this.DONE_TYPE)==0){
+					if(line.indexOf(this.DONE_TYPE)==0) {
 						instructionSingleton.highlight("nothing", "contact");
 					}
-					if(line.indexOf(this.SNAPSHOT)==0){
+					
+					if(line.indexOf(this.SNAPSHOT)==0) {
 						instructionSingleton.highlight("nothing", "contact");
 					}
-					if(line.indexOf("I ActivityManager")==31)
-					{
+					
+					if(line.indexOf("D AlarmProvider")==31) {
+						// TODO: implement new alarm instructions, set == to 31 when ready
+						System.out.println(line);
+						int i = getAlarmInfo(line);
+						if (i==12) {
+							// TODO: click on activate alarm, logcat line is: (length = 12)
+							// 06-23 12:00:29.986 12047 12047 D AlarmProvider: setAlarmActive() - id: 4,willChangeButtonActive: true,activeNow: 0
+							System.out.println("ALARM CODE IS: " + i + "; inside setAlarmActive()");
+							
+							instructionSingleton.getActiveView().getInstructionBox(2).instruction.setDone(true);
+							instructionSingleton.highlight("nothing", "contact");
+							instructionSingleton.showVideo("nothing");
+						}
+					}
+					
+					if(line.indexOf("I ActivityManager")==31) {
 						System.out.println(line);
 						setInfo(line);
-						
-						setAlarmInfo(line);
 	
 						System.out.println("*** act = "+ this.act);
 						System.out.println("*** cat = "+ this.cat);
@@ -157,11 +172,6 @@ public class StateThread extends Thread
 								instructionSingleton.highlight("nothing", "contact");
 								instructionSingleton.showVideo("nothing");
 							}
-						} else if (alarmCode!=null) {
-							//TODO: check alarm stuff here
-							NEW_ALARM_CODE = "";
-							ACTIVATE_ALARM_CODE = "";
-							DEACTIVATE_ALARM_CODE = "";
 						}
 					}
 				}
@@ -174,9 +184,12 @@ public class StateThread extends Thread
 	
 		}
 	
-		private void setAlarmInfo(String line) {
-			// TODO Auto-generated method stub
-			
+		private int getAlarmInfo(String line) {
+			// return length of alarm logcat line
+			// counts the spaces, use this to determine what type of alarm comman it is
+			String[] temp = null;
+			temp = line.split(" ");
+			return temp.length;
 		}
 
 		private static void setInfo(String input){
