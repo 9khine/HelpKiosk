@@ -162,7 +162,7 @@ public class MoreHelp {
 		/*CAMERA*/
 		aboutContent[3] = "Camera is a combination camera and camcorder that you use to shoot " +
 							"and share pictures and videos. Pictures and videos are stored on " +
-							"the phone�s microSD card, so you must install microSD card " +
+							"the phone's microSD card, so you must install microSD card " +
 							"to use Camera. You can copy your pictures and videos from " +
 							"the microSD card to a computer, as described in Connecting " +
 							"to a computer via USB.";

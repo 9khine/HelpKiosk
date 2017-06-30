@@ -50,7 +50,7 @@ public class MoreHelpView{
 			answerArea.setWrapStyleWord(true);
 			answerArea.setMargin(new Insets(5,0,5,0));
 			answerArea.setFont(new Font("Helvetica", Font.PLAIN, 14));
-			answerArea.setPreferredSize(new Dimension(210,250));
+			answerArea.setPreferredSize(new Dimension(210,350));
 		    
 		    jp.add(answerArea);
 		    if(i==questions.length-1) ft.setLastAnswerArea(answerArea);

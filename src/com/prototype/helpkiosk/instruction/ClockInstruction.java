@@ -21,7 +21,7 @@ public class ClockInstruction {
 		
 		clockInstruction[3] = new Instruction("<html>Touch an existing alarm to change " +
 												"its time and other attributes. " +
-												"When you’re finished, touch <b>Done</b>.</html>"
+												"When you're finished, touch <b>Done</b>.</html>"
 												, true, new int[]{14,15,16,17,18,19}, "clock", 3, false);
 	}
 	
