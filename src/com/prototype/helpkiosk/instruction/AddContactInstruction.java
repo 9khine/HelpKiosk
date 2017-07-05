@@ -11,17 +11,14 @@ public class AddContactInstruction {
 
 
 	private void populateInstruction() {
-		contactInstruction[0] = new Instruction("<html>Open your contacts.</html>", false, new int[]{0}, "addContact", 0, true);
+		contactInstruction[0] = new Instruction("<html>Tap Contacts <img src=\"img/add-contact-icon.png\"> on the Apps screen</html>", false, new int[]{0}, "addContact", 0, true);
 		
-		contactInstruction[1] = new Instruction("<html>Press <b>New contact:</b> <img src=\"http://files.softicons.com/download/toolbar-icons/black-wireframe-toolbar-icons-by-gentleface/png/16/round_plus.png\"></html>"
+		contactInstruction[1] = new Instruction("<html>Tap <img src=\"img/add-contact-icon.png\"> and select a storage location.</html>"
 												, false, new int[]{0}, "addContact", 1, true);
 		
-		contactInstruction[2] = new Instruction("<html>Enter the contact's name.</html>", true, new int[]{1,11,12,13,2}, "addContact", 2, false);
+		contactInstruction[2] = new Instruction("<html>Enter contact information.</html>", true, new int[]{1,11,12,13,2}, "addContact", 2, false);
 		
-		contactInstruction[3] = new Instruction("<html>Touch a category of contact information " +
-												"such as phone numbers and email addresses to " +
-												"enter that kind of information about your contact. " +
-												"When you're finished, touch <b>Done</b></html>"
+		contactInstruction[3] = new Instruction("<html>Tap SAVE</html>"
 												, true, new int[]{3,4,5,6}, "addContact", 3, false);
 	}
 	
