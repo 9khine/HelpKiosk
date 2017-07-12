@@ -50,7 +50,7 @@ public class SearchPanel extends JPanel {
 		 */
 		JPanel instructionFiller = new JPanel();
 		instructionFiller.setBackground(Color.WHITE);
-		instructionFiller.setLayout(new FlowLayout());
+		instructionFiller.setLayout(new FlowLayout((FlowLayout.LEFT)));
 		instructionFiller.add(Box.createRigidArea(new Dimension(50, 50)));
 		JLabel instruction = new JLabel();
 		
@@ -80,7 +80,7 @@ public class SearchPanel extends JPanel {
 		 */
 		searchResult = new JPanel();
 		searchResult.setLayout(new FlowLayout());
-		searchResult.setBorder(BorderFactory.createTitledBorder("Clock: "));
+		searchResult.setBorder(BorderFactory.createTitledBorder("Match instructions: "));
 		searchResult.setBackground(Color.WHITE);
 		searchResult.setSize(new Dimension(this.getWidth(), 70));
 		
@@ -89,6 +89,60 @@ public class SearchPanel extends JPanel {
 		
 		searchResult.add(filler);
 		mainPanel.add(searchResult);
+
+		mainPanel.add(Box.createRigidArea(new Dimension(this.getWidth(), 100)));
+		
+		/*
+		 * Clock Instruction box
+		 */
+		JPanel clockInstruction = new JPanel();
+		clockInstruction.setLayout(new FlowLayout());
+		clockInstruction.setBorder(BorderFactory.createTitledBorder("Clock: "));
+		clockInstruction.setBackground(Color.WHITE);
+		clockInstruction.setSize(new Dimension(this.getWidth(), 70));
+		clockInstruction.add(filler);
+		
+		clockInstruction.removeAll();
+		
+		JButton setAlarm = new JButton("Setting Alarm");
+		setAlarm.addActionListener(
+				new ActionListener(){
+					public void actionPerformed(ActionEvent e){
+						//clean panel from take picture view
+						cleanPanel();
+						//Show add contact view
+						if(!instructionSingleton.getClockView().isActive()){
+							if(instructionSingleton.getAccordion().getAccordion().getSelectedIndex()!=0)
+								instructionSingleton.getAccordion().getAccordion().setSelectedIndex(0);
+							instructionSingleton.getContainer().removeAll();
+							instructionSingleton.setActiveView(instructionSingleton.getClockView());
+							instructionSingleton.setMaxID(instructionSingleton.getActiveView().instruction.length-1);
+
+						}else{
+							instructionSingleton.setActiveView(instructionSingleton.getClockView());
+							instructionSingleton.getAccordion().getAccordion().setSelectedIndex(0);
+						}
+						instructionSingleton.buildClockView();
+						instructionSingleton.updateInstructionView();
+						instructionSingleton.getClockView().setActive(true);
+
+						instructionSingleton.buildMoreHelpView(
+								instructionSingleton.getMoreHelp().getAboutSet(new int[] {4,5}),
+								instructionSingleton.getMoreHelp().getAboutAnswer(new int[] {4,5})
+								);
+					}
+				}
+				);
+		clockInstruction.add(setAlarm);
+		clockInstruction.add(new JButton("Remove Alarm"));
+		clockInstruction.add(new JButton("Activate Alarm"));
+		clockInstruction.add(new JButton("Set Date and Time"));
+
+		clockInstruction.validate();
+		clockInstruction.repaint();
+		
+		
+		mainPanel.add(clockInstruction);
 
 		mainPanel.add(Box.createRigidArea(new Dimension(this.getWidth(), 100)));
 		
@@ -104,6 +158,19 @@ public class SearchPanel extends JPanel {
 		mainPanel.add(contactInstruction);
 
 		mainPanel.add(Box.createRigidArea(new Dimension(this.getWidth(), 100)));
+		
+		/*
+		 * Camera Instruction box
+		 */
+//		JPanel cameraInstruction = new JPanel();
+//		cameraInstruction.setLayout(new FlowLayout());
+//		cameraInstruction.setBorder(BorderFactory.createTitledBorder("Camera: "));
+//		cameraInstruction.setBackground(Color.WHITE);
+//		cameraInstruction.setSize(new Dimension(this.getWidth(), 70));
+//		cameraInstruction.add(filler);
+//		mainPanel.add(clockInstruction);
+//
+//		mainPanel.add(Box.createRigidArea(new Dimension(this.getWidth(), 100)));
 		
 		return mainPanel;
 	}
@@ -135,15 +202,16 @@ public class SearchPanel extends JPanel {
 		clockPanel.setOpaque(false);
 		clockPanel.setLayout(new BoxLayout(clockPanel, BoxLayout.X_AXIS));
 		clockPanel.add(Box.createRigidArea(new Dimension(90, 30)));
-		TransparentButton clockButton = new TransparentButton("                                  ", (float)0.1);
+		
+		
+		TransparentButton clockButton = new TransparentButton("Clock", (float)0.1);
+
 		clockButton.setLayout(new BoxLayout(clockButton, BoxLayout.Y_AXIS));
-		clockButton.add(new JLabel("                                  "));
-		clockButton.add(new JLabel("                                  "));
-		clockButton.add(new JLabel("                                  "));
-		clockButton.add(new JLabel("                                  "));
 		clockButton.addActionListener(
+				
 				new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
+						
 						searchResult.removeAll();
 						
 						JButton setAlarm = new JButton("Setting Alarm");
@@ -197,10 +265,12 @@ public class SearchPanel extends JPanel {
 		contactPanel.setOpaque(false);
 		contactPanel.setLayout(new BoxLayout(contactPanel, BoxLayout.X_AXIS));
 		contactPanel.add(Box.createRigidArea(new Dimension(100, 30)));
-		TransparentButton contactButton = new TransparentButton("                                  ", (float)0.1);
+		TransparentButton contactButton = new TransparentButton("Contact", (float)0.1);
 		contactButton.setLayout(new BoxLayout(contactButton, BoxLayout.Y_AXIS));
-		contactButton.add(new JLabel("                                  "));
-		contactButton.add(new JLabel("                                  "));
+		
+//		contactButton.add(new JLabel("                                  "));
+//		contactButton.add(new JLabel("                                  "));
+		
 		contactButton.addActionListener(
 				new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
@@ -252,16 +322,19 @@ public class SearchPanel extends JPanel {
 	}
 	
 	private JPanel cameraPanel() {
+		
 		/*Camera*/
 		JPanel cameraPanel = new JPanel();
 		cameraPanel.setOpaque(false);
 		cameraPanel.setLayout(new BoxLayout(cameraPanel, BoxLayout.X_AXIS));
 		cameraPanel.add(Box.createRigidArea(new Dimension(5, 30)));
-		TransparentButton cameraButton = new TransparentButton("                                  ", (float)0.1);
+		TransparentButton cameraButton = new TransparentButton("Camera", (float)0.1);
 		cameraButton.setLayout(new BoxLayout(cameraButton, BoxLayout.Y_AXIS));
-		cameraButton.add(new JLabel("                                        "));
-		cameraButton.add(new JLabel("                                        "));
-		cameraButton.add(new JLabel("                                        "));
+		
+//		cameraButton.add(new JLabel("                                        "));
+//		cameraButton.add(new JLabel("                                        "));
+//		cameraButton.add(new JLabel("                                        "));
+		
 		cameraButton.addActionListener(
 				new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
