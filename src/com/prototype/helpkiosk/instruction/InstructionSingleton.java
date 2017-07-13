@@ -119,36 +119,33 @@ public class InstructionSingleton {
 		
 		URL mediaURL;
 		String videoUrl = null;
-		if(type=="openContact"){
-	        videoUrl = "file:/"+videoFolder+"/addContacts/OpenContactsHD.MPG";
-		}else if(type=="newContact"){
+		if (type=="openContact") {
+	        videoUrl = "file:/"+videoFolder+"/addContacts/OpenContacts.MPG";
+		} else if(type=="newContact"){
 	        videoUrl = "file://"+videoFolder+"/addContacts/new-contact.MPG";
-		}else if(type=="newName"){
+		} else if(type=="newName"){
 	        videoUrl = "file://"+videoFolder+"/addContacts/addname.MPG";
-		}
-		else if(type=="addothercomponent"){
+		} else if(type=="addothercomponent"){
 	        videoUrl = "file://"+videoFolder+"/addContacts/addothercomponent.MPG";
-		}
-		else if(type=="contact_done"){
+		} else if(type=="contact_done"){
 	        videoUrl = "file://"+videoFolder+"/addContacts/contact_done.MPG";
-		}
-		else if(type=="openCam"){
+		} else if(type=="openCam"){
 	        videoUrl = "file:"+videoFolder+"/takePicture/cam.MPG";
-		}else if(type=="takePicture"){
+		} else if(type=="takePicture"){
 	        videoUrl = "file:"+videoFolder+"/takePicture/take-picture.MPG";
-		}else if(type=="openClock"){
+		} else if(type=="openClock"){
 	        videoUrl = "file:"+videoFolder+"/clock/openclock.MPG";
-		}else if(type=="openAlarm"){
+		} else if(type=="openAlarm"){
 	        videoUrl = "file:"+videoFolder+"/clock/openalarm.MPG";
-		}else if(type=="makeGreen"){
+		} else if(type=="makeGreen"){
 	        videoUrl = "file:"+videoFolder+"/clock/makegreen.MPG";
-		}else if(type=="changeOrAdd"){
+		} else if(type=="changeOrAdd"){
 	        videoUrl = "file:"+videoFolder+"/changeoradd.MPG";
-		}else if(type=="clockdone"){
+		} else if(type=="clockdone"){
 	        videoUrl = "file:"+videoFolder+"/clock/clock_done.MPG";
-		}else if(type=="goBack"){
+		} else if(type=="goBack"){
 	        videoUrl = "file:"+videoFolder+"/clock/clock_back.MPG";
-		}else if(type=="nothing"){
+		} else if(type=="nothing"){
 			videoUrl = "";
 		}
 		
