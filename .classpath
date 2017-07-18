@@ -2,7 +2,6 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="/Users/khinehtwe/Downloads/JMF-2.1.1e/lib/jmf.jar"/>
 	<classpathentry kind="lib" path="lib/accordion-1.0.jar"/>
 	<classpathentry kind="lib" path="lib/ddmlib.jar"/>
 	<classpathentry kind="lib" path="lib/ddms.jar"/>
@@ -13,5 +12,11 @@
 	<classpathentry kind="lib" path="lib/org-openide-util.jar"/>
 	<classpathentry kind="lib" path="lib/swing-worker-1.1.jar"/>
 	<classpathentry kind="lib" path="lib/timingframework-1.0.jar"/>
+	<classpathentry kind="lib" path="lib/jmf.jar"/>
+	<classpathentry kind="lib" path="lib/vlcj-3.10.1-javadoc.jar"/>
+	<classpathentry kind="lib" path="lib/vlcj-3.10.1-sources.jar"/>
+	<classpathentry kind="lib" path="lib/vlcj-3.10.1-test-sources.jar"/>
+	<classpathentry kind="lib" path="lib/vlcj-3.10.1-tests.jar"/>
+	<classpathentry kind="lib" path="lib/vlcj-3.10.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
