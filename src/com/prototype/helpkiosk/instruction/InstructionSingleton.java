@@ -247,18 +247,18 @@ public class InstructionSingleton {
 			if(type=="launcher-icon")
 			{
 				this.updateLowerPanel("back", false);
-				box.setPreferredSize(new Dimension(60,60));
-				glass.add(Box.createRigidArea(new Dimension(250, 115)));
+				box.setPreferredSize(new Dimension(55,60));
+				glass.add(Box.createRigidArea(new Dimension(250, 80)));
     			filler.add(box);
-    			filler.add(Box.createRigidArea(new Dimension(170, 60)));
+    			filler.add(Box.createRigidArea(new Dimension(165, 55)));
 			}
 			if(type=="openAlarm")
 			{
 				this.updateLowerPanel("back", false);
-				box.setPreferredSize(new Dimension(60,60));
-				glass.add(Box.createRigidArea(new Dimension(250, 330)));
+				box.setPreferredSize(new Dimension(50,50));
+				glass.add(Box.createRigidArea(new Dimension(250, 2)));
     			filler.add(box);
-    			filler.add(Box.createRigidArea(new Dimension(178, 60)));
+    			filler.add(Box.createRigidArea(new Dimension(178, 50)));
 			}
 			if(type=="makeGreen"){
 				this.updateLowerPanel("back", false);
