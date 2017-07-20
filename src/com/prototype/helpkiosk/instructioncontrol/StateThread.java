@@ -95,7 +95,7 @@ public class StateThread extends Thread
 						instructionSingleton.highlight("nothing", "contact");
 					}
 					
-					if(line.indexOf("D AlarmProvider")==31) {
+					if (line.indexOf("D AlarmProvider")==31) {
 						// TODO: implement new alarm instructions, set == to 31 when ready
 						System.out.println(line);
 						int i = getAlarmInfo(line);
