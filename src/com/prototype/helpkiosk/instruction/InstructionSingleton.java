@@ -178,21 +178,18 @@ public class InstructionSingleton {
 		filler.setOpaque(false);
 		filler.setLayout(new BoxLayout(filler, BoxLayout.X_AXIS));
 		
-		if(type=="nothing")
-		{
-			
-		}
+		if (type=="nothing") {}
 		
-		if(name=="camera")
-		{
-			if(type=="launcher-icon"){
+		if (name=="camera") {
+			if (type=="launcher-icon") {
 				box.setPreferredSize(new Dimension(60,60));
 				glass.add(Box.createRigidArea(new Dimension(250, 115)));
     			filler.add(Box.createRigidArea(new Dimension(117, 60)));
     			filler.add(box);
     			filler.add(Box.createRigidArea(new Dimension(60, 60)));
 			}
-			if(type=="shutter"){
+			
+			if (type=="shutter") {
 				box.setPreferredSize(new Dimension(60,60));
 				glass.add(Box.createRigidArea(new Dimension(250, 330)));
     			filler.add(box);
@@ -200,31 +197,29 @@ public class InstructionSingleton {
 			}
 		}
 		
-		if(name=="contact")
-		{
-			if(type=="launcher-icon")
-			{
+		if (name=="contact") {
+			if (type=="launcher-icon") {
 				this.updateLowerPanel("menu", false);
 				box.setPreferredSize(new Dimension(60,60));
-				glass.add(Box.createRigidArea(new Dimension(250, 115)));
+				glass.add(Box.createRigidArea(new Dimension(250, 80)));
     			filler.add(Box.createRigidArea(new Dimension(60, 60)));
     			filler.add(box);
     			filler.add(Box.createRigidArea(new Dimension(120, 60)));
 			}
-			if(type=="new-contact")
-			{
-				box.setPreferredSize(new Dimension(120,60));
+			
+			if (type=="new-contact") {
+				box.setPreferredSize(new Dimension(50,50));
 				this.updateLowerPanel("menu", false);
-				glass.add(Box.createRigidArea(new Dimension(250, 290)));
-				filler.add(Box.createRigidArea(new Dimension(110, 60)));
-					JLabel two = new JLabel(" 2 ");
-					two.setOpaque(true);
-					two.setBackground(Color.ORANGE);
-					two.setForeground(Color.WHITE);
-					two.setFont(new Font("Helvetica", Font.BOLD, 22));
-				filler.add(two);
+				glass.add(Box.createRigidArea(new Dimension(350, 350)));
+				filler.add(Box.createRigidArea(new Dimension(170, 50)));
+//					JLabel two = new JLabel(" 2 ");
+//					two.setOpaque(true);
+//					two.setBackground(Color.ORANGE);
+//					two.setForeground(Color.WHITE);
+//					two.setFont(new Font("Helvetica", Font.BOLD, 22));
+//				filler.add(two);
 				filler.add(box);
-				this.updateLowerPanel("menu", true);
+//				this.updateLowerPanel("menu", true);
 			}
 			if(type=="new-name"){
 				this.updateLowerPanel("menu", false);
@@ -247,10 +242,10 @@ public class InstructionSingleton {
 			if(type=="launcher-icon")
 			{
 				this.updateLowerPanel("back", false);
-				box.setPreferredSize(new Dimension(55,60));
+				box.setPreferredSize(new Dimension(60,60));
 				glass.add(Box.createRigidArea(new Dimension(250, 80)));
     			filler.add(box);
-    			filler.add(Box.createRigidArea(new Dimension(165, 55)));
+    			filler.add(Box.createRigidArea(new Dimension(165, 60)));
 			}
 			if(type=="openAlarm")
 			{

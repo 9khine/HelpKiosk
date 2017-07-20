@@ -17,11 +17,11 @@ public class AddContactInstruction {
 		ImageIcon img = new ImageIcon("img/cloudtag.png");
 		JLabel tagCloud = new JLabel(img);
 		contactInstruction[0] = new Instruction
-				("<html>Tap Contacts <img src=\"img/add-contact-icon.png\"> on the Apps screen</html>", 
+				("<html>Tap Contacts <img src=\"http://i.imgur.com/XMA779I.png\" width=\"40\" height=\"40\"> on the Apps screen</html>", 
 						false, new int[]{0}, "addContact", 0, true);
 		
 		contactInstruction[1] = new Instruction
-				("<html>Tap <img src=\"img/add-contact-icon.png\"> and select a storage location.</html>", 
+				("<html>Tap <img src=\"http://i.imgur.com/bkvC2B6.png\" width=\"40\" height=\"40\"> and select a storage location.</html>", 
 						false, new int[]{0}, "addContact", 1, true);
 		
 		contactInstruction[2] = new Instruction("<html>Enter contact information.</html>", 

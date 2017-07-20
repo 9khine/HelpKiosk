@@ -17,10 +17,10 @@ public class ClockInstruction {
 //		URL f = this.getClass().getResource("img/alarm-text.png");
 //		System.out.println("Does the image exist? " + f);
 		
-		clockInstruction[1] = new Instruction("<html>Touch the Alarm <img src=\"https://s19.postimg.org/3tiv2xcun/alarm-text.png\" width=\"40\" height=\"40\"/> icon.</html>", false, new int[]{0}, "clock", 1, true);
+		clockInstruction[1] = new Instruction("<html>Touch the Alarm <img src=\"http://i.imgur.com/W5xzbuc.png\" width=\"40\" height=\"40\"/> icon.</html>", false, new int[]{0}, "clock", 1, true);
 		
 		clockInstruction[2] = new Instruction(
-				"<html>If the alarm icon <img src=\"https://s19.postimg.org/x64np3dqn/alarm.png\" width=\"40\" height=\"40\"/> is not highlighted in green, " +
+				"<html>If the alarm icon <img src=\"http://i.imgur.com/dKOI15Z.png\" width=\"40\" height=\"40\"/> is not highlighted in green, " +
 				"touch the icon next to an alarm to turn it on.</html>",
 				false, new int[]{0}, "clock", 2, false);
 		
