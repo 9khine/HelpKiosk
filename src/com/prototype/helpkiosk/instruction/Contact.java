@@ -3,12 +3,12 @@ package com.prototype.helpkiosk.instruction;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
-public class AddContactInstruction {
+public class Contact {
 	
 	private Instruction[] contactInstruction = new Instruction[4];
 	
 	
-	public AddContactInstruction(){
+	public Contact(){
 		populateInstruction();
 	}
 

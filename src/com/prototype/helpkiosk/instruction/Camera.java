@@ -1,11 +1,11 @@
 package com.prototype.helpkiosk.instruction;
 
-public class TakePictureInstruction {
+public class Camera {
 	
 	private Instruction[] instruction = new Instruction[4];
 	
 	
-	public TakePictureInstruction(){
+	public Camera(){
 		populateInstruction();
 	}
 
