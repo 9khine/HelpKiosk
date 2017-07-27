@@ -27,9 +27,9 @@ public class InstructionSingleton {
 
 	private static InstructionSingleton instance = null;
 	
-	private AddContactInstruction addContact;
-	private TakePictureInstruction takePicture;
-	private ClockInstruction clock;
+	private Contact addContact;
+	private Camera takePicture;
+	private Clock clock;
 	
 	private Instruction[] addContactInstruction;
 	private Instruction[] takePictureInstruction;
@@ -86,9 +86,9 @@ public class InstructionSingleton {
 		
 		accordion = new Accordion();
 		
-		this.addContact = new AddContactInstruction();
-		this.takePicture = new TakePictureInstruction();
-		this.clock = new ClockInstruction();
+		this.addContact = new Contact();
+		this.takePicture = new Camera();
+		this.clock = new Clock();
 	
 		setAddContactInstruction(addContact.getInstruction());
 		setTakePictureInstruction(takePicture.getInstruction());

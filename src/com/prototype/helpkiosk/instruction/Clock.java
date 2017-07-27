@@ -1,10 +1,10 @@
 package com.prototype.helpkiosk.instruction;
 
-public class ClockInstruction {
+public class Clock {
 	
 	private Instruction[] clockInstruction = new Instruction[4];
 	
-	public ClockInstruction() {
+	public Clock() {
 		populateInstruction();
 	}
 

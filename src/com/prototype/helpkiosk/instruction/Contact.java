@@ -1,21 +1,16 @@
 package com.prototype.helpkiosk.instruction;
 
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
-
-public class AddContactInstruction {
+public class Contact {
 	
 	private Instruction[] contactInstruction = new Instruction[4];
 	
 	
-	public AddContactInstruction(){
+	public Contact(){
 		populateInstruction();
 	}
 
 
 	private void populateInstruction() {
-		ImageIcon img = new ImageIcon("img/cloudtag.png");
-		JLabel tagCloud = new JLabel(img);
 		contactInstruction[0] = new Instruction
 				("<html>Tap Contacts <img src=\"http://i.imgur.com/XMA779I.png\" width=\"40\" height=\"40\"> on the Apps screen</html>", 
 						false, new int[]{0}, "addContact", 0, true);
