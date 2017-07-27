@@ -37,6 +37,7 @@ public class SearchPanel extends JPanel {
 	}
 
 	public JPanel createPanel() {
+		
 		JPanel mainPanel = new JPanel();
 		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
 		mainPanel.setBackground(Color.WHITE);
@@ -47,10 +48,11 @@ public class SearchPanel extends JPanel {
 		/*
 		 * Instruction
 		 */
+		
 		JPanel instructionFiller = new JPanel();
 		instructionFiller.setBackground(Color.WHITE);
 		instructionFiller.setLayout(new FlowLayout((FlowLayout.LEFT)));
-		instructionFiller.add(Box.createRigidArea(new Dimension(50, 50)));
+		instructionFiller.add(Box.createRigidArea(new Dimension(this.getWidth(), 100)));
 		JLabel instruction = new JLabel();
 
 		instruction.setText("Instructions:");
@@ -58,7 +60,7 @@ public class SearchPanel extends JPanel {
 		instruction.setForeground(Color.DARK_GRAY);
 
 		instructionFiller.add(instruction);
-		instructionFiller.add(Box.createRigidArea(new Dimension(50, 50)));
+		instructionFiller.add(Box.createRigidArea(new Dimension(this.getWidth(), 100)));
 		mainPanel.add(instructionFiller);
 
 		mainPanel.add(clockPanel());
