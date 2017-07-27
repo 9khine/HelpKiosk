@@ -13,6 +13,7 @@ public class Phone {
  * TODO: update with Phone instructions
  */
 	private void populateInstruction() {
+		
 		phoneInstruction[0] = new Instruction
 				("<html>Tap Contacts <img src=\"http://i.imgur.com/XMA779I.png\" width=\"40\" height=\"40\"> on the Apps screen</html>", 
 						false, new int[]{0}, "addContact", 0, true);

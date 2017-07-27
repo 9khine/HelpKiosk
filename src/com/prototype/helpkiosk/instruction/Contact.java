@@ -1,5 +1,11 @@
 package com.prototype.helpkiosk.instruction;
 
+<<<<<<< HEAD:src/com/prototype/helpkiosk/instruction/Contact.java
+=======
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+
+>>>>>>> 700587ef29bed0010f287256975e5be7fe2a4809:src/com/prototype/helpkiosk/instruction/Contact.java
 public class Contact {
 	
 	private Instruction[] contactInstruction = new Instruction[4];
