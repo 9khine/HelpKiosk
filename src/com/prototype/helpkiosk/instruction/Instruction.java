@@ -12,13 +12,13 @@ public class Instruction {
 	private int id;
 	private boolean hasCheckmark;
 	
-	public Instruction(String instruction, boolean hasMoreHelp, int[] moreHelpID, String type, int id, boolean hasChecmark){
+	public Instruction(String instruction, boolean hasMoreHelp, int[] moreHelpID, String type, int id, boolean hasCheckmark){
 		this.setInstruction(instruction);
 		this.setHasMoreHelp(hasMoreHelp);
 		this.setMoreHelpID(moreHelpID);
 		this.setType(type);
 		this.setId(id);
-		this.setHasCheckmark(hasChecmark);
+		this.setHasCheckmark(hasCheckmark);
 	}
 
 	public void setInstruction(String instruction) {

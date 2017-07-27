@@ -96,15 +96,18 @@ public class StateThread extends Thread
 					}
 					
 					if (line.indexOf("D AlarmProvider")==31) {
-						// TODO: implement new alarm instructions, set == to 31 when ready
+						// Click alarm (inside clock)
 						System.out.println(line);
 						int i = getAlarmInfo(line);
-						if (i==12) {
+						if (i==12 && line.indexOf("true")==97) {
 							// TODO: click on activate alarm, logcat line is: (length = 12)
 							// 06-23 12:00:29.986 12047 12047 D AlarmProvider: setAlarmActive() - id: 4,willChangeButtonActive: true,activeNow: 0
+							//																				this is what changes ^
+//							/Users/pablo/android-sdks/platform-tools/adb logcat AlarmManager:V *:S
+							
 							System.out.println("ALARM CODE IS: " + i + "; inside setAlarmActive()");
 							
-							instructionSingleton.getActiveView().getInstructionBox(2).instruction.setDone(true);
+							instructionSingleton.getActiveView().getInstructionBox(1).instruction.setDone(true);
 							instructionSingleton.highlight("nothing", "contact");
 							instructionSingleton.showVideo("nothing");
 						}
@@ -186,7 +189,7 @@ public class StateThread extends Thread
 	
 		private int getAlarmInfo(String line) {
 			// return length of alarm logcat line
-			// counts the spaces, use this to determine what type of alarm comman it is
+			// counts the spaces, use this to determine what type of alarm command it is
 			String[] temp = null;
 			temp = line.split(" ");
 			return temp.length;
