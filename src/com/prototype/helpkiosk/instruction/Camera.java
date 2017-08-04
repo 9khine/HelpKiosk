@@ -16,13 +16,11 @@ public class Camera {
 		if (input == "takePic") {
 			takePicInstruction();
 		} else if (input == "takeVid") {
-			// we're viewing!
 			takeVidInstruction();
-		} else if (input == "launchLock") {
+		} else {
+			// if not taking something we launching!
 			launchLockInstruction();
 		}
-	
-		
 	}
 
 	private void takePicInstruction() {
