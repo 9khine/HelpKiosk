@@ -6,20 +6,19 @@ public class Message {
 	
 	
 	public Message(){
-		populateInstruction("send");
+		populateInstruction("sendMsg");
 	}
 
 	/*
  * TODO: update with Message instructions
  */
 	private void populateInstruction(String input) {
-		if (input == "send") {
+		if (input == "sendMsg") {
 			sendMsgInstruction();
-		} else {
+		} else if (input == "viewMsg") {
 			// we're viewing!
 			viewMsgInstruction();
 		}
-		
 	}
 	
 	private void viewMsgInstruction() {
