@@ -51,6 +51,10 @@ public class MoreHelp {
 		moreHelpContent[17]= "<html>How do I set the days when I want<br>the alarm to sound?</html>";
 		moreHelpContent[18]= "<html>How do I enter a name for the alarm?</html>";
 		moreHelpContent[19]= "<html>How do I add a new alarm?</html>";
+		
+		/*Messages*/
+		moreHelpContent[20]= "<html>How do I block unwanted messages?</html>";
+		moreHelpContent[21]= "<html>How do I set the message notification?</html>";
 	}
 	
 	public String[] getMoreHelpSet(int[] IDset){
@@ -120,6 +124,30 @@ public class MoreHelp {
 		answer[17]= "Touch repeat";
 		answer[18]= "Touch label";
 		answer[19]= "Touch ADD ALARM to add a new one.";
+		
+		/*MESSAGES*/
+		answer[20]= "Block messages from specific numbers or messages that contain phrases added to your block list.\n" +
+					"1 Tap Messages on the Apps screen.\n\n" +
+					"2 Tap MORE → Settings → Block messages.\n\n" +
+					"3 Tap Block list.\n" +
+					"To add phrases to block, tap Blocked phrases.\n\n" +
+					// TODO: insert plus icon (+)
+					"4 Tap INBOX or CONTACTS to select contacts and tap INSERT + ICON HERE.\n\n" +
+					"To manually enter a number, tap Enter number, and then enter a phone number.\n" +
+					"When you receive messages from the blocked numbers or messages including blocked phrases, you will not be notified."
+					+ "To view blocked messages, tap MORE → Settings → Block messages → Blocked messages.";
+		answer[21]= "You can change notification sound, display options, and more.\n\n" +
+					"1 Tap Messages on the Apps screen.\n\n" +
+					"2 Tap MORE → Settings → Notifications, and then tap the switch to activate it.\n\n" +
+					"3 Change the notification settings.\n" +
+					"• Notification sound: Change the notification sound.\n" +
+					"• Vibrate: Set the device to vibrate when you receive messages.\n" +
+					"• Pop-up display: Set the device to display messages in pop-up windows.\n" +
+					"• Preview message: Set the device to display message content on the locked screen and in pop-up windows.\n\n\n" +
+					"Setting a message reminder\n\n" +
+					"You can set an alert at an interval to let you know that you have unchecked notifications.\n" +
+					"If this feature is not activated, open the Apps screen, tap Settings → Accessibility → Notification reminder,"
+					+ "and then tap the switch to activate it. Then, tap the Messages switch to activate it.";
 	}
 	
 	private void populateAboutTitle() {
@@ -135,6 +163,9 @@ public class MoreHelp {
 		/*CLOCK*/
 		aboutTitle[4] = "<html>About: Clock</html>";
 		aboutTitle[5] = "<html>About: Alarm</html>";
+		
+		/*MESSAGES*/
+		aboutTitle[6] = "<html>About: Messages</html>";
 		
 	}
 	
@@ -170,6 +201,9 @@ public class MoreHelp {
 		/*CLOCK*/
 		aboutContent[4] = "In addition to displaying the date and time, the Clock application displays information about the weather and your phone. You can also use Clock to turn your phone into an alarm clock.";
 		aboutContent[5] = "You can set an alarm by modifying an existing alarm or by adding a new one. You can change a number of settings for the alarms you set. You can also change how times are displayed in Clock in the Settings applications. ";
+		
+		/*MESSAGES*/
+		aboutContent[6] = "Send and view messages by conversation.";
 	}
 	
 }
