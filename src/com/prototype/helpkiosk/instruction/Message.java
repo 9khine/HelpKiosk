@@ -6,12 +6,7 @@ public class Message {
 	
 	
 	public Message(){
-		populateInstruction();
-	}
-
-private void populateInstruction() {
-		// TODO Auto-generated method stub
-		
+		populateInstruction("send");
 	}
 
 	/*
@@ -40,17 +35,16 @@ private void populateInstruction() {
 	}
 
 	private void sendMsgInstruction() {
-		// TODO Auto-generated method stub
 		messageInstruction[0] = new Instruction("<html>Tap Messages on the Apps screen.</html>", 
 						false, new int[]{0}, "addContact", 0, true);
 		
-		messageInstruction[1] = new Instruction("<html>Tap COMPOSEICON.</html>", // TODO: insert compose icon here
+		messageInstruction[1] = new Instruction("<html>Tap <img src=\"http://imgur.com/DolazUT\" width=\"40\" height=\"40\">.</html>",
 						false, new int[]{0}, "addContact", 1, true);
 		
-		messageInstruction[2] = new Instruction("<html>Enter contact information.</html>", 
+		messageInstruction[2] = new Instruction("<html>Add recipients and enter a message.</html>", 
 				true, new int[]{1,11,12,13,2}, "addContact", 2, false);
 		
-		messageInstruction[3] = new Instruction("<html>Tap SAVE</html>", 
+		messageInstruction[3] = new Instruction("<html>Tap SEND to send the message.</html>", 
 				true, new int[]{3,4,5,6}, "addContact", 3, false);
 	}
 	

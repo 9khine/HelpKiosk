@@ -9,10 +9,10 @@ public class MoreHelp {
 	private String[] aboutContent;
 	
 	public MoreHelp(){
-		moreHelpContent = new String[20];
-		answer = new String[20];
-		aboutTitle = new String[6];
-		aboutContent = new String[6];
+		moreHelpContent = new String[22];
+		answer = new String[22];
+		aboutTitle = new String[7];
+		aboutContent = new String[7];
 		init();
 	}
 	
@@ -132,7 +132,7 @@ public class MoreHelp {
 					"3 Tap Block list.\n" +
 					"To add phrases to block, tap Blocked phrases.\n\n" +
 					// TODO: insert plus icon (+)
-					"4 Tap INBOX or CONTACTS to select contacts and tap INSERT + ICON HERE.\n\n" +
+					"<html>4 Tap INBOX or CONTACTS to select contacts and tap Tap <img src=\"http://imgur.com/64dwlgv\" width=\"40\" height=\"40\">.</html>\n\n" +
 					"To manually enter a number, tap Enter number, and then enter a phone number.\n" +
 					"When you receive messages from the blocked numbers or messages including blocked phrases, you will not be notified."
 					+ "To view blocked messages, tap MORE → Settings → Block messages → Blocked messages.";
