@@ -40,7 +40,7 @@ public class SearchPanel extends JPanel {
 		instruction.setText("Instructions:");
 		instruction.setFont(new Font("Helvetica", Font.BOLD,  22));
 		instruction.setForeground(Color.DARK_GRAY);
-
+		
 		instructionFiller.add(instruction);
 		instructionFiller.add(Box.createRigidArea(new Dimension(this.getWidth(), 10)));
 		mainPanel.add(instructionFiller);
@@ -58,10 +58,9 @@ public class SearchPanel extends JPanel {
 		mainPanel.add(Box.createRigidArea(new Dimension(this.getWidth(), 10)));
 		
 		mainPanel.add(phonePanel());
-		mainPanel.add(Box.createRigidArea(new Dimension(this.getWidth(), 10)));
+		mainPanel.add(Box.createRigidArea(new Dimension(this.getWidth(), 10)));	
 		
 		mainPanel.add(galleryPanel());
-//		mainPanel.add(Box.createRigidArea(new Dimension(this.getWidth(), 10)));
 
 		return mainPanel;
 	}
@@ -93,7 +92,7 @@ public class SearchPanel extends JPanel {
 				new ActionListener(){
 					public void actionPerformed(ActionEvent e){
 						//clean panel from take picture view
-						//Show add contact view
+						//Show set alarm view
 						if(!instructionSingleton.getClockView().isActive()){
 							if(instructionSingleton.getAccordion().getAccordion().getSelectedIndex()!=0)
 								instructionSingleton.getAccordion().getAccordion().setSelectedIndex(0);

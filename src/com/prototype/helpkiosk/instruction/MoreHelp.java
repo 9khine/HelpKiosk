@@ -45,12 +45,13 @@ public class MoreHelp {
 		moreHelpContent[10]= "<html>How do I take a picture during a video?</html>";
 		
 		/*Clock*/
-		moreHelpContent[14]= "<html>How do I set the time of the alarm?</html>";
-		moreHelpContent[15]= "<html>How do I select a ringtone<br>for the alarm?</html>";
-		moreHelpContent[16]= "<html>How do I get the phone to vibrate,<br>in addition to playing the ringtone?</html>";
-		moreHelpContent[17]= "<html>How do I set the days when I want<br>the alarm to sound?</html>";
-		moreHelpContent[18]= "<html>How do I enter a name for the alarm?</html>";
-		moreHelpContent[19]= "<html>How do I add a new alarm?</html>";
+		moreHelpContent[14]= "<html>How do I use the keypad to set the time?</html>";
+		moreHelpContent[15]= "<html>How do I save an alarm with various options?</html>";
+		moreHelpContent[16]= "<html>How do I use previous alarms?</html>";
+		
+		moreHelpContent[17]= "";
+		moreHelpContent[18]= "";
+		moreHelpContent[19]= "";
 		
 		/*Messages*/
 		moreHelpContent[20]= "<html>How do I block unwanted messages?</html>";
@@ -116,11 +117,9 @@ public class MoreHelp {
 					"To focus on the centre of the screen, tap <img src=\"http://i.imgur.com/zDegPRU.png\" width=\"40\" height=\"40\">.</html>";
 	
 		/*Clock*/
-		answer[14]= "i. Touch 'TIME'\n\n" +
-					"ii. In the dialog that opens, you change the time by touching the\n(+) or (-) buttons and the AM or\nPM buttons. Or touch a time\nto type the time you want.";
-		answer[15]= "i. Touch 'RINGTONE'\n\n" +
-					"ii. You can select a ringtone that comes with the phone or one that yousaved as a ringtone by using\nthe Music application.";
-		answer[16]= "Touch vibrate.";
+		answer[14]= "To open the keypad to enter an alarm time, tap the time input field.";
+		answer[15]= "<html>To set an alarm with various alarm options, tap <b>OPTIONS</b>, set alarm options, and then tap <b>SAVE</b>.<html>";
+		answer[16]= "To activate or deactivate alarms, tap the clock icon next to the alarm in the alarms list.";
 		answer[17]= "Touch repeat";
 		answer[18]= "Touch label";
 		answer[19]= "Touch ADD ALARM to add a new one.";

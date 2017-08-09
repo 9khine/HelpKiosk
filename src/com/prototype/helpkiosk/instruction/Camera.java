@@ -24,11 +24,12 @@ public class Camera {
 		instruction[0] = new Instruction("<html>Tap <b>Camera</b> on the Apps screen.</html>",
 				false, new int[]{0}, "takePicture", 0, true);
 		
+		// TODO: can we use logcat to check if the camera focuses?
 		instruction[1] = new Instruction("<html>Tap the image on the preview screen where the camera should focus.</html>",
 				false, new int[]{0}, "takePicture", 1, false);
 				
 		instruction[2] = new Instruction("<html>Tap <img src=\"http://imgur.com/kHEJ1u5.png\" width=\"40\" height=\"40\"> to take a photo.</html>",
-				true, new int[]{9,10}, "takePicture", 2, true);
+				true, new int[]{7,8}, "takePicture", 2, true);
 	}
 	
 	private void takeVidInstruction() {
@@ -39,15 +40,15 @@ public class Camera {
 				false, new int[]{0}, "takePicture", 1, false);
 
 		instruction[2] = new Instruction("<html>Tap <img src=\"http://imgur.com/ElPEohd.png\" width=\"40\" height=\"40\"> to take a photo.</html>",
-				true, new int[]{9,10}, "takePicture", 2, true);
+				true, new int[]{9,10}, "takePicture", 2, false);
 	}
 	
 	private void launchLockInstruction() {
 		instruction[0] = new Instruction("<html>To quickly take photos, launch <b>Camera</b> on the locked screen.</html>",
-				false, new int[]{0}, "takePicture", 0, true);
-		// TODO: add camera icon
-		instruction[1] = new Instruction("<html>On the locked screen, drag   outside the large circle.</html>",
-				false, new int[]{0}, "takePicture", 1, false);
+				false, new int[]{0}, "takePicture", 0, false);
+		
+		instruction[1] = new Instruction("<html>On the locked screen, drag <img src=\"http://imgur.com/WdjXH0h.png\" width=\"40\" height=\"40\"> outside the large circle.</html>",
+				true, new int[]{7,8}, "takePicture", 1, false);
 	}
 	
 	public Instruction[] getInstruction(){
