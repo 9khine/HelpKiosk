@@ -41,8 +41,8 @@ public class MoreHelp {
 		/*Take Picture*/
 		moreHelpContent[7] = "<html>How do I zoom in or out?</html>";
 		moreHelpContent[8] = "<html>How do I control the exposure?</html>";
-		moreHelpContent[9] = "<html>How do I take a picture more quickly?</html>";
-		moreHelpContent[10]= "<html>How do I cancel taking the picture?</html>";
+		moreHelpContent[9] = "<html>How do I change focus while filming?</html>";
+		moreHelpContent[10]= "<html>How do I take a picture during a video?</html>";
 		
 		/*Clock*/
 		moreHelpContent[14]= "<html>How do I set the time of the alarm?</html>";
@@ -107,13 +107,13 @@ public class MoreHelp {
 					"This selected photo will display next to the name in your list of contacts and in other applications";
 		
 		/*Take Picture*/
-		answer[7] = "i. Touch the screen to open the Zoom control and then touch the plus or minus button to zoom in or out gradually.\n\n" +
-					"ii. OR Double-tap the screen to zoom all the way in or out.";
-		answer[8] = "i. Touch the slider to open the camera settings.\n\n" +
-					"ii. The preview image changes as you change the settings.";
-		answer[9] = "i. You can touch & hold the Shutter icon to focus first, before taking a picture, then lift your finger.\n\n" +
-					"ii. OR You can press & hold the Trackball to focus first, before taking a picture, then lift your finger";
-		answer[10]= "Slide your finger off the Shutter icon or roll the trackball and release your finger.";
+		answer[7] = "Spread two fingers apart on the screen to zoom in, and pinch to zoom out.";
+		answer[8] = "<html><p>To adjust the brightness of photos or videos:</p>" + 
+					"<p>i. Tap the screen.</p>" +
+					"<p>ii. When the adjustment bar appears, drag the adjustment bar towards <b>+<b> or <b>—<b>.</p></html>";
+		answer[9] = "<html>To capture an image from the video while recording, tap <b>Capture</b>.</html>";
+		answer[10]= "<html>To change the focus while recording a video, tap where you want to focus." +
+					"To focus on the centre of the screen, tap <img src=\"http://i.imgur.com/zDegPRU.png\" width=\"40\" height=\"40\">.</html>";
 	
 		/*Clock*/
 		answer[14]= "i. Touch 'TIME'\n\n" +
@@ -131,8 +131,7 @@ public class MoreHelp {
 					"2 Tap MORE → Settings → Block messages.\n\n" +
 					"3 Tap Block list.\n" +
 					"To add phrases to block, tap Blocked phrases.\n\n" +
-					// TODO: insert plus icon (+)
-					"<html>4 Tap INBOX or CONTACTS to select contacts and tap Tap <img src=\"http://imgur.com/64dwlgv\" width=\"40\" height=\"40\">.</html>\n\n" +
+					"<html>4 Tap INBOX or CONTACTS to select contacts and tap Tap <img src=\"http://imgur.com/64dwlgv.png\" width=\"40\" height=\"40\">.</html>\n\n" +
 					"To manually enter a number, tap Enter number, and then enter a phone number.\n" +
 					"When you receive messages from the blocked numbers or messages including blocked phrases, you will not be notified."
 					+ "To view blocked messages, tap MORE → Settings → Block messages → Blocked messages.";
