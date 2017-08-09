@@ -135,7 +135,35 @@ public class SearchPanel extends JPanel {
 
 		JButton addContacts = new JButton("Adding Contacts");
 
-		addContacts.addActionListener(createListener("contacts"));
+		//addContacts.addActionListener(createListener("contacts"));
+		addContacts.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e){
+					//clean panel from take picture view
+					cleanPanel();
+					//Show add contact view
+					if(!instructionSingleton.getTakePictureView().isActive()){
+						if(instructionSingleton.getAccordion().getAccordion().getSelectedIndex()!=0)
+							instructionSingleton.getAccordion().getAccordion().setSelectedIndex(0);
+						instructionSingleton.getContainer().removeAll();
+						instructionSingleton.setActiveView(instructionSingleton.getTakePictureView());///
+						instructionSingleton.setMaxID(instructionSingleton.getActiveView().instruction.length-1);
+
+					}else{
+						instructionSingleton.setActiveView(instructionSingleton.getTakePictureView());///
+						instructionSingleton.getAccordion().getAccordion().setSelectedIndex(0);
+					}
+					instructionSingleton.buildTakePictureView();///
+					instructionSingleton.updateInstructionView();
+					instructionSingleton.getTakePictureView().setActive(true);///
+
+					instructionSingleton.buildMoreHelpView(///
+							
+							instructionSingleton.getMoreHelp().getAboutSet(new int[] {1,2}),
+							instructionSingleton.getMoreHelp().getAboutAnswer(new int[] {1,2})
+							);
+					}
+				}
+				);
 		contactPanel.add(addContacts);
 		contactPanel.add(new JButton("Searching for Contacts"));
 
@@ -214,8 +242,9 @@ public class SearchPanel extends JPanel {
 		galleryPanel.add(filler);
 
 		galleryPanel.removeAll();
-		JButton takePicture = new JButton("Viewing Pictures");
+		
 		// TODO update the listener
+		JButton takePicture = new JButton("Viewing Pictures");
 		takePicture.addActionListener(createListener("camera"));
 		galleryPanel.add(takePicture);
 		
@@ -243,8 +272,9 @@ public class SearchPanel extends JPanel {
 		messagePanel.add(filler);
 
 		messagePanel.removeAll();
-		JButton takePicture = new JButton("Sending messages");
+		
 		// TODO update the listener
+		JButton takePicture = new JButton("Sending messages");
 		takePicture.addActionListener(createListener("camera"));
 		messagePanel.add(takePicture);
 		
