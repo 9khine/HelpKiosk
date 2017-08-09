@@ -9,10 +9,10 @@ public class MoreHelp {
 	private String[] aboutContent;
 	
 	public MoreHelp(){
-		moreHelpContent = new String[20];
-		answer = new String[20];
-		aboutTitle = new String[6];
-		aboutContent = new String[6];
+		moreHelpContent = new String[22];
+		answer = new String[22];
+		aboutTitle = new String[7];
+		aboutContent = new String[7];
 		init();
 	}
 	
@@ -41,16 +41,21 @@ public class MoreHelp {
 		/*Take Picture*/
 		moreHelpContent[7] = "<html>How do I zoom in or out?</html>";
 		moreHelpContent[8] = "<html>How do I control the exposure?</html>";
-		moreHelpContent[9] = "<html>How do I take a picture more quickly?</html>";
-		moreHelpContent[10]= "<html>How do I cancel taking the picture?</html>";
+		moreHelpContent[9] = "<html>How do I change focus while filming?</html>";
+		moreHelpContent[10]= "<html>How do I take a picture during a video?</html>";
 		
 		/*Clock*/
-		moreHelpContent[14]= "<html>How do I set the time of the alarm?</html>";
-		moreHelpContent[15]= "<html>How do I select a ringtone<br>for the alarm?</html>";
-		moreHelpContent[16]= "<html>How do I get the phone to vibrate,<br>in addition to playing the ringtone?</html>";
-		moreHelpContent[17]= "<html>How do I set the days when I want<br>the alarm to sound?</html>";
-		moreHelpContent[18]= "<html>How do I enter a name for the alarm?</html>";
-		moreHelpContent[19]= "<html>How do I add a new alarm?</html>";
+		moreHelpContent[14]= "<html>How do I use the keypad to set the time?</html>";
+		moreHelpContent[15]= "<html>How do I save an alarm with various options?</html>";
+		moreHelpContent[16]= "<html>How do I use previous alarms?</html>";
+		
+		moreHelpContent[17]= "";
+		moreHelpContent[18]= "";
+		moreHelpContent[19]= "";
+		
+		/*Messages*/
+		moreHelpContent[20]= "<html>How do I block unwanted messages?</html>";
+		moreHelpContent[21]= "<html>How do I set the message notification?</html>";
 	}
 	
 	public String[] getMoreHelpSet(int[] IDset){
@@ -103,23 +108,44 @@ public class MoreHelp {
 					"This selected photo will display next to the name in your list of contacts and in other applications";
 		
 		/*Take Picture*/
-		answer[7] = "i. Touch the screen to open the Zoom control and then touch the plus or minus button to zoom in or out gradually.\n\n" +
-					"ii. OR Double-tap the screen to zoom all the way in or out.";
-		answer[8] = "i. Touch the slider to open the camera settings.\n\n" +
-					"ii. The preview image changes as you change the settings.";
-		answer[9] = "i. You can touch & hold the Shutter icon to focus first, before taking a picture, then lift your finger.\n\n" +
-					"ii. OR You can press & hold the Trackball to focus first, before taking a picture, then lift your finger";
-		answer[10]= "Slide your finger off the Shutter icon or roll the trackball and release your finger.";
+		answer[7] = "Spread two fingers apart on the screen to zoom in, and pinch to zoom out.";
+		answer[8] = "<html><p>To adjust the brightness of photos or videos:</p>" + 
+					"<p>i. Tap the screen.</p>" +
+					"<p>ii. When the adjustment bar appears, drag the adjustment bar towards <b>+<b> or <b>—<b>.</p></html>";
+		answer[9] = "<html>To capture an image from the video while recording, tap <b>Capture</b>.</html>";
+		answer[10]= "<html>To change the focus while recording a video, tap where you want to focus." +
+					"To focus on the centre of the screen, tap <img src=\"http://i.imgur.com/zDegPRU.png\" width=\"40\" height=\"40\">.</html>";
 	
 		/*Clock*/
-		answer[14]= "i. Touch 'TIME'\n\n" +
-					"ii. In the dialog that opens, you change the time by touching the\n(+) or (-) buttons and the AM or\nPM buttons. Or touch a time\nto type the time you want.";
-		answer[15]= "i. Touch 'RINGTONE'\n\n" +
-					"ii. You can select a ringtone that comes with the phone or one that yousaved as a ringtone by using\nthe Music application.";
-		answer[16]= "Touch vibrate.";
+		answer[14]= "To open the keypad to enter an alarm time, tap the time input field.";
+		answer[15]= "<html>To set an alarm with various alarm options, tap <b>OPTIONS</b>, set alarm options, and then tap <b>SAVE</b>.<html>";
+		answer[16]= "To activate or deactivate alarms, tap the clock icon next to the alarm in the alarms list.";
 		answer[17]= "Touch repeat";
 		answer[18]= "Touch label";
 		answer[19]= "Touch ADD ALARM to add a new one.";
+		
+		/*MESSAGES*/
+		answer[20]= "Block messages from specific numbers or messages that contain phrases added to your block list.\n" +
+					"1 Tap Messages on the Apps screen.\n\n" +
+					"2 Tap MORE → Settings → Block messages.\n\n" +
+					"3 Tap Block list.\n" +
+					"To add phrases to block, tap Blocked phrases.\n\n" +
+					"<html>4 Tap INBOX or CONTACTS to select contacts and tap Tap <img src=\"http://imgur.com/64dwlgv.png\" width=\"40\" height=\"40\">.</html>\n\n" +
+					"To manually enter a number, tap Enter number, and then enter a phone number.\n" +
+					"When you receive messages from the blocked numbers or messages including blocked phrases, you will not be notified."
+					+ "To view blocked messages, tap MORE → Settings → Block messages → Blocked messages.";
+		answer[21]= "You can change notification sound, display options, and more.\n\n" +
+					"1 Tap Messages on the Apps screen.\n\n" +
+					"2 Tap MORE → Settings → Notifications, and then tap the switch to activate it.\n\n" +
+					"3 Change the notification settings.\n" +
+					"• Notification sound: Change the notification sound.\n" +
+					"• Vibrate: Set the device to vibrate when you receive messages.\n" +
+					"• Pop-up display: Set the device to display messages in pop-up windows.\n" +
+					"• Preview message: Set the device to display message content on the locked screen and in pop-up windows.\n\n\n" +
+					"Setting a message reminder\n\n" +
+					"You can set an alert at an interval to let you know that you have unchecked notifications.\n" +
+					"If this feature is not activated, open the Apps screen, tap Settings → Accessibility → Notification reminder,"
+					+ "and then tap the switch to activate it. Then, tap the Messages switch to activate it.";
 	}
 	
 	private void populateAboutTitle() {
@@ -135,6 +161,9 @@ public class MoreHelp {
 		/*CLOCK*/
 		aboutTitle[4] = "<html>About: Clock</html>";
 		aboutTitle[5] = "<html>About: Alarm</html>";
+		
+		/*MESSAGES*/
+		aboutTitle[6] = "<html>About: Messages</html>";
 		
 	}
 	
@@ -170,6 +199,9 @@ public class MoreHelp {
 		/*CLOCK*/
 		aboutContent[4] = "In addition to displaying the date and time, the Clock application displays information about the weather and your phone. You can also use Clock to turn your phone into an alarm clock.";
 		aboutContent[5] = "You can set an alarm by modifying an existing alarm or by adding a new one. You can change a number of settings for the alarms you set. You can also change how times are displayed in Clock in the Settings applications. ";
+		
+		/*MESSAGES*/
+		aboutContent[6] = "Send and view messages by conversation.";
 	}
 	
 }
