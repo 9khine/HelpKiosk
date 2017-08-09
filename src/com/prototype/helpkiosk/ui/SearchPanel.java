@@ -240,6 +240,93 @@ public class SearchPanel extends JPanel {
 
 		return cameraPanel;
 	}
+	
+	private JPanel messagesPanel() {
+
+		/*Messages*/
+
+		JPanel messagePanel = new JPanel();
+		messagePanel.setLayout(new FlowLayout());
+		messagePanel.setBorder(BorderFactory.createTitledBorder("Contacts: "));
+		messagePanel.setBackground(Color.WHITE);
+		messagePanel.setSize(new Dimension(this.getWidth(), 70));
+		TransparentButton filler = new TransparentButton("FILL", (float) 0.0);
+		filler.setOpaque(false);
+		messagePanel.add(filler);
+
+		messagePanel.removeAll();
+
+		JButton sendMsgs = new JButton("Send Messages");
+		JButton viewMsgs = new JButton("View Messages");
+
+		sendMsgs.addActionListener(
+				new ActionListener(){
+					public void actionPerformed(ActionEvent e){
+						//clean panel from take picture view
+						cleanPanel();
+
+						// TODO: Show send message view
+						if(!instructionSingleton.getAddContactView().isActive()){
+							if(instructionSingleton.getAccordion().getAccordion().getSelectedIndex()!=0)
+								instructionSingleton.getAccordion().getAccordion().setSelectedIndex(0);
+							instructionSingleton.getContainer().removeAll();
+							instructionSingleton.setActiveView(instructionSingleton.getAddContactView());
+							instructionSingleton.setMaxID(instructionSingleton.getActiveView().instruction.length-1);
+						}else{
+							instructionSingleton.setActiveView(instructionSingleton.getAddContactView());
+							instructionSingleton.getAccordion().getAccordion().setSelectedIndex(0);
+						}
+						instructionSingleton.buildAddContactView();
+						instructionSingleton.updateInstructionView();
+
+						instructionSingleton.getAddContactView().setActive(true);
+
+						instructionSingleton.buildMoreHelpView(
+								instructionSingleton.getMoreHelp().getAboutSet(new int[] {1,2}),
+								instructionSingleton.getMoreHelp().getAboutAnswer(new int[] {1,2})
+								);
+					}
+				}
+				);
+		
+		viewMsgs.addActionListener(
+				new ActionListener(){
+					public void actionPerformed(ActionEvent e){
+						//clean panel from take picture view
+						cleanPanel();
+
+						// TODO: Show view message view
+						if(!instructionSingleton.getAddContactView().isActive()){
+							if(instructionSingleton.getAccordion().getAccordion().getSelectedIndex()!=0)
+								instructionSingleton.getAccordion().getAccordion().setSelectedIndex(0);
+							instructionSingleton.getContainer().removeAll();
+							instructionSingleton.setActiveView(instructionSingleton.getAddContactView());
+							instructionSingleton.setMaxID(instructionSingleton.getActiveView().instruction.length-1);
+						}else{
+							instructionSingleton.setActiveView(instructionSingleton.getAddContactView());
+							instructionSingleton.getAccordion().getAccordion().setSelectedIndex(0);
+						}
+						instructionSingleton.buildAddContactView();
+						instructionSingleton.updateInstructionView();
+
+						instructionSingleton.getAddContactView().setActive(true);
+
+						instructionSingleton.buildMoreHelpView(
+								instructionSingleton.getMoreHelp().getAboutSet(new int[] {1,2}),
+								instructionSingleton.getMoreHelp().getAboutAnswer(new int[] {1,2})
+								);
+					}
+				}
+				);
+		
+		messagePanel.add(sendMsgs);
+		messagePanel.add(viewMsgs);
+		
+		messagePanel.validate();
+		messagePanel.repaint();
+
+		return messagePanel;
+	}
 
 	public void cleanPanel(){
 
