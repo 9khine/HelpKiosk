@@ -22,6 +22,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
@@ -52,7 +53,7 @@ public class SearchPanel extends JPanel {
 		JPanel instructionFiller = new JPanel();
 		instructionFiller.setBackground(Color.WHITE);
 		instructionFiller.setLayout(new FlowLayout((FlowLayout.LEFT)));
-		instructionFiller.add(Box.createRigidArea(new Dimension(this.getWidth(), 100)));
+		instructionFiller.add(Box.createRigidArea(new Dimension(this.getWidth(), 30)));
 		JLabel instruction = new JLabel();
 
 		instruction.setText("Instructions:");
@@ -60,17 +61,20 @@ public class SearchPanel extends JPanel {
 		instruction.setForeground(Color.DARK_GRAY);
 
 		instructionFiller.add(instruction);
-		instructionFiller.add(Box.createRigidArea(new Dimension(this.getWidth(), 100)));
+		instructionFiller.add(Box.createRigidArea(new Dimension(this.getWidth(), 30)));
 		mainPanel.add(instructionFiller);
 
 		mainPanel.add(clockPanel());
-		mainPanel.add(Box.createRigidArea(new Dimension(this.getWidth(), 100)));
+		mainPanel.add(Box.createRigidArea(new Dimension(this.getWidth(), 30)));
 
 		mainPanel.add(contactPanel());
-		mainPanel.add(Box.createRigidArea(new Dimension(this.getWidth(), 100)));
+		mainPanel.add(Box.createRigidArea(new Dimension(this.getWidth(), 30)));
 
 		mainPanel.add(cameraPanel());
-		mainPanel.add(Box.createRigidArea(new Dimension(this.getWidth(), 100)));
+		mainPanel.add(Box.createRigidArea(new Dimension(this.getWidth(), 30)));
+		
+		mainPanel.add(messagesPanel());
+		mainPanel.add(Box.createRigidArea(new Dimension(this.getWidth(), 30)));
 
 		return mainPanel;
 	}
@@ -80,7 +84,7 @@ public class SearchPanel extends JPanel {
 		/* Clock */
 		
 		JPanel clockPanel = contactPanel();
-		clockPanel.setLayout(new FlowLayout());
+		clockPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
 		clockPanel.setBorder(BorderFactory.createTitledBorder("Clock: "));
 		clockPanel.setBackground(Color.WHITE);
 		clockPanel.setSize(new Dimension(this.getWidth(), 70));
@@ -90,7 +94,9 @@ public class SearchPanel extends JPanel {
 
 		clockPanel.removeAll();
 
-		JButton setAlarm = new JButton("Setting Alarm");
+		JButton setAlarm = new JButton("<html><body style=\"text-align: center\">Setting<br>Alarm</html>");
+		setAlarm.setPreferredSize(new Dimension(100, 50));
+		
 		setAlarm.addActionListener(
 				new ActionListener(){
 					public void actionPerformed(ActionEvent e){
@@ -118,10 +124,17 @@ public class SearchPanel extends JPanel {
 					}
 				}
 				);
+		
 		clockPanel.add(setAlarm);
-		clockPanel.add(new JButton("Remove Alarm"));
-		clockPanel.add(new JButton("Activate Alarm"));
-		clockPanel.add(new JButton("Set Date and Time"));
+		
+		clockPanel.add(new JButton("<html><body style=\"text-align: center\">Remove<br>Alarm</html>"));
+		setAlarm.setPreferredSize(new Dimension(100, 50));
+		
+		clockPanel.add(new JButton("<html><body style=\"text-align: center\">Activate<br>Alarm</html>"));
+		setAlarm.setPreferredSize(new Dimension(100, 50));
+		
+		clockPanel.add(new JButton("<html><body style=\"text-align: center\">Set Date<br>and Time</html>"));
+		setAlarm.setPreferredSize(new Dimension(100, 50));
 
 		clockPanel.validate();
 		clockPanel.repaint();
@@ -134,7 +147,7 @@ public class SearchPanel extends JPanel {
 		/*Contact*/
 
 		JPanel contactPanel = new JPanel();
-		contactPanel.setLayout(new FlowLayout());
+		contactPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
 		contactPanel.setBorder(BorderFactory.createTitledBorder("Contacts: "));
 		contactPanel.setBackground(Color.WHITE);
 		contactPanel.setSize(new Dimension(this.getWidth(), 70));
@@ -191,7 +204,7 @@ public class SearchPanel extends JPanel {
 		/*Camera*/
 		
 		JPanel cameraPanel = new JPanel();
-		cameraPanel.setLayout(new FlowLayout());
+		cameraPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
 		cameraPanel.setBorder(BorderFactory.createTitledBorder("Camera: "));
 		cameraPanel.setBackground(Color.WHITE);
 		cameraPanel.setSize(new Dimension(this.getWidth(), 70));
@@ -245,19 +258,22 @@ public class SearchPanel extends JPanel {
 
 		/*Messages*/
 
-		JPanel messagePanel = new JPanel();
-		messagePanel.setLayout(new FlowLayout());
-		messagePanel.setBorder(BorderFactory.createTitledBorder("Contacts: "));
-		messagePanel.setBackground(Color.WHITE);
-		messagePanel.setSize(new Dimension(this.getWidth(), 70));
+		JPanel messagesPanel = new JPanel();
+		messagesPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
+		messagesPanel.setSize(new Dimension(this.getWidth(), 70));
+		messagesPanel.setBorder(BorderFactory.createTitledBorder("Messages: "));
+		messagesPanel.setBackground(Color.WHITE);
 		TransparentButton filler = new TransparentButton("FILL", (float) 0.0);
 		filler.setOpaque(false);
-		messagePanel.add(filler);
+		messagesPanel.add(filler);
 
-		messagePanel.removeAll();
+		messagesPanel.removeAll();
 
-		JButton sendMsgs = new JButton("Send Messages");
-		JButton viewMsgs = new JButton("View Messages");
+		JButton sendMsgs = new JButton("<html><body style=\"text-align: center\">Send<br>Messages</html>");
+		sendMsgs.setPreferredSize(new Dimension(100, 50));
+		
+		JButton viewMsgs = new JButton("<html><body style=\"text-align: center\">View<br>Messages</html>");
+		viewMsgs.setPreferredSize(new Dimension(100, 50));
 
 		sendMsgs.addActionListener(
 				new ActionListener(){
@@ -319,13 +335,13 @@ public class SearchPanel extends JPanel {
 				}
 				);
 		
-		messagePanel.add(sendMsgs);
-		messagePanel.add(viewMsgs);
+		messagesPanel.add(sendMsgs);
+		messagesPanel.add(viewMsgs);
 		
-		messagePanel.validate();
-		messagePanel.repaint();
+		messagesPanel.validate();
+		messagesPanel.repaint();
 
-		return messagePanel;
+		return messagesPanel;
 	}
 
 	public void cleanPanel(){
