@@ -29,21 +29,8 @@ public class SearchPanel extends JPanel {
 
 		/*
 		 * Instruction
-		 */
-		
-		JPanel instructionFiller = new JPanel();
-		instructionFiller.setBackground(Color.WHITE);
-		instructionFiller.setLayout(new FlowLayout((FlowLayout.LEFT)));
-		instructionFiller.add(Box.createRigidArea(new Dimension(this.getWidth(), 10)));
-		JLabel instruction = new JLabel();
-
-		instruction.setText("Instructions:");
-		instruction.setFont(new Font("Helvetica", Font.BOLD,  22));
-		instruction.setForeground(Color.DARK_GRAY);
-		
-		instructionFiller.add(instruction);
-		instructionFiller.add(Box.createRigidArea(new Dimension(this.getWidth(), 10)));
-		mainPanel.add(instructionFiller);
+		 */	
+		mainPanel.add(instructionPanel());
 
 		mainPanel.add(clockPanel());
 		mainPanel.add(Box.createRigidArea(new Dimension(this.getWidth(), 10)));
@@ -61,8 +48,25 @@ public class SearchPanel extends JPanel {
 		mainPanel.add(Box.createRigidArea(new Dimension(this.getWidth(), 10)));	
 		
 		mainPanel.add(galleryPanel());
-
+		
 		return mainPanel;
+	}
+	
+	private JPanel instructionPanel() {
+		JPanel instructionFiller = new JPanel();
+		instructionFiller.setBackground(Color.WHITE);
+		instructionFiller.setLayout(new FlowLayout((FlowLayout.LEFT)));
+		instructionFiller.add(Box.createRigidArea(new Dimension(this.getWidth(), 10)));
+		JLabel instruction = new JLabel();
+
+		instruction.setText("Instructions:");
+		instruction.setFont(new Font("Helvetica", Font.BOLD,  22));
+		instruction.setForeground(Color.DARK_GRAY);
+		
+		instructionFiller.add(instruction);
+		instructionFiller.add(Box.createRigidArea(new Dimension(this.getWidth(), 10)));
+		
+		return instructionFiller;
 	}
 
 	private JPanel clockPanel() {
@@ -163,16 +167,19 @@ public class SearchPanel extends JPanel {
 						}else{
 							instructionSingleton.setActiveView(instructionSingleton.getAddContactView());
 							instructionSingleton.getAccordion().getAccordion().setSelectedIndex(0);
+						instructionSingleton.getContainer().removeAll();
+						instructionSingleton.setActiveView(instructionSingleton.getTakePictureView());///
+						instructionSingleton.setMaxID(instructionSingleton.getActiveView().instruction.length-1);
 						}
-						instructionSingleton.buildAddContactView();
-						instructionSingleton.updateInstructionView();
+					instructionSingleton.buildTakePictureView();///
+					instructionSingleton.updateInstructionView();
+					instructionSingleton.getTakePictureView().setActive(true);///
 
-						instructionSingleton.getAddContactView().setActive(true);
-
-						instructionSingleton.buildMoreHelpView(
-								instructionSingleton.getMoreHelp().getAboutSet(new int[] {1,2}),
-								instructionSingleton.getMoreHelp().getAboutAnswer(new int[] {1,2})
-								);
+					instructionSingleton.buildMoreHelpView(///
+							
+							instructionSingleton.getMoreHelp().getAboutSet(new int[] {1,2}),
+							instructionSingleton.getMoreHelp().getAboutAnswer(new int[] {1,2})
+							);
 					}
 				}
 				);
@@ -245,7 +252,7 @@ public class SearchPanel extends JPanel {
 
 		return cameraPanel;
 	}
-	
+
 	private JPanel messagesPanel() {
 
 		/*Messages*/
