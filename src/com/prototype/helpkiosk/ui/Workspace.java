@@ -139,6 +139,10 @@ public class Workspace extends JFrame implements WindowListener {
 	}
 	
 	private IDevice getCurrentDevice(){
+		// TODO: change to this to work with display
+		// Windows version:
+//		DeviceBridge.initDebugBridge("C:/Users/admin-mux/android-sdk/platform-tools/adb");
+		// Mac version:
 		DeviceBridge.initDebugBridge();
         
         sleep();

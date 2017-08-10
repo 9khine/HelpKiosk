@@ -47,3 +47,10 @@ to check it's working simply run:
 it should show a device named DEVICE_IP_ADDRESS:5555
 
 this is from the Android ADB guide https://developer.android.com/studio/command-line/adb.html#wireless
+
+## Changing between Windows & Mac (for display)
+
+To make the code runnable on a Windows machine there are three lines of code that need to be commented out/uncommented:
+
+1. Two lines of code in StateThread.java where adb is invoked (the path to adb needs to be changed)
+2. One line of code in Workspace.java where initDebugBridge() is called (the Windows Android SDK has a different signature for that method)
