@@ -171,9 +171,9 @@ public class SearchPanel extends JPanel {
 						instructionSingleton.setActiveView(instructionSingleton.getTakePictureView());///
 						instructionSingleton.setMaxID(instructionSingleton.getActiveView().instruction.length-1);
 						}
-					instructionSingleton.buildTakePictureView();///
-					instructionSingleton.updateInstructionView();
-					instructionSingleton.getTakePictureView().setActive(true);///
+						instructionSingleton.buildAddContactView();
+						instructionSingleton.updateInstructionView();
+						instructionSingleton.getAddContactView().setActive(true);
 
 					instructionSingleton.buildMoreHelpView(///
 							
@@ -290,6 +290,7 @@ public class SearchPanel extends JPanel {
 							instructionSingleton.setActiveView(instructionSingleton.getAddContactView());
 							instructionSingleton.getAccordion().getAccordion().setSelectedIndex(0);
 						}
+						
 						instructionSingleton.buildAddContactView();
 						instructionSingleton.updateInstructionView();
 
