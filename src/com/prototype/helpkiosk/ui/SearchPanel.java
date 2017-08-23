@@ -7,6 +7,7 @@ import javax.swing.*;
 import javax.swing.border.*;
 
 import com.prototype.helpkiosk.instruction.InstructionSingleton;
+import com.prototype.helpkiosk.instructioncontrol.InstructionView;
 
 public class SearchPanel extends JPanel {
 
@@ -200,7 +201,7 @@ public class SearchPanel extends JPanel {
 							instructionSingleton.setActiveView(instructionSingleton.getTakePictureView());///
 							instructionSingleton.getAccordion().getAccordion().setSelectedIndex(0);
 						}
-						instructionSingleton.buildTakePictureView();/// throws java null pointer exception
+						instructionSingleton.buildCameraView();/// throws java null pointer exception
 						instructionSingleton.updateInstructionView();
 						instructionSingleton.getTakePictureView().setActive(true);///
 
@@ -249,21 +250,21 @@ public class SearchPanel extends JPanel {
 						cleanPanel();
 
 						// TODO: Show send message view
-						if(!instructionSingleton.getAddContactView().isActive()){
+						if(!instructionSingleton.getContactView().isActive()){
 							if(instructionSingleton.getAccordion().getAccordion().getSelectedIndex()!=0)
 								instructionSingleton.getAccordion().getAccordion().setSelectedIndex(0);
 							instructionSingleton.getContainer().removeAll();
-							instructionSingleton.setActiveView(instructionSingleton.getAddContactView());
+							instructionSingleton.setActiveView(instructionSingleton.getContactView());
 							instructionSingleton.setMaxID(instructionSingleton.getActiveView().instruction.length-1);
 						}else{
-							instructionSingleton.setActiveView(instructionSingleton.getAddContactView());
+							instructionSingleton.setActiveView(instructionSingleton.getContactView());
 							instructionSingleton.getAccordion().getAccordion().setSelectedIndex(0);
 						}
 
-						instructionSingleton.buildAddContactView();
+						instructionSingleton.buildContactView();
 						instructionSingleton.updateInstructionView();
 
-						instructionSingleton.getAddContactView().setActive(true);
+						instructionSingleton.getContactView().setActive(true);
 
 						instructionSingleton.buildMoreHelpView(
 								instructionSingleton.getMoreHelp().getAboutSet(new int[] {1,2}),
@@ -280,20 +281,20 @@ public class SearchPanel extends JPanel {
 						cleanPanel();
 
 						// TODO: Show view message view
-						if(!instructionSingleton.getAddContactView().isActive()){
+						if(!instructionSingleton.getContactView().isActive()){
 							if(instructionSingleton.getAccordion().getAccordion().getSelectedIndex()!=0)
 								instructionSingleton.getAccordion().getAccordion().setSelectedIndex(0);
 							instructionSingleton.getContainer().removeAll();
-							instructionSingleton.setActiveView(instructionSingleton.getAddContactView());
+							instructionSingleton.setActiveView(instructionSingleton.getContactView());
 							instructionSingleton.setMaxID(instructionSingleton.getActiveView().instruction.length-1);
 						}else{
-							instructionSingleton.setActiveView(instructionSingleton.getAddContactView());
+							instructionSingleton.setActiveView(instructionSingleton.getContactView());
 							instructionSingleton.getAccordion().getAccordion().setSelectedIndex(0);
 						}
-						instructionSingleton.buildAddContactView();
+						instructionSingleton.buildContactView();
 						instructionSingleton.updateInstructionView();
 
-						instructionSingleton.getAddContactView().setActive(true);
+						instructionSingleton.getContactView().setActive(true);
 
 						instructionSingleton.buildMoreHelpView(
 								instructionSingleton.getMoreHelp().getAboutSet(new int[] {1,2}),
@@ -379,31 +380,35 @@ public class SearchPanel extends JPanel {
 	}
 	
 	private JButton instructionView(JButton button) {
+				
 		button.addActionListener(
 				new ActionListener(){
 					public void actionPerformed(ActionEvent e){
 						cleanPanel();
+						
+						InstructionView view = instructionSingleton.getContactView();
 
-						if(!instructionSingleton.getAddContactView().isActive()){
+						if(!view.isActive()){
 							if(instructionSingleton.getAccordion().getAccordion().getSelectedIndex()!=0)
 								instructionSingleton.getAccordion().getAccordion().setSelectedIndex(0);
 							instructionSingleton.getContainer().removeAll();
-							instructionSingleton.setActiveView(instructionSingleton.getAddContactView());
+							instructionSingleton.setActiveView(view);
 							instructionSingleton.setMaxID(instructionSingleton.getActiveView().instruction.length-1);
 						}else{
-							instructionSingleton.setActiveView(instructionSingleton.getAddContactView());
+							instructionSingleton.setActiveView(view);
 							instructionSingleton.getAccordion().getAccordion().setSelectedIndex(0);
 						}
 
-						instructionSingleton.buildAddContactView();
+						instructionSingleton.buildContactView();
 						instructionSingleton.updateInstructionView();
 
-						instructionSingleton.getAddContactView().setActive(true);
+						view.setActive(true);
 
-						instructionSingleton.buildMoreHelpView(
-								instructionSingleton.getMoreHelp().getAboutSet(new int[] {1,2}),
-								instructionSingleton.getMoreHelp().getAboutAnswer(new int[] {1,2})
-								);
+						// TODO: fix moreHelp to take more than array list
+//						instructionSingleton.buildMoreHelpView(
+//								instructionSingleton.getMoreHelp().getAboutSet(new int[] {1,2}),
+//								instructionSingleton.getMoreHelp().getAboutAnswer(new int[] {1,2})
+//								);
 					}
 				}
 				);
@@ -413,9 +418,9 @@ public class SearchPanel extends JPanel {
 
 	public void cleanPanel(){
 
-		if(instructionSingleton.getAddContactView().isActive())
+		if(instructionSingleton.getContactView().isActive())
 		{
-			instructionSingleton.getAddContactView().setActive(false);
+			instructionSingleton.getContactView().setActive(false);
 		}
 		if(instructionSingleton.getTakePictureView().isActive())
 		{

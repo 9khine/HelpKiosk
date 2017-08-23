@@ -38,6 +38,9 @@ public class InstructionSingleton {
 	private InstructionView ADDCONTACTVIEW;
 	private InstructionView TAKEPICTUREVIEW;
 	private InstructionView CLOCKVIEW;
+	private InstructionView MESSAGEVIEW;
+	private InstructionView PHONEVIEW;
+	private InstructionView GALLERYVIEW;
 	
 	private MoreHelpView MOREHELPVIEW;
 	
@@ -305,16 +308,28 @@ public class InstructionSingleton {
 		return activeView;
 	}
 	
-	public void buildAddContactView(){
+	public void buildContactView(){
 		this.ADDCONTACTVIEW.buildView(getContainer());
 	}
 	
-	public void buildTakePictureView(){
+	public void buildCameraView(){
 		this.TAKEPICTUREVIEW.buildView(getContainer());
 	}
 	
 	public void buildClockView(){
 		this.CLOCKVIEW.buildView(getContainer());
+	}
+	
+	public void buildMessageView(){
+		this.MESSAGEVIEW.buildView(getContainer());
+	}
+	
+	public void buildPhoneView(){
+		this.PHONEVIEW.buildView(getContainer());
+	}
+	
+	public void buildGalleryView(){
+		this.GALLERYVIEW.buildView(getContainer());
 	}
 	
 	public void buildMoreHelpView(String[] questions, String[] answers){
@@ -399,10 +414,7 @@ public class InstructionSingleton {
 		return accordion;
 	}
 	
-	/*
-	 * TODO: add more view for phone, gallery, message
-	 */
-	public InstructionView getAddContactView(){
+	public InstructionView getContactView(){
 		return this.ADDCONTACTVIEW;
 	}
 	
@@ -412,6 +424,18 @@ public class InstructionSingleton {
 	
 	public InstructionView getClockView(){
 		return this.CLOCKVIEW;
+	}
+	
+	public InstructionView getMessageView(){
+		return this.MESSAGEVIEW;
+	}
+	
+	public InstructionView getPhoneView(){
+		return this.PHONEVIEW;
+	}
+	
+	public InstructionView getGalleryView(){
+		return this.GALLERYVIEW;
 	}
 
 	public void setMoreHelpContainer(JPanel moreHelpContainer) {
