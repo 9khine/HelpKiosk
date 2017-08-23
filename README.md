@@ -59,4 +59,5 @@ Also, the build path needs to be updated (I think this necessary but always chec
 1. Remove ddmlib.jar, ddms.jar, ddmuilib.jar, and hierarchyviewer.jar
 2. Add new versions of those 4 (eg ddmlib2.25...jar) from the local lib directory
 3. Add guava19.0.jar to build path (also in local lib directory)
+4. Add swingx-1.6.1.jar to build path (also in local lib directory)
 4. Link the org.eclipse.swt project (go to add projects to build path)
