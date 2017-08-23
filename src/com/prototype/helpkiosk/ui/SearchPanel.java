@@ -187,8 +187,8 @@ public class SearchPanel extends JPanel {
 		JButton viewMsgs = new JButton("<html><body style=\"text-align: center\">View<br>Messages</html>");
 		viewMsgs.setPreferredSize(btnSize);
 
-		messagesPanel.add(instructionView(sendMsgs, 1));
-		messagesPanel.add(instructionView(viewMsgs, 1));
+		messagesPanel.add(instructionView(sendMsgs, 4));
+		messagesPanel.add(instructionView(viewMsgs, 4));
 		messagesPanel.add(new JButton("<html><body style=\"color: blue\">more ▾</html>"));
 
 		messagesPanel.validate();
@@ -214,11 +214,11 @@ public class SearchPanel extends JPanel {
 
 		JButton makeCalls = new JButton("<html><body style=\"text-align: center\">Making<br>Calls</html>");
 		makeCalls.setPreferredSize(btnSize);
-		JButton takeCalls = new JButton("<html><body style=\"text-align: center\">Receiving<br>Calls</html>");
-		takeCalls.setPreferredSize(btnSize);
+		JButton receiveCalls = new JButton("<html><body style=\"text-align: center\">Receiving<br>Calls</html>");
+		receiveCalls.setPreferredSize(btnSize);
 
-		phonePanel.add(instructionView(makeCalls, 1));
-		phonePanel.add(instructionView(takeCalls, 1));
+		phonePanel.add(instructionView(makeCalls, 5));
+		phonePanel.add(instructionView(receiveCalls, 5));
 
 		phonePanel.add(new JButton("<html><body style=\"color: blue\">more ▾</html>"));
 
@@ -250,9 +250,9 @@ public class SearchPanel extends JPanel {
 		JButton deleting = new JButton("<html><body style=\"text-align: center\">Delete an Image<br>or a Video</html>");
 		deleting.setPreferredSize(btnSize);
 
-		galleryPanel.add(instructionView(viewImages, 1));
-		galleryPanel.add(instructionView(viewVids, 1));
-		galleryPanel.add(instructionView(deleting, 1));
+		galleryPanel.add(instructionView(viewImages, 6));
+		galleryPanel.add(instructionView(viewVids, 6));
+		galleryPanel.add(instructionView(deleting, 6));
 
 		galleryPanel.add(new JButton("<html><body style=\"color: blue\">more ▾</html>"));
 
@@ -337,7 +337,6 @@ public class SearchPanel extends JPanel {
 						//								instructionSingleton.getMoreHelp().getAboutSet(new int[] {4,5}),
 						//								instructionSingleton.getMoreHelp().getAboutAnswer(new int[] {4,5})
 						//								);
-
 
 					}
 				}

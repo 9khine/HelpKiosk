@@ -35,8 +35,8 @@ public class InstructionSingleton {
 	private Instruction[] takePictureInstruction;
 	private Instruction[] clockInstruction;
 	
-	private InstructionView ADDCONTACTVIEW;
-	private InstructionView TAKEPICTUREVIEW;
+	private InstructionView CONTACTVIEW;
+	private InstructionView CAMERAVIEW;
 	private InstructionView CLOCKVIEW;
 	private InstructionView MESSAGEVIEW;
 	private InstructionView PHONEVIEW;
@@ -97,8 +97,8 @@ public class InstructionSingleton {
 		setTakePictureInstruction(takePicture.getInstruction());
 		setClockInstruction(clock.getInstruction());
 		
-		this.ADDCONTACTVIEW = new InstructionView(this.getContainer(), "ADDCONTACT");
-		this.TAKEPICTUREVIEW = new InstructionView(this.getContainer(), "TAKEPICTURE");
+		this.CONTACTVIEW = new InstructionView(this.getContainer(), "ADDCONTACT");
+		this.CAMERAVIEW = new InstructionView(this.getContainer(), "TAKEPICTURE");
 		this.CLOCKVIEW = new InstructionView(this.getContainer(), "CLOCK");
 		
 		this.MOREHELPVIEW = new MoreHelpView(this.getMoreHelpContainer());
@@ -313,11 +313,11 @@ public class InstructionSingleton {
 	}
 	
 	public void buildContactView(){
-		this.ADDCONTACTVIEW.buildView(getContainer());
+		this.CONTACTVIEW.buildView(getContainer());
 	}
 	
 	public void buildCameraView(){
-		this.TAKEPICTUREVIEW.buildView(getContainer());
+		this.CAMERAVIEW.buildView(getContainer());
 	}
 	
 	public void buildClockView(){
@@ -419,11 +419,11 @@ public class InstructionSingleton {
 	}
 	
 	public InstructionView getContactView(){
-		return this.ADDCONTACTVIEW;
+		return this.CONTACTVIEW;
 	}
 	
 	public InstructionView getCameraView(){
-		return this.TAKEPICTUREVIEW;
+		return this.CAMERAVIEW;
 	}
 	
 	public InstructionView getClockView(){
