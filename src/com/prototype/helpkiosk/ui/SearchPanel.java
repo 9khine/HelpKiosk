@@ -315,7 +315,6 @@ public class SearchPanel extends JPanel {
 						}
 
 						instructionSingleton.buildAppView(view); 
-						// throws java null pointer exception for Camera, Gallery, Phone only
 						instructionSingleton.updateInstructionView();
 						view.setActive(true);
 

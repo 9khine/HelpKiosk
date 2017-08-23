@@ -2,7 +2,7 @@ package com.prototype.helpkiosk.instruction;
 
 public class Gallery {
 	
-	private Instruction[] galleryInstruction = new Instruction[4];
+	private Instruction[] galleryInstruction = new Instruction[3];
 	
 	
 	public Gallery(){
@@ -36,9 +36,8 @@ public class Gallery {
 	
 	private void viewVideoInstruction() {
 		
-		// TODO
+		// TODO update instruction
 		galleryInstruction[0] = new Instruction
-				// TODO insert Gallery app image
 				("<html>Tap Gallery <img src=\"http://i.imgur.com/bkvC2B6.png\" width=\"40\" height=\"40\"> "
 						+ "on the Apps screen</html>", 
 						false, new int[]{0}, "viewVideo", 0, true);
@@ -53,9 +52,8 @@ public class Gallery {
 	
 	private void deleteImageInstruction() {
 		
-		// TODO
+		// TODO update instruction
 		galleryInstruction[0] = new Instruction
-				// TODO insert Gallery app image
 				("<html>Tap Gallery <img src=\"http://i.imgur.com/bkvC2B6.png\" width=\"40\" height=\"40\"> "
 						+ "on the Apps screen</html>", 
 						false, new int[]{0}, "deleteImage", 0, true);

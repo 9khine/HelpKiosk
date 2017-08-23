@@ -2,7 +2,7 @@ package com.prototype.helpkiosk.instruction;
 
 public class Camera {
 	
-	private Instruction[] cameraInstruction = new Instruction[4];
+	private Instruction[] cameraInstruction = new Instruction[3];
 	
 	
 	public Camera(){
