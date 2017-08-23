@@ -24,14 +24,14 @@ public class Gallery {
 				// TODO insert Gallery app image
 				("<html>Tap Gallery <img src=\"http://i.imgur.com/bkvC2B6.png\" width=\"40\" height=\"40\"> "
 						+ "on the Apps screen</html>", 
-						false, new int[]{0}, "viewImage", 0, true);
+						false, new int[]{0}, "viewImage", 0, false);
 		
 		galleryInstruction[1] = new Instruction
 				("<html>Select an image.</html>", 
-						false, new int[]{0}, "viewImage", 1, true);
+						false, new int[]{0}, "viewImage", 1, false);
 		
 		galleryInstruction[2] = new Instruction("<html>To hide or show the menus, tap the screen.</html>", 
-				true, new int[]{1,11,12,13,2}, "viewImage", 2, false);
+				true, new int[]{0}, "viewImage", 2, false);
 	}
 	
 	private void viewVideoInstruction() {

@@ -334,29 +334,29 @@ public class InstructionSingleton {
 		view.buildView(getContainer());
 	}
 	
-	public void buildContactView(){
-		this.CONTACTVIEW.buildView(getContainer());
-	}
-	
-	public void buildCameraView(){
-		this.CAMERAVIEW.buildView(getContainer());
-	}
-	
-	public void buildClockView(){
-		this.CLOCKVIEW.buildView(getContainer());
-	}
-	
-	public void buildMessageView(){
-		this.MESSAGEVIEW.buildView(getContainer());
-	}
-	
-	public void buildPhoneView(){
-		this.PHONEVIEW.buildView(getContainer());
-	}
-	
-	public void buildGalleryView(){
-		this.GALLERYVIEW.buildView(getContainer());
-	}
+//	public void buildContactView(){
+//		this.CONTACTVIEW.buildView(getContainer());
+//	}
+//	
+//	public void buildCameraView(){
+//		this.CAMERAVIEW.buildView(getContainer());
+//	}
+//	
+//	public void buildClockView(){
+//		this.CLOCKVIEW.buildView(getContainer());
+//	}
+//	
+//	public void buildMessageView(){
+//		this.MESSAGEVIEW.buildView(getContainer());
+//	}
+//	
+//	public void buildPhoneView(){
+//		this.PHONEVIEW.buildView(getContainer());
+//	}
+//	
+//	public void buildGalleryView(){
+//		this.GALLERYVIEW.buildView(getContainer());
+//	}
 	
 	public void buildMoreHelpView(String[] questions, String[] answers){
 		if(questions[0]=="") 
