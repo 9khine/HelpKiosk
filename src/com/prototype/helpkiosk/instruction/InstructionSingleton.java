@@ -27,13 +27,19 @@ public class InstructionSingleton {
 
 	private static InstructionSingleton instance = null;
 	
-	private Contact addContact;
-	private Camera takePicture;
+	private Contact contact;
+	private Camera camera;
 	private Clock clock;
+	private Message message;
+	private Phone phone;
+	private Gallery gallery;
 	
-	private Instruction[] addContactInstruction;
-	private Instruction[] takePictureInstruction;
+	private Instruction[] contactInstruction;
+	private Instruction[] cameraInstruction;
 	private Instruction[] clockInstruction;
+	private Instruction[] messageInstruction;
+	private Instruction[] phoneInstruction;
+	private Instruction[] galleryInstruction;
 	
 	private InstructionView CONTACTVIEW;
 	private InstructionView CAMERAVIEW;
@@ -89,17 +95,27 @@ public class InstructionSingleton {
 		
 		accordion = new Accordion();
 		
-		this.addContact = new Contact();
-		this.takePicture = new Camera();
+		this.contact = new Contact();
+		this.camera = new Camera();
 		this.clock = new Clock();
+		this.message = new Message();
+		this.phone = new Phone();
+		this.gallery = new Gallery();
 	
-		setAddContactInstruction(addContact.getInstruction());
-		setTakePictureInstruction(takePicture.getInstruction());
+		setAddContactInstruction(contact.getInstruction());
+		setTakePictureInstruction(camera.getInstruction());
 		setClockInstruction(clock.getInstruction());
+		setMessageInstruction(message.getInstruction());
+		setPhoneInstruction(phone.getInstruction());
+		setGalleryInstruction(gallery.getInstruction());
+
 		
-		this.CONTACTVIEW = new InstructionView(this.getContainer(), "ADDCONTACT");
-		this.CAMERAVIEW = new InstructionView(this.getContainer(), "TAKEPICTURE");
+		this.CONTACTVIEW = new InstructionView(this.getContainer(), "CONTACT");
+		this.CAMERAVIEW = new InstructionView(this.getContainer(), "CAMERA");
 		this.CLOCKVIEW = new InstructionView(this.getContainer(), "CLOCK");
+		this.MESSAGEVIEW = new InstructionView(this.getContainer(), "MESSAGE");
+		this.PHONEVIEW = new InstructionView(this.getContainer(), "PHONE");
+		this.GALLERYVIEW = new InstructionView(this.getContainer(), "GALLERY");
 		
 		this.MOREHELPVIEW = new MoreHelpView(this.getMoreHelpContainer());
 		this.moreHelp = new MoreHelp();
@@ -113,6 +129,9 @@ public class InstructionSingleton {
 		return stateThread.getCmp();	
 	}
 	
+	/*
+	 * TODO create a new class for video
+	 */
 	public void showVideo(String type){
 		
 		mediaContainer.removeAll();
@@ -167,6 +186,9 @@ public class InstructionSingleton {
 		mediaContainer.repaint();
 	}
 	
+	/*
+	 * TODO create a new class for highlights
+	 */
     public void highlight(String type, String name)
     {	
     	JPanel glass = this.getHighlightContainer();
@@ -352,19 +374,19 @@ public class InstructionSingleton {
 	}
 
 	public void setAddContactInstruction(Instruction[] addContactInstruction) {
-		this.addContactInstruction = addContactInstruction;
+		this.contactInstruction = addContactInstruction;
 	}
 
-	public Instruction[] getAddContactInstruction() {
-		return addContactInstruction;
+	public Instruction[] getContactInstruction() {
+		return contactInstruction;
 	}
 
 	public void setTakePictureInstruction(Instruction[] takePictureInstruction) {
-		this.takePictureInstruction = takePictureInstruction;
+		this.cameraInstruction = takePictureInstruction;
 	}
 
 	public Instruction[] getTakePictureInstruction() {
-		return takePictureInstruction;
+		return cameraInstruction;
 	}
 	
 	public void setClockInstruction(Instruction[] clockInstruction) {
@@ -373,6 +395,30 @@ public class InstructionSingleton {
 
 	public Instruction[] getClockInstruction() {
 		return clockInstruction;
+	}
+	
+	public void setMessageInstruction(Instruction[] messageInstruction) {
+		this.messageInstruction = messageInstruction;
+	}
+
+	public Instruction[] getMessageInstruction() {
+		return messageInstruction;
+	}
+	
+	public void setPhoneInstruction(Instruction[] phoneInstruction) {
+		this.phoneInstruction = phoneInstruction;
+	}
+
+	public Instruction[] getPhoneInstruction() {
+		return phoneInstruction;
+	}
+	
+	public void setGalleryInstruction(Instruction[] galleryInstruction) {
+		this.galleryInstruction = galleryInstruction;
+	}
+
+	public Instruction[] getGalleryInstruction() {
+		return galleryInstruction;
 	}
 
 	/*

@@ -20,9 +20,13 @@ import com.prototype.helpkiosk.instruction.InstructionSingleton;
 
 public class InstructionView extends JPanel {
 	
-	private String _ADDCONTACT = "ADDCONTACT";
-	private String _TAKEPICTURE = "TAKEPICTURE";
+	private String _CONTACT = "CONTACT";
+	private String CAMERA = "CAMERA";
 	private String _CLOCK = "CLOCK";
+	private String _MESSAGE = "MESSAGE";
+	private String _PHONE = "PHONE";
+	private String _GALLERY = "GALLERY";
+
 	public Instruction[] instruction;
 	private InstructionBox[] instructionBox;
 	private String title;
@@ -37,17 +41,32 @@ public class InstructionView extends JPanel {
 	
 	public InstructionView(JPanel panel, String instructionType){
 		
-		if (instructionType.equalsIgnoreCase(this._ADDCONTACT)){
+		/*
+		 * TODO add different instructions here for each application
+		 */
+		if (instructionType.equalsIgnoreCase(this._CONTACT)){
 			title = "Adding Contacts";
-			instruction = instructionSingleton.getAddContactInstruction();
+			instruction = instructionSingleton.getContactInstruction();
 		}
-		else if (instructionType.equalsIgnoreCase(this._TAKEPICTURE)){
+		else if (instructionType.equalsIgnoreCase(this.CAMERA)){
 			title = "Taking a Picture";
 			instruction = instructionSingleton.getTakePictureInstruction();
 		}
 		else if (instructionType.equalsIgnoreCase(this._CLOCK)){
 			title = "Setting an Alarm";
 			instruction = instructionSingleton.getClockInstruction();
+		}
+		else if (instructionType.equalsIgnoreCase(this._MESSAGE)){
+			title = "View Message";
+			instruction = instructionSingleton.getMessageInstruction();
+		}
+		else if (instructionType.equalsIgnoreCase(this._PHONE)){
+			title = "Making Call";
+			instruction = instructionSingleton.getPhoneInstruction();
+		}
+		else if (instructionType.equalsIgnoreCase(this._GALLERY)){
+			title = "View Image";
+			instruction = instructionSingleton.getGalleryInstruction();
 		}
 		
 		instructionBox = new InstructionBox[instruction.length];
