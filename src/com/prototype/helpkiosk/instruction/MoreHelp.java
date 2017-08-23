@@ -151,7 +151,7 @@ public class MoreHelp {
 	private void populateAboutTitle() {
 		aboutTitle[0] = "";
 		
-		/*For adding a contact*/
+		/*CONTACT*/
 		aboutTitle[1] = "<html>About: Contacts</html>";
 		aboutTitle[2] = "<html>About: Adding Contacts</html>";
 		
@@ -165,6 +165,11 @@ public class MoreHelp {
 		/*MESSAGES*/
 		aboutTitle[6] = "<html>About: Messages</html>";
 		
+		/*PHONE*/
+		//aboutTitle[7] = "<html>About: Phone</html>";
+		
+		/*GALLERY*/
+		//aboutTitle[8] = "<html>About: Gallery</html>";
 	}
 	
 	private void populateAboutContent(){

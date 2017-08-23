@@ -399,6 +399,9 @@ public class InstructionSingleton {
 		return accordion;
 	}
 	
+	/*
+	 * TODO: add more view for phone, gallery, message
+	 */
 	public InstructionView getAddContactView(){
 		return this.ADDCONTACTVIEW;
 	}

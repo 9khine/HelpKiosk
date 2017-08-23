@@ -11,15 +11,15 @@ import com.prototype.helpkiosk.instruction.InstructionSingleton;
 public class SearchPanel extends JPanel {
 
 	private InstructionSingleton instructionSingleton = InstructionSingleton.getInstance();
-	
+
 	private Dimension btnSize = new Dimension(160, 50);
-	
+
 	public SearchPanel(){
 
 	}
 
 	public JPanel createPanel() {
-		
+
 		JPanel mainPanel = new JPanel();
 		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
 		mainPanel.setBackground(Color.WHITE);
@@ -40,18 +40,18 @@ public class SearchPanel extends JPanel {
 
 		mainPanel.add(cameraPanel());
 		mainPanel.add(Box.createRigidArea(new Dimension(this.getWidth(), 10)));
-		
+
 		mainPanel.add(messagesPanel());
 		mainPanel.add(Box.createRigidArea(new Dimension(this.getWidth(), 10)));
-		
+
 		mainPanel.add(phonePanel());
 		mainPanel.add(Box.createRigidArea(new Dimension(this.getWidth(), 10)));	
-		
+
 		mainPanel.add(galleryPanel());
-		
+
 		return mainPanel;
 	}
-	
+
 	private JPanel instructionPanel() {
 		JPanel instructionFiller = new JPanel();
 		instructionFiller.setBackground(Color.WHITE);
@@ -62,17 +62,17 @@ public class SearchPanel extends JPanel {
 		instruction.setText("Instructions:");
 		instruction.setFont(new Font("Helvetica", Font.BOLD,  22));
 		instruction.setForeground(Color.DARK_GRAY);
-		
+
 		instructionFiller.add(instruction);
 		instructionFiller.add(Box.createRigidArea(new Dimension(this.getWidth(), 10)));
-		
+
 		return instructionFiller;
 	}
 
 	private JPanel clockPanel() {
-		
+
 		/* Clock */
-		
+
 		JPanel clockPanel = contactPanel();
 		clockPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
 		clockPanel.setBorder(BorderFactory.createTitledBorder("Clock: "));
@@ -91,7 +91,7 @@ public class SearchPanel extends JPanel {
 		stopAlarm.setPreferredSize(btnSize);
 		JButton deleteAlarm = new JButton("<html><body style=\"text-align: center\">Deleting<br>Alarms</html>");
 		deleteAlarm.setPreferredSize(btnSize);
-		
+
 		setAlarm.addActionListener(
 				new ActionListener(){
 					public void actionPerformed(ActionEvent e){
@@ -119,7 +119,7 @@ public class SearchPanel extends JPanel {
 					}
 				}
 				);
-		
+
 		clockPanel.add(setAlarm);
 		clockPanel.add(stopAlarm);
 		clockPanel.add(deleteAlarm);
@@ -145,46 +145,15 @@ public class SearchPanel extends JPanel {
 		contactPanel.add(filler);
 
 		contactPanel.removeAll();
-		
+
 		JButton addContacts = new JButton("<html><body style=\"text-align: center\">Adding<br>Contacts</html>");
 		addContacts.setPreferredSize(btnSize);
 		JButton searchContacts = new JButton("<html><body style=\"text-align: center\">Searching<br>for Contacts</html>");
 		searchContacts.setPreferredSize(btnSize);
+
+		contactPanel.add(instructionView(addContacts));
+		contactPanel.add(instructionView(searchContacts));
 		
-		addContacts.addActionListener(
-				new ActionListener(){
-					public void actionPerformed(ActionEvent e){
-						//clean panel from take picture view
-						cleanPanel();
-
-						//Show add contact view
-						if(!instructionSingleton.getAddContactView().isActive()){
-							if(instructionSingleton.getAccordion().getAccordion().getSelectedIndex()!=0)
-								instructionSingleton.getAccordion().getAccordion().setSelectedIndex(0);
-							instructionSingleton.getContainer().removeAll();
-							instructionSingleton.setActiveView(instructionSingleton.getAddContactView());
-							instructionSingleton.setMaxID(instructionSingleton.getActiveView().instruction.length-1);
-						}else{
-							instructionSingleton.setActiveView(instructionSingleton.getAddContactView());
-							instructionSingleton.getAccordion().getAccordion().setSelectedIndex(0);
-						instructionSingleton.getContainer().removeAll();
-						instructionSingleton.setActiveView(instructionSingleton.getTakePictureView());///
-						instructionSingleton.setMaxID(instructionSingleton.getActiveView().instruction.length-1);
-						}
-						instructionSingleton.buildAddContactView();
-						instructionSingleton.updateInstructionView();
-						instructionSingleton.getAddContactView().setActive(true);
-
-					instructionSingleton.buildMoreHelpView(///
-							
-							instructionSingleton.getMoreHelp().getAboutSet(new int[] {1,2}),
-							instructionSingleton.getMoreHelp().getAboutAnswer(new int[] {1,2})
-							);
-					}
-				}
-				);
-		contactPanel.add(addContacts);
-		contactPanel.add(searchContacts);
 		contactPanel.add(new JButton("<html><body style=\"color: blue\">more ▾</html>"));
 
 		contactPanel.validate();
@@ -194,9 +163,9 @@ public class SearchPanel extends JPanel {
 	}
 
 	private JPanel cameraPanel() {
-		
+
 		/*Camera*/
-		
+
 		JPanel cameraPanel = new JPanel();
 		cameraPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
 		cameraPanel.setBorder(BorderFactory.createTitledBorder("Camera: "));
@@ -206,14 +175,14 @@ public class SearchPanel extends JPanel {
 		filler.setOpaque(false);
 		cameraPanel.add(filler);
 		cameraPanel.removeAll();
-				
+
 		JButton takePicture = new JButton("<html><body style=\"text-align: center\">Taking<br>Pictures</html>");
 		takePicture.setPreferredSize(btnSize);
 		JButton takeVideo = new JButton("<html><body style=\"text-align: center\">Taking<br>Videos</html>");
 		takeVideo.setPreferredSize(btnSize);
 		JButton lockScreenPic = new JButton("<html><body style=\"text-align: center\">Launching Camera<br>on Lock Screen</html>");
 		lockScreenPic.setPreferredSize(btnSize);
-		
+
 		takePicture.addActionListener(
 				new ActionListener() {
 					public void actionPerformed(ActionEvent e){
@@ -231,7 +200,7 @@ public class SearchPanel extends JPanel {
 							instructionSingleton.setActiveView(instructionSingleton.getTakePictureView());///
 							instructionSingleton.getAccordion().getAccordion().setSelectedIndex(0);
 						}
-						instructionSingleton.buildTakePictureView();///
+						instructionSingleton.buildTakePictureView();/// throws java null pointer exception
 						instructionSingleton.updateInstructionView();
 						instructionSingleton.getTakePictureView().setActive(true);///
 
@@ -290,7 +259,7 @@ public class SearchPanel extends JPanel {
 							instructionSingleton.setActiveView(instructionSingleton.getAddContactView());
 							instructionSingleton.getAccordion().getAccordion().setSelectedIndex(0);
 						}
-						
+
 						instructionSingleton.buildAddContactView();
 						instructionSingleton.updateInstructionView();
 
@@ -303,7 +272,7 @@ public class SearchPanel extends JPanel {
 					}
 				}
 				);
-		
+
 		viewMsgs.addActionListener(
 				new ActionListener(){
 					public void actionPerformed(ActionEvent e){
@@ -333,11 +302,11 @@ public class SearchPanel extends JPanel {
 					}
 				}
 				);
-		
+
 		messagesPanel.add(sendMsgs);
 		messagesPanel.add(viewMsgs);
 		messagesPanel.add(new JButton("<html><body style=\"color: blue\">more ▾</html>"));
-		
+
 		messagesPanel.validate();
 		messagesPanel.repaint();
 
@@ -364,16 +333,17 @@ public class SearchPanel extends JPanel {
 		JButton takeCalls = new JButton("<html><body style=\"text-align: center\">Receiving<br>Calls</html>");
 		takeCalls.setPreferredSize(btnSize);
 		
-		phonePanel.add(makeCalls);
-		phonePanel.add(takeCalls);
+		phonePanel.add(instructionView(makeCalls));
+		phonePanel.add(instructionView(takeCalls));
+
 		phonePanel.add(new JButton("<html><body style=\"color: blue\">more ▾</html>"));
-		
+
 		phonePanel.validate();
 		phonePanel.repaint();
 
 		return phonePanel;
 	}
-	
+
 	private JPanel galleryPanel() {
 
 		/*Gallery*/
@@ -396,9 +366,10 @@ public class SearchPanel extends JPanel {
 		JButton deleting = new JButton("<html><body style=\"text-align: center\">Delete an Image<br>or a Video</html>");
 		deleting.setPreferredSize(btnSize);
 		
-		galleryPanel.add(viewImages);
-		galleryPanel.add(viewVids);
-		galleryPanel.add(deleting);
+		galleryPanel.add(instructionView(viewImages));
+		galleryPanel.add(instructionView(viewVids));
+		galleryPanel.add(instructionView(deleting));
+		
 		galleryPanel.add(new JButton("<html><body style=\"color: blue\">more ▾</html>"));
 
 		galleryPanel.validate();
@@ -407,6 +378,39 @@ public class SearchPanel extends JPanel {
 		return galleryPanel;
 	}
 	
+	private JButton instructionView(JButton button) {
+		button.addActionListener(
+				new ActionListener(){
+					public void actionPerformed(ActionEvent e){
+						cleanPanel();
+
+						if(!instructionSingleton.getAddContactView().isActive()){
+							if(instructionSingleton.getAccordion().getAccordion().getSelectedIndex()!=0)
+								instructionSingleton.getAccordion().getAccordion().setSelectedIndex(0);
+							instructionSingleton.getContainer().removeAll();
+							instructionSingleton.setActiveView(instructionSingleton.getAddContactView());
+							instructionSingleton.setMaxID(instructionSingleton.getActiveView().instruction.length-1);
+						}else{
+							instructionSingleton.setActiveView(instructionSingleton.getAddContactView());
+							instructionSingleton.getAccordion().getAccordion().setSelectedIndex(0);
+						}
+
+						instructionSingleton.buildAddContactView();
+						instructionSingleton.updateInstructionView();
+
+						instructionSingleton.getAddContactView().setActive(true);
+
+						instructionSingleton.buildMoreHelpView(
+								instructionSingleton.getMoreHelp().getAboutSet(new int[] {1,2}),
+								instructionSingleton.getMoreHelp().getAboutAnswer(new int[] {1,2})
+								);
+					}
+				}
+				);
+		
+		return button;
+	}
+
 	public void cleanPanel(){
 
 		if(instructionSingleton.getAddContactView().isActive())
