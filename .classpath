@@ -18,5 +18,6 @@
 	<classpathentry kind="lib" path="lib/vlcj-3.10.1-test-sources.jar"/>
 	<classpathentry kind="lib" path="lib/vlcj-3.10.1-tests.jar"/>
 	<classpathentry kind="lib" path="lib/vlcj-3.10.1.jar"/>
+	<classpathentry kind="lib" path="lib/swingx-1.6.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

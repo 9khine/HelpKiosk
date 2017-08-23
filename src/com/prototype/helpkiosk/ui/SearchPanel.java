@@ -6,6 +6,8 @@ import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.border.*;
 
+import org.jdesktop.swingx.JXCollapsiblePane;
+
 import com.prototype.helpkiosk.instruction.InstructionSingleton;
 import com.prototype.helpkiosk.instructioncontrol.InstructionView;
 
@@ -21,6 +23,26 @@ public class SearchPanel extends JPanel {
 
 	public JPanel createPanel() {
 
+		/*
+		 * TODO create advanced tab (using jtabbedpane)
+		 * 
+		 * https://docs.oracle.com/javase/7/docs/api/javax/swing/JTabbedPane.html
+		 * https://docs.oracle.com/javase/tutorial/uiswing/components/tabbedpane.html
+		 * 
+		 */
+//		JTabbedPane tabbedPane = new JTabbedPane();
+//		ImageIcon icon = createImageIcon("images/middle.gif");
+//
+//		JComponent panel1 = makeTextPanel("Panel #1");
+//		tabbedPane.addTab("Tab 1", icon, panel1,
+//		                  "Does nothing");
+//		tabbedPane.setMnemonicAt(0, KeyEvent.VK_1);
+//
+//		JComponent panel2 = makeTextPanel("Panel #2");
+//		tabbedPane.addTab("Tab 2", icon, panel2,
+//		                  "Does twice as much nothing");
+//		tabbedPane.setMnemonicAt(1, KeyEvent.VK_2);
+		
 		JPanel mainPanel = new JPanel();
 		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
 		mainPanel.setBackground(Color.WHITE);
@@ -128,6 +150,8 @@ public class SearchPanel extends JPanel {
 		contactPanel.add(instructionView(searchContacts, 1));
 
 		contactPanel.add(new JButton("<html><body style=\"color: blue\">more ▾</html>"));
+		// TODO add expandable panel after clicking more
+			
 
 		contactPanel.validate();
 		contactPanel.repaint();
@@ -379,6 +403,42 @@ public class SearchPanel extends JPanel {
 			super.paint(g2); 
 			g2.dispose(); 
 		} 
+	}
+	
+	/*
+	 * TODO create collapsible panel for More button
+	 * 
+	 * http://javadoc.geotoolkit.org/external/swingx/org/jdesktop/swingx/JXCollapsiblePane.html
+	 * https://www.programcreek.com/java-api-examples/index.php?api=org.jdesktop.swingx.JXCollapsiblePane
+	 * 
+	 */
+	class CollapsibleTreePanel {
+		
+		public CollapsibleTreePanel(JComponent treeComponent) {
+			final JXCollapsiblePane _collapsibleTreePane = new JXCollapsiblePane(JXCollapsiblePane.Direction.LEFT);
+			//_collapsibleTreePane.getContentPane().setBackground(WidgetUtils.BG_COLOR_DARK);
+			_collapsibleTreePane.add(treeComponent);
+			_collapsibleTreePane.setAnimated(false);
+
+			JButton _toggleTreeViewButton = new JButton();
+			_toggleTreeViewButton.setBorder(null);
+			_toggleTreeViewButton.setOpaque(false);
+			_toggleTreeViewButton.setContentAreaFilled(false);
+			_toggleTreeViewButton.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					boolean collapsed = _collapsibleTreePane.isCollapsed();
+					if (collapsed) {
+						//_toggleTreeViewButton.setIcon(imageManager.getImageIcon("images/widgets/tree-panel-collapse.png"));
+						//_toggleTreeViewButton.setBorder(null);
+					} else {
+						//_toggleTreeViewButton.setIcon(imageManager.getImageIcon("images/widgets/tree-panel-expand.png"));
+						//_toggleTreeViewButton.setBorder(new EmptyBorder(0, 2, 0, 0));
+					}
+					//_collapsibleTreePane.setCollapsed(!collapsed);
+				}
+			});
+		}
 	}
 
 
