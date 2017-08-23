@@ -263,10 +263,10 @@ public class InstructionBox
 		button.addActionListener(
 			    new ActionListener() {
 			        public void actionPerformed(ActionEvent e) {
-			        	if(instructionSingleton.getTakePictureView().isActive()){
-			        		if(instructionSingleton.getTakePictureView().getInstructionBox(1).instruction.isActive())
+			        	if(instructionSingleton.getCameraView().isActive()){
+			        		if(instructionSingleton.getCameraView().getInstructionBox(1).instruction.isActive())
 			        			setActive(instructionID);
-			        		else if(instructionSingleton.getTakePictureView().getInstructionBox(2).instruction.isActive())
+			        		else if(instructionSingleton.getCameraView().getInstructionBox(2).instruction.isActive())
 			        			setActive(instructionID);
 			        	}
 			        	if(instructionID==0||instructionID==3) setActive(instructionID);

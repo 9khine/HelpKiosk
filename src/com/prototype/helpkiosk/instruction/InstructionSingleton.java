@@ -308,6 +308,10 @@ public class InstructionSingleton {
 		return activeView;
 	}
 	
+	public void buildAppView(InstructionView view){
+		view.buildView(getContainer());
+	}
+	
 	public void buildContactView(){
 		this.ADDCONTACTVIEW.buildView(getContainer());
 	}
@@ -418,7 +422,7 @@ public class InstructionSingleton {
 		return this.ADDCONTACTVIEW;
 	}
 	
-	public InstructionView getTakePictureView(){
+	public InstructionView getCameraView(){
 		return this.TAKEPICTUREVIEW;
 	}
 	
