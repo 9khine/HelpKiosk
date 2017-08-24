@@ -50,14 +50,19 @@ this is from the Android ADB guide https://developer.android.com/studio/command-
 
 ## Changing between Windows & Mac (for display)
 
-To make the code runnable on a Windows machine there are 4 lines of code that need to be commented out/uncommented:
+(Change the build path first to avoid errors everywhere, makes it a little smoother)
+
+To make the code runnable on a Windows machine, the build path needs to be configured:
+
+1. Add external JARs from the local lib directory:
+  - ddmlib-25.3.2.jar
+  - ddms-25.3.2.jar
+  - ddmuilib-25.3.2.jar
+  - hierarchyviewer2lib-25.3.2.jar
+  - guava-19.0.jar
+2. Link the org.eclipse.swt project (go to the Projects tab in the Configure Build Path window)
+
+Also,  there are 4 lines of code that need to be commented out/uncommented:
 
 1. Two lines of code in StateThread.java where adb is invoked (the path to adb needs to be changed)
 2. Two lines of code in Workspace.java: (1) where initDebugBridge() is called (the Windows Android SDK has a different signature for that method) and (2) at the top in the import statements
-
-Also, the build path needs to be updated (I think this necessary but always check, maybe don't need to remove things after doing it once)
-1. Remove ddmlib.jar, ddms.jar, ddmuilib.jar, and hierarchyviewer.jar
-2. Add new versions of those 4 (eg ddmlib2.25...jar) from the local lib directory
-3. Add guava19.0.jar to build path (also in local lib directory)
-4. Add swingx-1.6.1.jar to build path (also in local lib directory)
-4. Link the org.eclipse.swt project (go to add projects to build path)

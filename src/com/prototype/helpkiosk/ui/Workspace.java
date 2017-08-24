@@ -25,6 +25,7 @@ import com.android.ddmlib.IDevice;
 //import com.android.hierarchyviewerlib.device.DeviceBridge;
 // Mac version
 import com.android.hierarchyviewer.device.DeviceBridge;
+
 import com.prototype.helpkiosk.instruction.InstructionSingleton;
 
 public class Workspace extends JFrame implements WindowListener {
