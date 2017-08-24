@@ -19,7 +19,8 @@ public class Clock {
 	}
 
 	private void setAlarmInstruction() {
-		clockInstruction[0] = new Instruction("<html>On the Apps screen, tap <b>Clock</b>.</html>",
+		clockInstruction[0] = new Instruction("<html>On the Apps screen, tap <b>Clock</b> "
+				+ "<img src=\"http://imgur.com/siXC6Z4.png\" width=\"40\" height=\"40\"/>.</html>",
 				false, new int[]{0}, "clock", 0, true);
 		
 		clockInstruction[1] = new Instruction("<html>Touch Alarm <img src=\"http://i.imgur.com/W5xzbuc.png\" width=\"40\" height=\"40\"/></html>",
@@ -41,7 +42,8 @@ public class Clock {
 	}
 	
 	private void delAlarmInstruction() {
-		clockInstruction[0] = new Instruction("<html>On the Apps screen, tap <b>Clock</b>.</html>",
+		clockInstruction[0] = new Instruction("<html>On the Apps screen, tap <b>Clock</b> "
+				+ "<img src=\"http://imgur.com/siXC6Z4.png\" width=\"40\" height=\"40\"/>.</html>",
 				false, new int[]{0}, "deleteAlarm", 0, true);
 		
 		clockInstruction[1] = new Instruction("<html>Touch Alarm <img src=\"http://i.imgur.com/W5xzbuc.png\" width=\"40\" height=\"40\"/></html>",

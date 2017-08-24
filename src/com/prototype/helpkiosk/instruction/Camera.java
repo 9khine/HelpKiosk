@@ -21,7 +21,8 @@ public class Camera {
 	}
 
 	private void takePicInstruction() {
-		cameraInstruction[0] = new Instruction("<html>Tap <b>Camera</b> on the Apps screen.</html>",
+		cameraInstruction[0] = new Instruction("<html>Tap <b>Camera</b> <img src=\"http://imgur.com/3vP5Y7u.png\" width=\"40\" height=\"40\">"
+				+ " on the Apps screen.</html>",
 				false, new int[]{0}, "takePicture", 0, true);
 		
 		// TODO: can we use logcat to check if the camera focuses?
@@ -29,7 +30,7 @@ public class Camera {
 				false, new int[]{0}, "takePicture", 1, false);
 				
 		cameraInstruction[2] = new Instruction("<html>Tap <img src=\"http://imgur.com/kHEJ1u5.png\" width=\"40\" height=\"40\"> to take a photo.</html>",
-				true, new int[]{7,8}, "takePicture", 2, true);
+				true, new int[]{7,8}, "takePicture", 2, false);
 	}
 	
 	private void takeVidInstruction() {

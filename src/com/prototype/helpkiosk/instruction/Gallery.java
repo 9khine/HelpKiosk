@@ -21,8 +21,7 @@ public class Gallery {
 	
 	private void viewImageInstruction() {
 		galleryInstruction[0] = new Instruction
-				// TODO insert Gallery app image
-				("<html>Tap Gallery <img src=\"http://i.imgur.com/bkvC2B6.png\" width=\"40\" height=\"40\"> "
+				("<html>Tap <b>Gallery</b> <img src=\"http://imgur.com/3vP5Y7u.png\" width=\"40\" height=\"40\">"
 						+ "on the Apps screen</html>", 
 						false, new int[]{0}, "viewImage", 0, false);
 		
@@ -38,7 +37,7 @@ public class Gallery {
 		
 		// TODO update instruction
 		galleryInstruction[0] = new Instruction
-				("<html>Tap Gallery <img src=\"http://i.imgur.com/bkvC2B6.png\" width=\"40\" height=\"40\"> "
+				("<html>Tap Gallery <img src=\"http://imgur.com/3vP5Y7u.png\" width=\"40\" height=\"40\"> "
 						+ "on the Apps screen</html>", 
 						false, new int[]{0}, "viewVideo", 0, true);
 		
