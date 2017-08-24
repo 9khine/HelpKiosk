@@ -21,7 +21,7 @@ public class Camera {
 	}
 
 	private void takePicInstruction() {
-		cameraInstruction[0] = new Instruction("<html>Tap <b>Camera</b> <img src=\"http://imgur.com/3vP5Y7u.png\" width=\"40\" height=\"40\">"
+		cameraInstruction[0] = new Instruction("<html>Tap <b>Camera</b> <img src=\"http://imgur.com/WdjXH0h.png\" width=\"40\" height=\"40\">"
 				+ " on the Apps screen.</html>",
 				false, new int[]{0}, "takePicture", 0, true);
 		

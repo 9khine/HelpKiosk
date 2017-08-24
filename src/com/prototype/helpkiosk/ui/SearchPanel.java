@@ -109,7 +109,6 @@ public class SearchPanel extends JPanel {
 
 		JButton setAlarm = new JButton("<html><body style=\"text-align: center\">Setting<br>Alarm</html>");
 		setAlarm.setPreferredSize(btnSize);
-		setAlarm.setBackground(Color.GRAY);
 		JButton stopAlarm = new JButton("<html><body style=\"text-align: center\">Stopping<br>Alarms</html>");
 		stopAlarm.setPreferredSize(btnSize);
 		JButton deleteAlarm = new JButton("<html><body style=\"text-align: center\">Deleting<br>Alarms</html>");
