@@ -26,10 +26,13 @@ public class StateThread extends Thread
 		// Device strings
 		public static String CMP_LAUNCH_HOME = "com.sec.android.app.launcher/.activities.LauncherActivity";
 		
-		// Instruction strings
+		// LAUNCH Instruction strings
 		public static String CMP_LAUNCH_CONTACTS = "com.android.contacts/.activities.PeopleActivity";
 		public static String CMP_LAUNCH_CAMERA = "com.sec.android.app.camera/.Camera";
 		public static String CMP_LAUNCH_CLOCK = "com.sec.android.app.clockpackage/.ClockPackage";
+		public static String CMP_LAUNCH_MESSAGES = "com.android.mms/.ui.ConversationComposer";
+		public static String CMP_LAUNCH_PHONE = "com.android.contacts/com.android.dialer.DialtactsActivity";
+		public static String CMP_LAUNCH_GALLERY = "com.sec.android.gallery3d/.app.GalleryOpaqueActivity";
 		
 		/*CLOCK*/
 		public static String CMP_ACTIVATE_ALARM = "com.google.android.deskclock/com.android.deskclock.AlarmClock";
@@ -155,6 +158,30 @@ public class StateThread extends Thread
 							}
 							
 							//LAUNCH CAMERA
+							else if (getCmp().equals(CMP_LAUNCH_CAMERA)){
+								System.out.println("CAMERA ACTIVE " + ++count_camera + " TIMES ");
+								instructionSingleton.getActiveView().getInstructionBox(0).instruction.setDone(true);
+								instructionSingleton.highlight("nothing", "contact");
+								instructionSingleton.showVideo("nothing");
+							}
+							
+							//LAUNCH MESSAGES
+							else if (getCmp().equals(CMP_LAUNCH_CAMERA)){
+								System.out.println("CAMERA ACTIVE " + ++count_camera + " TIMES ");
+								instructionSingleton.getActiveView().getInstructionBox(0).instruction.setDone(true);
+								instructionSingleton.highlight("nothing", "contact");
+								instructionSingleton.showVideo("nothing");
+							}
+							
+							//LAUNCH PHONE
+							else if (getCmp().equals(CMP_LAUNCH_CAMERA)){
+								System.out.println("CAMERA ACTIVE " + ++count_camera + " TIMES ");
+								instructionSingleton.getActiveView().getInstructionBox(0).instruction.setDone(true);
+								instructionSingleton.highlight("nothing", "contact");
+								instructionSingleton.showVideo("nothing");
+							}
+							
+							//LAUNCH GALLERY
 							else if (getCmp().equals(CMP_LAUNCH_CAMERA)){
 								System.out.println("CAMERA ACTIVE " + ++count_camera + " TIMES ");
 								instructionSingleton.getActiveView().getInstructionBox(0).instruction.setDone(true);
