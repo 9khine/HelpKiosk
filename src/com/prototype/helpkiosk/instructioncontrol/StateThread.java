@@ -70,6 +70,9 @@ public class StateThread extends Thread
 			int count_camera = 0;
 			int count_contacts = 0;
 			int count_clock = 0;
+			int count_messages = 0;
+			int count_phone = 0;
+			int count_gallery = 0;
 			int count_home = 0;
 			
 			try 
@@ -166,24 +169,24 @@ public class StateThread extends Thread
 							}
 							
 							//LAUNCH MESSAGES
-							else if (getCmp().equals(CMP_LAUNCH_CAMERA)){
-								System.out.println("CAMERA ACTIVE " + ++count_camera + " TIMES ");
+							else if (getCmp().equals(CMP_LAUNCH_MESSAGES)){
+								System.out.println("MESSAGES ACTIVE " + ++count_messages + " TIMES ");
 								instructionSingleton.getActiveView().getInstructionBox(0).instruction.setDone(true);
 								instructionSingleton.highlight("nothing", "contact");
 								instructionSingleton.showVideo("nothing");
 							}
 							
 							//LAUNCH PHONE
-							else if (getCmp().equals(CMP_LAUNCH_CAMERA)){
-								System.out.println("CAMERA ACTIVE " + ++count_camera + " TIMES ");
+							else if (getCmp().equals(CMP_LAUNCH_PHONE)){
+								System.out.println("PHONE ACTIVE " + ++count_phone + " TIMES ");
 								instructionSingleton.getActiveView().getInstructionBox(0).instruction.setDone(true);
 								instructionSingleton.highlight("nothing", "contact");
 								instructionSingleton.showVideo("nothing");
 							}
 							
 							//LAUNCH GALLERY
-							else if (getCmp().equals(CMP_LAUNCH_CAMERA)){
-								System.out.println("CAMERA ACTIVE " + ++count_camera + " TIMES ");
+							else if (getCmp().equals(CMP_LAUNCH_GALLERY)){
+								System.out.println("GALLERY ACTIVE " + ++count_gallery + " TIMES ");
 								instructionSingleton.getActiveView().getInstructionBox(0).instruction.setDone(true);
 								instructionSingleton.highlight("nothing", "contact");
 								instructionSingleton.showVideo("nothing");
