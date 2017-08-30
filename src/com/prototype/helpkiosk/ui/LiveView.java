@@ -36,7 +36,7 @@ class LiveView extends JPanel implements ActionListener
   private volatile boolean isLoading;
   private Crosshair crosshair;
   private Timer timer;
-  private int refreshRate = 1000;
+  private int refreshRate = 500;
   private InstructionSingleton instructionSingleton = InstructionSingleton.getInstance();
   private int width, height;
   

@@ -136,8 +136,9 @@ public class InstructionSingleton {
 		
 		mediaContainer.removeAll();
 		
-		// TODO: set this to local video folder		
-		String videoFolder = "/Users/pablo/git/HelpKioskKhine/video";
+		String home = System.getProperty("user.home");
+		// TODO: set this to local video folder
+		String videoFolder = home + "/git/HelpKioskKhine/video";
 		
 		URL mediaURL;
 		String videoUrl = null;
@@ -263,6 +264,48 @@ public class InstructionSingleton {
 		}
 		
 		if(name=="clock")
+		{
+			if(type=="launcher-icon")
+			{
+				this.updateLowerPanel("back", false);
+				box.setPreferredSize(new Dimension(60,60));
+				glass.add(Box.createRigidArea(new Dimension(250, 80)));
+    			filler.add(box);
+    			filler.add(Box.createRigidArea(new Dimension(165, 60)));
+			}
+			if(type=="openAlarm")
+			{
+				this.updateLowerPanel("back", false);
+				box.setPreferredSize(new Dimension(50,50));
+				glass.add(Box.createRigidArea(new Dimension(250, 2)));
+    			filler.add(box);
+    			filler.add(Box.createRigidArea(new Dimension(178, 50)));
+			}
+			if(type=="makeGreen"){
+				this.updateLowerPanel("back", false);
+				box.setPreferredSize(new Dimension(50,50));
+				glass.add(Box.createRigidArea(new Dimension(250, 75)));
+				glass.add(Box.createRigidArea(new Dimension(10, 50)));
+				filler.add(box);
+				filler.add(Box.createRigidArea(new Dimension(190, 50)));
+			}
+			if(type=="changeOrAdd"){
+				this.updateLowerPanel("back", false);
+			}if(type=="done"){
+				this.updateLowerPanel("back", false);
+				box.setPreferredSize(new Dimension(90,50));
+				glass.add(Box.createRigidArea(new Dimension(250, 340)));
+    			filler.add(box);
+    			filler.add(Box.createRigidArea(new Dimension(168, 60)));
+			}
+			if(type=="goBack"){
+				this.updateLowerPanel("back", true);
+			}
+		}
+		
+		// TODO: add new highlighting here
+		// use keys/names/types from InstructionBox.setBoxActive();
+		if(name=="message")
 		{
 			if(type=="launcher-icon")
 			{
