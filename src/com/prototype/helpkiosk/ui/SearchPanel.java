@@ -107,7 +107,7 @@ public class SearchPanel extends JPanel {
 
 		clockPanel.removeAll();
 
-		JButton setAlarm = new JButton("<html><body style=\"text-align: center\">Setting<br>Alarm</html>");
+		JButton setAlarm = new JButton("<html><body style=\"text-align: center\">Setting an<br>Alarm</html>");
 		setAlarm.setPreferredSize(btnSize);
 		JButton stopAlarm = new JButton("<html><body style=\"text-align: center\">Stopping<br>Alarms</html>");
 		stopAlarm.setPreferredSize(btnSize);
@@ -115,9 +115,9 @@ public class SearchPanel extends JPanel {
 		deleteAlarm.setPreferredSize(btnSize);
 
 		clockPanel.add(instructionView(setAlarm, 3));
-		clockPanel.add(instructionView(stopAlarm, 3));
-		clockPanel.add(instructionView(deleteAlarm, 3));
-		clockPanel.add(new JButton("<html><body style=\"color: blue\">more ▾</html>"));
+		clockPanel.add(instructionView(stopAlarm, 3)).setEnabled(false);
+		clockPanel.add(instructionView(deleteAlarm, 3)).setEnabled(false);
+		clockPanel.add(new JButton("<html><body style=\"color: blue\">more...</html>")).setEnabled(false);
 
 		clockPanel.validate();
 		clockPanel.repaint();
@@ -146,9 +146,9 @@ public class SearchPanel extends JPanel {
 		searchContacts.setPreferredSize(btnSize);
 
 		contactPanel.add(instructionView(addContacts, 1));
-		contactPanel.add(instructionView(searchContacts, 1));
+		contactPanel.add(instructionView(searchContacts, 1)).setEnabled(false);
 
-		contactPanel.add(new JButton("<html><body style=\"color: blue\">more ▾</html>"));
+		contactPanel.add(new JButton("<html><body style=\"color: blue\">more...</html>")).setEnabled(false);
 		// TODO add expandable panel after clicking more
 			
 
@@ -180,9 +180,9 @@ public class SearchPanel extends JPanel {
 		lockScreenPic.setPreferredSize(btnSize);
 
 		cameraPanel.add(instructionView(takePicture, 2));
-		cameraPanel.add(instructionView(takeVideo, 2));
-		cameraPanel.add(instructionView(lockScreenPic, 2));
-		cameraPanel.add(new JButton("<html><body style=\"color: blue\">more ▾</html>"));
+		cameraPanel.add(instructionView(takeVideo, 2)).setEnabled(false);
+		cameraPanel.add(instructionView(lockScreenPic, 2)).setEnabled(false);
+		cameraPanel.add(new JButton("<html><body style=\"color: blue\">more...</html>")).setEnabled(false);
 
 		cameraPanel.validate();
 		cameraPanel.repaint();
@@ -210,9 +210,9 @@ public class SearchPanel extends JPanel {
 		JButton viewMsgs = new JButton("<html><body style=\"text-align: center\">View<br>Messages</html>");
 		viewMsgs.setPreferredSize(btnSize);
 
-		messagesPanel.add(instructionView(sendMsgs, 4));
+		messagesPanel.add(instructionView(sendMsgs, 4)).setEnabled(false);
 		messagesPanel.add(instructionView(viewMsgs, 4));
-		messagesPanel.add(new JButton("<html><body style=\"color: blue\">more ▾</html>"));
+		messagesPanel.add(new JButton("<html><body style=\"color: blue\">more...</html>")).setEnabled(false);
 
 		messagesPanel.validate();
 		messagesPanel.repaint();
@@ -241,9 +241,9 @@ public class SearchPanel extends JPanel {
 		receiveCalls.setPreferredSize(btnSize);
 
 		phonePanel.add(instructionView(makeCalls, 5));
-		phonePanel.add(instructionView(receiveCalls, 5));
+		phonePanel.add(instructionView(receiveCalls, 5)).setEnabled(false);
 
-		phonePanel.add(new JButton("<html><body style=\"color: blue\">more ▾</html>"));
+		phonePanel.add(new JButton("<html><body style=\"color: blue\">more...</html>")).setEnabled(false);
 
 		phonePanel.validate();
 		phonePanel.repaint();
@@ -274,10 +274,10 @@ public class SearchPanel extends JPanel {
 		deleting.setPreferredSize(btnSize);
 
 		galleryPanel.add(instructionView(viewImages, 6));
-		galleryPanel.add(instructionView(viewVids, 6));
-		galleryPanel.add(instructionView(deleting, 6));
+		galleryPanel.add(instructionView(viewVids, 6)).setEnabled(false);
+		galleryPanel.add(instructionView(deleting, 6)).setEnabled(false);
 
-		galleryPanel.add(new JButton("<html><body style=\"color: blue\">more ▾</html>"));
+		galleryPanel.add(new JButton("<html><body style=\"color: blue\">more...</html>")).setEnabled(false);
 
 		galleryPanel.validate();
 		galleryPanel.repaint();
