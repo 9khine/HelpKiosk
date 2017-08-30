@@ -194,42 +194,24 @@ public class InstructionBox
 						videoType = "openContact"; 
 					} else if (instruction.getType()=="takePicture") {
 						videoType = "openCam";
-					} else {
+					} else if (instruction.getType()=="clock") {
 						videoType = "openClock";
+					} else if (instruction.getType()=="viewImage") {
+						videoType = "openContact";
+					}  else if (instruction.getType()=="makingCall") {
+						videoType = "openContact";
+					}  else if (instruction.getType()=="sendMessage") {
+					videoType = "openContact";
+					} else {
+						type = "nothing";
+						videoType = "openContact";
 					}
-					
-					// TODO: add new video types here
-//					else if (instruction.getType()=="viewImage") {
-//						videoType = "openGallery";
-//					}  else if (instruction.getType()=="makingCall") {
-//						videoType = "openPhone";
-//					}  else if (instruction.getType()=="sendMessage") {
-//					videoType = "openMessages";
-//					}
 			} 
 			
 			if (instruction.getType()=="addContact") {
 				name = "contact";
-				int id = instruction.getId();
 				
-				switch (id) {
-					case 1: type = "new-contact";
-							videoType = "newContact";
-							break;
-					case 2: type = "new-name";
-							videoType = "newName";
-							break;
-					case 3: type = "nothing";
-							videoType = "addothercomponent";
-							break;
-					case 4: type = "done";
-							videoType = "contact_done";
-							break;
-					default: type = "nothing";
-							videoType = "openContact"; 
-                    		break;
-				}
-/*				if (instruction.getId()==1) {
+				if (instruction.getId()==1) {
 					type = "new-contact";
 					videoType = "newContact";
 				}
@@ -244,7 +226,7 @@ public class InstructionBox
 				if(instruction.getId()==4){
 					type = "done";
 					videoType = "contact_done";
-				}*/
+				}
 				
 			} else if (instruction.getType()=="takePicture") {
 				name = "camera";
@@ -254,102 +236,59 @@ public class InstructionBox
 				}
 			} else if (instruction.getType()=="clock") {
 				name = "clock";
-				int id = instruction.getId();
 				
-				switch (id) {
-					case 1: type = "openAlarm";
-							videoType = "openAlarm";
-							break;
-					case 2: type = "makeGreen";
-							videoType = "makeGreen";
-							break;
-					case 3: type = "changeOrAdd";
-							videoType = "changeOrAdd";
-							break;
-					case 4: type = "done";
-							videoType = "clockdone";
-							break;
-					case 5: type = "goBack";
-							videoType = "goBack";
-							break;
-					default: type = "nothing";
-							videoType = "openContact"; 
-                    		break;
+				if(instruction.getId()==1){
+					type = "openAlarm";
+					videoType = "openAlarm";
 				}
-//				if(instruction.getId()==1){
-//					type = "openAlarm";
-//					videoType = "openAlarm";
-//				}
-//				if(instruction.getId()==2){
-//					type = "makeGreen";
-//					videoType = "makeGreen";
-//				}
-//				if(instruction.getId()==3){
-//					type = "changeOrAdd";
-//					videoType = "changeOrAdd";
-//				}
-//				if(instruction.getId()==4){
-//					type = "done";
-//					videoType = "clockdone";
-//				}
-//				if(instruction.getId()==5){
-//					type = "goBack";
-//					videoType = "goBack";
-//				}
+				if(instruction.getId()==2){
+					type = "makeGreen";
+					videoType = "makeGreen";
+				}
+				if(instruction.getId()==3){
+					type = "changeOrAdd";
+					videoType = "changeOrAdd";
+				}
+				if(instruction.getId()==4){
+					type = "done";
+					videoType = "clockdone";
+				}
+				if(instruction.getId()==5){
+					type = "goBack";
+					videoType = "goBack";
+				}
 				
 			} else if (instruction.getType()=="sendMessage") {
 				name = "sendMessage";
-				int id = instruction.getId();
-				
-				switch (id) {
-					case 1: type = "openMessages";
-							videoType = "openContact";
-							break;
-					case 2: type = "selectContact";
-							videoType = "openContact";
-							break;
-					case 3: type = "viewConvo";
-							videoType = "openContact";
-							break;
-					default: type = "nothing";
-							videoType = "openContact"; 
-                    		break;
+
+				if (instruction.getId()==1) { 
+					type = "selectContact";
+					videoType = "openContact";
+				}
+				if (instruction.getId()==1) {
+					type = "viewConversation";
+					videoType = "openContact";
 				}
 			} else if (instruction.getType()=="viewImage") {
 				name = "viewImage";
-				int id = instruction.getId();
-				
-				switch (id) {
-					case 1: type = "openGallery";
-							videoType = "openContact";
-							break;
-					case 2: type = "selectImage";
-							videoType = "openContact";
-							break;
-					case 3: type = "showMenus";
-							videoType = "openContact";
-							break;
-					default: type = "nothing";
-							videoType = "openContact"; 
-                    		break;
+
+				if (instruction.getId()==1) {
+					type = "selectImage";
+					videoType = "openContact";
+				}
+				if (instruction.getId()==1) {
+					type = "showMenus";
+					videoType = "openContact";
 				}
 			} else if (instruction.getType()=="makingCall") {
 				name = "makingCall";
-				int id = instruction.getId();
-				
-				switch (id) {
-					case 1: type = "openPhone";
-							videoType = "openContact";
-							break;
-					case 2: type = "enterNumber";
-							videoType = "openContact";
-							break;
-					case 3: type = "placeCall";
-							videoType = "openContact";
-							break;
-					default: type = "nothing";
-							videoType = "openContact"; 
-                    		break;
+				if (instruction.getId()==1) {
+					type = "enterNumber";
+					videoType = "openContact";
+				}
+				if (instruction.getId()==2) {
+					type = "placeCall";
+					videoType = "openContact";
 				}
 			} else {
 				type = "nothing";

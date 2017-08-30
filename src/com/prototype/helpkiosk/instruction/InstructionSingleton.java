@@ -303,27 +303,22 @@ public class InstructionSingleton {
 			}
 		}
 		
-		// TODO: add new highlighting here
+		// TODO: put highlighting in correct places highlighting here
 		// use keys/names/types from InstructionBox.setBoxActive();
-		if(name=="message")
-		{
-			if(type=="launcher-icon")
-			{
+		if (name=="sendMessage") {
+			if (type=="launcher-icon") {
 				this.updateLowerPanel("back", false);
 				box.setPreferredSize(new Dimension(60,60));
 				glass.add(Box.createRigidArea(new Dimension(250, 80)));
     			filler.add(box);
     			filler.add(Box.createRigidArea(new Dimension(165, 60)));
-			}
-			if(type=="openAlarm")
-			{
+			} else if (type=="selectContact") {
 				this.updateLowerPanel("back", false);
 				box.setPreferredSize(new Dimension(50,50));
 				glass.add(Box.createRigidArea(new Dimension(250, 2)));
     			filler.add(box);
     			filler.add(Box.createRigidArea(new Dimension(178, 50)));
-			}
-			if(type=="makeGreen"){
+			} else if (type=="viewConversation") {
 				this.updateLowerPanel("back", false);
 				box.setPreferredSize(new Dimension(50,50));
 				glass.add(Box.createRigidArea(new Dimension(250, 75)));
@@ -331,17 +326,51 @@ public class InstructionSingleton {
 				filler.add(box);
 				filler.add(Box.createRigidArea(new Dimension(190, 50)));
 			}
-			if(type=="changeOrAdd"){
+		}
+		
+		if (name=="viewImage") {
+			if (type=="launcher-icon") {
 				this.updateLowerPanel("back", false);
-			}if(type=="done"){
-				this.updateLowerPanel("back", false);
-				box.setPreferredSize(new Dimension(90,50));
-				glass.add(Box.createRigidArea(new Dimension(250, 340)));
+				box.setPreferredSize(new Dimension(60,60));
+				glass.add(Box.createRigidArea(new Dimension(250, 80)));
     			filler.add(box);
-    			filler.add(Box.createRigidArea(new Dimension(168, 60)));
+    			filler.add(Box.createRigidArea(new Dimension(165, 60)));
+			} else if (type=="selectImage") {
+				this.updateLowerPanel("back", false);
+				box.setPreferredSize(new Dimension(50,50));
+				glass.add(Box.createRigidArea(new Dimension(250, 2)));
+    			filler.add(box);
+    			filler.add(Box.createRigidArea(new Dimension(178, 50)));
+			} else if (type=="showMenus") {
+				this.updateLowerPanel("back", false);
+				box.setPreferredSize(new Dimension(50,50));
+				glass.add(Box.createRigidArea(new Dimension(250, 75)));
+				glass.add(Box.createRigidArea(new Dimension(10, 50)));
+				filler.add(box);
+				filler.add(Box.createRigidArea(new Dimension(190, 50)));
 			}
-			if(type=="goBack"){
-				this.updateLowerPanel("back", true);
+		}
+		
+		if (name=="makingCall") {
+			if (type=="launcher-icon") {
+				this.updateLowerPanel("back", false);
+				box.setPreferredSize(new Dimension(60,60));
+				glass.add(Box.createRigidArea(new Dimension(250, 80)));
+    			filler.add(box);
+    			filler.add(Box.createRigidArea(new Dimension(165, 60)));
+			} else if (type=="enterNumber") {
+				this.updateLowerPanel("back", false);
+				box.setPreferredSize(new Dimension(50,50));
+				glass.add(Box.createRigidArea(new Dimension(250, 2)));
+    			filler.add(box);
+    			filler.add(Box.createRigidArea(new Dimension(178, 50)));
+			} else if (type=="placeCall") {
+				this.updateLowerPanel("back", false);
+				box.setPreferredSize(new Dimension(50,50));
+				glass.add(Box.createRigidArea(new Dimension(250, 75)));
+				glass.add(Box.createRigidArea(new Dimension(10, 50)));
+				filler.add(box);
+				filler.add(Box.createRigidArea(new Dimension(190, 50)));
 			}
 		}
 			
