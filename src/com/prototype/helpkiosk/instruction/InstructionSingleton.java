@@ -118,7 +118,7 @@ public class InstructionSingleton {
 		this.GALLERYVIEW = new InstructionView(this.getContainer(), "GALLERY");
 		
 		this.MOREHELPVIEW = new MoreHelpView(this.getMoreHelpContainer());
-		this.moreHelp = new MoreHelp();
+		this.moreHelp = new MoreHelp();		
 	}
 	
 	public StateThread getStateThread(){
@@ -135,49 +135,16 @@ public class InstructionSingleton {
 	public void showVideo(String type){
 		
 		mediaContainer.removeAll();
-		
-		String home = System.getProperty("user.home");
-		// TODO: set this to local video folder
-		String videoFolder = home + "/git/HelpKioskKhine/video";
-		
-		URL mediaURL;
-		String videoUrl = null;
-		if (type=="openContact") {
-	        videoUrl = "file:/"+videoFolder+"/addContacts/OpenContacts.MPG";
-		} else if(type=="newContact"){
-	        videoUrl = "file://"+videoFolder+"/addContacts/new-contact.MPG";
-		} else if(type=="newName"){
-	        videoUrl = "file://"+videoFolder+"/addContacts/addname.MPG";
-		} else if(type=="addothercomponent"){
-	        videoUrl = "file://"+videoFolder+"/addContacts/addothercomponent.MPG";
-		} else if(type=="contact_done"){
-	        videoUrl = "file://"+videoFolder+"/addContacts/contact_done.MPG";
-		} else if(type=="openCam"){
-	        videoUrl = "file:"+videoFolder+"/takePicture/cam.MPG";
-		} else if(type=="takePicture"){
-	        videoUrl = "file:"+videoFolder+"/takePicture/take-picture.MPG";
-		} else if(type=="openClock"){
-	        videoUrl = "file:"+videoFolder+"/clock/openclock.MPG";
-		} else if(type=="openAlarm"){
-	        videoUrl = "file:"+videoFolder+"/clock/openalarm.MPG";
-		} else if(type=="makeGreen"){
-	        videoUrl = "file:"+videoFolder+"/clock/makegreen.MPG";
-		} else if(type=="changeOrAdd"){
-	        videoUrl = "file:"+videoFolder+"/changeoradd.MPG";
-		} else if(type=="clockdone"){
-	        videoUrl = "file:"+videoFolder+"/clock/clock_done.MPG";
-		} else if(type=="goBack"){
-	        videoUrl = "file:"+videoFolder+"/clock/clock_back.MPG";
-		} else if(type=="nothing"){
-			videoUrl = "";
-		}
-		
+		//mediaContainer.setVisible(true);
+		String videoUrl = this.mediaContainer.selectURL(type);
+				
 		try {
 			if(videoUrl!=""){
 				// TODO: use this.getClass().getResource("/path/to/our.mp3"); to get real URL
-				mediaURL = new URL(videoUrl);
+				URL mediaURL = new URL(videoUrl);
 				this.mediaContainer.setURL(mediaURL);
 				mediaContainer.show();
+				
 			}
 		} catch (MalformedURLException e) {
 			System.out.println("MalformedURL");
@@ -408,25 +375,6 @@ public class InstructionSingleton {
 //		this.CONTACTVIEW.buildView(getContainer());
 //	}
 //	
-//	public void buildCameraView(){
-//		this.CAMERAVIEW.buildView(getContainer());
-//	}
-//	
-//	public void buildClockView(){
-//		this.CLOCKVIEW.buildView(getContainer());
-//	}
-//	
-//	public void buildMessageView(){
-//		this.MESSAGEVIEW.buildView(getContainer());
-//	}
-//	
-//	public void buildPhoneView(){
-//		this.PHONEVIEW.buildView(getContainer());
-//	}
-//	
-//	public void buildGalleryView(){
-//		this.GALLERYVIEW.buildView(getContainer());
-//	}
 	
 	public void buildMoreHelpView(String[] questions, String[] answers){
 		if(questions[0]=="") 

@@ -28,6 +28,8 @@ import com.android.hierarchyviewer.device.DeviceBridge;
 
 import com.prototype.helpkiosk.instruction.InstructionSingleton;
 
+import chrriis.dj.nativeswing.swtimpl.components.JWebBrowser;
+
 public class Workspace extends JFrame implements WindowListener {
 	
 	private JPanel mainPanel;
@@ -128,8 +130,10 @@ public class Workspace extends JFrame implements WindowListener {
 		MediaPanel mediaPanel = new MediaPanel();
 		mediaPanel.setBackground(Color.WHITE);
 		mediaPanel.setPreferredSize(new Dimension(445, 250));
+		// video format: MPEG, 320x240, FrameRate=29.9, Length=115200
+		mediaPanel.setVisible(true);
 		instructionSingleton.setMediaContainer(mediaPanel);
-		
+				
 		demoPanel.add(mediaPanel);
 		demoPanel.add(Box.createRigidArea(new Dimension(10, 10)));
 		

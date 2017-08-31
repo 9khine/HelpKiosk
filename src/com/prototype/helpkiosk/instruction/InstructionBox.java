@@ -188,6 +188,8 @@ public class InstructionBox
 			String type = null;
 			String videoType = null;
 			String name = null;
+			
+			//TODO - KEEP VIDEO TYPE NAME CONSISTENT WITH INSTRUCTION TYPE
 			if (instruction.getId()==0) {
 					type = "launcher-icon";
 					if (instruction.getType()=="addContact") {
