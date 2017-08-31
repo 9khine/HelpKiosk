@@ -55,6 +55,9 @@ public class StateThread extends Thread
 		/*CONTACTS*/
 		public static String CMP_NEW_CONTACT = "com.android.contacts/.activities.ContactEditorActivity";
 		
+		/*MESSAGES*/
+		public static String COMPOSE_BUTTON = "ComposerPerformance";
+		
 
 		public void run() {
 		    try {
@@ -118,9 +121,22 @@ public class StateThread extends Thread
 							instructionSingleton.highlight("nothing", "contact");
 							instructionSingleton.showVideo("nothing");
 						}
-					}
+					} else
 					
-					if(line.indexOf("I ActivityManager")==31) {
+					// TODO: tell someone compose was clicked, I mean this should work now probably...?
+					// something with this:
+					// 08-30 17:17:05.828 11610 11610 D ComposerPerformance: create new message
+					if (line.indexOf("D ComposerPerformance")==31) {
+						System.out.println(line);
+						int i = getAlarmInfo(line);
+						if (i==9 && line.indexOf("create")==6) {
+							System.out.println("Compose was clicked! How exciting...");
+							
+							instructionSingleton.getActiveView().getInstructionBox(1).instruction.setDone(true);
+							instructionSingleton.highlight("nothing", "contact");
+							instructionSingleton.showVideo("nothing");
+						}
+					} else if (line.indexOf("I ActivityManager")==31) {
 						System.out.println(line);
 						setInfo(line);
 	

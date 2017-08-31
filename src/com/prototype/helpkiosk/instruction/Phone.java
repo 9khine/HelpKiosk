@@ -6,11 +6,11 @@ public class Phone {
 
 
 	public Phone(){
-		populateInstruction("makingCalls");
+		populateInstruction("makeCall");
 	}
 
 	private void populateInstruction(String input) {
-		if (input.equals("makingCalls")) {
+		if (input.equals("makeCall")) {
 			makingCallInstruction();
 		} else if (input.equals("receiveCalls")) {
 			receivingCallInstruction();
@@ -20,17 +20,17 @@ public class Phone {
 	private void makingCallInstruction() {
 		phoneInstruction[0] = new Instruction
 				("<html>Tap Phone <img src=\"http://imgur.com/X61ThUy.png\" width=\"40\" height=\"40\"> on the Apps screen.</html>", 
-						false, new int[]{0}, "makingCalls", 0, false);
+						false, new int[]{0}, "makeCall", 0, true);
 
 		phoneInstruction[1] = new Instruction
 				("<html>Enter the phone number. If the keys does not appear on the screen, "
 						+ "tap <img src=\"http://imgur.com/kKP12Uh.png\" width=\"40\" height=\"40\"> to open the keypad.</html>", 
-						false, new int[]{0}, "makingCalls", 1, false);
+						false, new int[]{0}, "makeCall", 1, false);
 
 		phoneInstruction[2] = new Instruction("<html>Tap <img src=\"http://imgur.com/rW0SoDK.png\" width=\"40\" height=\"40\"> "
 				+ "to make a voice call, or tap <img src=\"http://imgur.com/TKvVvHN.png\" width=\"40\" height=\"40\"> "
 				+ "to make a video call.</html>", 
-				true, new int[]{0}, "makingCalls", 2, false);
+				true, new int[]{0}, "makeCall", 2, false);
 	}
 
 	private void receivingCallInstruction() {

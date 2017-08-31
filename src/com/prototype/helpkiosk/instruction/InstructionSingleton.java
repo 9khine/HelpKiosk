@@ -304,27 +304,33 @@ public class InstructionSingleton {
 		}
 		
 		// TODO: put highlighting in correct places highlighting here
-		// use keys/names/types from InstructionBox.setBoxActive();
+		// use names and types from InstructionBox.setBoxActive();
+		// Dimension(width, height)
+		// Live View dimensions: width = 240; height = 400
 		if (name=="sendMessage") {
 			if (type=="launcher-icon") {
 				this.updateLowerPanel("back", false);
 				box.setPreferredSize(new Dimension(60,60));
-				glass.add(Box.createRigidArea(new Dimension(250, 80)));
+				glass.add(Box.createRigidArea(new Dimension(250, 318)));
     			filler.add(box);
-    			filler.add(Box.createRigidArea(new Dimension(165, 60)));
-			} else if (type=="selectContact") {
+    			filler.add(Box.createRigidArea(new Dimension(58, 60)));
+			} else if (type=="compose") {
 				this.updateLowerPanel("back", false);
-				box.setPreferredSize(new Dimension(50,50));
-				glass.add(Box.createRigidArea(new Dimension(250, 2)));
-    			filler.add(box);
-    			filler.add(Box.createRigidArea(new Dimension(178, 50)));
-			} else if (type=="viewConversation") {
-				this.updateLowerPanel("back", false);
-				box.setPreferredSize(new Dimension(50,50));
-				glass.add(Box.createRigidArea(new Dimension(250, 75)));
-				glass.add(Box.createRigidArea(new Dimension(10, 50)));
+				box.setPreferredSize(new Dimension(45,45));
+				glass.add(Box.createRigidArea(new Dimension(250, 340)));
+				filler.add(Box.createRigidArea(new Dimension(183, 45)));
 				filler.add(box);
-				filler.add(Box.createRigidArea(new Dimension(190, 50)));
+			} else if (type=="addRecipient") {
+				this.updateLowerPanel("back", false);
+				box.setPreferredSize(new Dimension(245,45));
+				glass.add(Box.createRigidArea(new Dimension(250, 75)));
+				filler.add(box);
+			} else if (type=="send") {
+				this.updateLowerPanel("back", false);
+				box.setPreferredSize(new Dimension(60,45));
+				glass.add(Box.createRigidArea(new Dimension(250, 75)));
+				filler.add(Box.createRigidArea(new Dimension(163, 45)));
+				filler.add(box);
 			}
 		}
 		
@@ -333,8 +339,8 @@ public class InstructionSingleton {
 				this.updateLowerPanel("back", false);
 				box.setPreferredSize(new Dimension(60,60));
 				glass.add(Box.createRigidArea(new Dimension(250, 80)));
+				filler.add(Box.createRigidArea(new Dimension(170, 60)));
     			filler.add(box);
-    			filler.add(Box.createRigidArea(new Dimension(165, 60)));
 			} else if (type=="selectImage") {
 				this.updateLowerPanel("back", false);
 				box.setPreferredSize(new Dimension(50,50));
@@ -351,26 +357,18 @@ public class InstructionSingleton {
 			}
 		}
 		
-		if (name=="makingCall") {
+		if (name=="makeCall") {
 			if (type=="launcher-icon") {
 				this.updateLowerPanel("back", false);
 				box.setPreferredSize(new Dimension(60,60));
-				glass.add(Box.createRigidArea(new Dimension(250, 80)));
+				glass.add(Box.createRigidArea(new Dimension(250, 318)));
     			filler.add(box);
     			filler.add(Box.createRigidArea(new Dimension(165, 60)));
-			} else if (type=="enterNumber") {
-				this.updateLowerPanel("back", false);
-				box.setPreferredSize(new Dimension(50,50));
-				glass.add(Box.createRigidArea(new Dimension(250, 2)));
-    			filler.add(box);
-    			filler.add(Box.createRigidArea(new Dimension(178, 50)));
 			} else if (type=="placeCall") {
 				this.updateLowerPanel("back", false);
-				box.setPreferredSize(new Dimension(50,50));
-				glass.add(Box.createRigidArea(new Dimension(250, 75)));
-				glass.add(Box.createRigidArea(new Dimension(10, 50)));
+				box.setPreferredSize(new Dimension(150,50));
+				glass.add(Box.createRigidArea(new Dimension(250, 318)));
 				filler.add(box);
-				filler.add(Box.createRigidArea(new Dimension(190, 50)));
 			}
 		}
 			

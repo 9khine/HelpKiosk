@@ -198,7 +198,7 @@ public class InstructionBox
 						videoType = "openClock";
 					} else if (instruction.getType()=="viewImage") {
 						videoType = "openContact";
-					}  else if (instruction.getType()=="makingCall") {
+					}  else if (instruction.getType()=="makeCall") {
 						videoType = "openContact";
 					}  else if (instruction.getType()=="sendMessage") {
 					videoType = "openContact";
@@ -262,11 +262,15 @@ public class InstructionBox
 				name = "sendMessage";
 
 				if (instruction.getId()==1) { 
-					type = "selectContact";
+					type = "compose";
 					videoType = "openContact";
 				}
-				if (instruction.getId()==1) {
-					type = "viewConversation";
+				if (instruction.getId()==2) {
+					type = "addRecipient";
+					videoType = "openContact";
+				}
+				if (instruction.getId()==3) {
+					type = "send";
 					videoType = "openContact";
 				}
 			} else if (instruction.getType()=="viewImage") {
@@ -276,12 +280,12 @@ public class InstructionBox
 					type = "selectImage";
 					videoType = "openContact";
 				}
-				if (instruction.getId()==1) {
+				if (instruction.getId()==2) {
 					type = "showMenus";
 					videoType = "openContact";
 				}
-			} else if (instruction.getType()=="makingCall") {
-				name = "makingCall";
+			} else if (instruction.getType()=="makeCall") {
+				name = "makeCall";
 				if (instruction.getId()==1) {
 					type = "enterNumber";
 					videoType = "openContact";
