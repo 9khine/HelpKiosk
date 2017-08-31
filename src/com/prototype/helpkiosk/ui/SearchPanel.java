@@ -82,7 +82,8 @@ public class SearchPanel extends JPanel {
 		instructionFiller.add(Box.createRigidArea(new Dimension(this.getWidth(), 10)));
 		JLabel instruction = new JLabel();
 
-		instruction.setText("Instructions:");
+		// TODO: this changes the title of the "Search Panel"
+		instruction.setText("Choose an application...");
 		instruction.setFont(new Font("Helvetica", Font.BOLD,  22));
 		instruction.setForeground(Color.DARK_GRAY);
 
