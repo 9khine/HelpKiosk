@@ -2,43 +2,22 @@ package com.prototype.helpkiosk.ui;
 // Fig 21.6: MediaPanel.java
 // A JPanel the plays media from a URL
 import java.awt.BorderLayout;
-import java.awt.Canvas;
-import java.awt.Color;
 import java.awt.Component;
-import java.awt.Container;
 import java.awt.Dimension;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.net.URL;
 
 import javax.media.CannotRealizeException;
-import javax.media.ControllerEvent;
 import javax.media.ControllerListener;
-import javax.media.EndOfMediaEvent;
-import javax.media.Format;
 import javax.media.Manager;
-import javax.media.MediaLocator;
 import javax.media.NoPlayerException;
 import javax.media.Player;
-import javax.media.PlugInManager;
-import javax.media.PrefetchCompleteEvent;
-import javax.media.RealizeCompleteEvent;
 import javax.media.Time;
-import javax.media.format.VideoFormat;
-import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import chrriis.dj.nativeswing.swtimpl.components.JWebBrowser;
-import uk.co.caprica.vlcj.binding.LibVlc;
-import uk.co.caprica.vlcj.component.EmbeddedMediaPlayerComponent;
-import uk.co.caprica.vlcj.discovery.NativeDiscovery;
-import uk.co.caprica.vlcj.player.MediaPlayerFactory;
 import uk.co.caprica.vlcj.player.embedded.EmbeddedMediaPlayer;
-import uk.co.caprica.vlcj.player.embedded.videosurface.CanvasVideoSurface;
 
 public class MediaPanel extends JPanel {
 	public URL mediaURL;
@@ -46,7 +25,7 @@ public class MediaPanel extends JPanel {
 	Player mediaPlayer;
 	EmbeddedMediaPlayer mediaPlayerV = null;
 	
-	private EmbeddedMediaPlayerComponent ourMediaPlayer;
+	//private EmbeddedMediaPlayerComponent ourMediaPlayer;
 	
 	public MediaPanel() {
 		setLayout(new BorderLayout()); // use a BorderLayout
@@ -59,12 +38,6 @@ public class MediaPanel extends JPanel {
 		try {
 			
 			if (mediaURL != null) {
-				
-				//	http://lethalman.blogspot.ca/2009/02/jmf-and-mpeg.html
-				//	http://jffmpeg.sourceforge.net/
-//				Format[] inFormats = { new VideoFormat ("MPEG") };
-//				PlugInManager.addPlugIn ("net.sourceforge.jffmpeg.VideoDecoder", inFormats, null, PlugInManager.CODEC);
-//				PlugInManager.commit ();
 				
 				System.out.println("mediaURL is: " + mediaURL);
 				// create a player to play the media specified in the URL
@@ -171,5 +144,12 @@ public class MediaPanel extends JPanel {
 //	    webBrowser.navigate("https://www.youtube.com/watch?v=3tmd-ClpJxA");
 //	    return webBrowserPanel;
 //	}
+	
+
+	//	http://lethalman.blogspot.ca/2009/02/jmf-and-mpeg.html
+	//	http://jffmpeg.sourceforge.net/
+//	Format[] inFormats = { new VideoFormat ("MPEG") };
+//	PlugInManager.addPlugIn ("net.sourceforge.jffmpeg.VideoDecoder", inFormats, null, PlugInManager.CODEC);
+//	PlugInManager.commit ();
 	
 } // end class MediaPanel
