@@ -318,17 +318,14 @@ public class InstructionSingleton {
     			filler.add(box);
 			} else if (type=="selectImage") {
 				this.updateLowerPanel("back", false);
-				box.setPreferredSize(new Dimension(50,50));
-				glass.add(Box.createRigidArea(new Dimension(250, 2)));
+				box.setPreferredSize(new Dimension(230,350));
+				glass.add(Box.createRigidArea(new Dimension(250, 28)));
     			filler.add(box);
-    			filler.add(Box.createRigidArea(new Dimension(178, 50)));
 			} else if (type=="showMenus") {
 				this.updateLowerPanel("back", false);
-				box.setPreferredSize(new Dimension(50,50));
-				glass.add(Box.createRigidArea(new Dimension(250, 75)));
-				glass.add(Box.createRigidArea(new Dimension(10, 50)));
-				filler.add(box);
-				filler.add(Box.createRigidArea(new Dimension(190, 50)));
+				box.setPreferredSize(new Dimension(230,390));
+//				glass.add(Box.createRigidArea(new Dimension(250, 0)));
+    			filler.add(box);
 			}
 		}
 		

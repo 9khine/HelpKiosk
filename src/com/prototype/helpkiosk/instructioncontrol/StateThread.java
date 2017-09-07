@@ -124,19 +124,6 @@ public class StateThread extends Thread
 					} else if (line.indexOf("D ComposerPerformance")==31) {
 						/* COMPOSE MESSAGE */
 						// format of logcat line: 08-30 17:17:05.828 11610 11610 D ComposerPerformance: create new message
-						// to mimic non-blocking instruction check step 3 of send message
-//						System.out.println(line);
-//						System.out.println("Compose was clicked! How exciting...");
-						
-						instructionSingleton.getActiveView().getInstructionBox(1).instruction.setDone(true);
-						instructionSingleton.highlight("nothing", "contact");
-					} else if (line.indexOf("D ComposerPerformance")==31) {
-						/* VIEW IMAGE */
-						// format of logcat line: 09-07 14:21:40.097 17232 17232 I Gallery_Performance: TimeViewState onPause Start
-						// to mimic non-blocking instruction check step 3 of send message
-						System.out.println(line);
-						
-						System.out.println("Compose was clicked! How exciting...");
 						
 						instructionSingleton.getActiveView().getInstructionBox(1).instruction.setDone(true);
 						instructionSingleton.highlight("nothing", "contact");

@@ -29,6 +29,8 @@ public class Gallery {
 				("<html>Select an image.</html>", 
 						false, new int[]{0}, "viewImage", 1, false);
 		
+		galleryInstruction[1].setDone(true);
+		
 		galleryInstruction[2] = new Instruction("<html>To hide or show the menus, tap the screen.</html>", 
 				true, new int[]{0}, "viewImage", 2, false);
 	}
