@@ -211,8 +211,8 @@ public class SearchPanel extends JPanel {
 		JButton viewMsgs = new JButton("<html><body style=\"text-align: center\">View<br>Messages</html>");
 		viewMsgs.setPreferredSize(btnSize);
 
-		messagesPanel.add(instructionView(sendMsgs, 4)).setEnabled(false);
-		messagesPanel.add(instructionView(viewMsgs, 4));
+		messagesPanel.add(instructionView(sendMsgs, 4));
+		messagesPanel.add(instructionView(viewMsgs, 4)).setEnabled(false);
 		messagesPanel.add(new JButton("<html><body style=\"color: blue\">more...</html>")).setEnabled(false);
 
 		messagesPanel.validate();
