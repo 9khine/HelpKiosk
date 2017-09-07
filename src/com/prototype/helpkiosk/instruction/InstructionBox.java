@@ -232,7 +232,11 @@ public class InstructionBox
 				
 			} else if (instruction.getType()=="takePicture") {
 				name = "camera";
-				if(instruction.getId()==3){
+				if (instruction.getId()==1) {
+					type = "focus";
+					videoType = "takePicture";
+				}
+				if (instruction.getId()==2) {
 					type = "shutter";
 					videoType = "takePicture";
 				}

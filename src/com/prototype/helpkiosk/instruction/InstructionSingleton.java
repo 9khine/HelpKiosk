@@ -177,20 +177,25 @@ public class InstructionSingleton {
 		
 		if (type=="nothing") {}
 		
+		// TODO: put highlighting in correct places highlighting here
+		// use names and types from InstructionBox.setBoxActive();
+		// Dimension(width, height)
+		// Live View dimensions: width = 240; height = 400
 		if (name=="camera") {
 			if (type=="launcher-icon") {
 				box.setPreferredSize(new Dimension(60,60));
-				glass.add(Box.createRigidArea(new Dimension(250, 115)));
+				glass.add(Box.createRigidArea(new Dimension(250, 80)));
     			filler.add(Box.createRigidArea(new Dimension(117, 60)));
     			filler.add(box);
     			filler.add(Box.createRigidArea(new Dimension(60, 60)));
-			}
-			
-			if (type=="shutter") {
-				box.setPreferredSize(new Dimension(60,60));
-				glass.add(Box.createRigidArea(new Dimension(250, 330)));
+			} else if (type=="focus") {
+				box.setPreferredSize(new Dimension(225,290));
+				glass.add(Box.createRigidArea(new Dimension(250, 25)));
     			filler.add(box);
-    			filler.add(Box.createRigidArea(new Dimension(178, 60)));
+			} else if (type=="shutter") {
+				box.setPreferredSize(new Dimension(60,55));
+				glass.add(Box.createRigidArea(new Dimension(250, 328)));
+    			filler.add(box);
 			}
 		}
 		
@@ -202,9 +207,7 @@ public class InstructionSingleton {
     			filler.add(Box.createRigidArea(new Dimension(60, 60)));
     			filler.add(box);
     			filler.add(Box.createRigidArea(new Dimension(120, 60)));
-			}
-			
-			if (type=="new-contact") {
+			} else if (type=="new-contact") {
 				box.setPreferredSize(new Dimension(50,50));
 				this.updateLowerPanel("menu", false);
 				glass.add(Box.createRigidArea(new Dimension(350, 350)));
@@ -217,15 +220,13 @@ public class InstructionSingleton {
 //				filler.add(two);
 				filler.add(box);
 //				this.updateLowerPanel("menu", true);
-			}
-			if(type=="new-name"){
+			} else if (type=="new-name") {
 				this.updateLowerPanel("menu", false);
 				box.setPreferredSize(new Dimension(230,70));
 				glass.add(Box.createRigidArea(new Dimension(250, 130)));
 				filler.add(box);
 				filler.add(Box.createRigidArea(new Dimension(50, 100)));
-			}
-			if(type=="done"){
+			} else if (type=="done") {
 				this.updateLowerPanel("menu", false);
 				box.setPreferredSize(new Dimension(180,50));
 				glass.add(Box.createRigidArea(new Dimension(250, 180)));
@@ -234,42 +235,35 @@ public class InstructionSingleton {
 			}
 		}
 		
-		if(name=="clock")
-		{
-			if(type=="launcher-icon")
-			{
+		if (name=="clock") {
+			if(type=="launcher-icon") {
 				this.updateLowerPanel("back", false);
 				box.setPreferredSize(new Dimension(60,60));
 				glass.add(Box.createRigidArea(new Dimension(250, 80)));
     			filler.add(box);
     			filler.add(Box.createRigidArea(new Dimension(165, 60)));
-			}
-			if(type=="openAlarm")
-			{
+			} else if (type=="openAlarm") {
 				this.updateLowerPanel("back", false);
 				box.setPreferredSize(new Dimension(50,50));
 				glass.add(Box.createRigidArea(new Dimension(250, 2)));
     			filler.add(box);
     			filler.add(Box.createRigidArea(new Dimension(178, 50)));
-			}
-			if(type=="makeGreen"){
+			} else if (type=="makeGreen") {
 				this.updateLowerPanel("back", false);
 				box.setPreferredSize(new Dimension(50,50));
 				glass.add(Box.createRigidArea(new Dimension(250, 75)));
 				glass.add(Box.createRigidArea(new Dimension(10, 50)));
 				filler.add(box);
 				filler.add(Box.createRigidArea(new Dimension(190, 50)));
-			}
-			if(type=="changeOrAdd"){
+			} else if (type=="changeOrAdd") {
 				this.updateLowerPanel("back", false);
-			}if(type=="done"){
+			} else if (type=="done") {
 				this.updateLowerPanel("back", false);
 				box.setPreferredSize(new Dimension(90,50));
 				glass.add(Box.createRigidArea(new Dimension(250, 340)));
     			filler.add(box);
     			filler.add(Box.createRigidArea(new Dimension(168, 60)));
-			}
-			if(type=="goBack"){
+			} else if (type=="goBack") {
 				this.updateLowerPanel("back", true);
 			}
 		}
@@ -305,10 +299,6 @@ public class InstructionSingleton {
 			}
 		}
 		
-		// TODO: put highlighting in correct places highlighting here
-		// use names and types from InstructionBox.setBoxActive();
-		// Dimension(width, height)
-		// Live View dimensions: width = 240; height = 400
 		if (name=="viewImage") {
 			if (type=="launcher-icon") {
 				this.updateLowerPanel("back", false);
@@ -324,7 +314,6 @@ public class InstructionSingleton {
 			} else if (type=="showMenus") {
 				this.updateLowerPanel("back", false);
 				box.setPreferredSize(new Dimension(230,390));
-//				glass.add(Box.createRigidArea(new Dimension(250, 0)));
     			filler.add(box);
 			}
 		}
