@@ -274,10 +274,6 @@ public class InstructionSingleton {
 			}
 		}
 		
-		// TODO: put highlighting in correct places highlighting here
-		// use names and types from InstructionBox.setBoxActive();
-		// Dimension(width, height)
-		// Live View dimensions: width = 240; height = 400
 		if (name=="sendMessage") {
 			if (type=="launcher-icon") {
 				this.updateLowerPanel("back", false);
@@ -309,6 +305,10 @@ public class InstructionSingleton {
 			}
 		}
 		
+		// TODO: put highlighting in correct places highlighting here
+		// use names and types from InstructionBox.setBoxActive();
+		// Dimension(width, height)
+		// Live View dimensions: width = 240; height = 400
 		if (name=="viewImage") {
 			if (type=="launcher-icon") {
 				this.updateLowerPanel("back", false);
@@ -341,8 +341,8 @@ public class InstructionSingleton {
     			filler.add(Box.createRigidArea(new Dimension(165, 60)));
 			} else if (type=="placeCall") {
 				this.updateLowerPanel("back", false);
-				box.setPreferredSize(new Dimension(150,50));
-				glass.add(Box.createRigidArea(new Dimension(250, 318)));
+				box.setPreferredSize(new Dimension(85,45));
+				glass.add(Box.createRigidArea(new Dimension(250, 340)));
 				filler.add(box);
 			}
 		}

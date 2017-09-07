@@ -106,7 +106,7 @@ public class StateThread extends Thread
 					}
 					
 					if (line.indexOf("D AlarmProvider")==31) {
-						// Click alarm (inside clock)
+						/* SET ALARM */
 						System.out.println(line);
 						int i = getAlarmInfo(line);
 						if (i==12 && line.indexOf("true")==97) {
@@ -122,8 +122,17 @@ public class StateThread extends Thread
 							//instructionSingleton.showVideo("nothing");
 						}
 					} else if (line.indexOf("D ComposerPerformance")==31) {
-						// TODO: check if compose is clicked, should work now probably...?
+						/* COMPOSE MESSAGE */
 						// format of logcat line: 08-30 17:17:05.828 11610 11610 D ComposerPerformance: create new message
+						// to mimic non-blocking instruction check step 3 of send message
+//						System.out.println(line);
+//						System.out.println("Compose was clicked! How exciting...");
+						
+						instructionSingleton.getActiveView().getInstructionBox(1).instruction.setDone(true);
+						instructionSingleton.highlight("nothing", "contact");
+					} else if (line.indexOf("D ComposerPerformance")==31) {
+						/* VIEW IMAGE */
+						// format of logcat line: 09-07 14:21:40.097 17232 17232 I Gallery_Performance: TimeViewState onPause Start
 						// to mimic non-blocking instruction check step 3 of send message
 						System.out.println(line);
 						
@@ -131,18 +140,8 @@ public class StateThread extends Thread
 						
 						instructionSingleton.getActiveView().getInstructionBox(1).instruction.setDone(true);
 						instructionSingleton.highlight("nothing", "contact");
-//						instructionSingleton.showVideo("nothing");
-						
-//						int i = getAlarmInfo(line);
-//						if (line.indexOf("ComposerPerformance")==33) {
-//							System.out.println("Compose was clicked! How exciting...");
-//							
-//							instructionSingleton.getActiveView().getInstructionBox(1).instruction.setDone(true);
-//							instructionSingleton.highlight("nothing", "contact");
-////							instructionSingleton.showVideo("nothing");
-//						}
 					} else if (line.indexOf("I ActivityManager")==31) {
-//						System.out.println(line);
+						System.out.println(line);
 						setInfo(line);
 	
 //						System.out.println("*** act = "+ this.act);
