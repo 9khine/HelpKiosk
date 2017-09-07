@@ -293,17 +293,18 @@ public class InstructionSingleton {
 				filler.add(box);
 			} else if (type=="addRecipient") {
 				this.updateLowerPanel("back", false);
-				box.setPreferredSize(new Dimension(225,23));
-				box2.setPreferredSize(new Dimension(225,150));
-				glass.add(Box.createRigidArea(new Dimension(250, 40)));
-				filler.add(box);
-				glass.add(Box.createRigidArea(new Dimension(250, 10)));
+				box.setPreferredSize(new Dimension(225,25));
+				box2.setPreferredSize(new Dimension(195,25));
+				glass.add(Box.createRigidArea(new Dimension(250, 42)));
+				glass.add(box);
+				glass.add(Box.createRigidArea(new Dimension(250, 110)));
 				filler.add(box2);
+				filler.add(Box.createRigidArea(new Dimension(40, 25)));
 			} else if (type=="send") {
 				this.updateLowerPanel("back", false);
-				box.setPreferredSize(new Dimension(50,40));
-				glass.add(Box.createRigidArea(new Dimension(250, 170)));
-				filler.add(Box.createRigidArea(new Dimension(163, 45)));
+				box.setPreferredSize(new Dimension(40,30));
+				glass.add(Box.createRigidArea(new Dimension(250, 183)));
+				filler.add(Box.createRigidArea(new Dimension(195, 30)));
 				filler.add(box);
 			}
 		}

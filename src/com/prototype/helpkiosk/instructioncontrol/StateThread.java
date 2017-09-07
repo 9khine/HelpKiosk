@@ -124,6 +124,7 @@ public class StateThread extends Thread
 					} else if (line.indexOf("D ComposerPerformance")==31) {
 						// TODO: check if compose is clicked, should work now probably...?
 						// format of logcat line: 08-30 17:17:05.828 11610 11610 D ComposerPerformance: create new message
+						// to mimic non-blocking instruction check step 3 of send message
 						System.out.println(line);
 						
 						System.out.println("Compose was clicked! How exciting...");
