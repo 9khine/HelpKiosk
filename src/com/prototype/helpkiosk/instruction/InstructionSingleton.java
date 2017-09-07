@@ -140,7 +140,7 @@ public class InstructionSingleton {
 				
 		try {
 			if(videoUrl!=""){
-				// TODO: use this.getClass().getResource("/path/to/our.mp3"); to get real URL
+				// TODO: use this.getClass().getResource("/path/to/our.mp3"); to get real URL if URL is a problem
 				URL mediaURL = new URL(videoUrl);
 				this.mediaContainer.setURL(mediaURL);
 				mediaContainer.show();
@@ -165,6 +165,10 @@ public class InstructionSingleton {
     	JPanel box = new JPanel();
     	box.setOpaque(false);
 		box.setBorder(BorderFactory.createLineBorder(Color.ORANGE, 4));
+		
+		JPanel box2 = new JPanel();
+    	box2.setOpaque(false);
+		box2.setBorder(BorderFactory.createLineBorder(Color.ORANGE, 4));
 		
     	
 		JPanel filler = new JPanel();
@@ -289,13 +293,16 @@ public class InstructionSingleton {
 				filler.add(box);
 			} else if (type=="addRecipient") {
 				this.updateLowerPanel("back", false);
-				box.setPreferredSize(new Dimension(245,45));
-				glass.add(Box.createRigidArea(new Dimension(250, 75)));
+				box.setPreferredSize(new Dimension(225,23));
+				box2.setPreferredSize(new Dimension(225,150));
+				glass.add(Box.createRigidArea(new Dimension(250, 40)));
 				filler.add(box);
+				glass.add(Box.createRigidArea(new Dimension(250, 10)));
+				filler.add(box2);
 			} else if (type=="send") {
 				this.updateLowerPanel("back", false);
-				box.setPreferredSize(new Dimension(60,45));
-				glass.add(Box.createRigidArea(new Dimension(250, 75)));
+				box.setPreferredSize(new Dimension(50,40));
+				glass.add(Box.createRigidArea(new Dimension(250, 170)));
 				filler.add(Box.createRigidArea(new Dimension(163, 45)));
 				filler.add(box);
 			}

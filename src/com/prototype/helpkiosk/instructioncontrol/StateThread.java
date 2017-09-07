@@ -121,28 +121,32 @@ public class StateThread extends Thread
 							instructionSingleton.highlight("nothing", "contact");
 							//instructionSingleton.showVideo("nothing");
 						}
-					} else
-					
-					// TODO: tell someone compose was clicked, I mean this should work now probably...?
-					// something with this:
-					// 08-30 17:17:05.828 11610 11610 D ComposerPerformance: create new message
-					if (line.indexOf("D ComposerPerformance")==31) {
+					} else if (line.indexOf("D ComposerPerformance")==31) {
+						// TODO: check if compose is clicked, should work now probably...?
+						// format of logcat line: 08-30 17:17:05.828 11610 11610 D ComposerPerformance: create new message
 						System.out.println(line);
-						int i = getAlarmInfo(line);
-						if (i==9 && line.indexOf("create")==6) {
-							System.out.println("Compose was clicked! How exciting...");
-							
-							instructionSingleton.getActiveView().getInstructionBox(1).instruction.setDone(true);
-							instructionSingleton.highlight("nothing", "contact");
-							//instructionSingleton.showVideo("nothing");
-						}
+						
+						System.out.println("Compose was clicked! How exciting...");
+						
+						instructionSingleton.getActiveView().getInstructionBox(1).instruction.setDone(true);
+						instructionSingleton.highlight("nothing", "contact");
+//						instructionSingleton.showVideo("nothing");
+						
+//						int i = getAlarmInfo(line);
+//						if (line.indexOf("ComposerPerformance")==33) {
+//							System.out.println("Compose was clicked! How exciting...");
+//							
+//							instructionSingleton.getActiveView().getInstructionBox(1).instruction.setDone(true);
+//							instructionSingleton.highlight("nothing", "contact");
+////							instructionSingleton.showVideo("nothing");
+//						}
 					} else if (line.indexOf("I ActivityManager")==31) {
-						System.out.println(line);
+//						System.out.println(line);
 						setInfo(line);
 	
-						System.out.println("*** act = "+ this.act);
-						System.out.println("*** cat = "+ this.cat);
-						System.out.println("*** cmp = "+ this.cmp);
+//						System.out.println("*** act = "+ this.act);
+//						System.out.println("*** cat = "+ this.cat);
+//						System.out.println("*** cmp = "+ this.cmp);
 						
 						if (getCmp()!=null) {	
 							//LAUNCHER
@@ -239,6 +243,7 @@ public class StateThread extends Thread
 		private int getAlarmInfo(String line) {
 			// return length of alarm logcat line
 			// counts the spaces, use this to determine what type of alarm command it is
+			// also works for messages
 			String[] temp = null;
 			temp = line.split(" ");
 			return temp.length;
