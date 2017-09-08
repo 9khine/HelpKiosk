@@ -5,14 +5,18 @@ public class Message {
 	private Instruction[] messageInstruction = new Instruction[4];
 	
 	
-	public Message(){
-		populateInstruction("sendMsg");
+	public Message() {
+		populateInstruction("sendMessage");
+	}
+	
+	public Message(String s) {
+		populateInstruction(s);
 	}
 
 	private void populateInstruction(String input) {
-		if (input == "sendMsg") {
+		if (input == "sendMessage") {
 			sendMsgInstruction();
-		} else if (input == "viewMsg") {
+		} else if (input == "viewMessage") {
 			// we're viewing!
 			viewMsgInstruction();
 		}

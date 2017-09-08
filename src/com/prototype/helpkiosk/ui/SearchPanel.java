@@ -307,6 +307,8 @@ public class SearchPanel extends JPanel {
 						 * */ 
 
 						switch(appNumber) {
+						
+						// TODO: pass arguments for tasks
 
 						case 1:	view = instructionSingleton.getContactView();
 						break;

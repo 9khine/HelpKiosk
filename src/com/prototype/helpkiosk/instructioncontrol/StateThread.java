@@ -38,7 +38,7 @@ public class StateThread extends Thread
 		public static String CMP_ACTIVATE_ALARM = "com.google.android.deskclock/com.android.deskclock.AlarmClock";
 		public static String CMP_SET_ALARM = "com.google.android.deskclock/com.android.deskclock.SetAlarm";
 		
-		// TODO: find new way to set alarm codes from logcat output
+		// TODO: find new way to set alarm codes
 		public static String NEW_ALARM_CODE = "";
 		// 06-21 13:24:35.594 23640 23640 D AlarmListView: resizeLayoutWithDrag : 2
 		// 06-21 13:25:54.054 23640 23640 D AlarmMainActivity: onSaveAlarm()
@@ -46,9 +46,6 @@ public class StateThread extends Thread
 		// 06-23 12:00:29.986 12047 12047 D AlarmProvider: setAlarmActive() - id: 4,willChangeButtonActive: true,activeNow: 0
 		public static String DEACTIVATE_ALARM_CODE = "";
 		// 06-21 13:14:57.024 23640 23640 D AlarmProvider: setAlarmActive to false
-		
-		// Alt option
-		// cmp = com.sec.android.app.clockpackage/.alarm.activity.AlarmEditActivity
 		
 		private String alarmCode = null;
 		

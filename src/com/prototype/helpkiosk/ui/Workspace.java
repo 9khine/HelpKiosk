@@ -21,9 +21,9 @@ import javax.swing.border.EmptyBorder;
 
 import com.android.ddmlib.IDevice;
 // TODO: change for windows/mac version
-// Windows version: (I think! ha ha)
+// Windows version:
 //import com.android.hierarchyviewerlib.device.DeviceBridge;
-// Mac version
+// Mac version:
 import com.android.hierarchyviewer.device.DeviceBridge;
 
 import com.prototype.helpkiosk.instruction.InstructionSingleton;

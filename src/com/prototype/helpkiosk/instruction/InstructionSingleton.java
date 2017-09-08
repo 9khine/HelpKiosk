@@ -41,6 +41,7 @@ public class InstructionSingleton {
 	private Instruction[] phoneInstruction;
 	private Instruction[] galleryInstruction;
 	
+	// TODO: add new views for each task
 	private InstructionView CONTACTVIEW;
 	private InstructionView CAMERAVIEW;
 	private InstructionView CLOCKVIEW;
@@ -95,6 +96,7 @@ public class InstructionSingleton {
 		
 		accordion = new Accordion();
 		
+		// TODO: add arguments here, arguments go direct to the application classes
 		this.contact = new Contact();
 		this.camera = new Camera();
 		this.clock = new Clock();
@@ -109,7 +111,7 @@ public class InstructionSingleton {
 		setPhoneInstruction(phone.getInstruction());
 		setGalleryInstruction(gallery.getInstruction());
 
-		
+		// TODO: more of these! one new one for each task
 		this.CONTACTVIEW = new InstructionView(this.getContainer(), "CONTACT");
 		this.CAMERAVIEW = new InstructionView(this.getContainer(), "CAMERA");
 		this.CLOCKVIEW = new InstructionView(this.getContainer(), "CLOCK");

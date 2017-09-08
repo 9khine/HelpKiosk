@@ -57,7 +57,7 @@ public class InstructionView extends JPanel {
 			instruction = instructionSingleton.getClockInstruction();
 		}
 		else if (instructionType.equalsIgnoreCase(this._MESSAGE)){
-			title = "View Message";
+			title = "Send Message";
 			instruction = instructionSingleton.getMessageInstruction();
 		}
 		else if (instructionType.equalsIgnoreCase(this._PHONE)){
