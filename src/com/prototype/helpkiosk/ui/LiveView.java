@@ -124,27 +124,41 @@ class LiveView extends JPanel implements ActionListener {
 		this.timer.start();
 	}
 
-	public void actionPerformed(ActionEvent event)
-	{
+	public void actionPerformed(ActionEvent event) {
+		// if no current task, start a new GetScreenshot task
 		if ((this.task != null) && (!this.task.isDone())) {
+//			System.out.println("Existing task, no new one");
 			return;
 		}
+		System.out.println("New screenshot task created!");
 		this.task = new GetScreenshotTask();
 		this.task.execute();
 	}
 
 	private class GetScreenshotTask extends SwingWorker<Boolean, Void> {
-		private GetScreenshotTask()
-		{
+		// SwingWorkers are essentially new threads, creating a new one adds a new task to a free worker thread
+		
+		private GetScreenshotTask() {
+			
 		}
 
-		protected Boolean doInBackground() throws Exception
-		{
+		protected Boolean doInBackground() throws Exception {
+			System.out.println("Inside doInBackground() in LiveView");
 			RawImage rawImage;
-			try
-			{
-				rawImage = LiveView.this.device.getScreenshot();
+			try {
+				System.out.println("about to get a screenshot...");
+				
+				long startTime = System.nanoTime();
+				
+				rawImage = LiveView.this.device.getScreenshot(); // TODO: currently this takes ~13 seconds, WHY?!?!?!!
+				// taking screenshot using the adb shell in terminal takes ~2s
+				
+				long endTime = System.nanoTime();
+				long duration = ((endTime - startTime)/1000000);
+				
+				System.out.println("Got a screenshot! Only took: " + duration + " milliseconds " + (duration < 3000 ? ":)" : ":("));
 			} catch (IOException ioe) {
+				System.out.println("failed to get a screenshot");
 				return Boolean.valueOf(false);
 			}
 
@@ -153,13 +167,15 @@ class LiveView extends JPanel implements ActionListener {
 			try {
 				if (rawImage != null) {
 					resize = true;
-					int width2 = landscape  ? rawImage.height : rawImage.width;
+					// rotate image dimensions if landscape is true
+					int width2 = landscape ? rawImage.height : rawImage.width;
 					int height2 = landscape ? rawImage.width : rawImage.height;
 					LiveView.this.image = new BufferedImage(width2, height2, BufferedImage.TYPE_INT_RGB);
 					image.getScaledInstance(width, height, Image.SCALE_SMOOTH );
 					int index = 0;
 					int indexInc = rawImage.bpp >> 3;
 					for (int y = 0; y < rawImage.height; y++) {
+						// paint the image row by row, works very fast
 						for (int x = 0; x < rawImage.width; x++, index += indexInc) {
 							int value = rawImage.getARGB(index);
 							if (landscape)
@@ -169,16 +185,14 @@ class LiveView extends JPanel implements ActionListener {
 						}
 					}
 				}
-			}
-			finally {
+			} finally {
 
 			}
 
 			return Boolean.valueOf(resize);
 		}
 
-		protected void done()
-		{
+		protected void done() {
 			try {
 				if (((Boolean)get()).booleanValue()) {
 					LiveView.this.validate();
@@ -192,17 +206,15 @@ class LiveView extends JPanel implements ActionListener {
 		}
 	}
 
-
-
-	class ScreenshotViewer extends JComponent
-	{
+	class ScreenshotViewer extends JComponent {
 
 		ScreenshotViewer() {
 			setOpaque(true);
 			setBounds(0,0,width,height);
 
 			setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-
+			
+			// For highlighting the live view?
 			JPanel glass = new JPanel();
 			glass.setSize(new Dimension(width, height));
 			glass.setPreferredSize(new Dimension(width, height));
@@ -215,32 +227,27 @@ class LiveView extends JPanel implements ActionListener {
 			add(glass);
 		}
 
-
-
-		protected void paintComponent(Graphics g)
-		{
+		protected void paintComponent(Graphics g) {
 			g.fillRect(0, 0, width, height);
 			if (LiveView.this.isLoading) {
 				return;
 			}
 
 			if (LiveView.this.image != null) {
+				// if live view not null paint new image - this should be called every second
 				g.drawImage(LiveView.this.image, 0, 0, width, height, null);
 			}
 		}
 
-		public Dimension getPreferredSize()
-		{
+		public Dimension getPreferredSize() {
 			return new Dimension(width, height);
 		}
 	}
 
-	class Crosshair extends JPanel
-	{
+	class Crosshair extends JPanel {
 		private final LiveView.ScreenshotViewer screenshotViewer;
 
-		Crosshair(LiveView.ScreenshotViewer screenshotViewer)
-		{
+		Crosshair(LiveView.ScreenshotViewer screenshotViewer) {
 			this.screenshotViewer = screenshotViewer;
 			setOpaque(true);
 			setLayout(new BorderLayout());
@@ -248,18 +255,12 @@ class LiveView extends JPanel implements ActionListener {
 			add(screenshotViewer);
 		}
 
-		public Dimension getPreferredSize()
-		{
+		public Dimension getPreferredSize() {
 			return this.screenshotViewer.getPreferredSize();
 		}
 
-		public Dimension getMaximumSize()
-		{
+		public Dimension getMaximumSize() {
 			return this.screenshotViewer.getPreferredSize();
 		}
-
 	}
-
-
-
 }
