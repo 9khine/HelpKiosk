@@ -99,72 +99,61 @@ public class MediaPanel extends JPanel {
 		
 		// Contact
 		if (type=="openContact") {
-	        //videoUrl = "file:/"+videoFolder+"/addContacts/OpenContacts.MPG";
 	        videoUrl = "file:/"+videoFolder+"/contacts/contact_open_app.MPG";
 		} else if(type=="newContact"){
-	        videoUrl = "file://"+videoFolder+"/addContacts/new-contact.MPG";
-		} else if(type=="newName"){
-	        videoUrl = "file://"+videoFolder+"/addContacts/addname.MPG";
-		} else if(type=="addothercomponent"){
-	        videoUrl = "file://"+videoFolder+"/addContacts/addothercomponent.MPG";
-		} else if(type=="contact_done"){
-	        videoUrl = "file://"+videoFolder+"/addContacts/contact_done.MPG";
+	        videoUrl = "file://"+videoFolder+"/contacts/contact_add_new.mpeg";
+		} else if(type=="enterInfo"){
+	        videoUrl = "file://"+videoFolder+"/contacts/contact_enter_info.mpeg";
+		} else if(type=="saveContact"){
+	        videoUrl = "file://"+videoFolder+"/contacts/contact_save.mpeg";
 		} 
 		
 		// Camera
 		else if(type=="openCam"){
-	        videoUrl = "file:"+videoFolder+"/takePicture/cam.MPG";
+	        videoUrl = "file:"+videoFolder+"/camera/camera_open_app.mpeg";
 		} else if(type=="takePicture"){
-	        videoUrl = "file:"+videoFolder+"/takePicture/take-picture.MPG";
+	        videoUrl = "file:"+videoFolder+"/camera/camera_focus_take.mpeg";
 		} 
 		
 		// Clock
 		else if(type=="openClock"){
-	        videoUrl = "file:"+videoFolder+"/clock/openclock.MPG";
-		} else if(type=="openAlarm"){
-	        videoUrl = "file:"+videoFolder+"/clock/openalarm.MPG";
-		} else if(type=="makeGreen"){
-	        videoUrl = "file:"+videoFolder+"/clock/makegreen.MPG";
-		} else if(type=="changeOrAdd"){
-	        videoUrl = "file:"+videoFolder+"/changeoradd.MPG";
-		} else if(type=="clockdone"){
-	        videoUrl = "file:"+videoFolder+"/clock/clock_done.MPG";
-		} else if(type=="goBack"){
-	        videoUrl = "file:"+videoFolder+"/clock/clock_back.MPG";
+	        videoUrl = "file:"+videoFolder+"/clock/clock_open_app.mpeg";
+		} else if(type=="touchAlarm"){
+	        videoUrl = "file:"+videoFolder+"/clock/clock_tap_alarm.mpeg";
+		} else if(type=="setAlarm"){
+	        videoUrl = "file:"+videoFolder+"/clock/clock_set_time.mpeg";
+		} else if(type=="saveAlarm"){
+	        videoUrl = "file:"+videoFolder+"/clock_save.mpeg";
 		}
 		
 		// Message
 		else if(type=="openMessage"){
-	        videoUrl = "file:"+videoFolder+"/clock/clock_back.MPG";
-		} else if(type=="goBack"){
-	        videoUrl = "file:"+videoFolder+"/clock/clock_back.MPG";
-		} else if(type=="goBack"){
-	        videoUrl = "file:"+videoFolder+"/clock/clock_back.MPG";
-		} else if(type=="goBack"){
-	        videoUrl = "file:"+videoFolder+"/clock/clock_back.MPG";
+	        videoUrl = "file:"+videoFolder+"/message/message_open_app.mpeg";
+		} else if(type=="newMessage"){
+	        videoUrl = "file:"+videoFolder+"/message/message_new_tap.mpeg";
+		} else if(type=="enterMessage"){
+	        videoUrl = "file:"+videoFolder+"/message/message_enter_msg.mpeg";
+		} else if(type=="send"){
+	        videoUrl = "file:"+videoFolder+"/message/message_send.mpeg";
 		}
 		
 		// Phone
-		else if(type=="goBack"){
-	        videoUrl = "file:"+videoFolder+"/clock/clock_back.MPG";
-		} else if(type=="goBack"){
-	        videoUrl = "file:"+videoFolder+"/clock/clock_back.MPG";
-		} else if(type=="goBack"){
-	        videoUrl = "file:"+videoFolder+"/clock/clock_back.MPG";
-		} else if(type=="goBack"){
-	        videoUrl = "file:"+videoFolder+"/clock/clock_back.MPG";
-		}
+		else if(type=="openPhone"){
+	        videoUrl = "file:"+videoFolder+"/phone/phone_open_app.mpeg";
+		} else if(type=="enterNumber"){
+	        videoUrl = "file:"+videoFolder+"/phone/phone_enter_number.mpeg";
+		} else if(type=="call"){
+	        videoUrl = "file:"+videoFolder+"/phone/phone_tap_call.mpeg";
+		} 
 		
 		// Gallery
-		else if(type=="goBack"){
-	        videoUrl = "file:"+videoFolder+"/clock/clock_back.MPG";
-		} else if(type=="goBack"){
-	        videoUrl = "file:"+videoFolder+"/clock/clock_back.MPG";
-		} else if(type=="goBack"){
-	        videoUrl = "file:"+videoFolder+"/clock/clock_back.MPG";
-		} else if(type=="goBack"){
-	        videoUrl = "file:"+videoFolder+"/clock/clock_back.MPG";
-		}
+		else if(type=="openGallery"){
+	        videoUrl = "file:"+videoFolder+"/gallery/gallery_open_app.mpeg";
+		} else if(type=="select"){
+	        videoUrl = "file:"+videoFolder+"/gallery/gallery_select.mpeg";
+		} else if(type=="menuTap"){
+	        videoUrl = "file:"+videoFolder+"/gallery/gallery_menu_tap.mpeg";
+		} 
 		
 		// None
 		else if(type=="nothing"){

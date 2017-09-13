@@ -199,14 +199,14 @@ public class InstructionBox
 					} else if (instruction.getType()=="clock") {
 						videoType = "openClock";
 					} else if (instruction.getType()=="viewImage") {
-						videoType = "openContact";
+						videoType = "openGallery";
 					}  else if (instruction.getType()=="makeCall") {
-						videoType = "openContact";
+						videoType = "openPhone";
 					}  else if (instruction.getType()=="sendMessage") {
-					videoType = "openContact";
+					videoType = "openMessage";
 					} else {
 						type = "nothing";
-						videoType = "openContact";
+						videoType = "nothing";
 					}
 			} 
 			
@@ -219,15 +219,11 @@ public class InstructionBox
 				}
 				if(instruction.getId()==2){
 					type = "new-name";
-					videoType = "newName";
+					videoType = "enterInfo";
 				}
 				if(instruction.getId()==3){
-					type = "nothing";
-					videoType = "addothercomponent";
-				}
-				if(instruction.getId()==4){
-					type = "done";
-					videoType = "contact_done";
+					type = "saveContact";
+					videoType = "saveContact";
 				}
 				
 			} else if (instruction.getType()=="takePicture") {
@@ -236,32 +232,21 @@ public class InstructionBox
 					type = "focus";
 					videoType = "takePicture";
 				}
-				if (instruction.getId()==2) {
-					type = "shutter";
-					videoType = "takePicture";
-				}
+				
 			} else if (instruction.getType()=="clock") {
 				name = "clock";
 				
 				if(instruction.getId()==1){
-					type = "openAlarm";
-					videoType = "openAlarm";
+					type = "touchAlarm";
+					videoType = "touchAlarm";
 				}
 				if(instruction.getId()==2){
-					type = "makeGreen";
-					videoType = "makeGreen";
+					type = "setAlarm";
+					videoType = "setAlarm";
 				}
 				if(instruction.getId()==3){
-					type = "changeOrAdd";
-					videoType = "changeOrAdd";
-				}
-				if(instruction.getId()==4){
-					type = "done";
-					videoType = "clockdone";
-				}
-				if(instruction.getId()==5){
-					type = "goBack";
-					videoType = "goBack";
+					type = "saveAlarm";
+					videoType = "saveAlarm";
 				}
 				
 			} else if (instruction.getType()=="sendMessage") {
@@ -269,40 +254,41 @@ public class InstructionBox
 
 				if (instruction.getId()==1) { 
 					type = "compose";
-					videoType = "openContact";
+					videoType = "newMessage";
 				}
 				if (instruction.getId()==2) {
 					type = "addRecipient";
-					videoType = "openContact";
+					videoType = "enterMessage";
 				}
 				if (instruction.getId()==3) {
 					type = "send";
-					videoType = "openContact";
+					videoType = "sendMessage";
 				}
+				
 			} else if (instruction.getType()=="viewImage") {
 				name = "viewImage";
 
 				if (instruction.getId()==1) {
 					type = "selectImage";
-					videoType = "openContact";
+					videoType = "select";
 				}
 				if (instruction.getId()==2) {
 					type = "showMenus";
-					videoType = "openContact";
+					videoType = "menuTap";
 				}
 			} else if (instruction.getType()=="makeCall") {
 				name = "makeCall";
 				if (instruction.getId()==1) {
 					type = "enterNumber";
-					videoType = "openContact";
+					videoType = "enterNumber";
 				}
 				if (instruction.getId()==2) {
 					type = "placeCall";
-					videoType = "openContact";
+					videoType = "call";
 				}
 			} else {
 				type = "nothing";
-				videoType = "openContact";
+				videoType = "nothing";
 			}
 			
 			instructionSingleton.highlight(type, name);

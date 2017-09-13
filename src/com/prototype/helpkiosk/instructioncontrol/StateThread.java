@@ -149,24 +149,37 @@ public class StateThread extends Thread
 								
 							}
 							
-							//LAUNCH CLOCK
-							else if (getCmp().equals(CMP_LAUNCH_CLOCK)) {
-								System.out.println("CLOCK ACTIVE " + ++count_clock + " TIMES ");
-								instructionSingleton.getActiveView().getInstructionBox(0).instruction.setDone(true);
-								instructionSingleton.highlight("nothing", "contact");
-								instructionSingleton.showVideo("openClock");
-
-							}
-							
+							/*
+							 * ------------------   CONTACT   -------------------
+							 */
 							//LAUNCH CONTACTS
 							else if (getCmp().equals(CMP_LAUNCH_CONTACTS)){
 								System.out.println("CONTACTS ACTIVE " + ++count_contacts + " TIMES ");
 								instructionSingleton.getActiveView().getInstructionBox(0).instruction.setDone(true);
 								instructionSingleton.highlight("nothing", "contact");
-								//instructionSingleton.showVideo("nothing");
 								instructionSingleton.showVideo("openContact");
 							}
 							
+							//Click on new contact
+							else if (getCmp().equals(CMP_NEW_CONTACT)){
+								instructionSingleton.getActiveView().getInstructionBox(1).instruction.setDone(true);
+								instructionSingleton.highlight("nothing", "contact");
+								instructionSingleton.showVideo("newContact");
+								instructionSingleton.updateLowerPanel("menu", false);
+							}
+							
+							//Enter new information
+							// TODO
+							else if (getCmp().equals(CMP_NEW_CONTACT)){
+								instructionSingleton.getActiveView().getInstructionBox(1).instruction.setDone(true);
+								instructionSingleton.highlight("nothing", "contact");
+								//instructionSingleton.showVideo("nothing");
+								instructionSingleton.updateLowerPanel("menu", false);
+							}
+							
+							/*
+							 * ------------------   CAMERA   -------------------
+							 */
 							//LAUNCH CAMERA
 							else if (getCmp().equals(CMP_LAUNCH_CAMERA)){
 								System.out.println("CAMERA ACTIVE " + ++count_camera + " TIMES ");
@@ -175,36 +188,52 @@ public class StateThread extends Thread
 								instructionSingleton.showVideo("openCam");
 							}
 							
+							/*
+							 * ------------------   MESSAGE   -------------------
+							 */
 							//LAUNCH MESSAGES
 							else if (getCmp().equals(CMP_LAUNCH_MESSAGES)){
 								System.out.println("MESSAGES ACTIVE " + ++count_messages + " TIMES ");
 								instructionSingleton.getActiveView().getInstructionBox(0).instruction.setDone(true);
 								instructionSingleton.highlight("nothing", "contact");
-								//instructionSingleton.showVideo("nothing");
+								instructionSingleton.showVideo("openMessage");
 							}
 							
+							/*
+							 * ------------------   PHONE   -------------------
+							 */
 							//LAUNCH PHONE
 							else if (getCmp().equals(CMP_LAUNCH_PHONE)){
 								System.out.println("PHONE ACTIVE " + ++count_phone + " TIMES ");
 								instructionSingleton.getActiveView().getInstructionBox(0).instruction.setDone(true);
 								instructionSingleton.highlight("nothing", "contact");
-								//instructionSingleton.showVideo("nothing");
+								instructionSingleton.showVideo("openPhone");
 							}
 							
+							/*
+							 * ------------------   GALLERY   -------------------
+							 */
 							//LAUNCH GALLERY
 							else if (getCmp().equals(CMP_LAUNCH_GALLERY)){
 								System.out.println("GALLERY ACTIVE " + ++count_gallery + " TIMES ");
 								instructionSingleton.getActiveView().getInstructionBox(0).instruction.setDone(true);
 								instructionSingleton.highlight("nothing", "contact");
-								//instructionSingleton.showVideo("nothing");
+								instructionSingleton.showVideo("openGallery");
 							}
 							
-							//Click on new contact
-							else if (getCmp().equals(CMP_NEW_CONTACT)){
-								instructionSingleton.getActiveView().getInstructionBox(1).instruction.setDone(true);
+							/*
+							 * ------------------   CLOCK   -------------------
+							 */
+							
+							// TODO not working....
+							
+							//LAUNCH CLOCK
+							else if (getCmp().equals(CMP_LAUNCH_CLOCK)) {
+								System.out.println("CLOCK ACTIVE " + ++count_clock + " TIMES ");
+								instructionSingleton.getActiveView().getInstructionBox(0).instruction.setDone(true);
 								instructionSingleton.highlight("nothing", "contact");
-								//instructionSingleton.showVideo("nothing");
-								instructionSingleton.updateLowerPanel("menu", false);
+								instructionSingleton.showVideo("openClock");
+
 							}
 							
 							//Click on activate alarm
