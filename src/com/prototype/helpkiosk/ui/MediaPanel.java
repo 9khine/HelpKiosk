@@ -97,8 +97,10 @@ public class MediaPanel extends JPanel {
 		String videoFolder = home + "/git/HelpKiosk/video";		
 		String videoUrl = null;
 		
+		// Contact
 		if (type=="openContact") {
-	        videoUrl = "file:/"+videoFolder+"/addContacts/OpenContacts.MPG";
+	        //videoUrl = "file:/"+videoFolder+"/addContacts/OpenContacts.MPG";
+	        videoUrl = "file:/"+videoFolder+"/contacts/contact_open_app.MPG";
 		} else if(type=="newContact"){
 	        videoUrl = "file://"+videoFolder+"/addContacts/new-contact.MPG";
 		} else if(type=="newName"){
@@ -107,11 +109,17 @@ public class MediaPanel extends JPanel {
 	        videoUrl = "file://"+videoFolder+"/addContacts/addothercomponent.MPG";
 		} else if(type=="contact_done"){
 	        videoUrl = "file://"+videoFolder+"/addContacts/contact_done.MPG";
-		} else if(type=="openCam"){
+		} 
+		
+		// Camera
+		else if(type=="openCam"){
 	        videoUrl = "file:"+videoFolder+"/takePicture/cam.MPG";
 		} else if(type=="takePicture"){
 	        videoUrl = "file:"+videoFolder+"/takePicture/take-picture.MPG";
-		} else if(type=="openClock"){
+		} 
+		
+		// Clock
+		else if(type=="openClock"){
 	        videoUrl = "file:"+videoFolder+"/clock/openclock.MPG";
 		} else if(type=="openAlarm"){
 	        videoUrl = "file:"+videoFolder+"/clock/openalarm.MPG";
@@ -123,7 +131,43 @@ public class MediaPanel extends JPanel {
 	        videoUrl = "file:"+videoFolder+"/clock/clock_done.MPG";
 		} else if(type=="goBack"){
 	        videoUrl = "file:"+videoFolder+"/clock/clock_back.MPG";
-		} else if(type=="nothing"){
+		}
+		
+		// Message
+		else if(type=="openMessage"){
+	        videoUrl = "file:"+videoFolder+"/clock/clock_back.MPG";
+		} else if(type=="goBack"){
+	        videoUrl = "file:"+videoFolder+"/clock/clock_back.MPG";
+		} else if(type=="goBack"){
+	        videoUrl = "file:"+videoFolder+"/clock/clock_back.MPG";
+		} else if(type=="goBack"){
+	        videoUrl = "file:"+videoFolder+"/clock/clock_back.MPG";
+		}
+		
+		// Phone
+		else if(type=="goBack"){
+	        videoUrl = "file:"+videoFolder+"/clock/clock_back.MPG";
+		} else if(type=="goBack"){
+	        videoUrl = "file:"+videoFolder+"/clock/clock_back.MPG";
+		} else if(type=="goBack"){
+	        videoUrl = "file:"+videoFolder+"/clock/clock_back.MPG";
+		} else if(type=="goBack"){
+	        videoUrl = "file:"+videoFolder+"/clock/clock_back.MPG";
+		}
+		
+		// Gallery
+		else if(type=="goBack"){
+	        videoUrl = "file:"+videoFolder+"/clock/clock_back.MPG";
+		} else if(type=="goBack"){
+	        videoUrl = "file:"+videoFolder+"/clock/clock_back.MPG";
+		} else if(type=="goBack"){
+	        videoUrl = "file:"+videoFolder+"/clock/clock_back.MPG";
+		} else if(type=="goBack"){
+	        videoUrl = "file:"+videoFolder+"/clock/clock_back.MPG";
+		}
+		
+		// None
+		else if(type=="nothing"){
 			videoUrl = "";
 		}
 		

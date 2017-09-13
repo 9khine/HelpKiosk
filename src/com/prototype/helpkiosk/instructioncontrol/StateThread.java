@@ -154,7 +154,8 @@ public class StateThread extends Thread
 								System.out.println("CLOCK ACTIVE " + ++count_clock + " TIMES ");
 								instructionSingleton.getActiveView().getInstructionBox(0).instruction.setDone(true);
 								instructionSingleton.highlight("nothing", "contact");
-								//instructionSingleton.showVideo("nothing");
+								instructionSingleton.showVideo("openClock");
+
 							}
 							
 							//LAUNCH CONTACTS
@@ -171,7 +172,7 @@ public class StateThread extends Thread
 								System.out.println("CAMERA ACTIVE " + ++count_camera + " TIMES ");
 								instructionSingleton.getActiveView().getInstructionBox(0).instruction.setDone(true);
 								instructionSingleton.highlight("nothing", "contact");
-								//instructionSingleton.showVideo("nothing");
+								instructionSingleton.showVideo("openCam");
 							}
 							
 							//LAUNCH MESSAGES

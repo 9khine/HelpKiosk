@@ -131,9 +131,7 @@ public class InstructionSingleton {
 		return stateThread.getCmp();	
 	}
 	
-	/*
-	 * TODO create a new class for video
-	 */
+	
 	public void showVideo(String type){
 		
 		mediaContainer.removeAll();
@@ -156,9 +154,7 @@ public class InstructionSingleton {
 		mediaContainer.repaint();
 	}
 	
-	/*
-	 * TODO create a new class for highlights
-	 */
+	
     public void highlight(String type, String name)
     {	
     	JPanel glass = this.getHighlightContainer();
