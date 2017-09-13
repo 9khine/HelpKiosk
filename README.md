@@ -31,6 +31,13 @@ Design Principles:
 
 Previous errors and solutions:
 - JMF external jar file
+- Launching Eclipse through terminal to connect directly to adb 
+(Set run configuration - class = HelpKiosk.java, 
+Go to terminal:
+- Go to eclipse/Contents/MacOX/
+- enter and run ./eclipse 
+- Eclipse should launch,
+Try running the application again)
 
 ## Wireless ADB
 
