@@ -154,9 +154,19 @@ class LiveView extends JPanel implements ActionListener {
 				// taking screenshot using the adb shell in terminal takes ~2s
 				
 				long endTime = System.nanoTime();
-				long duration = ((endTime - startTime)/1000000);
+				long duration1 = ((endTime - startTime)/1000000);
+				System.out.println("(1) Got a screenshot! Only took: " + duration1 + " milliseconds " + (duration1 < 3000 ? ":)" : ":("));
 				
-				System.out.println("Got a screenshot! Only took: " + duration + " milliseconds " + (duration < 3000 ? ":)" : ":("));
+				// taking screenshot using the adb shell in terminal takes ~2s
+//				startTime = System.nanoTime();
+//				long time = System.currentTimeMillis();
+//				String home = System.getProperty("user.home");
+//				// TODO: fix path
+//				Runtime.getRuntime().exec(home + "/android-sdks/platform-tools/adb shell screencap -p | perl -pe 's/\\x0D\\x0A/\\x0A/g' > " + home + "/Desktop/screen" + time + ".png");
+//				endTime = System.nanoTime();
+//				long duration2 = ((endTime - startTime)/1000000);
+//				
+//				System.out.println("(2) Got another screenshot! Only took: " + duration2 + " milliseconds " + (duration2 < 3000 ? ":)" : ":("));
 			} catch (IOException ioe) {
 				System.out.println("failed to get a screenshot");
 				return Boolean.valueOf(false);
