@@ -143,11 +143,8 @@ class LiveView extends JPanel implements ActionListener {
 		}
 
 		protected Boolean doInBackground() throws Exception {
-			System.out.println("Inside doInBackground() in LiveView");
 			RawImage rawImage;
-			try {
-				System.out.println("about to get a screenshot...");
-				
+			try {				
 				// Method #1: original implementation
 				// takes too long, can't find any reference to this solution online?
 				long startTime = System.nanoTime();
@@ -161,16 +158,27 @@ class LiveView extends JPanel implements ActionListener {
 //				startTime = System.nanoTime();
 				long time = System.currentTimeMillis();
 				String home = System.getProperty("user.home");
+				// TODO: remember to wait ~2 seconds before using image
 //				Runtime.getRuntime().exec(home + "/android-sdks/platform-tools/adb shell screencap -p | perl -pe 's/\\x0D\\x0A/\\x0A/g' > " + home + "/Desktop/screen" + time + ".png");
 //				endTime = System.nanoTime();
 //				long duration2 = ((endTime - startTime)/1000000);
 //				System.out.println("(2) Got another screenshot! Only took: " + duration2 + " milliseconds " + (duration2 < 3000 ? ":)" : ":("));
 				
-				// TODO: finish this
+				// TODO: pull screencap from device (taking screenshot part works)
 				// Method #3
 				// Save screenshot onto device, load from device onto display's home, then load from local
-				Runtime.getRuntime().exec(home + "/android-sdks/platform-tools/adb shell /system/bin/screencap -p /sdcard/screenshot.png");
-				Runtime.getRuntime().exec(home + "/android-sdks/platform-tools/adb shell pull /sdcard/screenshot.png screenshot.png");
+				// currently commented out to avoid accidentally filling a phone with screenshots
+				startTime = System.nanoTime();
+//				Runtime.getRuntime().exec(home + "/android-sdks/platform-tools/adb shell /system/bin/screencap -p /sdcard/screenshot_" + time + ".png");
+				// Must wait 2 seconds for screenshot to be created
+				Thread.sleep(2000);
+				System.out.println("screenshot named: screenshot_" + time + ".png");
+//				Runtime.getRuntime().exec(home + "/android-sdks/platform-tools/adb shell pull /sdcard/screenshot_" + time + ".png " + home + "/screenshot_" + time + ".png");
+				// TODO: deletes image from phone, but gallery shows "Missing Media" image...
+//				Runtime.getRuntime().exec(home + "/android-sdks/platform-tools/adb shell rm /sdcard/screenshot_" + time + ".png");
+				endTime = System.nanoTime();
+				long duration3 = ((endTime - startTime)/1000000);
+				System.out.println("(3) Got another screenshot! Only took: " + duration3 + " milliseconds " + (duration3 < 3000 ? ":)" : ":("));
 				
 			} catch (IOException ioe) {
 				System.out.println("failed to get a screenshot");

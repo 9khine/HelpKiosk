@@ -104,7 +104,7 @@ public class StateThread extends Thread
 					
 					if (line.indexOf("D/AlarmProvider")==0) {
 						/* SET ALARM */
-						System.out.println(line);
+//						System.out.println(line);
 						int i = getAlarmInfo(line);
 						if (i==12 && line.indexOf("true")==97) {
 							// TODO: click on activate alarm, logcat line is: (length = 12)
@@ -125,7 +125,7 @@ public class StateThread extends Thread
 						instructionSingleton.getActiveView().getInstructionBox(1).instruction.setDone(true);
 						instructionSingleton.highlight("nothing", "contact");
 					} else if (line.indexOf("I/ActivityManager")==0) {
-						System.out.println(line);
+//						System.out.println(line);
 						setInfo(line);
 	
 //						System.out.println("*** act = "+ this.act);
