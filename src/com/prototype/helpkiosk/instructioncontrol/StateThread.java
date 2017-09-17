@@ -84,7 +84,7 @@ public class StateThread extends Thread
 //				Process p = Runtime.getRuntime().exec(home + "/android-sdk/platform-tools/adb logcat");
 				// Mac version:
 				Runtime.getRuntime().exec(home + "/android-sdks/platform-tools/adb logcat -c");
-				Process p = Runtime.getRuntime().exec(home + "/android-sdks/platform-tools/adb logcat ActivityManager:I AlarmProvider:D ComposerPerformance:D *:S");
+				Process p = Runtime.getRuntime().exec(home + "/android-sdks/platform-tools/adb logcat -v brief ActivityManager:I AlarmProvider:D ComposerPerformance:D *:S");
 				
 				InputStream is = p.getInputStream();
 				InputStreamReader isr = new InputStreamReader(is);
@@ -102,7 +102,7 @@ public class StateThread extends Thread
 						instructionSingleton.highlight("nothing", "contact");
 					}
 					
-					if (line.indexOf("D AlarmProvider")==31) {
+					if (line.indexOf("D/AlarmProvider")==0) {
 						/* SET ALARM */
 						System.out.println(line);
 						int i = getAlarmInfo(line);
@@ -118,13 +118,13 @@ public class StateThread extends Thread
 							instructionSingleton.highlight("nothing", "contact");
 							//instructionSingleton.showVideo("nothing");
 						}
-					} else if (line.indexOf("D ComposerPerformance")==31) {
+					} else if (line.indexOf("D/ComposerPerformance")==0) {
 						/* COMPOSE MESSAGE */
 						// format of logcat line: 08-30 17:17:05.828 11610 11610 D ComposerPerformance: create new message
 						
 						instructionSingleton.getActiveView().getInstructionBox(1).instruction.setDone(true);
 						instructionSingleton.highlight("nothing", "contact");
-					} else if (line.indexOf("I ActivityManager")==31) {
+					} else if (line.indexOf("I/ActivityManager")==0) {
 						System.out.println(line);
 						setInfo(line);
 	

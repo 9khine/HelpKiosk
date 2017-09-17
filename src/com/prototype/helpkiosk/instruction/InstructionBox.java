@@ -306,18 +306,21 @@ public class InstructionBox
 		button.addActionListener(
 			    new ActionListener() {
 			        public void actionPerformed(ActionEvent e) {
-			        	if(instructionSingleton.getCameraView().isActive()){
+			        	if (instructionSingleton.getCameraView().isActive()) {
 			        		if(instructionSingleton.getCameraView().getInstructionBox(1).instruction.isActive())
 			        			setActive(instructionID);
 			        		else if(instructionSingleton.getCameraView().getInstructionBox(2).instruction.isActive())
 			        			setActive(instructionID);
 			        	}
-			        	if(instructionID==0||instructionID==3) setActive(instructionID);
-			        	else{
-			        		if(instructionSingleton.getActiveView().getInstructionBox(instructionID-1).instruction.isDone())
-				        		setActive(instructionID);
-				        	else
+			        	
+			        	if (instructionID==0||instructionID==3) {
+			        		setActive(instructionID);
+			        	} else {
+			        		if (instructionSingleton.getActiveView().getInstructionBox(instructionID-1).instruction.isDone()) {
+			        			setActive(instructionID);
+			        		} else {
 				        		JOptionPane.showMessageDialog(null, "It looks like you have not completed the previous step yet.\nPlease try previous step before going on with this step.", "Previous step is not done", 0);
+			        		}
 			        	}
 			        }
 			    }

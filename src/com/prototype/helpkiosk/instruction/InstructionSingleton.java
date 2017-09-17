@@ -132,7 +132,7 @@ public class InstructionSingleton {
 	}
 	
 	
-	public void showVideo(String type){
+	public void showVideo(String type) {
 		
 		mediaContainer.removeAll();
 		//mediaContainer.setVisible(true);
@@ -155,8 +155,7 @@ public class InstructionSingleton {
 	}
 	
 	
-    public void highlight(String type, String name)
-    {	
+    public void highlight(String type, String name) {	
     	JPanel glass = this.getHighlightContainer();
     	glass.removeAll();
     	
@@ -210,6 +209,7 @@ public class InstructionSingleton {
 				this.updateLowerPanel("menu", false);
 				glass.add(Box.createRigidArea(new Dimension(350, 350)));
 				filler.add(Box.createRigidArea(new Dimension(170, 50)));
+				// Example of adding a label to the highlighting
 //					JLabel two = new JLabel(" 2 ");
 //					two.setOpaque(true);
 //					two.setBackground(Color.ORANGE);
@@ -336,14 +336,14 @@ public class InstructionSingleton {
     	glass.repaint();
     }
 	
-	public void showMoreHelpPanel(boolean show){
-		if(show){
+	public void showMoreHelpPanel(boolean show){ 
+		if (show) {
 			this.getContainer_parent().remove(getLowerBox());
 			this.getContainer_parent().remove(this.getContainer_noshow());
 			this.getContainer_parent().add(this.getMoreHelpContainer());
 			this.getContainer_parent().add(getLowerBox());
 			
-		}else if(!show){
+		} else if (!show) {
 			this.getContainer_parent().remove(getLowerBox());
 			this.getContainer_parent().remove(this.getMoreHelpContainer());
 			this.getContainer_parent().add(this.getContainer_noshow());
@@ -366,13 +366,13 @@ public class InstructionSingleton {
 //	public void buildContactView(){
 //		this.CONTACTVIEW.buildView(getContainer());
 //	}
-//	
 	
 	public void buildMoreHelpView(String[] questions, String[] answers){
-		if(questions[0]=="") 
+		if (questions[0]=="") {
 			buildEmptyMoreHelpView();
-		else 
+		} else {
 			this.MOREHELPVIEW.createFloorTab(getMoreHelpContainer(), questions, answers);
+		}
 	}
 	
 	public void buildEmptyMoreHelpView(){
