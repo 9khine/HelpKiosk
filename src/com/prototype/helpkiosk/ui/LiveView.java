@@ -148,25 +148,30 @@ class LiveView extends JPanel implements ActionListener {
 			try {
 				System.out.println("about to get a screenshot...");
 				
+				// Method #1: original implementation
+				// takes too long, can't find any reference to this solution online?
 				long startTime = System.nanoTime();
-				
-				rawImage = LiveView.this.device.getScreenshot(); // TODO: currently this takes ~13 seconds, WHY?!?!?!!
-				// taking screenshot using the adb shell in terminal takes ~2s
-				
+				rawImage = LiveView.this.device.getScreenshot(); // currently this takes ~10 seconds, WHY?!?!?!!
 				long endTime = System.nanoTime();
 				long duration1 = ((endTime - startTime)/1000000);
 				System.out.println("(1) Got a screenshot! Only took: " + duration1 + " milliseconds " + (duration1 < 3000 ? ":)" : ":("));
 				
-				// taking screenshot using the adb shell in terminal takes ~2s
+				// Method #2: taking screenshot using the adb shell in terminal takes ~2s
+				// Doesn't work: don't know where it would save the image
 //				startTime = System.nanoTime();
-//				long time = System.currentTimeMillis();
-//				String home = System.getProperty("user.home");
-//				// TODO: fix path
+				long time = System.currentTimeMillis();
+				String home = System.getProperty("user.home");
 //				Runtime.getRuntime().exec(home + "/android-sdks/platform-tools/adb shell screencap -p | perl -pe 's/\\x0D\\x0A/\\x0A/g' > " + home + "/Desktop/screen" + time + ".png");
 //				endTime = System.nanoTime();
 //				long duration2 = ((endTime - startTime)/1000000);
-//				
 //				System.out.println("(2) Got another screenshot! Only took: " + duration2 + " milliseconds " + (duration2 < 3000 ? ":)" : ":("));
+				
+				// TODO: finish this
+				// Method #3
+				// Save screenshot onto device, load from device onto display's home, then load from local
+				Runtime.getRuntime().exec(home + "/android-sdks/platform-tools/adb shell /system/bin/screencap -p /sdcard/screenshot.png");
+				Runtime.getRuntime().exec(home + "/android-sdks/platform-tools/adb shell pull /sdcard/screenshot.png screenshot.png");
+				
 			} catch (IOException ioe) {
 				System.out.println("failed to get a screenshot");
 				return Boolean.valueOf(false);
