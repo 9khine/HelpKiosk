@@ -13,14 +13,7 @@
 	<classpathentry kind="lib" path="lib/swing-worker-1.1.jar"/>
 	<classpathentry kind="lib" path="lib/timingframework-1.0.jar"/>
 	<classpathentry kind="lib" path="lib/jmf.jar"/>
-	<classpathentry kind="lib" path="lib/vlcj-3.10.1-javadoc.jar"/>
-	<classpathentry kind="lib" path="lib/vlcj-3.10.1-sources.jar"/>
-	<classpathentry kind="lib" path="lib/vlcj-3.10.1-test-sources.jar"/>
-	<classpathentry kind="lib" path="lib/vlcj-3.10.1-tests.jar"/>
-	<classpathentry kind="lib" path="lib/vlcj-3.10.1.jar"/>
 	<classpathentry kind="lib" path="lib/swingx-1.6.1.jar"/>
 	<classpathentry kind="lib" path="lib/jffmpeg-1.1.0.jar"/>
-	<classpathentry kind="lib" path="lib/DJNativeSwing.jar"/>
-	<classpathentry kind="lib" path="lib/DJNativeSwing-SWT.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

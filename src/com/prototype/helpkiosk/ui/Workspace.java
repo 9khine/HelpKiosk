@@ -28,7 +28,7 @@ import com.android.hierarchyviewer.device.DeviceBridge;
 
 import com.prototype.helpkiosk.instruction.InstructionSingleton;
 
-import chrriis.dj.nativeswing.swtimpl.components.JWebBrowser;
+//import chrriis.dj.nativeswing.swtimpl.components.JWebBrowser;
 
 public class Workspace extends JFrame implements WindowListener {
 	

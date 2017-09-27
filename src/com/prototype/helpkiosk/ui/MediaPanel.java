@@ -17,13 +17,13 @@ import javax.media.Player;
 import javax.media.Time;
 import javax.swing.JPanel;
 
-import uk.co.caprica.vlcj.player.embedded.EmbeddedMediaPlayer;
+//import uk.co.caprica.vlcj.player.embedded.EmbeddedMediaPlayer;
 
 public class MediaPanel extends JPanel {
 	public URL mediaURL;
 	String mediaURLstr;
 	Player mediaPlayer;
-	EmbeddedMediaPlayer mediaPlayerV = null;
+	//EmbeddedMediaPlayer mediaPlayerV = null;
 	
 	//private EmbeddedMediaPlayerComponent ourMediaPlayer;
 	
@@ -55,14 +55,31 @@ public class MediaPanel extends JPanel {
 
 				video.addMouseListener(
 						new MouseAdapter() {
-							public void mousePressed(MouseEvent evt) {
+							public void mouseEntered(MouseEvent evt) {
+								mediaPlayer.prefetch();
 								mediaPlayer.setMediaTime(new Time(0));
 								mediaPlayer.start();
+							}
+							public void mouseExited(MouseEvent evt) {
+								System.out.println("!!! What is media state - " + mediaPlayer.getState());
 								mediaPlayer.stop();
+							}
+							public void mouseClicked(MouseEvent evt) {
+								mediaPlayer.prefetch();
+								mediaPlayer.setMediaTime(new Time(0));
+								mediaPlayer.start();
+								//mediaPlayer.stop();
+							}
+							public void mousePressed(MouseEvent evt) {
+								//Time pausedTime = mediaPlayer.getMediaTime();
+								//mediaPlayer.stop();
+								//mediaPlayer.setMediaTime(pausedTime);
+								//mediaPlayer.start();
 							}
 
 							public void mouseReleased(MouseEvent evt) {
-							}
+								//mediaPlayer.start();
+							}	
 						});	
 
 				if ( video != null ) {
@@ -100,7 +117,7 @@ public class MediaPanel extends JPanel {
 		
 		// Contact
 		if (type=="openContact") {
-	        videoUrl = "file:/"+videoFolder+"/contacts/contact_open_app.MPG";
+	        videoUrl = "file:/"+videoFolder+"/contacts/contact_open_app.mpeg";
 		} else if(type=="newContact"){
 	        videoUrl = "file://"+videoFolder+"/contacts/contact_add_new.mpeg";
 		} else if(type=="enterInfo"){
@@ -124,7 +141,7 @@ public class MediaPanel extends JPanel {
 		} else if(type=="setAlarm"){
 	        videoUrl = "file:"+videoFolder+"/clock/clock_set_time.mpeg";
 		} else if(type=="saveAlarm"){
-	        videoUrl = "file:"+videoFolder+"/clock_save.mpeg";
+	        videoUrl = "file:"+videoFolder+"/clock/clock_save.mpeg";
 		}
 		
 		// Message
