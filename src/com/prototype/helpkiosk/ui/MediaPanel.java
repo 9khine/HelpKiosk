@@ -58,6 +58,7 @@ public class MediaPanel extends JPanel {
 							public void mousePressed(MouseEvent evt) {
 								mediaPlayer.setMediaTime(new Time(0));
 								mediaPlayer.start();
+								mediaPlayer.stop();
 							}
 
 							public void mouseReleased(MouseEvent evt) {
