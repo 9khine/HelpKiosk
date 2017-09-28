@@ -27,8 +27,6 @@ public class Phone {
 						+ "tap <img src=\"http://imgur.com/kKP12Uh.png\" width=\"40\" height=\"40\"> to open the keypad.</html>", 
 						true, new int[]{0}, "makeCall", 1, false);
 		
-		phoneInstruction[1].setDone(true);
-
 		phoneInstruction[2] = new Instruction("<html>Tap <img src=\"http://imgur.com/rW0SoDK.png\" width=\"40\" height=\"40\"> "
 				+ "to make a voice call, or tap <img src=\"http://imgur.com/TKvVvHN.png\" width=\"40\" height=\"40\"> "
 				+ "to make a video call.</html>", 

@@ -206,6 +206,7 @@ public class StateThread extends Thread
 							else if (getCmp().equals(CMP_LAUNCH_PHONE)){
 								System.out.println("PHONE ACTIVE " + ++count_phone + " TIMES ");
 								instructionSingleton.getActiveView().getInstructionBox(0).instruction.setDone(true);
+								instructionSingleton.getActiveView().getInstructionBox(1).instruction.setDone(true);
 								instructionSingleton.highlight("nothing", "contact");
 								instructionSingleton.showVideo("openPhone");
 							}
@@ -217,6 +218,7 @@ public class StateThread extends Thread
 							else if (getCmp().equals(CMP_LAUNCH_GALLERY)){
 								System.out.println("GALLERY ACTIVE " + ++count_gallery + " TIMES ");
 								instructionSingleton.getActiveView().getInstructionBox(0).instruction.setDone(true);
+								instructionSingleton.getActiveView().getInstructionBox(1).instruction.setDone(true);
 								instructionSingleton.highlight("nothing", "contact");
 								instructionSingleton.showVideo("openGallery");
 							}
