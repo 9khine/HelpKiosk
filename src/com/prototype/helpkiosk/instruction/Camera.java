@@ -21,7 +21,7 @@ public class Camera {
 	}
 
 	private void takePicInstruction() {
-		cameraInstruction[0] = new Instruction("<html>Tap <b>Camera</b> <img src=\"http://imgur.com/WdjXH0h.png\" width=\"40\" height=\"40\">"
+		cameraInstruction[0] = new Instruction("<html>Tap <b>Camera</b> <img src=\"http://i.imgur.com/WdjXH0h.png\" width=\"40\" height=\"40\">"
 				+ " on the Apps screen.</html>",
 				false, new int[]{0}, "takePicture", 0, true);
 		
@@ -29,7 +29,7 @@ public class Camera {
 		cameraInstruction[1] = new Instruction("<html>Tap the image on the preview screen where the camera should focus.</html>",
 				false, new int[]{0}, "takePicture", 1, false);
 				
-		cameraInstruction[2] = new Instruction("<html>Tap <img src=\"http://imgur.com/kHEJ1u5.png\" width=\"40\" height=\"40\"> to take a photo.</html>",
+		cameraInstruction[2] = new Instruction("<html>Tap <img src=\"http://i.imgur.com/kHEJ1u5.png\" width=\"40\" height=\"40\"> to take a photo.</html>",
 				true, new int[]{7,8}, "takePicture", 2, false);
 	}
 	
@@ -40,7 +40,7 @@ public class Camera {
 		cameraInstruction[1] = new Instruction("<html>Tap the image on the preview screen where the camera should focus.</html>",
 				false, new int[]{0}, "takePicture", 1, false);
 
-		cameraInstruction[2] = new Instruction("<html>Tap <img src=\"http://imgur.com/ElPEohd.png\" width=\"40\" height=\"40\"> to take a photo.</html>",
+		cameraInstruction[2] = new Instruction("<html>Tap <img src=\"http://i.imgur.com/ElPEohd.png\" width=\"40\" height=\"40\"> to take a photo.</html>",
 				true, new int[]{9,10}, "takePicture", 2, false);
 	}
 	
@@ -48,7 +48,7 @@ public class Camera {
 		cameraInstruction[0] = new Instruction("<html>To quickly take photos, launch <b>Camera</b> on the locked screen.</html>",
 				false, new int[]{0}, "takePicture", 0, false);
 		
-		cameraInstruction[1] = new Instruction("<html>On the locked screen, drag <img src=\"http://imgur.com/WdjXH0h.png\" width=\"40\" height=\"40\"> outside the large circle.</html>",
+		cameraInstruction[1] = new Instruction("<html>On the locked screen, drag <img src=\"http://i.imgur.com/WdjXH0h.png\" width=\"40\" height=\"40\"> outside the large circle.</html>",
 				true, new int[]{7,8}, "takePicture", 1, false);
 	}
 	
