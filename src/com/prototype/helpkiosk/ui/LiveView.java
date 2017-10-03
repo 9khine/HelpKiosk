@@ -28,6 +28,13 @@ import com.android.ddmlib.IDevice;
 import com.android.ddmlib.RawImage;
 import com.prototype.helpkiosk.instruction.InstructionSingleton;
 
+import android.content.Context;
+import android.content.Intent;
+import android.graphics.ImageFormat;
+import android.media.ImageReader;
+import android.media.projection.MediaProjection;
+import android.media.projection.MediaProjectionManager;
+
 class LiveView extends JPanel implements ActionListener {
 	private IDevice device;
 	private GetScreenshotTask task;
@@ -38,6 +45,11 @@ class LiveView extends JPanel implements ActionListener {
 	private int refreshRate = 500;
 	private InstructionSingleton instructionSingleton = InstructionSingleton.getInstance();
 	private int width, height;
+	
+	// TODO: new variables
+	MediaProjection projection;
+	MediaProjectionManager mProjectionManager;
+	ImageReader mImageReader;
 
 	LiveView (IDevice device) {
 		setLayout(new FlowLayout());
@@ -179,6 +191,24 @@ class LiveView extends JPanel implements ActionListener {
 				endTime = System.nanoTime();
 				long duration3 = ((endTime - startTime)/1000000);
 				//System.out.println("(3) Got another screenshot! Only took: " + duration3 + " milliseconds " + (duration3 < 3000 ? ":)" : ":("));
+				
+				
+				startTime = System.nanoTime();
+				// TODO: media projection technique
+				
+//				mProjectionManager = (MediaProjectionManager) Context.getSystemService(null);
+				int resultCode = 0;
+				Intent data = null;
+				projection = mProjectionManager.getMediaProjection(resultCode, data);
+				
+				mImageReader = ImageReader.newInstance(width, height, ImageFormat.RGB_565, 2);
+				
+				projection.createVirtualDisplay("screen-mirror", width, height, 640, 0, mImageReader.getSurface(), null, null);
+				
+				
+				endTime = System.nanoTime();
+				long duration4 = ((endTime - startTime)/1000000);
+				System.out.println("(4) Got another screenshot! Only took: " + duration4 + " milliseconds " + (duration4 < 3000 ? ":)" : ":("));
 				
 			} catch (IOException ioe) {
 				System.out.println("failed to get a screenshot");
