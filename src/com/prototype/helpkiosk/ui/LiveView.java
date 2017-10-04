@@ -86,13 +86,15 @@ class LiveView extends JPanel {
 		rigid.add(title);
 		bg.add(rigid);
 
+		// Left-side of live view spacer
 		JPanel rigid2 = new JPanel();
 		rigid2.setOpaque(false);
-		rigid2.setPreferredSize(new Dimension(92, height));
+		rigid2.setPreferredSize(new Dimension(185, height));
 
+		// Right-side of live view spacer
 		JPanel rigid3 = new JPanel();
 		rigid3.setOpaque(false);
-		rigid3.setPreferredSize(new Dimension(10, height));
+		rigid3.setPreferredSize(new Dimension(105, height));
 
 		JPanel filler = new JPanel();
 		filler.setLayout(new BoxLayout(filler, BoxLayout.X_AXIS));
