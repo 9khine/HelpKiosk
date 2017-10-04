@@ -17,6 +17,7 @@ import java.util.concurrent.ExecutionException;
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
@@ -31,16 +32,20 @@ import com.android.ddmlib.RawImage;
 import com.android.hierarchyviewer.device.Window;
 import com.prototype.helpkiosk.instruction.InstructionSingleton;
 
-class LiveView extends JPanel {
+class LiveView extends JPanel implements ActionListener {
 	private IDevice device;
-	private BufferedImage image;
+//	private BufferedImage image;
 	private volatile boolean isLoading;
-	private Timer timer;
-	private int refreshRate = 500;
+	private int refreshRate = 2000;
 	private InstructionSingleton instructionSingleton = InstructionSingleton.getInstance();
 	private int width, height;
 	
+	Timer timer = new Timer(refreshRate, this);
+	
+	private JLabel image = new JLabel(getIcon());
+	
 	LiveView (IDevice device) {
+		this.device = device;
 		setLayout(new FlowLayout());
 		setOpaque(true);
 		setBackground(Color.WHITE);
@@ -49,20 +54,17 @@ class LiveView extends JPanel {
 		this.width = 240;
 		this.height = 400;
 
+		// TODO: put timer in here!
 		JPanel panel = buildViewer();
 		add(panel);
 	}
-
+	
 	private JPanel buildViewer() {
 		JPanel panel = new JPanel();
 		
-		ImageIcon screenshot = new ImageIcon("/Users/pablo/git/HelpKioskKhine/screencapture/screen.png");
-		Image screenShotImg = screenshot.getImage();
-		Image scaledImage = screenShotImg.getScaledInstance(width,height,Image.SCALE_SMOOTH);
+		image = new JLabel(getIcon());
 		
-		ImageIcon scaledIcon = new ImageIcon(scaledImage);
-		
-		JLabel label = new JLabel(scaledIcon);
+		JLabel label = image;
 		JPanel viewPanel = new JPanel(new BorderLayout());
 		viewPanel.add(label, BorderLayout.CENTER);
 
@@ -116,5 +118,19 @@ class LiveView extends JPanel {
 		return panel;
 	}
 
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == timer) {
+			image.setIcon(getIcon());; // TODO: get this to call at the refresh rate 
+		}
+	}
 
+	private Icon getIcon() {
+		ImageIcon screenshot = new ImageIcon("/Users/pablo/git/HelpKioskKhine/screencapture/screen.png");
+		Image screenShotImg = screenshot.getImage();
+		Image scaledImage = screenShotImg.getScaledInstance(width,height,Image.SCALE_SMOOTH);
+		ImageIcon scaledIcon = new ImageIcon(scaledImage);
+		
+		return scaledIcon;
+	}
 }
