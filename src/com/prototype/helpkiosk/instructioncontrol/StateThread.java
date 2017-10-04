@@ -80,11 +80,11 @@ public class StateThread extends Thread
 				String home = System.getProperty("user.home");
 				// TODO: change this to work on display (we should rename the android-sdk fodler to -sdks on the Windows to solve this problem
 				//Windows version:
-//				Runtime.getRuntime().exec(home + "/android-sdk/platform-tools/adb logcat -c");
-//				Process p = Runtime.getRuntime().exec(home + "/android-sdk/platform-tools/adb logcat");
+				Runtime.getRuntime().exec(home + "/android-sdk/platform-tools/adb logcat -c");
+				Process p = Runtime.getRuntime().exec(home + "/android-sdk/platform-tools/adb logcat");
 				// Mac version:
-				Runtime.getRuntime().exec(home + "/android-sdks/platform-tools/adb logcat -c");
-				Process p = Runtime.getRuntime().exec(home + "/android-sdks/platform-tools/adb logcat -v brief ActivityManager:I AlarmProvider:D ComposerPerformance:D *:S");
+//				Runtime.getRuntime().exec(home + "/android-sdks/platform-tools/adb logcat -c");
+//				Process p = Runtime.getRuntime().exec(home + "/android-sdks/platform-tools/adb logcat -v brief ActivityManager:I AlarmProvider:D ComposerPerformance:D *:S");
 				
 				InputStream is = p.getInputStream();
 				InputStreamReader isr = new InputStreamReader(is);

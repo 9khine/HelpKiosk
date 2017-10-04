@@ -130,7 +130,7 @@ class LiveView extends JPanel implements ActionListener {
 //			System.out.println("Existing task, no new one");
 			return;
 		}
-		System.out.println("New screenshot task created!");
+		//System.out.println("New screenshot task created!");
 		this.task = new GetScreenshotTask();
 		this.task.execute();
 	}
@@ -151,7 +151,7 @@ class LiveView extends JPanel implements ActionListener {
 				rawImage = LiveView.this.device.getScreenshot(); // currently this takes ~10 seconds, WHY?!?!?!!
 				long endTime = System.nanoTime();
 				long duration1 = ((endTime - startTime)/1000000);
-				System.out.println("(1) Got a screenshot! Only took: " + duration1 + " milliseconds " + (duration1 < 3000 ? ":)" : ":("));
+				//System.out.println("(1) Got a screenshot! Only took: " + duration1 + " milliseconds " + (duration1 < 3000 ? ":)" : ":("));
 				
 				// Method #2: taking screenshot using the adb shell in terminal takes ~2s
 				// Doesn't work: don't know where it would save the image
@@ -172,13 +172,13 @@ class LiveView extends JPanel implements ActionListener {
 //				Runtime.getRuntime().exec(home + "/android-sdks/platform-tools/adb shell /system/bin/screencap -p /sdcard/screenshot_" + time + ".png");
 				// Must wait 2 seconds for screenshot to be created
 				Thread.sleep(2000);
-				System.out.println("screenshot named: screenshot_" + time + ".png");
+				//System.out.println("screenshot named: screenshot_" + time + ".png");
 //				Runtime.getRuntime().exec(home + "/android-sdks/platform-tools/adb shell pull /sdcard/screenshot_" + time + ".png " + home + "/screenshot_" + time + ".png");
 				// TODO: deletes image from phone, but gallery shows "Missing Media" image...
 //				Runtime.getRuntime().exec(home + "/android-sdks/platform-tools/adb shell rm /sdcard/screenshot_" + time + ".png");
 				endTime = System.nanoTime();
 				long duration3 = ((endTime - startTime)/1000000);
-				System.out.println("(3) Got another screenshot! Only took: " + duration3 + " milliseconds " + (duration3 < 3000 ? ":)" : ":("));
+				//System.out.println("(3) Got another screenshot! Only took: " + duration3 + " milliseconds " + (duration3 < 3000 ? ":)" : ":("));
 				
 			} catch (IOException ioe) {
 				System.out.println("failed to get a screenshot");
