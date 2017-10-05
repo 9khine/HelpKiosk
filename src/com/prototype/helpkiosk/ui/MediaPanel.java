@@ -3,11 +3,14 @@ package com.prototype.helpkiosk.ui;
 // A JPanel the plays media from a URL
 import java.awt.BorderLayout;
 import java.awt.Component;
+import java.awt.Desktop;
 import java.awt.Dimension;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ResourceBundle;
 
 import javax.media.CannotRealizeException;
 import javax.media.ControllerListener;
@@ -15,22 +18,77 @@ import javax.media.Manager;
 import javax.media.NoPlayerException;
 import javax.media.Player;
 import javax.media.Time;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 
+import javafx.application.Application;
+import javafx.application.Platform;
+import javafx.embed.swing.JFXPanel;
+import javafx.geometry.Pos;
+import javafx.scene.Group;
+import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.layout.VBox;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.MediaView;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
+import javafx.stage.Stage;
+
+
+<<<<<<< HEAD
+=======
 //import uk.co.caprica.vlcj.player.embedded.EmbeddedMediaPlayer;
+>>>>>>> c69baf0e2b151c7787497d659f43a9f57f1dbf0a
 
 public class MediaPanel extends JPanel {
 	public URL mediaURL;
 	String mediaURLstr;
 	Player mediaPlayer;
+<<<<<<< HEAD
+=======
 	//EmbeddedMediaPlayer mediaPlayerV = null;
 
 	//private EmbeddedMediaPlayerComponent ourMediaPlayer;
+<<<<<<< HEAD
 
+=======
+>>>>>>> c69baf0e2b151c7787497d659f43a9f57f1dbf0a
+	
+>>>>>>> f8affd099914387c2231df28e1b8d19c47760472
 	public MediaPanel() {
 		setLayout(new BorderLayout()); // use a BorderLayout
 	}
 
+<<<<<<< HEAD
+	private void initFX(JFXPanel fxPanel, String url) {
+		// This method is invoked on the JavaFX thread
+		Scene scene = createScene(url);
+		fxPanel.setScene(scene);
+	}
+
+	private Scene createScene(String url) {
+		//Color.ALICEBLUE
+		Group  root  =  new  Group();
+		Scene  scene  =  new  Scene(root, Color.ALICEBLUE);
+		
+		final Label status = new Label("Init");
+		
+		MediaPlayer mediaPlayer = createMediaPlayer(
+				url, 
+				status
+				);
+		mediaPlayer.play();
+		//mediaPlayer.setAutoPlay(true);
+		MediaView view = new MediaView(mediaPlayer);
+		
+		//root.getChildren().add(view);
+		((Group)scene.getRoot()).getChildren().add(view);
+		return (scene);
+=======
 	public void show() {
 		// Use lightweight components for Swing compatibility
 		Manager.setHint( Manager.LIGHTWEIGHT_RENDERER, true );
@@ -139,7 +197,49 @@ public class MediaPanel extends JPanel {
 		{
 			System.err.println( "Error reading from the source" );
 		} // end catch
+>>>>>>> c69baf0e2b151c7787497d659f43a9f57f1dbf0a
 	}
+<<<<<<< HEAD
+=======
+	
+	/** 
+	   * creates a media player using a url to the media
+	   * and tracks the status of playing the media via the status label 
+	   */
+	  private MediaPlayer createMediaPlayer(final String url, final Label status) {
+	    Media hit = new Media(url);
+	    MediaPlayer mediaPlayer = new MediaPlayer(hit);
+	    mediaPlayer.setOnError(new Runnable() {
+	      @Override public void run() {
+	        status.setText("Error");
+	      }
+	    });
+	    mediaPlayer.setOnPlaying(new Runnable() {
+	      @Override public void run() {
+	        status.setText("Playing: " + url);
+	      }
+	    });
+	    mediaPlayer.setOnEndOfMedia(new Runnable() {
+	      @Override public void run() {
+	        status.setText("Done");
+	      }
+	    });
+	    return mediaPlayer;
+	  }
+	
+	public void show() {
+		final JFXPanel fxPanel = new JFXPanel();
+		add(fxPanel, BorderLayout.CENTER);
+		//add(fxPanel, BorderLayout.SOUTH );
+		//System.out.println(mediaURL.toString());
+		
+	    String filepath = "file://C://Users//git//HelpKiosk//video//contacts//contact_open_app.mpeg";
+
+		initFX(fxPanel, filepath);
+		//initFX(fxPanel, "http://www.html5videoplayer.net/videos/toystory.mp4");
+
+	}
+>>>>>>> f8affd099914387c2231df28e1b8d19c47760472
 
 	public String selectURL (String type) {
 
@@ -151,7 +251,15 @@ public class MediaPanel extends JPanel {
 
 		// Contact
 		if (type=="openContact") {
+<<<<<<< HEAD
 			videoUrl = "file:/"+videoFolder+"/contacts/contact_open_app.mpeg";
+=======
+<<<<<<< HEAD
+			videoUrl = "file:/"+videoFolder+"/contacts/contact_open_app.mpeg";
+=======
+	        videoUrl = "file:/"+videoFolder+"/contacts/contact_open_app.mpeg";
+>>>>>>> c69baf0e2b151c7787497d659f43a9f57f1dbf0a
+>>>>>>> f8affd099914387c2231df28e1b8d19c47760472
 		} else if(type=="newContact"){
 			videoUrl = "file://"+videoFolder+"/contacts/contact_add_new.mpeg";
 		} else if(type=="enterInfo"){
@@ -170,12 +278,24 @@ public class MediaPanel extends JPanel {
 		// Clock
 		else if(type=="openClock"){
 			videoUrl = "file:"+videoFolder+"/clock/clock_open_app.mpeg";
+<<<<<<< HEAD
+=======
+			videoUrl = "file:"+videoFolder+"/old_videos/openclock.MPG";
+>>>>>>> f8affd099914387c2231df28e1b8d19c47760472
 		} else if(type=="touchAlarm"){
 			videoUrl = "file:"+videoFolder+"/clock/clock_tap_alarm.mpeg";
 		} else if(type=="setAlarm"){
 			videoUrl = "file:"+videoFolder+"/clock/clock_set_time.mpeg";
 		} else if(type=="saveAlarm"){
+<<<<<<< HEAD
 			videoUrl = "file:"+videoFolder+"/clock/clock_save.mpeg";
+=======
+<<<<<<< HEAD
+			videoUrl = "file:"+videoFolder+"/clock_save.mpeg";
+=======
+	        videoUrl = "file:"+videoFolder+"/clock/clock_save.mpeg";
+>>>>>>> c69baf0e2b151c7787497d659f43a9f57f1dbf0a
+>>>>>>> f8affd099914387c2231df28e1b8d19c47760472
 		}
 
 		// Message
@@ -235,6 +355,91 @@ public class MediaPanel extends JPanel {
 	//			}).start();
 	//}
 	
+<<<<<<< HEAD
+=======
+	
+// ----------------------------------------------------------------------------------------------	
+	
+	// Use lightweight components for Swing compatibility
+//	Manager.setHint( Manager.LIGHTWEIGHT_RENDERER, true );
+//	try {
+//
+//		if (mediaURL != null) {
+//			
+//			//----------------------------------------------------
+//			//			player videos on desktop
+//			//								String home = System.getProperty("user.home");
+//			//								String videoFolder = home + "/git/HelpKiosk/video";	
+//			//								String filename = videoFolder+"/old_videos/openclock.MPG";
+//			//								
+//			//								//System.out.println(filename);
+//			//								
+//			//								File vid = new File(filename);
+//			//								Desktop.getDesktop().open(vid);
+//			//----------------------------------------------------
+//			
+//		
+//			// --------------------------------------------------
+//			
+//			System.out.println("mediaURL is: " + mediaURL);
+//			// create a player to play the media specified in the URL
+//			mediaPlayer = Manager.createRealizedPlayer(mediaURL);
+//			
+//			System.out.println("mediaPlayer is: " + mediaPlayer);
+//			System.out.println("mediaPlayer vis component: " + mediaPlayer.getVisualComponent());
+//			// get the components for the video and the play-back controls
+//			Component video = mediaPlayer.getVisualComponent();
+//			//video.setVisible(true);
+//			mediaPlayer.getGainControl();
+//			mediaPlayer.addControllerListener((ControllerListener) mediaPlayer);
+//			Component controls = mediaPlayer.getControlPanelComponent();
+//
+//			controls.setPreferredSize(new Dimension(controls.getWidth(), 20));
+//			
+//			//---------------     	!!!!! 	ERROR ZONE 	!!!!! ----------------------------
+//			//				video.addMouseListener(
+//			//						new MouseAdapter() {
+//			//							public void mouseClicked(MouseEvent evt) {
+//			//								mediaPlayer.setMediaTime(new Time(0));
+//			//								mediaPlayer.start();
+//			//								mediaPlayer.stop();
+//			//							}
+//			//
+//			//							public void mouseReleased(MouseEvent evt) {
+//			//							}
+//			//						});	
+//			//
+//			//				if ( video != null ) {
+//			//					add( video, BorderLayout.CENTER ); // add video component
+//			//					System.out.println("video is in CENTER");
+//			//				}
+//			//
+//			//				if ( controls != null ) {
+//			//					add( controls, BorderLayout.SOUTH ); // add controls
+//			//					System.out.println("controls are in SOUTH");
+////			}
+//			//---------------     	!!!!! 	ERROR ZONE 	!!!!! ----------------------------
+//			
+//			
+//		}
+//	} // end try
+//	catch ( NoPlayerException noPlayerException )
+//	{
+//		System.err.println( "No media player found" );
+//	} // end catch
+//	catch ( CannotRealizeException cannotRealizeException )
+//	{
+//		System.err.println( "Could not realize media player" );
+//	} // end catch
+//	catch ( IOException iOException )
+//	{
+//		System.err.println( "Error reading from the source" );
+//	} // end catch
+//	catch (Exception e) {
+//		e.printStackTrace();
+//	}
+
+>>>>>>> f8affd099914387c2231df28e1b8d19c47760472
 	//	//	https://stackoverflow.com/questions/20440484/embed-a-youtube-video-to-jframe
 	//	// 	http://djproject.sourceforge.net/ns/
 	//	public JPanel getBrowserPanel() {
@@ -252,5 +457,9 @@ public class MediaPanel extends JPanel {
 	//	Format[] inFormats = { new VideoFormat ("MPEG") };
 	//	PlugInManager.addPlugIn ("net.sourceforge.jffmpeg.VideoDecoder", inFormats, null, PlugInManager.CODEC);
 	//	PlugInManager.commit ();
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> f8affd099914387c2231df28e1b8d19c47760472
 } // end class MediaPanel

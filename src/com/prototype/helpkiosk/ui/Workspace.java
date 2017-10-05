@@ -22,9 +22,9 @@ import javax.swing.border.EmptyBorder;
 import com.android.ddmlib.IDevice;
 // TODO: change for windows/mac version
 // Windows version:
-//import com.android.hierarchyviewerlib.device.DeviceBridge;
+import com.android.hierarchyviewerlib.device.DeviceBridge;
 // Mac version:
-import com.android.hierarchyviewer.device.DeviceBridge;
+//import com.android.hierarchyviewer.device.DeviceBridge;
 
 import com.prototype.helpkiosk.instruction.InstructionSingleton;
 
@@ -55,7 +55,7 @@ public class Workspace extends JFrame implements WindowListener {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.device = getCurrentDevice();
 		// TODO: Uncomment to hide top bar for use on touch display
-		//setUndecorated(true); 
+		setUndecorated(true); 
 		add(buildMainPanel());
 		pack();
 		
@@ -150,9 +150,9 @@ public class Workspace extends JFrame implements WindowListener {
 	private IDevice getCurrentDevice(){
 		// TODO: change to this to work with display
 		// Windows version:
-//		DeviceBridge.initDebugBridge("C:/Users/admin-mux/android-sdk/platform-tools/adb");
+		DeviceBridge.initDebugBridge("C:/Users/admin-mux/android-sdk/platform-tools/adb");
 		// Mac version:
-		DeviceBridge.initDebugBridge();
+		//DeviceBridge.initDebugBridge();
         
         sleep();
         
