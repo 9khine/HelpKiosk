@@ -83,8 +83,13 @@ public class StateThread extends Thread
 				Runtime.getRuntime().exec(home + "/android-sdk/platform-tools/adb logcat -c");
 				Process p = Runtime.getRuntime().exec(home + "/android-sdk/platform-tools/adb logcat");
 				// Mac version:
+<<<<<<< HEAD
 //				Runtime.getRuntime().exec(home + "/android-sdks/platform-tools/adb logcat -c");
 //				Process p = Runtime.getRuntime().exec(home + "/android-sdks/platform-tools/adb logcat -v brief ActivityManager:I AlarmProvider:D ComposerPerformance:D *:S");
+=======
+				Runtime.getRuntime().exec(home + "/android-sdks/platform-tools/adb logcat -c");
+				Process p = Runtime.getRuntime().exec(home + "/android-sdks/platform-tools/adb logcat -v brief ActivityManager:I AlarmMainActivity:D AlarmListView:D ComposerPerformance:D *:S");
+>>>>>>> c69baf0e2b151c7787497d659f43a9f57f1dbf0a
 				
 				InputStream is = p.getInputStream();
 				InputStreamReader isr = new InputStreamReader(is);
@@ -102,19 +107,31 @@ public class StateThread extends Thread
 						instructionSingleton.highlight("nothing", "contact");
 					}
 					
-					if (line.indexOf("D/AlarmProvider")==0) {
-						/* SET ALARM */
-//						System.out.println(line);
-						int i = getAlarmInfo(line);
-						if (i==12 && line.indexOf("true")==97) {
-							// TODO: click on activate alarm, logcat line is: (length = 12)
-							// 06-23 12:00:29.986 12047 12047 D AlarmProvider: setAlarmActive() - id: 4,willChangeButtonActive: true,activeNow: 0
-							//																				this is what changes ^
-//							/Users/pablo/android-sdks/platform-tools/adb logcat AlarmManager:V *:S
-							
-							System.out.println("ALARM CODE IS: " + i + "; inside setAlarmActive()");
-							
+					if (line.indexOf("D/AlarmMainActivity")==0) {
+						/* SET ALARM PANE ACTIVE */
+						
+						// D/AlarmProvider(15694): setAlarmActive() - id: 11,willChangeButtonActive: true,activeNow: 0   INDEX OF T = 74
+						// D/AlarmMainActivity(16490): onResume()
+											
+						if (line.indexOf("onResume")==29) {														
 							instructionSingleton.getActiveView().getInstructionBox(1).instruction.setDone(true);
+							instructionSingleton.highlight("nothing", "contact");
+							//instructionSingleton.showVideo("nothing");
+						}
+					} else if (line.indexOf("D/AlarmListView")==0) {
+						/* ADD NEW ALARM */
+						
+						// D/AlarmListView(16751): resizeLayoutWithDrag : 2
+						
+//						/Users/pablo/android-sdks/platform-tools/adb logcat -v brief AlarmManager:V *:S
+//						/Users/pablo/android-sdks/platform-tools/adb logcat -v brief AlarmProvider:D *:S
+//						/Users/pablo/android-sdks/platform-tools/adb logcat -v brief AlarmMainActivity:D *:S  D/AlarmCursorAdapter  D/AlarmListView
+//						/Users/pablo/android-sdks/platform-tools/adb logcat -v brief AlarmCursorAdapter:D *:S
+//						/Users/pablo/android-sdks/platform-tools/adb logcat -v brief AlarmListView:D *:S
+						
+						System.out.println("Alarm pane active");
+						if (line.indexOf("resizeLayoutWithDrag : 2")==24) {														
+							instructionSingleton.getActiveView().getInstructionBox(2).instruction.setDone(true);
 							instructionSingleton.highlight("nothing", "contact");
 							//instructionSingleton.showVideo("nothing");
 						}
@@ -206,6 +223,7 @@ public class StateThread extends Thread
 							else if (getCmp().equals(CMP_LAUNCH_PHONE)){
 								System.out.println("PHONE ACTIVE " + ++count_phone + " TIMES ");
 								instructionSingleton.getActiveView().getInstructionBox(0).instruction.setDone(true);
+								instructionSingleton.getActiveView().getInstructionBox(1).instruction.setDone(true);
 								instructionSingleton.highlight("nothing", "contact");
 								instructionSingleton.showVideo("openPhone");
 							}
@@ -217,6 +235,7 @@ public class StateThread extends Thread
 							else if (getCmp().equals(CMP_LAUNCH_GALLERY)){
 								System.out.println("GALLERY ACTIVE " + ++count_gallery + " TIMES ");
 								instructionSingleton.getActiveView().getInstructionBox(0).instruction.setDone(true);
+								instructionSingleton.getActiveView().getInstructionBox(1).instruction.setDone(true);
 								instructionSingleton.highlight("nothing", "contact");
 								instructionSingleton.showVideo("openGallery");
 							}
@@ -231,16 +250,10 @@ public class StateThread extends Thread
 							else if (getCmp().equals(CMP_LAUNCH_CLOCK)) {
 								System.out.println("CLOCK ACTIVE " + ++count_clock + " TIMES ");
 								instructionSingleton.getActiveView().getInstructionBox(0).instruction.setDone(true);
+								instructionSingleton.getActiveView().getInstructionBox(1).instruction.setDone(true);
 								instructionSingleton.highlight("nothing", "contact");
 								instructionSingleton.showVideo("openClock");
 
-							}
-							
-							//Click on activate alarm
-							else if (getCmp().equals(CMP_ACTIVATE_ALARM)){
-								instructionSingleton.getActiveView().getInstructionBox(1).instruction.setDone(true);
-								instructionSingleton.highlight("nothing", "contact");
-								//instructionSingleton.showVideo("nothing");
 							}
 						}
 					}
