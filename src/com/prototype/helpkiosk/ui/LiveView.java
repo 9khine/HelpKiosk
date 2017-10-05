@@ -6,18 +6,16 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 import java.util.concurrent.ExecutionException;
 
-import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
@@ -29,23 +27,20 @@ import org.jdesktop.swingworker.SwingWorker;
 
 import com.android.ddmlib.IDevice;
 import com.android.ddmlib.RawImage;
-import com.android.hierarchyviewer.device.Window;
 import com.prototype.helpkiosk.instruction.InstructionSingleton;
 
 class LiveView extends JPanel implements ActionListener {
 	private IDevice device;
-//	private BufferedImage image;
+	private GetScreenshotTask task;
+	private BufferedImage image;
 	private volatile boolean isLoading;
-	private int refreshRate = 2000;
+	private Crosshair crosshair;
+	private Timer timer;
+	private int refreshRate = 500;
 	private InstructionSingleton instructionSingleton = InstructionSingleton.getInstance();
 	private int width, height;
-	
-	Timer timer = new Timer(refreshRate, this);
-	
-	private JLabel image = new JLabel(getIcon());
-	
+
 	LiveView (IDevice device) {
-		this.device = device;
 		setLayout(new FlowLayout());
 		setOpaque(true);
 		setBackground(Color.WHITE);
@@ -54,20 +49,25 @@ class LiveView extends JPanel implements ActionListener {
 		this.width = 240;
 		this.height = 400;
 
-		// TODO: put timer in here!
-		JPanel panel = buildViewer();
-		add(panel);
-	}
-	
-	private JPanel buildViewer() {
-		JPanel panel = new JPanel();
-		
-		image = new JLabel(getIcon());
-		
-		JLabel label = image;
-		JPanel viewPanel = new JPanel(new BorderLayout());
-		viewPanel.add(label, BorderLayout.CENTER);
+		this.timer = new Timer(refreshRate, this);
+		this.timer.setInitialDelay(0);
+		this.timer.setRepeats(true);
 
+		JPanel panel = buildViewerAndControls();
+		add(panel);
+
+		SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				LiveView.this.timer.start();
+			}
+		});
+
+	}
+
+	private JPanel buildViewerAndControls() {
+		JPanel panel = new JPanel();
+
+		Crosshair viewPanel = new Crosshair(new ScreenshotViewer());
 		viewPanel.setBackground(Color.WHITE);
 		viewPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
 		viewPanel.setBounds(0, 0, width, height);
@@ -76,6 +76,7 @@ class LiveView extends JPanel implements ActionListener {
 		title.setFont(new Font("Helvetica", Font.BOLD, 23));
 		title.setForeground(new Color(0x3B70A3));
 
+		//ImageIcon img = new ImageIcon("img/nexusoneinhandblur.png");
 		ImageIcon img = new ImageIcon("img/nexusoneinhand.png");
 
 		JLabel bg = new JLabel(img);
@@ -88,15 +89,13 @@ class LiveView extends JPanel implements ActionListener {
 		rigid.add(title);
 		bg.add(rigid);
 
-		// Left-side of live view spacer
 		JPanel rigid2 = new JPanel();
 		rigid2.setOpaque(false);
-		rigid2.setPreferredSize(new Dimension(185, height));
+		rigid2.setPreferredSize(new Dimension(92, height));
 
-		// Right-side of live view spacer
 		JPanel rigid3 = new JPanel();
 		rigid3.setOpaque(false);
-		rigid3.setPreferredSize(new Dimension(105, height));
+		rigid3.setPreferredSize(new Dimension(10, height));
 
 		JPanel filler = new JPanel();
 		filler.setLayout(new BoxLayout(filler, BoxLayout.X_AXIS));
@@ -118,19 +117,129 @@ class LiveView extends JPanel implements ActionListener {
 		return panel;
 	}
 
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		if (e.getSource() == timer) {
-			image.setIcon(getIcon());; // TODO: get this to call at the refresh rate 
+	void stop() {
+		this.timer.stop();
+	}
+
+	void start() {
+		this.timer.start();
+	}
+
+	public void actionPerformed(ActionEvent event) {
+		// if no current task, start a new GetScreenshot task
+		if ((this.task != null) && (!this.task.isDone())) {
+//			System.out.println("Existing task, no new one");
+			return;
+		}
+		//System.out.println("New screenshot task created!");
+		this.task = new GetScreenshotTask();
+		this.task.execute();
+	}
+
+	private class GetScreenshotTask extends SwingWorker<Boolean, Void> {
+		// SwingWorkers are essentially new threads, creating a new one adds a new task to a free worker thread
+		
+		private GetScreenshotTask() {
+			
+		}
+
+		protected Boolean doInBackground() throws Exception {
+			
+			long startTime = System.nanoTime();
+			ImageIcon screenshot = new ImageIcon("/Users/pablo/git/HelpKioskKhine/screencapture/screen.png");
+			Image screenShotImg = screenshot.getImage();
+			Image scaledImage = screenShotImg.getScaledInstance(width,height,Image.SCALE_SMOOTH);
+			ImageIcon scaledIcon = new ImageIcon(scaledImage);
+
+			long endTime = System.nanoTime();
+			long duration3 = ((endTime - startTime)/1000000);
+			//System.out.println("(3) Got another screenshot! Only took: " + duration3 + " milliseconds " + (duration3 < 3000 ? ":)" : ":("));
+			
+			boolean resize = false;
+			boolean landscape = false;
+			
+				if (scaledIcon != null) {
+					resize = true;
+					LiveView.this.image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+					
+				    // Draw the image on to the buffered image
+				    Graphics2D bGr = LiveView.this.image.createGraphics();
+				    bGr.drawImage(scaledImage, 0, 0, null);
+				    bGr.dispose();
+				}
+			
+			return Boolean.valueOf(resize);
+		}
+
+		protected void done() {
+			try {
+				if (((Boolean)get()).booleanValue()) {
+					LiveView.this.validate();
+				}
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			} catch (ExecutionException e) {
+				e.printStackTrace();
+			}
+			LiveView.this.repaint();
 		}
 	}
 
-	private Icon getIcon() {
-		ImageIcon screenshot = new ImageIcon("/Users/pablo/git/HelpKioskKhine/screencapture/screen.png");
-		Image screenShotImg = screenshot.getImage();
-		Image scaledImage = screenShotImg.getScaledInstance(width,height,Image.SCALE_SMOOTH);
-		ImageIcon scaledIcon = new ImageIcon(scaledImage);
-		
-		return scaledIcon;
+	class ScreenshotViewer extends JComponent {
+
+		ScreenshotViewer() {
+			setOpaque(true);
+			setBounds(0,0,width,height);
+
+			setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+			
+			// For highlighting the live view?
+			JPanel glass = new JPanel();
+			glass.setSize(new Dimension(width, height));
+			glass.setPreferredSize(new Dimension(width, height));
+			glass.setMaximumSize(new Dimension(width, height));
+			glass.setOpaque(false);
+			glass.setBounds(0,0,width,height);
+			instructionSingleton.setHighlightContainer(glass);
+			instructionSingleton.highlight("nothing", "camera");
+
+			add(glass);
+		}
+
+		protected void paintComponent(Graphics g) {
+			g.fillRect(0, 0, width, height);
+			if (LiveView.this.isLoading) {
+				return;
+			}
+
+			if (LiveView.this.image != null) {
+				// if live view not null paint new image - this should be called every second
+				g.drawImage(LiveView.this.image, 0, 0, width, height, null);
+			}
+		}
+
+		public Dimension getPreferredSize() {
+			return new Dimension(width, height);
+		}
+	}
+
+	class Crosshair extends JPanel {
+		private final LiveView.ScreenshotViewer screenshotViewer;
+
+		Crosshair(LiveView.ScreenshotViewer screenshotViewer) {
+			this.screenshotViewer = screenshotViewer;
+			setOpaque(true);
+			setLayout(new BorderLayout());
+			setBounds(0,0,width, height);
+			add(screenshotViewer);
+		}
+
+		public Dimension getPreferredSize() {
+			return this.screenshotViewer.getPreferredSize();
+		}
+
+		public Dimension getMaximumSize() {
+			return this.screenshotViewer.getPreferredSize();
+		}
 	}
 }
