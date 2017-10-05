@@ -55,6 +55,10 @@ it should show a device named DEVICE_IP_ADDRESS:5555
 
 this is from the Android ADB guide https://developer.android.com/studio/command-line/adb.html#wireless
 
+## Command line script to take screenshots in background
+while true; do /Users/pablo/android-sdks/platform-tools/adb shell screencap -p | perl -pe 's/\x0D\x0A/\x0A/g' > /Users/pablo/git/HelpKioskKhine/screencapture/screen.png; sleep 2; done
+
+
 ## Changing between Windows & Mac (for display)
 
 (Change the build path first to avoid errors everywhere, makes it a little smoother)
