@@ -21,16 +21,14 @@ public class Gallery {
 	
 	private void viewImageInstruction() {
 		galleryInstruction[0] = new Instruction
-				("<html>Tap <b>Gallery</b> <img src=\"http://imgur.com/3vP5Y7u.png\" width=\"40\" height=\"40\">"
+				("<html>Tap <b>Gallery</b> <img src=\"http://i.imgur.com/3vP5Y7u.png\" width=\"40\" height=\"40\">"
 						+ "on the Apps screen</html>", 
 						false, new int[]{0}, "viewImage", 0, false);
 		
 		galleryInstruction[1] = new Instruction
 				("<html>Select an image.</html>", 
 						false, new int[]{0}, "viewImage", 1, false);
-		
-		galleryInstruction[1].setDone(true);
-		
+				
 		galleryInstruction[2] = new Instruction("<html>To hide or show the menus, tap the screen.</html>", 
 				true, new int[]{0}, "viewImage", 2, false);
 	}
@@ -39,7 +37,7 @@ public class Gallery {
 		
 		// TODO update instruction
 		galleryInstruction[0] = new Instruction
-				("<html>Tap Gallery <img src=\"http://imgur.com/3vP5Y7u.png\" width=\"40\" height=\"40\"> "
+				("<html>Tap Gallery <img src=\"http://i.imgur.com/3vP5Y7u.png\" width=\"40\" height=\"40\"> "
 						+ "on the Apps screen</html>", 
 						false, new int[]{0}, "viewVideo", 0, true);
 		
