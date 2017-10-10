@@ -11,6 +11,8 @@ import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.FilenameFilter;
 import java.io.IOException;
 import java.util.concurrent.ExecutionException;
 
@@ -22,11 +24,11 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.Timer;
+import javax.swing.filechooser.FileFilter;
 
 import org.jdesktop.swingworker.SwingWorker;
 
 import com.android.ddmlib.IDevice;
-import com.android.ddmlib.RawImage;
 import com.prototype.helpkiosk.instruction.InstructionSingleton;
 
 class LiveView extends JPanel implements ActionListener {
@@ -36,7 +38,7 @@ class LiveView extends JPanel implements ActionListener {
 	private volatile boolean isLoading;
 	private Crosshair crosshair;
 	private Timer timer;
-	private int refreshRate = 2000;
+	private int refreshRate = 2200;
 	private InstructionSingleton instructionSingleton = InstructionSingleton.getInstance();
 	private int width, height;
 
@@ -139,6 +141,10 @@ class LiveView extends JPanel implements ActionListener {
 	private class GetScreenshotTask extends SwingWorker<Boolean, Void> {
 		// SwingWorkers are essentially new threads, creating a new one adds a new task to a free worker thread
 		
+		/* Script to run in background of this:
+		 * while true; do /Users/pablo/android-sdks/platform-tools/adb shell screencap -p | perl -pe 's/\x0D\x0A/\x0A/g' > /Users/pablo/git/HelpKioskKhine/screenshots/screen_$(date +%Y%m%d_%H%M%S).png; sleep 2; done
+		 */
+		
 		private GetScreenshotTask() {
 			
 		}
@@ -146,7 +152,10 @@ class LiveView extends JPanel implements ActionListener {
 		protected Boolean doInBackground() throws Exception {
 			
 			long startTime = System.nanoTime();
-			ImageIcon screenshot = new ImageIcon("/Users/pablo/git/HelpKioskKhine/screencapture/screen.png");
+			File newestImg = this.lastFileModified("/Users/pablo/git/HelpKioskKhine/screenshots/");
+			System.out.println("Next screenshot:");
+			System.out.println(newestImg.getPath());
+			ImageIcon screenshot = new ImageIcon(newestImg.getPath());
 			Image screenShotImg = screenshot.getImage();
 			Image scaledImage = screenShotImg.getScaledInstance(width,height,Image.SCALE_SMOOTH);
 			ImageIcon scaledIcon = new ImageIcon(scaledImage);
@@ -169,6 +178,30 @@ class LiveView extends JPanel implements ActionListener {
 				}
 			
 			return Boolean.valueOf(resize);
+		}
+		
+		private File lastFileModified(String dirPath) {
+			File dir = new File(dirPath);
+			File[] files = dir.listFiles();
+			
+			if (files == null || files.length == 0) {
+				return null;
+			} else if (files.length > 3) {
+				files[0].delete();
+			}
+			
+			return files[files.length - 2];
+
+//			File lastModifiedFile = files[0];
+//			for (int i = 1; i < files.length; i++) {
+//				// < returns newest file
+//				// > returns oldest file
+//				if (lastModifiedFile.lastModified() > files[i].lastModified()) {
+//					lastModifiedFile = files[i];
+//				}
+//			}
+//
+//			return lastModifiedFile;
 		}
 
 		protected void done() {
