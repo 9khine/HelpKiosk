@@ -38,7 +38,7 @@ class LiveView extends JPanel implements ActionListener {
 	private volatile boolean isLoading;
 	private Crosshair crosshair;
 	private Timer timer;
-	private int refreshRate = 2200;
+	private int refreshRate = 500;
 	private InstructionSingleton instructionSingleton = InstructionSingleton.getInstance();
 	private int width, height;
 
@@ -143,6 +143,9 @@ class LiveView extends JPanel implements ActionListener {
 		
 		/* Script to run in background of this:
 		 * while true; do /Users/pablo/android-sdks/platform-tools/adb shell screencap -p | perl -pe 's/\x0D\x0A/\x0A/g' > /Users/pablo/git/HelpKioskKhine/screenshots/screen_$(date +%Y%m%d_%H%M%S).png; sleep 2; done
+		 * 
+		 * Delete script:
+		 * while true; do find /Users/pablo/git/HelpKioskKhine/screenshots -type f -mmin +0
 		 */
 		
 		private GetScreenshotTask() {
@@ -186,7 +189,7 @@ class LiveView extends JPanel implements ActionListener {
 			
 			if (files == null || files.length == 0) {
 				return null;
-			} else if (files.length > 3) {
+			} else if (files.length >= 3) {
 				files[0].delete();
 			}
 			
