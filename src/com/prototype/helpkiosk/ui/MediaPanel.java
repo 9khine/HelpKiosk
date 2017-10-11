@@ -45,7 +45,7 @@ public class MediaPanel extends JPanel {
 	public String mediaURL;
 	String mediaURLstr;
 	Player mediaPlayer;
-	
+
 	public MediaPanel() {
 		setLayout(new BorderLayout()); // use a BorderLayout
 	}
@@ -196,10 +196,11 @@ public class MediaPanel extends JPanel {
 		return videoUrl;
 	}
 
-	public void setURL(String mediaURL){
+	public void setURL(String mediaURL) {
 		this.mediaURL = mediaURL;
 	}
-	
+
+} // end class MediaPanel
 	
 // ----------------------------------------------------------------------------------------------	
 	
@@ -360,6 +361,7 @@ public class MediaPanel extends JPanel {
 //		e.printStackTrace();
 //	}
 
+
 	//	//	https://stackoverflow.com/questions/20440484/embed-a-youtube-video-to-jframe
 	//	// 	http://djproject.sourceforge.net/ns/
 	//	public JPanel getBrowserPanel() {
@@ -377,5 +379,5 @@ public class MediaPanel extends JPanel {
 	//	Format[] inFormats = { new VideoFormat ("MPEG") };
 	//	PlugInManager.addPlugIn ("net.sourceforge.jffmpeg.VideoDecoder", inFormats, null, PlugInManager.CODEC);
 	//	PlugInManager.commit ();
-	
-} // end class MediaPanel
+
+
