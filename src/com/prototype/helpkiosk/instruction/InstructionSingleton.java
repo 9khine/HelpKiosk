@@ -133,22 +133,13 @@ public class InstructionSingleton {
 	
 	
 	public void showVideo(String type) {
-		
 		mediaContainer.removeAll();
-		//mediaContainer.setVisible(true);
 		String videoUrl = this.mediaContainer.selectURL(type);
-				
-		try {
+
 			if(videoUrl!=""){
-				// TODO: use this.getClass().getResource("/path/to/our.mp3"); to get real URL if URL is a problem
-				URL mediaURL = new URL(videoUrl);
-				this.mediaContainer.setURL(mediaURL);
+				this.mediaContainer.setURL(videoUrl);
 				mediaContainer.show();
-				
 			}
-		} catch (MalformedURLException e) {
-			System.out.println("MalformedURL");
-		}
 		
 		mediaContainer.validate();
 		mediaContainer.repaint();

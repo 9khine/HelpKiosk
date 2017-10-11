@@ -24,6 +24,8 @@ import javax.swing.SwingUtilities;
 
 import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.beans.binding.Bindings;
+import javafx.beans.property.DoubleProperty;
 import javafx.embed.swing.JFXPanel;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
@@ -39,27 +41,15 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 
-<<<<<<< HEAD
-=======
-//import uk.co.caprica.vlcj.player.embedded.EmbeddedMediaPlayer;
->>>>>>> c69baf0e2b151c7787497d659f43a9f57f1dbf0a
-
 public class MediaPanel extends JPanel {
-	public URL mediaURL;
+	public String mediaURL;
 	String mediaURLstr;
 	Player mediaPlayer;
-<<<<<<< HEAD
-=======
-	//EmbeddedMediaPlayer mediaPlayerV = null;
-	
-	//private EmbeddedMediaPlayerComponent ourMediaPlayer;
->>>>>>> c69baf0e2b151c7787497d659f43a9f57f1dbf0a
 	
 	public MediaPanel() {
 		setLayout(new BorderLayout()); // use a BorderLayout
 	}
-
-<<<<<<< HEAD
+	
 	private void initFX(JFXPanel fxPanel, String url) {
 		// This method is invoked on the JavaFX thread
 		Scene scene = createScene(url);
@@ -67,100 +57,27 @@ public class MediaPanel extends JPanel {
 	}
 
 	private Scene createScene(String url) {
-		//Color.ALICEBLUE
-		Group  root  =  new  Group();
-		Scene  scene  =  new  Scene(root, Color.ALICEBLUE);
-		
+	
 		final Label status = new Label("Init");
 		
-		MediaPlayer mediaPlayer = createMediaPlayer(
-				url, 
-				status
-				);
+		MediaPlayer mediaPlayer = createMediaPlayer(url, status);
 		mediaPlayer.play();
 		//mediaPlayer.setAutoPlay(true);
 		MediaView view = new MediaView(mediaPlayer);
 		
-		//root.getChildren().add(view);
-		((Group)scene.getRoot()).getChildren().add(view);
+		DoubleProperty mvw = view.fitWidthProperty();
+		DoubleProperty mvh = view.fitHeightProperty();
+		mvw.bind(Bindings.selectDouble(view.sceneProperty(), "width"));
+		mvh.bind(Bindings.selectDouble(view.sceneProperty(), "height"));
+		view.setPreserveRatio(true);
+
+		Group  root  =  new  Group(view);		
+		Scene  scene  =  new  Scene(root, Color.ALICEBLUE);
+		//((Group)scene.getRoot()).getChildren().add(view);
+		
 		return (scene);
-=======
-	public void show() {
-		// Use lightweight components for Swing compatibility
-		Manager.setHint( Manager.LIGHTWEIGHT_RENDERER, true );
-
-		try {
-			
-			if (mediaURL != null) {
-				
-				System.out.println("mediaURL is: " + mediaURL);
-				// create a player to play the media specified in the URL
-				mediaPlayer = Manager.createRealizedPlayer(mediaURL);
-				
-				System.out.println("mediaPlayer vis component: " + mediaPlayer.getVisualComponent());
-				// get the components for the video and the play-back controls
-				Component video = mediaPlayer.getVisualComponent();
-				//video.setVisible(true);
-				mediaPlayer.getGainControl();
-				mediaPlayer.addControllerListener((ControllerListener) mediaPlayer);
-				Component controls = mediaPlayer.getControlPanelComponent();
-
-				controls.setPreferredSize(new Dimension(controls.getWidth(), 20));
-
-				video.addMouseListener(
-						new MouseAdapter() {
-							public void mouseEntered(MouseEvent evt) {
-								mediaPlayer.prefetch();
-								mediaPlayer.setMediaTime(new Time(0));
-								mediaPlayer.start();
-							}
-							public void mouseExited(MouseEvent evt) {
-								System.out.println("!!! What is media state - " + mediaPlayer.getState());
-								mediaPlayer.stop();
-							}
-							public void mouseClicked(MouseEvent evt) {
-								mediaPlayer.prefetch();
-								mediaPlayer.setMediaTime(new Time(0));
-								mediaPlayer.start();
-								//mediaPlayer.stop();
-							}
-							public void mousePressed(MouseEvent evt) {
-								//Time pausedTime = mediaPlayer.getMediaTime();
-								//mediaPlayer.stop();
-								//mediaPlayer.setMediaTime(pausedTime);
-								//mediaPlayer.start();
-							}
-
-							public void mouseReleased(MouseEvent evt) {
-								//mediaPlayer.start();
-							}	
-						});	
-
-				if ( video != null ) {
-					add( video, BorderLayout.CENTER ); // add video component
-					System.out.println("video is in CENTER");
-				}
-
-				if ( controls != null ) {
-					add( controls, BorderLayout.SOUTH ); // add controls
-					System.out.println("controls are in SOUTH");
-				}
-			}
-		} // end try
-		catch ( NoPlayerException noPlayerException )
-		{
-			System.err.println( "No media player found" );
-		} // end catch
-		catch ( CannotRealizeException cannotRealizeException )
-		{
-			System.err.println( "Could not realize media player" );
-		} // end catch
-		catch ( IOException iOException )
-		{
-			System.err.println( "Error reading from the source" );
-		} // end catch
->>>>>>> c69baf0e2b151c7787497d659f43a9f57f1dbf0a
 	}
+	
 	
 	/** 
 	   * creates a media player using a url to the media
@@ -190,12 +107,11 @@ public class MediaPanel extends JPanel {
 	public void show() {
 		final JFXPanel fxPanel = new JFXPanel();
 		add(fxPanel, BorderLayout.CENTER);
-		//add(fxPanel, BorderLayout.SOUTH );
-		//System.out.println(mediaURL.toString());
-		
-	    String filepath = "file://C://Users//git//HelpKiosk//video//contacts//contact_open_app.mpeg";
 
-		initFX(fxPanel, filepath);
+		//String filepath = "file:///C:/Users/admin-mux/git/HelpKiosk/src/clock_open_app.mp4";
+	    //initFX(fxPanel, filepath);
+	   
+	    initFX(fxPanel, mediaURL);
 		//initFX(fxPanel, "http://www.html5videoplayer.net/videos/toystory.mp4");
 
 	}
@@ -203,76 +119,73 @@ public class MediaPanel extends JPanel {
 	public String selectURL (String type) {
 
 		String home = System.getProperty("user.home");
-		// TODO: set this to local video folder
+		// NOTE: set this to local video folder
 		//String videoFolder = home + "/git/HelpKioskKhine/video";
-		String videoFolder = home + "/git/HelpKiosk/video";		
-		String videoUrl = null;
-
+		
+		//String videoFolder = home.replace("\\", "/") + "/git/HelpKiosk/video";	
+		
+		// TODO switch url file path after merging to master !!!
+		String videoUrl = "file:///"+ home.replace("\\", "/") + "/eclipse-workspace/HelpKiosk/video";
+		// C:\Users\admin-mux\eclipse-workspace\HelpKiosk\video
+		
 		// Contact
 		if (type=="openContact") {
-<<<<<<< HEAD
-			videoUrl = "file:/"+videoFolder+"/contacts/contact_open_app.mpeg";
-=======
-	        videoUrl = "file:/"+videoFolder+"/contacts/contact_open_app.mpeg";
->>>>>>> c69baf0e2b151c7787497d659f43a9f57f1dbf0a
+			videoUrl = videoUrl +"/contacts/contact_open_app.mp4";
 		} else if(type=="newContact"){
-			videoUrl = "file://"+videoFolder+"/contacts/contact_add_new.mpeg";
+			videoUrl = videoUrl +"/contacts/contact_new_contact.mp4";
 		} else if(type=="enterInfo"){
-			videoUrl = "file://"+videoFolder+"/contacts/contact_enter_info.mpeg";
+			videoUrl = videoUrl +"/contacts/contact_enter_info.mp4";
 		} else if(type=="saveContact"){
-			videoUrl = "file://"+videoFolder+"/contacts/contact_save.mpeg";
+			videoUrl = videoUrl +"/contacts/contact_save.mp4";
 		} 
 
 		// Camera
 		else if(type=="openCam"){
-			videoUrl = "file:"+videoFolder+"/camera/camera_open_app.mpeg";
+			videoUrl = videoUrl +"/camera/camera_open_app.mp4";
+		} else if(type=="previewPicture"){
+			videoUrl = videoUrl +"/camera/camera_focus.mp4";
 		} else if(type=="takePicture"){
-			videoUrl = "file:"+videoFolder+"/camera/camera_focus_take.mpeg";
+			videoUrl = videoUrl +"/camera/camera_take_photo.mp4";
 		} 
 
 		// Clock
 		else if(type=="openClock"){
-			videoUrl = "file:"+videoFolder+"/clock/clock_open_app.mpeg";
-			videoUrl = "file:"+videoFolder+"/old_videos/openclock.MPG";
+			videoUrl = videoUrl +"/clock/clock_open_app.mp4";
 		} else if(type=="touchAlarm"){
-			videoUrl = "file:"+videoFolder+"/clock/clock_tap_alarm.mpeg";
+			videoUrl = videoUrl +"/clock/clock_tap_alarm.mp4";
 		} else if(type=="setAlarm"){
-			videoUrl = "file:"+videoFolder+"/clock/clock_set_time.mpeg";
+			videoUrl = videoUrl +"/clock/clock_set_alarm.mp4";
 		} else if(type=="saveAlarm"){
-<<<<<<< HEAD
-			videoUrl = "file:"+videoFolder+"/clock_save.mpeg";
-=======
-	        videoUrl = "file:"+videoFolder+"/clock/clock_save.mpeg";
->>>>>>> c69baf0e2b151c7787497d659f43a9f57f1dbf0a
+	        videoUrl = videoUrl +"/clock/clock_save.mp4";
 		}
 
 		// Message
 		else if(type=="openMessage"){
-			videoUrl = "file:"+videoFolder+"/message/message_open_app.mpeg";
+			videoUrl = videoUrl +"/message/message_open_app.mp4";
 		} else if(type=="newMessage"){
-			videoUrl = "file:"+videoFolder+"/message/message_new_tap.mpeg";
+			videoUrl = videoUrl +"/message/message_new.mp4";
 		} else if(type=="enterMessage"){
-			videoUrl = "file:"+videoFolder+"/message/message_enter_msg.mpeg";
+			videoUrl = videoUrl +"/message/message_enter.mp4";
 		} else if(type=="send"){
-			videoUrl = "file:"+videoFolder+"/message/message_send.mpeg";
+			videoUrl = videoUrl +"/message/message_send.mp4";
 		}
 
 		// Phone
 		else if(type=="openPhone"){
-			videoUrl = "file:"+videoFolder+"/phone/phone_open_app.mpeg";
+			videoUrl = videoUrl +"/phone/phone_open_app.mp4";
 		} else if(type=="enterNumber"){
-			videoUrl = "file:"+videoFolder+"/phone/phone_enter_number.mpeg";
+			videoUrl = videoUrl +"/phone/phone_enter_num.mp4";
 		} else if(type=="call"){
-			videoUrl = "file:"+videoFolder+"/phone/phone_tap_call.mpeg";
+			videoUrl = videoUrl +"/phone/phone_tap_call.mp4";
 		} 
 
 		// Gallery
 		else if(type=="openGallery"){
-			videoUrl = "file:"+videoFolder+"/gallery/gallery_open_app.mpeg";
+			videoUrl = videoUrl +"/gallery/gallery_open_app.mp4";
 		} else if(type=="select"){
-			videoUrl = "file:"+videoFolder+"/gallery/gallery_select.mpeg";
+			videoUrl = videoUrl +"/gallery/gallery_select.mp4";
 		} else if(type=="menuTap"){
-			videoUrl = "file:"+videoFolder+"/gallery/gallery_menu_tap.mpeg";
+			videoUrl = videoUrl +"/gallery/gallery_menu_tap.mp4";
 		} 
 
 		// None
@@ -283,12 +196,90 @@ public class MediaPanel extends JPanel {
 		return videoUrl;
 	}
 
-	public void setURL(URL mediaURL){
+	public void setURL(String mediaURL){
 		this.mediaURL = mediaURL;
 	}
 	
 	
 // ----------------------------------------------------------------------------------------------	
+	
+//	public void show() {
+//		// Use lightweight components for Swing compatibility
+//		Manager.setHint( Manager.LIGHTWEIGHT_RENDERER, true );
+//
+//		try {
+//			
+//			if (mediaURL != null) {
+//				
+//				System.out.println("mediaURL is: " + mediaURL);
+//				// create a player to play the media specified in the URL
+//				mediaPlayer = Manager.createRealizedPlayer(mediaURL);
+//				
+//				System.out.println("mediaPlayer vis component: " + mediaPlayer.getVisualComponent());
+//				// get the components for the video and the play-back controls
+//				Component video = mediaPlayer.getVisualComponent();
+//				//video.setVisible(true);
+//				mediaPlayer.getGainControl();
+//				mediaPlayer.addControllerListener((ControllerListener) mediaPlayer);
+//				Component controls = mediaPlayer.getControlPanelComponent();
+//
+//				controls.setPreferredSize(new Dimension(controls.getWidth(), 20));
+//
+//				video.addMouseListener(
+//						new MouseAdapter() {
+//							public void mouseEntered(MouseEvent evt) {
+//								mediaPlayer.prefetch();
+//								mediaPlayer.setMediaTime(new Time(0));
+//								mediaPlayer.start();
+//							}
+//							public void mouseExited(MouseEvent evt) {
+//								System.out.println("!!! What is media state - " + mediaPlayer.getState());
+//								mediaPlayer.stop();
+//							}
+//							public void mouseClicked(MouseEvent evt) {
+//								mediaPlayer.prefetch();
+//								mediaPlayer.setMediaTime(new Time(0));
+//								mediaPlayer.start();
+//								//mediaPlayer.stop();
+//							}
+//							public void mousePressed(MouseEvent evt) {
+//								//Time pausedTime = mediaPlayer.getMediaTime();
+//								//mediaPlayer.stop();
+//								//mediaPlayer.setMediaTime(pausedTime);
+//								//mediaPlayer.start();
+//							}
+//
+//							public void mouseReleased(MouseEvent evt) {
+//								//mediaPlayer.start();
+//							}	
+//						});	
+//
+//				if ( video != null ) {
+//					add( video, BorderLayout.CENTER ); // add video component
+//					System.out.println("video is in CENTER");
+//				}
+//
+//				if ( controls != null ) {
+//					add( controls, BorderLayout.SOUTH ); // add controls
+//					System.out.println("controls are in SOUTH");
+//				}
+//			}
+//		} // end try
+//		catch ( NoPlayerException noPlayerException )
+//		{
+//			System.err.println( "No media player found" );
+//		} // end catch
+//		catch ( CannotRealizeException cannotRealizeException )
+//		{
+//			System.err.println( "Could not realize media player" );
+//		} // end catch
+//		catch ( IOException iOException )
+//		{
+//			System.err.println( "Error reading from the source" );
+//		} // end catch
+//	}
+	
+	
 	
 	// Use lightweight components for Swing compatibility
 //	Manager.setHint( Manager.LIGHTWEIGHT_RENDERER, true );

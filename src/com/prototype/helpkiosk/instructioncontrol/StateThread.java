@@ -83,13 +83,11 @@ public class StateThread extends Thread
 				Runtime.getRuntime().exec(home + "/android-sdk/platform-tools/adb logcat -c");
 				Process p = Runtime.getRuntime().exec(home + "/android-sdk/platform-tools/adb logcat");
 				// Mac version:
-<<<<<<< HEAD
 //				Runtime.getRuntime().exec(home + "/android-sdks/platform-tools/adb logcat -c");
 //				Process p = Runtime.getRuntime().exec(home + "/android-sdks/platform-tools/adb logcat -v brief ActivityManager:I AlarmProvider:D ComposerPerformance:D *:S");
-=======
-				Runtime.getRuntime().exec(home + "/android-sdks/platform-tools/adb logcat -c");
-				Process p = Runtime.getRuntime().exec(home + "/android-sdks/platform-tools/adb logcat -v brief ActivityManager:I AlarmMainActivity:D AlarmListView:D ComposerPerformance:D *:S");
->>>>>>> c69baf0e2b151c7787497d659f43a9f57f1dbf0a
+				
+//				Runtime.getRuntime().exec(home + "/android-sdks/platform-tools/adb logcat -c");
+//				Process p = Runtime.getRuntime().exec(home + "/android-sdks/platform-tools/adb logcat -v brief ActivityManager:I AlarmMainActivity:D AlarmListView:D ComposerPerformance:D *:S");
 				
 				InputStream is = p.getInputStream();
 				InputStreamReader isr = new InputStreamReader(is);
