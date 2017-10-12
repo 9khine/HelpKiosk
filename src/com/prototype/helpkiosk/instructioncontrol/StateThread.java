@@ -81,7 +81,7 @@ public class StateThread extends Thread
 				// TODO: change this to work on display (we should rename the android-sdk fodler to -sdks on the Windows to solve this problem
 				//Windows version:
 				Runtime.getRuntime().exec(home + "/android-sdk/platform-tools/adb logcat -c");
-				Process p = Runtime.getRuntime().exec(home + "/android-sdk/platform-tools/adb logcat");
+				Process p = Runtime.getRuntime().exec(home + "/android-sdk/platform-tools/adb logcat ActivityManager:I AlarmMainActivity:D AlarmListView:D ComposerPerformance:D *:S");
 				// Mac version:
 //				Runtime.getRuntime().exec(home + "/android-sdks/platform-tools/adb logcat -c");
 //				Process p = Runtime.getRuntime().exec(home + "/android-sdks/platform-tools/adb logcat -v brief ActivityManager:I AlarmProvider:D ComposerPerformance:D *:S");
@@ -105,7 +105,7 @@ public class StateThread extends Thread
 						instructionSingleton.highlight("nothing", "contact");
 					}
 					
-					if (line.indexOf("D/AlarmMainActivity")==0) {
+					if (line.indexOf("D AlarmMainActivity")==31) {
 						/* SET ALARM PANE ACTIVE */
 						
 						// D/AlarmProvider(15694): setAlarmActive() - id: 11,willChangeButtonActive: true,activeNow: 0   INDEX OF T = 74
@@ -116,7 +116,7 @@ public class StateThread extends Thread
 							instructionSingleton.highlight("nothing", "contact");
 							//instructionSingleton.showVideo("nothing");
 						}
-					} else if (line.indexOf("D/AlarmListView")==0) {
+					} else if (line.indexOf("D AlarmListView")==31) {
 						/* ADD NEW ALARM */
 						
 						// D/AlarmListView(16751): resizeLayoutWithDrag : 2
@@ -128,24 +128,24 @@ public class StateThread extends Thread
 //						/Users/pablo/android-sdks/platform-tools/adb logcat -v brief AlarmListView:D *:S
 						
 						System.out.println("Alarm pane active");
-						if (line.indexOf("resizeLayoutWithDrag : 2")==24) {														
+						if (line.indexOf("resizeLayoutWithDrag : 2")==55) {														
 							instructionSingleton.getActiveView().getInstructionBox(2).instruction.setDone(true);
 							instructionSingleton.highlight("nothing", "contact");
 							//instructionSingleton.showVideo("nothing");
 						}
-					} else if (line.indexOf("D/ComposerPerformance")==0) {
+					} else if (line.indexOf("D ComposerPerformance")==31) {
 						/* COMPOSE MESSAGE */
 						// format of logcat line: 08-30 17:17:05.828 11610 11610 D ComposerPerformance: create new message
 						
 						instructionSingleton.getActiveView().getInstructionBox(1).instruction.setDone(true);
 						instructionSingleton.highlight("nothing", "contact");
-					} else if (line.indexOf("I/ActivityManager")==0) {
-//						System.out.println(line);
+					} else if (line.indexOf("I ActivityManager")==31) {
+						System.out.println(line);
 						setInfo(line);
 	
-//						System.out.println("*** act = "+ this.act);
-//						System.out.println("*** cat = "+ this.cat);
-//						System.out.println("*** cmp = "+ this.cmp);
+						System.out.println("*** act = "+ this.act);
+						System.out.println("*** cat = "+ this.cat);
+						System.out.println("*** cmp = "+ this.cmp);
 						
 						if (getCmp()!=null) {	
 							//LAUNCHER

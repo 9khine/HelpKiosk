@@ -41,7 +41,6 @@ public class MediaPanel extends JPanel {
 		final Label status = new Label("Init");
 		final MediaPlayer mediaPlayer = createMediaPlayer(url, status);
 		mediaPlayer.play();
-		//mediaPlayer.setAutoPlay(true);
 		MediaView view = new MediaView(mediaPlayer);
 		
 		DoubleProperty mvw = view.fitWidthProperty();
@@ -53,17 +52,25 @@ public class MediaPanel extends JPanel {
 		Group root  =  new  Group(view);	
 		Scene scene  =  new  Scene(root, Color.ALICEBLUE);
 		//((Group)scene.getRoot()).getChildren().add(view);
+		
+		mediaPlayer.setCycleCount(3);
+		mediaPlayer.setAutoPlay(true);
 		scene.addEventFilter(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+			boolean pause = false;
+			
 		    public void handle(MouseEvent mouseEvent) {
-		    	mediaPlayer.pause();
+		    	if(mouseEvent.getClickCount() == 1 && !pause) {
+			    	pause = true;
+			    	mediaPlayer.pause();
+		    	} 
+		    	else if(mouseEvent.getClickCount() == 1 && pause) {
+		    		pause = false;
+			    	mediaPlayer.play();
+		    	}
 		    }
 		    
-
-//			public void play (MouseEvent e) {
-//				mediaPlayer
-//				mediaPlayer.play();
-//			}
 		});
+		
 		return (scene);
 	}
 	
@@ -89,7 +96,7 @@ public class MediaPanel extends JPanel {
 	    mediaPlayer.setOnEndOfMedia(new Runnable() {
 	      @Override public void run() {
 	        status.setText("Done");
-	      }
+	      }   	
 	    });
 	    return mediaPlayer;
 	  }
