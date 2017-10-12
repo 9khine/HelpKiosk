@@ -115,8 +115,11 @@ public class MediaPanel extends JPanel {
 		//String videoFolder = home + "/git/HelpKioskKhine/video";
 		//String videoFolder = home.replace("\\", "/") + "/git/HelpKiosk/video";	
 		
-		// TODO switch url file path after merging to master !!!
+		// TODO WINDOW switch url file path 
 		String videoUrl = "file:///"+ home.replace("\\", "/") + "/eclipse-workspace/HelpKiosk/video";
+		
+		// MAC 
+		//String videoUrl = "file:///"+ home.replace("\\", "/") + "/git/HelpKiosk/video";
 		
 		// Contact
 		if (type=="openContact") {

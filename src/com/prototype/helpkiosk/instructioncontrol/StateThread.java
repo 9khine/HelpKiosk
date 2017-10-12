@@ -141,9 +141,9 @@ public class StateThread extends Thread
 						System.out.println(line);
 						setInfo(line);
 	
-						System.out.println("*** act = "+ this.act);
-						System.out.println("*** cat = "+ this.cat);
-						System.out.println("*** cmp = "+ this.cmp);
+//						System.out.println("*** act = "+ this.act);
+//						System.out.println("*** cat = "+ this.cat);
+//						System.out.println("*** cmp = "+ this.cmp);
 						
 						if (getCmp()!=null) {	
 							//LAUNCHER
