@@ -2,51 +2,31 @@ package com.prototype.helpkiosk.ui;
 // Fig 21.6: MediaPanel.java
 // A JPanel the plays media from a URL
 import java.awt.BorderLayout;
-import java.awt.Component;
-import java.awt.Desktop;
-import java.awt.Dimension;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.io.File;
-import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 
-import javax.media.CannotRealizeException;
-import javax.media.ControllerListener;
-import javax.media.Manager;
-import javax.media.NoPlayerException;
 import javax.media.Player;
-import javax.media.Time;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.SwingUtilities;
 
-import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.DoubleProperty;
 import javafx.embed.swing.JFXPanel;
-import javafx.geometry.Pos;
+import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.layout.VBox;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import javafx.scene.text.Text;
-import javafx.stage.Stage;
 
 
 public class MediaPanel extends JPanel {
+	
 	public String mediaURL;
-	String mediaURLstr;
-	Player mediaPlayer;
 
 	public MediaPanel() {
+		Platform.setImplicitExit(false);
 		setLayout(new BorderLayout()); // use a BorderLayout
 	}
 	
@@ -59,8 +39,7 @@ public class MediaPanel extends JPanel {
 	private Scene createScene(String url) {
 	
 		final Label status = new Label("Init");
-		
-		MediaPlayer mediaPlayer = createMediaPlayer(url, status);
+		final MediaPlayer mediaPlayer = createMediaPlayer(url, status);
 		mediaPlayer.play();
 		//mediaPlayer.setAutoPlay(true);
 		MediaView view = new MediaView(mediaPlayer);
@@ -71,12 +50,23 @@ public class MediaPanel extends JPanel {
 		mvh.bind(Bindings.selectDouble(view.sceneProperty(), "height"));
 		view.setPreserveRatio(true);
 
-		Group  root  =  new  Group(view);		
-		Scene  scene  =  new  Scene(root, Color.ALICEBLUE);
+		Group root  =  new  Group(view);	
+		Scene scene  =  new  Scene(root, Color.ALICEBLUE);
 		//((Group)scene.getRoot()).getChildren().add(view);
-		
+		scene.addEventFilter(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+		    public void handle(MouseEvent mouseEvent) {
+		    	mediaPlayer.pause();
+		    }
+		    
+
+//			public void play (MouseEvent e) {
+//				mediaPlayer
+//				mediaPlayer.play();
+//			}
+		});
 		return (scene);
 	}
+	
 	
 	
 	/** 
@@ -107,13 +97,8 @@ public class MediaPanel extends JPanel {
 	public void show() {
 		final JFXPanel fxPanel = new JFXPanel();
 		add(fxPanel, BorderLayout.CENTER);
-
-		//String filepath = "file:///C:/Users/admin-mux/git/HelpKiosk/src/clock_open_app.mp4";
-	    //initFX(fxPanel, filepath);
-	   
 	    initFX(fxPanel, mediaURL);
 		//initFX(fxPanel, "http://www.html5videoplayer.net/videos/toystory.mp4");
-
 	}
 
 	public String selectURL (String type) {
@@ -121,12 +106,10 @@ public class MediaPanel extends JPanel {
 		String home = System.getProperty("user.home");
 		// NOTE: set this to local video folder
 		//String videoFolder = home + "/git/HelpKioskKhine/video";
-		
 		//String videoFolder = home.replace("\\", "/") + "/git/HelpKiosk/video";	
 		
 		// TODO switch url file path after merging to master !!!
 		String videoUrl = "file:///"+ home.replace("\\", "/") + "/eclipse-workspace/HelpKiosk/video";
-		// C:\Users\admin-mux\eclipse-workspace\HelpKiosk\video
 		
 		// Contact
 		if (type=="openContact") {
