@@ -78,16 +78,14 @@ public class StateThread extends Thread
 			try 
 			{				
 				String home = System.getProperty("user.home");
-				// TODO: change this to work on display (we should rename the android-sdk fodler to -sdks on the Windows to solve this problem
-				//Windows version:
+				// TODO: change this to work on display (we should rename the android-sdk folder to -sdks on the Windows to solve this problem
+				// Windows version:
 				Runtime.getRuntime().exec(home + "/android-sdk/platform-tools/adb logcat -c");
 				Process p = Runtime.getRuntime().exec(home + "/android-sdk/platform-tools/adb logcat ActivityManager:I AlarmMainActivity:D AlarmListView:D ComposerPerformance:D *:S");
 				// Mac version:
 //				Runtime.getRuntime().exec(home + "/android-sdks/platform-tools/adb logcat -c");
-//				Process p = Runtime.getRuntime().exec(home + "/android-sdks/platform-tools/adb logcat -v brief ActivityManager:I AlarmProvider:D ComposerPerformance:D *:S");
+//				Process p = Runtime.getRuntime().exec(home + "/android-sdks/platform-tools/adb logcat ActivityManager:I AlarmProvider:D ComposerPerformance:D *:S");
 				
-//				Runtime.getRuntime().exec(home + "/android-sdks/platform-tools/adb logcat -c");
-//				Process p = Runtime.getRuntime().exec(home + "/android-sdks/platform-tools/adb logcat -v brief ActivityManager:I AlarmMainActivity:D AlarmListView:D ComposerPerformance:D *:S");
 				
 				InputStream is = p.getInputStream();
 				InputStreamReader isr = new InputStreamReader(is);
@@ -252,6 +250,87 @@ public class StateThread extends Thread
 								instructionSingleton.highlight("nothing", "contact");
 								instructionSingleton.showVideo("openClock");
 
+							}
+						} else {
+							// TODO: fill in for gold S7
+							/*
+							 * ------------------   HOME   -------------------
+							 * 10-12 15:09:47.193  1351  1452 I ActivityManager: Displayed com.sec.android.app.launcher/.activities.LauncherActivity: +209ms
+							 */
+							if (line.indexOf("LauncherActivity")==101) {
+								System.out.println("HOME ACTIVE " + ++count_home + " TIMES ");
+								
+								//reset learn/do panel
+								if (instructionSingleton.getActiveView()!=null) {
+									for (int i=0 ; i<=instructionSingleton.getMaxID() ; i++) {
+										//instructionSingleton.getActiveView().getInstructionBox(i).setBoxActive(false, false);
+										instructionSingleton.getActiveView().getInstructionBox(i).setBoxActive(true, true);
+										instructionSingleton.getActiveView().getInstructionBox(i).getInstructionArea().validate();
+										instructionSingleton.getActiveView().getInstructionBox(i).getInstructionArea().repaint();
+									}
+								}
+							}
+							
+							/*
+							 * ------------------   CONTACTS   -------------------
+							 * 10-12 15:17:56.723  1351  1452 I ActivityManager: Displayed com.android.contacts/.activities.PeopleActivity: +455ms
+							 */
+
+							else if (line.indexOf("PeopleActivity")==92) {
+								System.out.println("CONTACTS ACTIVE " + ++count_contacts + " TIMES ");
+								instructionSingleton.getActiveView().getInstructionBox(0).instruction.setDone(true);
+								instructionSingleton.highlight("nothing", "contact");
+								instructionSingleton.showVideo("openContact");
+							}
+							
+							/*
+							 * ------------------   CAMERA   -------------------
+							 * 10-12 15:32:43.733  1351  1452 I ActivityManager: Displayed com.sec.android.app.camera/.Camera: +763ms
+							 */
+							//LAUNCH CAMERA
+							else if (line.indexOf("Camera")==87) {
+								System.out.println("CAMERA ACTIVE " + ++count_camera + " TIMES ");
+								instructionSingleton.getActiveView().getInstructionBox(0).instruction.setDone(true);
+								instructionSingleton.highlight("nothing", "contact");
+								instructionSingleton.showVideo("openCam");
+							}
+							
+							/*
+							 * ------------------   MESSAGE   -------------------
+							 * 10-12 15:35:10.383  1351  1452 I ActivityManager: Displayed com.android.mms/.ui.ConversationComposer: +279ms
+							 */
+							//LAUNCH MESSAGES
+							else if (line.indexOf("ConversationComposer")==79) {
+								System.out.println("MESSAGES ACTIVE " + ++count_messages + " TIMES ");
+								instructionSingleton.getActiveView().getInstructionBox(0).instruction.setDone(true);
+								instructionSingleton.highlight("nothing", "contact");
+								instructionSingleton.showVideo("openMessage");
+							}
+							
+							/*
+							 * ------------------   PHONE   -------------------
+							 * 10-12 15:37:28.683  1351  1452 I ActivityManager: Displayed com.android.contacts/com.android.dialer.DialtactsActivity: +366ms
+							 */
+							//LAUNCH PHONE
+							else if (line.indexOf("DialtactsActivity")==99) {
+								System.out.println("PHONE ACTIVE " + ++count_phone + " TIMES ");
+								instructionSingleton.getActiveView().getInstructionBox(0).instruction.setDone(true);
+								instructionSingleton.getActiveView().getInstructionBox(1).instruction.setDone(true);
+								instructionSingleton.highlight("nothing", "contact");
+								instructionSingleton.showVideo("openPhone");
+							}
+							
+							/*
+							 * ------------------   GALLERY   -------------------
+							 * 10-12 15:38:28.593  1351  1452 I ActivityManager: Displayed com.sec.android.gallery3d/.app.GalleryOpaqueActivity: +291ms
+							 */
+							//LAUNCH GALLERY
+							else if (line.indexOf("GalleryOpaqueActivity")==90) {
+								System.out.println("GALLERY ACTIVE " + ++count_gallery + " TIMES ");
+								instructionSingleton.getActiveView().getInstructionBox(0).instruction.setDone(true);
+								instructionSingleton.getActiveView().getInstructionBox(1).instruction.setDone(true);
+								instructionSingleton.highlight("nothing", "contact");
+								instructionSingleton.showVideo("openGallery");
 							}
 						}
 					}
