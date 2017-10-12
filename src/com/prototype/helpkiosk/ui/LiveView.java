@@ -128,36 +128,27 @@ class LiveView extends JPanel implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent event) {
-		// if no current task, start a new GetScreenshot task
 		if ((this.task != null) && (!this.task.isDone())) {
-//			System.out.println("Existing task, no new one");
 			return;
 		}
-		//System.out.println("New screenshot task created!");
+
 		this.task = new GetScreenshotTask();
 		this.task.execute();
 	}
 
-	private class GetScreenshotTask extends SwingWorker<Boolean, Void> {
-		// SwingWorkers are essentially new threads, creating a new one adds a new task to a free worker thread
-		
-		/* Script to run in background of this:
-		 * while true; do /Users/pablo/android-sdks/platform-tools/adb shell screencap -p | perl -pe 's/\x0D\x0A/\x0A/g' > /Users/pablo/git/HelpKioskKhine/screenshots/screen_$(date +%Y%m%d_%H%M%S).png; sleep 2; done
-		 * 
-		 * Delete script:
-		 * while true; do find /Users/pablo/git/HelpKioskKhine/screenshots -type f -mmin +0
-		 */
-		
+	// SwingWorkers are essentially new threads, creating a new one adds a new task to a free worker thread
+	private class GetScreenshotTask extends SwingWorker<Boolean, Void> {		
 		private GetScreenshotTask() {
 			
 		}
 
 		protected Boolean doInBackground() throws Exception {
+			/* Script to run in background of this:
+			 * while true; do /Users/pablo/android-sdks/platform-tools/adb shell screencap -p | perl -pe 's/\x0D\x0A/\x0A/g' > /Users/pablo/git/HelpKioskKhine/screenshots/screen_$(date +%Y%m%d_%H%M%S).png; sleep 2; done
+			 */
 			
 			long startTime = System.nanoTime();
 			File newestImg = this.lastFileModified("/Users/pablo/git/HelpKioskKhine/screenshots/");
-//			System.out.println("Next screenshot:");
-//			System.out.println(newestImg.getPath());
 			ImageIcon screenshot = new ImageIcon(newestImg.getPath());
 			Image screenShotImg = screenshot.getImage();
 			Image scaledImage = screenShotImg.getScaledInstance(width,height,Image.SCALE_SMOOTH);
@@ -165,7 +156,6 @@ class LiveView extends JPanel implements ActionListener {
 
 			long endTime = System.nanoTime();
 			long duration3 = ((endTime - startTime)/1000000);
-			//System.out.println("(3) Got another screenshot! Only took: " + duration3 + " milliseconds " + (duration3 < 3000 ? ":)" : ":("));
 			
 			boolean resize = false;
 			boolean landscape = false;
@@ -194,17 +184,6 @@ class LiveView extends JPanel implements ActionListener {
 			}
 			
 			return files[files.length - 2];
-
-//			File lastModifiedFile = files[0];
-//			for (int i = 1; i < files.length; i++) {
-//				// < returns newest file
-//				// > returns oldest file
-//				if (lastModifiedFile.lastModified() > files[i].lastModified()) {
-//					lastModifiedFile = files[i];
-//				}
-//			}
-//
-//			return lastModifiedFile;
 		}
 
 		protected void done() {
