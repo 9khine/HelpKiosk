@@ -156,8 +156,8 @@ class LiveView extends JPanel implements ActionListener {
 			
 			long startTime = System.nanoTime();
 			File newestImg = this.lastFileModified("/Users/pablo/git/HelpKioskKhine/screenshots/");
-			System.out.println("Next screenshot:");
-			System.out.println(newestImg.getPath());
+//			System.out.println("Next screenshot:");
+//			System.out.println(newestImg.getPath());
 			ImageIcon screenshot = new ImageIcon(newestImg.getPath());
 			Image screenShotImg = screenshot.getImage();
 			Image scaledImage = screenShotImg.getScaledInstance(width,height,Image.SCALE_SMOOTH);
