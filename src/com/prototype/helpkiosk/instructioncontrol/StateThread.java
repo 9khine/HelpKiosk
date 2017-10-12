@@ -276,7 +276,7 @@ public class StateThread extends Thread
 							 * 10-12 15:17:56.723  1351  1452 I ActivityManager: Displayed com.android.contacts/.activities.PeopleActivity: +455ms
 							 */
 
-							else if (line.indexOf("PeopleActivity")==92) {
+							else if (line.indexOf("PeopleActivity")==93) {
 								System.out.println("CONTACTS ACTIVE " + ++count_contacts + " TIMES ");
 								instructionSingleton.getActiveView().getInstructionBox(0).instruction.setDone(true);
 								instructionSingleton.highlight("nothing", "contact");
@@ -288,7 +288,7 @@ public class StateThread extends Thread
 							 * 10-12 15:32:43.733  1351  1452 I ActivityManager: Displayed com.sec.android.app.camera/.Camera: +763ms
 							 */
 							//LAUNCH CAMERA
-							else if (line.indexOf("Camera")==87) {
+							else if (line.indexOf("Camera")==88) {
 								System.out.println("CAMERA ACTIVE " + ++count_camera + " TIMES ");
 								instructionSingleton.getActiveView().getInstructionBox(0).instruction.setDone(true);
 								instructionSingleton.highlight("nothing", "contact");
@@ -300,7 +300,7 @@ public class StateThread extends Thread
 							 * 10-12 15:35:10.383  1351  1452 I ActivityManager: Displayed com.android.mms/.ui.ConversationComposer: +279ms
 							 */
 							//LAUNCH MESSAGES
-							else if (line.indexOf("ConversationComposer")==79) {
+							else if (line.indexOf("ConversationComposer")==80) {
 								System.out.println("MESSAGES ACTIVE " + ++count_messages + " TIMES ");
 								instructionSingleton.getActiveView().getInstructionBox(0).instruction.setDone(true);
 								instructionSingleton.highlight("nothing", "contact");
@@ -312,7 +312,7 @@ public class StateThread extends Thread
 							 * 10-12 15:37:28.683  1351  1452 I ActivityManager: Displayed com.android.contacts/com.android.dialer.DialtactsActivity: +366ms
 							 */
 							//LAUNCH PHONE
-							else if (line.indexOf("DialtactsActivity")==99) {
+							else if (line.indexOf("DialtactsActivity")==100) {
 								System.out.println("PHONE ACTIVE " + ++count_phone + " TIMES ");
 								instructionSingleton.getActiveView().getInstructionBox(0).instruction.setDone(true);
 								instructionSingleton.getActiveView().getInstructionBox(1).instruction.setDone(true);
@@ -325,7 +325,7 @@ public class StateThread extends Thread
 							 * 10-12 15:38:28.593  1351  1452 I ActivityManager: Displayed com.sec.android.gallery3d/.app.GalleryOpaqueActivity: +291ms
 							 */
 							//LAUNCH GALLERY
-							else if (line.indexOf("GalleryOpaqueActivity")==90) {
+							else if (line.indexOf("GalleryOpaqueActivity")==91) {
 								System.out.println("GALLERY ACTIVE " + ++count_gallery + " TIMES ");
 								instructionSingleton.getActiveView().getInstructionBox(0).instruction.setDone(true);
 								instructionSingleton.getActiveView().getInstructionBox(1).instruction.setDone(true);
