@@ -6,10 +6,12 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.util.concurrent.ExecutionException;
 
@@ -143,77 +145,51 @@ class LiveView extends JPanel implements ActionListener {
 		}
 
 		protected Boolean doInBackground() throws Exception {
-			RawImage rawImage;
-			try {				
-				// Method #1: original implementation
-				// takes too long, can't find any reference to this solution online?
-				long startTime = System.nanoTime();
-				rawImage = LiveView.this.device.getScreenshot(); // currently this takes ~10 seconds, WHY?!?!?!!
-				long endTime = System.nanoTime();
-				long duration1 = ((endTime - startTime)/1000000);
-				//System.out.println("(1) Got a screenshot! Only took: " + duration1 + " milliseconds " + (duration1 < 3000 ? ":)" : ":("));
-				
-				// Method #2: taking screenshot using the adb shell in terminal takes ~2s
-				// Doesn't work: don't know where it would save the image
-//				startTime = System.nanoTime();
-				long time = System.currentTimeMillis();
-				String home = System.getProperty("user.home");
-				// TODO: remember to wait ~2 seconds before using image
-//				Runtime.getRuntime().exec(home + "/android-sdks/platform-tools/adb shell screencap -p | perl -pe 's/\\x0D\\x0A/\\x0A/g' > " + home + "/Desktop/screen" + time + ".png");
-//				endTime = System.nanoTime();
-//				long duration2 = ((endTime - startTime)/1000000);
-//				System.out.println("(2) Got another screenshot! Only took: " + duration2 + " milliseconds " + (duration2 < 3000 ? ":)" : ":("));
-				
-				// TODO: pull screencap from device (taking screenshot part works)
-				// Method #3
-				// Save screenshot onto device, load from device onto display's home, then load from local
-				// currently commented out to avoid accidentally filling a phone with screenshots
-				startTime = System.nanoTime();
-//				Runtime.getRuntime().exec(home + "/android-sdks/platform-tools/adb shell /system/bin/screencap -p /sdcard/screenshot_" + time + ".png");
-				// Must wait 2 seconds for screenshot to be created
-				Thread.sleep(2000);
-				//System.out.println("screenshot named: screenshot_" + time + ".png");
-//				Runtime.getRuntime().exec(home + "/android-sdks/platform-tools/adb shell pull /sdcard/screenshot_" + time + ".png " + home + "/screenshot_" + time + ".png");
-				// TODO: deletes image from phone, but gallery shows "Missing Media" image...
-//				Runtime.getRuntime().exec(home + "/android-sdks/platform-tools/adb shell rm /sdcard/screenshot_" + time + ".png");
-				endTime = System.nanoTime();
-				long duration3 = ((endTime - startTime)/1000000);
-				//System.out.println("(3) Got another screenshot! Only took: " + duration3 + " milliseconds " + (duration3 < 3000 ? ":)" : ":("));
-				
-			} catch (IOException ioe) {
-				System.out.println("failed to get a screenshot");
-				return Boolean.valueOf(false);
-			}
+			/*
+			 * Script to run in background:
+			 * screenstream.bat in the admin-mux home directory
+			 */
+			
+			long startTime = System.nanoTime();
+			String home = System.getProperty("user.home");
+			File newestImg = this.lastFileModified(home + "/git/HelpKiosk/screenshots/");
+			ImageIcon screenshot = new ImageIcon(newestImg.getPath());
+			Image screenShotImg = screenshot.getImage();
+			Image scaledImage = screenShotImg.getScaledInstance(width,height,Image.SCALE_SMOOTH);
+			ImageIcon scaledIcon = new ImageIcon(scaledImage);
 
+			long endTime = System.nanoTime();
+			long duration3 = ((endTime - startTime)/1000000);
+			
 			boolean resize = false;
 			boolean landscape = false;
-			try {
-				if (rawImage != null) {
+			
+				if (scaledIcon != null) {
 					resize = true;
-					// rotate image dimensions if landscape is true
-					int width2 = landscape ? rawImage.height : rawImage.width;
-					int height2 = landscape ? rawImage.width : rawImage.height;
-					LiveView.this.image = new BufferedImage(width2, height2, BufferedImage.TYPE_INT_RGB);
-					image.getScaledInstance(width, height, Image.SCALE_SMOOTH );
-					int index = 0;
-					int indexInc = rawImage.bpp >> 3;
-					for (int y = 0; y < rawImage.height; y++) {
-						// paint the image row by row, works very fast
-						for (int x = 0; x < rawImage.width; x++, index += indexInc) {
-							int value = rawImage.getARGB(index);
-							if (landscape)
-								image.setRGB(y, rawImage.width - x - 1, value);
-							else
-								image.setRGB(x, y, value);
-						}
-					}
+					LiveView.this.image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+					
+				    // Draw the image on to the buffered image
+				    Graphics2D bGr = LiveView.this.image.createGraphics();
+				    bGr.drawImage(scaledImage, 0, 0, null);
+				    bGr.dispose();
 				}
-			} finally {
-
-			}
-
-			return Boolean.valueOf(resize);
+			
+				return Boolean.valueOf(resize);
 		}
+		
+		private File lastFileModified(String dirPath) {
+			File dir = new File(dirPath);
+			File[] files = dir.listFiles();
+			
+			if (files == null || files.length == 0) {
+				return null;
+			} else if (files.length >= 3) {
+				files[0].delete();
+			}
+			
+			return files[files.length - 2];
+		}
+
 
 		protected void done() {
 			try {
