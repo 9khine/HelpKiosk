@@ -133,7 +133,7 @@ public class StateThread extends Thread
 						}
 					} else if (line.indexOf("D ComposerPerformance")==31) {
 						/* COMPOSE MESSAGE */
-						// format of logcat line: 08-30 17:17:05.828 11610 11610 D ComposerPerformance: create new message
+						// 10-16 15:53:52.384  4408  4408 D ComposerPerformance: create new message
 						
 						instructionSingleton.getActiveView().getInstructionBox(1).instruction.setDone(true);
 						instructionSingleton.highlight("nothing", "contact");
@@ -240,7 +240,7 @@ public class StateThread extends Thread
 							 * ------------------   CLOCK   -------------------
 							 */
 							
-							// TODO not working....
+							// TODO: check if this is working....
 							
 							//LAUNCH CLOCK
 							else if (getCmp().equals(CMP_LAUNCH_CLOCK)) {
@@ -273,6 +273,7 @@ public class StateThread extends Thread
 							
 							/*
 							 * ------------------   CONTACTS   -------------------
+							 * 
 							 * 10-12 15:17:56.723  1351  1452 I ActivityManager: Displayed com.android.contacts/.activities.PeopleActivity: +455ms
 							 */
 
@@ -281,6 +282,34 @@ public class StateThread extends Thread
 								instructionSingleton.getActiveView().getInstructionBox(0).instruction.setDone(true);
 								instructionSingleton.highlight("nothing", "contact");
 								instructionSingleton.showVideo("openContact");
+							}
+							
+							/* 
+							 * 10-16 16:07:12.944  1363  1503 I ActivityManager: Displayed com.android.contacts/.activities.ContactEditorActivity: +260ms
+							 */
+							
+							else if (line.indexOf("ContactEditorActivity")==93) {
+								instructionSingleton.getActiveView().getInstructionBox(1).instruction.setDone(true);
+								instructionSingleton.highlight("nothing", "contact");
+								instructionSingleton.showVideo("newContact");
+								instructionSingleton.updateLowerPanel("menu", false);
+							}
+							
+							/*
+							 * ------------------   CLOCK   -------------------
+							 * 10-16 16:18:56.764  1363  1503 I ActivityManager: Displayed com.sec.android.app.clockpackage/.ClockPackage: +84ms
+							 */
+							
+							// TODO not working....
+							
+							//LAUNCH CLOCK
+							else if (line.indexOf("clockpackage")==80) {
+								System.out.println("CLOCK ACTIVE " + ++count_clock + " TIMES ");
+								instructionSingleton.getActiveView().getInstructionBox(0).instruction.setDone(true);
+								instructionSingleton.getActiveView().getInstructionBox(1).instruction.setDone(true);
+								instructionSingleton.highlight("nothing", "contact");
+								instructionSingleton.showVideo("openClock");
+
 							}
 							
 							/*
