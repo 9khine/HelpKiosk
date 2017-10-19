@@ -169,6 +169,7 @@ public class InstructionSingleton {
 		// use names and types from InstructionBox.setBoxActive();
 		// Dimension(width, height)
 		// Live View dimensions: width = 240; height = 400
+		
 		if (name=="camera") {
 			if (type=="launcher-icon") {
 				box.setPreferredSize(new Dimension(60,60));

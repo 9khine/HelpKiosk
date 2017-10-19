@@ -232,6 +232,10 @@ public class InstructionBox
 					type = "focus";
 					videoType = "takePicture";
 				}
+				if (instruction.getId()==2) {
+					type = "shutter";
+					videoType = "nothing";
+				}
 				
 			} else if (instruction.getType()=="clock") {
 				name = "clock";

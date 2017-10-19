@@ -181,8 +181,7 @@ public class StateThread extends Thread
 								instructionSingleton.updateLowerPanel("menu", false);
 							}
 							
-							//Enter new information
-							// TODO
+							// TODO: Enter new information
 							else if (getCmp().equals(CMP_NEW_CONTACT)){
 								instructionSingleton.getActiveView().getInstructionBox(1).instruction.setDone(true);
 								instructionSingleton.highlight("nothing", "contact");
@@ -252,7 +251,6 @@ public class StateThread extends Thread
 
 							}
 						} else {
-							// TODO: fill in for gold S7
 							/*
 							 * ------------------   HOME   -------------------
 							 * 10-12 15:09:47.193  1351  1452 I ActivityManager: Displayed com.sec.android.app.launcher/.activities.LauncherActivity: +209ms
@@ -299,9 +297,7 @@ public class StateThread extends Thread
 							 * ------------------   CLOCK   -------------------
 							 * 10-16 16:18:56.764  1363  1503 I ActivityManager: Displayed com.sec.android.app.clockpackage/.ClockPackage: +84ms
 							 */
-							
-							// TODO not working....
-							
+														
 							//LAUNCH CLOCK
 							else if (line.indexOf("clockpackage")==80) {
 								System.out.println("CLOCK ACTIVE " + ++count_clock + " TIMES ");
@@ -320,6 +316,7 @@ public class StateThread extends Thread
 							else if (line.indexOf("Camera")==88) {
 								System.out.println("CAMERA ACTIVE " + ++count_camera + " TIMES ");
 								instructionSingleton.getActiveView().getInstructionBox(0).instruction.setDone(true);
+								instructionSingleton.getActiveView().getInstructionBox(1).instruction.setDone(true);
 								instructionSingleton.highlight("nothing", "contact");
 								instructionSingleton.showVideo("openCam");
 							}
