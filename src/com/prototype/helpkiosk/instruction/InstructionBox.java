@@ -328,7 +328,14 @@ public class InstructionBox
 			        		if (instructionSingleton.getActiveView().getInstructionBox(instructionID-1).instruction.isDone()) {
 			        			setActive(instructionID);
 			        		} else {
-				        		JOptionPane.showMessageDialog(null, "It looks like you have not completed the previous step yet.\nPlease try previous step before going on with this step.", "Previous step is not done", 0);
+			        			// TODO: icon doesn't work properly (to fix later)
+			        			ImageIcon messageIcon = new ImageIcon("img/logo.png");
+				        		JOptionPane.showMessageDialog(null,
+				        				"It looks like you have not completed the previous step yet.\n"
+				        				+ "Please try previous step before going on with this step.",
+				        				"Previous step is not done",
+				        				JOptionPane.INFORMATION_MESSAGE,
+				        			    messageIcon);
 			        		}
 			        	}
 			        }
