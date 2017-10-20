@@ -15,6 +15,7 @@ import com.javaswingcomponents.accordion.plaf.steel.SteelVerticalTabRenderer;
 import com.javaswingcomponents.framework.painters.configurationbound.GradientColorPainter;
 import com.javaswingcomponents.framework.painters.text.TextFormattingRuleBuilder;
 import com.javaswingcomponents.framework.painters.text.TextFormattingInfo.Weight;
+import com.prototype.helpkiosk.instruction.InstructionBox;
 import com.prototype.helpkiosk.instruction.InstructionSingleton;
 
 public class Accordion extends JPanel {
@@ -131,6 +132,14 @@ public class Accordion extends JPanel {
 					break;					
 				}
 				case TAB_SELECTED: {
+					/*
+			         * TODO: remove all highlighting on Find/Do header clicked
+			         */
+					int z = accordion.getSelectedIndex();
+					System.out.println("New tab selected: " + z);
+					if (z == 1) {
+						instructionSingleton.highlight("nothing", "nothing");
+					}
 					break;					
 				}
 				
