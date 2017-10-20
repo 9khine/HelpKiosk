@@ -149,12 +149,13 @@ public class InstructionBox
 		instructionSingleton.setActiveID(id);
 		activeID = id;
 		
-		//De-activate other instructions -- set as "Done"
-		for(int i=0 ; i<=maxID ;  i++){
-			if(i!=activeID){
-				if(instructionSingleton.getActiveView().getInstructionBox(i).instruction.isActive()){
-					instructionSingleton.getActiveView().getInstructionBox(i).setBoxActive(false, true);
-				}
+		// TODO: De-activate other instructions -- set as "Done"
+		for (int i=0 ; i<=maxID ;  i++) {
+			if (i != activeID) {
+				instructionSingleton.getActiveView().getInstructionBox(i).setBoxInactive();
+//				if(instructionSingleton.getActiveView().getInstructionBox(i).instruction.isActive()) {
+//					instructionSingleton.getActiveView().getInstructionBox(i).setBoxActive(false, true);
+//				}
 			}
 		}
 		
@@ -172,8 +173,12 @@ public class InstructionBox
 		
 	}
 	
-	public void setBoxActive(boolean active, boolean done)
-	{
+	public void setBoxInactive() {
+		instruction.setActive(false);
+		box.setBorder(borderIfInactive);
+	}
+	
+	public void setBoxActive(boolean active, boolean done) {
 		instruction.setActive(active);
 		
 		if (active && !done){

@@ -125,7 +125,7 @@ public class StateThread extends Thread
 //						/Users/pablo/android-sdks/platform-tools/adb logcat -v brief AlarmCursorAdapter:D *:S
 //						/Users/pablo/android-sdks/platform-tools/adb logcat -v brief AlarmListView:D *:S
 						
-						System.out.println("Alarm pane active");
+//						System.out.println("Alarm pane active");
 						if (line.indexOf("resizeLayoutWithDrag : 2")==55) {														
 							instructionSingleton.getActiveView().getInstructionBox(2).instruction.setDone(true);
 							instructionSingleton.highlight("nothing", "contact");
@@ -150,8 +150,10 @@ public class StateThread extends Thread
 							if (getCmp().equals(CMP_LAUNCH_HOME)) {
 								System.out.println("HOME ACTIVE " + ++count_home + " TIMES ");
 								
+								instructionSingleton.highlight("nothing", "nothing");
+								
 								//reset learn/do panel
-								if(instructionSingleton.getActiveView()!=null){
+								if(instructionSingleton.getActiveView() != null){
 									for(int i=0 ; i<=instructionSingleton.getMaxID() ; i++){
 										//instructionSingleton.getActiveView().getInstructionBox(i).setBoxActive(false, false);
 										instructionSingleton.getActiveView().getInstructionBox(i).setBoxActive(true, true);
