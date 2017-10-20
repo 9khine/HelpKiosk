@@ -135,10 +135,13 @@ public class Accordion extends JPanel {
 					/*
 			         * TODO: remove all highlighting on Find/Do header clicked
 			         */
-					int z = accordion.getSelectedIndex();
-					System.out.println("New tab selected: " + z);
-					if (z == 1) {
+					if (accordion.getSelectedIndex() == 1) {
 						instructionSingleton.highlight("nothing", "nothing");
+						for (int i = 0 ; i <= 3;  i++) {
+							if (instructionSingleton.getActiveView().getInstructionBox(i) != null) {
+								instructionSingleton.getActiveView().getInstructionBox(i).setBoxInactive();
+							}
+						}
 					}
 					break;					
 				}
