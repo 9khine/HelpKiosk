@@ -36,6 +36,7 @@ public class Accordion extends JPanel {
 	private Color default_grey = Color.WHITE;
 	
 	private JSCAccordion accordion;
+	
 	public Accordion(){
 		accordion = new JSCAccordion();
 		addTabs(accordion);
@@ -139,6 +140,7 @@ public class Accordion extends JPanel {
 			         */
 					if (accordion.getSelectedIndex() == 1) {
 						instructionSingleton.highlight("nothing", "nothing");
+						instructionSingleton.showVideo("nothing");
 						if (instructionSingleton.getActiveView() == null) {
 							// do nothing
 						} else {
@@ -156,6 +158,11 @@ public class Accordion extends JPanel {
 				}
 			}
 		});
+	}
+
+	public int getSelectedIndex() {
+		// TODO Auto-generated method stub
+		return accordion.getSelectedIndex();
 	}
 	
 }

@@ -77,6 +77,7 @@ public class LearnDoPanel {
 		toSearch.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0) {
 				instructionSingleton.highlight("nothing", "nothing");
+				instructionSingleton.showVideo("nothing");
 				if (instructionSingleton.getActiveView() == null) {
 					// do nothing
 				} else {

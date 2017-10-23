@@ -2,6 +2,8 @@ package com.prototype.helpkiosk.ui;
 // Fig 21.6: MediaPanel.java
 // A JPanel the plays media from a URL
 import java.awt.BorderLayout;
+import java.awt.Graphics;
+import java.awt.Image;
 
 import javax.media.Player;
 import javax.swing.ImageIcon;
@@ -39,7 +41,18 @@ public class MediaPanel extends JPanel {
 		Scene scene = createScene(url);
 		fxPanel.setScene(scene);
 	}
+	
+	// TODO: set background image here if we want
+	@Override
+	  protected void paintComponent(Graphics g) {
 
+		super.paintComponent(g);
+		
+		ImageIcon bgIcon = new ImageIcon("img/videoBG.png");
+		Image bgImage = bgIcon.getImage();		
+		g.drawImage(bgImage, 0, 0, null);
+	}
+	
 	private Scene createScene(String url) {
 	
 		final Label status = new Label("Init");
@@ -108,9 +121,11 @@ public class MediaPanel extends JPanel {
 	
 	public void show() {
 		final JFXPanel fxPanel = new JFXPanel();
-		ImageIcon icon = new ImageIcon("img/videoBG.png"); 
-		JLabel thumb = new JLabel();
-		thumb.setIcon(icon);
+		
+		// TODO: add background image here?
+//		ImageIcon icon = new ImageIcon("img/videoBG.png"); 
+//		JLabel thumb = new JLabel();
+//		thumb.setIcon(icon);
 		add(fxPanel, BorderLayout.CENTER);
 	    initFX(fxPanel, mediaURL);
 		//initFX(fxPanel, "http://www.html5videoplayer.net/videos/toystory.mp4");

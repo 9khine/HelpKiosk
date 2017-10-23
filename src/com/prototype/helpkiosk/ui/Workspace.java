@@ -11,6 +11,7 @@ import java.awt.event.WindowListener;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -39,6 +40,7 @@ public class Workspace extends JFrame implements WindowListener {
 	private JPanel demoPanel;
 	private IDevice device;
 	private InstructionSingleton instructionSingleton = InstructionSingleton.getInstance();
+	private Accordion accordion;
 	
 	public Border blueLine = new CompoundBorder(new EmptyBorder(26, 15, 0, 0),
 			BorderFactory.createLineBorder(new Color(0x3B70A3), 2));
@@ -96,7 +98,7 @@ public class Workspace extends JFrame implements WindowListener {
 		rightPanel.setBackground(Color.WHITE);
 		rightPanel.setPreferredSize(new Dimension(this.default_width * this.rightPanel_width_percent/100
 												, this.default_height));
-		Accordion accordion = instructionSingleton.getAccordion();
+		accordion = instructionSingleton.getAccordion();
 		accordion.setBackground(Color.WHITE);
 		rightPanel.add(accordion, BorderLayout.CENTER);
 
@@ -112,21 +114,21 @@ public class Workspace extends JFrame implements WindowListener {
 		demoPanel.setLayout(new BoxLayout(demoPanel, BoxLayout.X_AXIS));
 		
 		demoPanel.add(Box.createRigidArea(new Dimension(10, 10)));
-		
+
 		JPanel titleFiller = new JPanel();
 		titleFiller.setLayout(new BorderLayout());
 		titleFiller.setBackground(Color.WHITE);
-			JLabel title = new JLabel("<html><br>DEMO<br>VIDEO</html>");
-			title.setFont(new Font("Arial", Font.BOLD, 26));
-			title.setForeground(new Color(0x3B70A3));
+		JLabel title = new JLabel("<html><br>DEMO<br>VIDEO</html>");
+		title.setFont(new Font("Arial", Font.BOLD, 32));
+		title.setForeground(new Color(0x3B70A3));
 		titleFiller.add(title, BorderLayout.PAGE_START);
-			JLabel ins = new JLabel("<html>Touch video<br>to play<br>and replay.</html>");
-			ins.setFont(new Font("Arial", Font.ITALIC, 15));
-			ins.setForeground(new Color(0x3B70A3));
+		JLabel ins = new JLabel("<html><br>Select a step to<br>play a demo<br>video.<br><br>Tap video to<br>play & pause.</html>");
+		ins.setFont(new Font("Arial", Font.ITALIC, 18));
+		ins.setForeground(new Color(0x3B70A3));
 		titleFiller.add(ins, BorderLayout.LINE_START);
-		titleFiller.add(Box.createRigidArea(new Dimension(20, 130)), BorderLayout.PAGE_END);
+		titleFiller.add(Box.createRigidArea(new Dimension(20, 200)), BorderLayout.PAGE_END);
 		demoPanel.add(titleFiller);
-						
+
 		MediaPanel mediaPanel = new MediaPanel();
 		mediaPanel.setBackground(Color.WHITE);
 		mediaPanel.setPreferredSize(new Dimension(445, 250));
