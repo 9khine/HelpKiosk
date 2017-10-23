@@ -43,7 +43,7 @@ public class Workspace extends JFrame implements WindowListener {
 	public Border blueLine = new CompoundBorder(new EmptyBorder(26, 15, 0, 0),
 			BorderFactory.createLineBorder(new Color(0x3B70A3), 2));
 	
-	final public int default_width = 1440;
+	final public int default_width = 1600;
 	final public int default_height = 900;
 	private int rightPanel_width_percent = 60;
 	

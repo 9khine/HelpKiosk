@@ -95,8 +95,8 @@ public class InstructionBox
 		styleButton(step_parent);
 		addActionListener(step_parent);
 		
-		// TODO: edit text box size
 		int length = instruction.getInstruction().length();
+		// four sizes of instruction boxes, depending on length of the instruction
 		int small = 40;
 		int medsmall = 70;
 		int medium = 90;
