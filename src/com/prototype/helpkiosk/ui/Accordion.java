@@ -133,15 +133,22 @@ public class Accordion extends JPanel {
 				}
 				case TAB_SELECTED: {
 					/*
-			         * TODO: remove all highlighting on Find/Do header clicked
+			         * Remove all highlighting on Find/Do header clicked
+			         * 
+			         * TODO: don't remove highlighting if active view is null
 			         */
 					if (accordion.getSelectedIndex() == 1) {
 						instructionSingleton.highlight("nothing", "nothing");
-						for (int i = 0 ; i <= 3;  i++) {
-							if (instructionSingleton.getActiveView().getInstructionBox(i) != null) {
-								instructionSingleton.getActiveView().getInstructionBox(i).setBoxInactive();
+						if (instructionSingleton.getActiveView() == null) {
+							// do nothing
+						} else {
+							for (int i = 0 ; i < instructionSingleton.getActiveView().instruction.length;  i++) {
+								if (instructionSingleton.getActiveView().getInstructionBox(i) != null) {
+									instructionSingleton.getActiveView().getInstructionBox(i).setBoxInactive();
+								}
 							}
 						}
+						
 					}
 					break;					
 				}

@@ -4,8 +4,11 @@ package com.prototype.helpkiosk.ui;
 import java.awt.BorderLayout;
 
 import javax.media.Player;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.DoubleProperty;
@@ -28,6 +31,7 @@ public class MediaPanel extends JPanel {
 	public MediaPanel() {
 		Platform.setImplicitExit(false);
 		setLayout(new BorderLayout()); // use a BorderLayout
+		
 	}
 	
 	private void initFX(JFXPanel fxPanel, String url) {
@@ -40,7 +44,10 @@ public class MediaPanel extends JPanel {
 	
 		final Label status = new Label("Init");
 		final MediaPlayer mediaPlayer = createMediaPlayer(url, status);
+		//Timeline FxTimer = new Timeline(new KeyFrame(Duration.millis(2500));
 		mediaPlayer.play();
+		//mediaPlayer.get
+		//mediaPlayer.pause();
 		MediaView view = new MediaView(mediaPlayer);
 		
 		DoubleProperty mvw = view.fitWidthProperty();
@@ -74,8 +81,6 @@ public class MediaPanel extends JPanel {
 		return (scene);
 	}
 	
-	
-	
 	/** 
 	   * creates a media player using a url to the media
 	   * and tracks the status of playing the media via the status label 
@@ -103,6 +108,9 @@ public class MediaPanel extends JPanel {
 	
 	public void show() {
 		final JFXPanel fxPanel = new JFXPanel();
+		ImageIcon icon = new ImageIcon("img/videoBG.png"); 
+		JLabel thumb = new JLabel();
+		thumb.setIcon(icon);
 		add(fxPanel, BorderLayout.CENTER);
 	    initFX(fxPanel, mediaURL);
 		//initFX(fxPanel, "http://www.html5videoplayer.net/videos/toystory.mp4");

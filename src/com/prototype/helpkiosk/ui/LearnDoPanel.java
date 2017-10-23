@@ -77,8 +77,10 @@ public class LearnDoPanel {
 		toSearch.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0) {
 				instructionSingleton.highlight("nothing", "nothing");
-				for (int i = 0 ; i <= 4;  i++) {
-					if (instructionSingleton.getActiveView().getInstructionBox(i) != null) {
+				if (instructionSingleton.getActiveView() == null) {
+					// do nothing
+				} else {
+					for (int i = 0 ; i < instructionSingleton.getActiveView().instruction.length;  i++) {
 						instructionSingleton.getActiveView().getInstructionBox(i).setBoxInactive();
 					}
 				}

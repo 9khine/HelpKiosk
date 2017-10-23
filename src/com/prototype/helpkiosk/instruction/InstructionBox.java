@@ -95,20 +95,21 @@ public class InstructionBox
 		styleButton(step_parent);
 		addActionListener(step_parent);
 		
+		// TODO: edit text box size
 		int length = instruction.getInstruction().length(); 
 		System.out.println(length);
-		if (length>38 && length<57){
+		if (length > 38 && length < 57) {
 			instructionArea.setPreferredSize(new Dimension(350,(length/30+1)*34));
 			step.setPreferredSize(new Dimension(100,(length/30+1)*34));
-		}else if (length>56 && length <192){
-			if(length==88 || length==77 || length==118|| length==191){
+		} else if (length > 56 && length < 192) {
+			if (length == 88 || length == 77 || length == 118 || length == 191) {
 				instructionArea.setPreferredSize(new Dimension(350,(length/30+1)*30));
 				step.setPreferredSize(new Dimension(100,(length/30+1)*30));
-			}else{
+			} else {
 				instructionArea.setPreferredSize(new Dimension(350,(length/30)*30));
 				step.setPreferredSize(new Dimension(100,(length/30)*30));
 			}
-		}else{
+		} else {
 			instructionArea.setPreferredSize(new Dimension(350, 34));
 			step.setPreferredSize(new Dimension(100, 34));
 		}
@@ -331,8 +332,7 @@ public class InstructionBox
 			        			// TODO: icon doesn't work properly (to fix later)
 			        			ImageIcon messageIcon = new ImageIcon("img/logo.png");
 				        		JOptionPane.showMessageDialog(null,
-				        				"It looks like you have not completed the previous step yet.\n"
-				        				+ "Please try previous step before going on with this step.",
+				        				"Please complete the previous step before you continue.",
 				        				"Previous step is not done",
 				        				JOptionPane.INFORMATION_MESSAGE,
 				        			    messageIcon);

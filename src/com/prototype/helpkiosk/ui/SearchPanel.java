@@ -55,9 +55,6 @@ public class SearchPanel extends JPanel {
 		 */	
 		mainPanel.add(instructionPanel());
 
-		mainPanel.add(clockPanel());
-		mainPanel.add(Box.createRigidArea(new Dimension(this.getWidth(), 10)));
-
 		mainPanel.add(contactPanel());
 		mainPanel.add(Box.createRigidArea(new Dimension(this.getWidth(), 10)));
 
@@ -69,6 +66,9 @@ public class SearchPanel extends JPanel {
 
 		mainPanel.add(phonePanel());
 		mainPanel.add(Box.createRigidArea(new Dimension(this.getWidth(), 10)));	
+		
+		mainPanel.add(clockPanel());
+		mainPanel.add(Box.createRigidArea(new Dimension(this.getWidth(), 10)));
 
 		mainPanel.add(galleryPanel());
 
@@ -83,7 +83,7 @@ public class SearchPanel extends JPanel {
 		JLabel instruction = new JLabel();
 
 		// TODO: this changes the title of the "Search Panel"
-		instruction.setText("Choose an application...");
+		instruction.setText("Start by choosing an application...");
 		instruction.setFont(new Font("Helvetica", Font.BOLD,  22));
 		instruction.setForeground(Color.DARK_GRAY);
 
