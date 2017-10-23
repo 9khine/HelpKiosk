@@ -96,23 +96,44 @@ public class InstructionBox
 		addActionListener(step_parent);
 		
 		// TODO: edit text box size
-		int length = instruction.getInstruction().length(); 
-		System.out.println(length);
-		if (length > 38 && length < 57) {
-			instructionArea.setPreferredSize(new Dimension(350,(length/30+1)*34));
-			step.setPreferredSize(new Dimension(100,(length/30+1)*34));
-		} else if (length > 56 && length < 192) {
-			if (length == 88 || length == 77 || length == 118 || length == 191) {
-				instructionArea.setPreferredSize(new Dimension(350,(length/30+1)*30));
-				step.setPreferredSize(new Dimension(100,(length/30+1)*30));
-			} else {
-				instructionArea.setPreferredSize(new Dimension(350,(length/30)*30));
-				step.setPreferredSize(new Dimension(100,(length/30)*30));
-			}
+		int length = instruction.getInstruction().length();
+		int small = 40;
+		int medsmall = 70;
+		int medium = 90;
+		int tall = 135;
+		if (length < 40) {
+			instructionArea.setPreferredSize(new Dimension(350, small));
+			step.setPreferredSize(new Dimension(100, small));
+		} else if (length < 75 && length >= 40) {
+			instructionArea.setPreferredSize(new Dimension(350, medsmall));
+			step.setPreferredSize(new Dimension(100, medsmall));
+		} else if (length < 130 && length >= 75) {
+			instructionArea.setPreferredSize(new Dimension(350, medium));
+			step.setPreferredSize(new Dimension(100, medium));
 		} else {
-			instructionArea.setPreferredSize(new Dimension(350, 34));
-			step.setPreferredSize(new Dimension(100, 34));
+			instructionArea.setPreferredSize(new Dimension(350, tall));
+			step.setPreferredSize(new Dimension(100, tall));
 		}
+		
+		
+//		if (length > 38 && length < 57) {
+//			int height = (length/30+1)*34;
+//			instructionArea.setPreferredSize(new Dimension(350, height));
+//			step.setPreferredSize(new Dimension(100, height));
+//		} else if (length > 56 && length < 192) {
+//			if (length == 88 || length == 77 || length == 118 || length == 191) {
+//				int height = (length/30+1)*30;
+//				instructionArea.setPreferredSize(new Dimension(350, height));
+//				step.setPreferredSize(new Dimension(100, height));
+//			} else {
+//				int height = (length/30+1)*34;
+//				instructionArea.setPreferredSize(new Dimension(350, height));
+//				step.setPreferredSize(new Dimension(100, height));
+//			}
+//		} else {
+//			instructionArea.setPreferredSize(new Dimension(350, 34));
+//			step.setPreferredSize(new Dimension(100, 34));
+//		}
 		
 		instructionArea_parent.add(instructionArea);
 		step_parent.add(step);

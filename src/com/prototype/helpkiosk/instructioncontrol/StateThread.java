@@ -136,7 +136,7 @@ public class StateThread extends Thread
 						instructionSingleton.getActiveView().getInstructionBox(1).instruction.setDone(true);
 						instructionSingleton.highlight("nothing", "contact");
 					} else if (line.indexOf("I ActivityManager")==31) {
-						System.out.println(line);
+//						System.out.println(line);
 						setInfo(line);
 	
 //						System.out.println("*** act = "+ this.act);

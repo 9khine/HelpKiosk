@@ -26,7 +26,7 @@ public class Camera {
 				false, new int[]{0}, "takePicture", 0, true);
 		
 		// TODO: can we use logcat to check if the camera focuses?
-		cameraInstruction[1] = new Instruction("<html>Tap the image on the preview screen where the camera should focus.</html>",
+		cameraInstruction[1] = new Instruction("<html>Tap the image on the preview screen where the camera should focus.</html>", // 79 chars long
 				false, new int[]{0}, "takePicture", 1, false);
 				
 		cameraInstruction[2] = new Instruction("<html>Tap <img src=\"http://i.imgur.com/kHEJ1u5.png\" width=\"40\" height=\"40\"> to take a photo.</html>",
