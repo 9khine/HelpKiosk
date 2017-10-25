@@ -5,12 +5,9 @@ import java.awt.BorderLayout;
 import java.awt.Graphics;
 import java.awt.Image;
 
-import javax.media.Player;
 import javax.swing.ImageIcon;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.DoubleProperty;
@@ -22,6 +19,7 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.MediaPlayer.Status;
 import javafx.scene.media.MediaView;
 import javafx.scene.paint.Color;
 
@@ -29,6 +27,7 @@ import javafx.scene.paint.Color;
 public class MediaPanel extends JPanel {
 	
 	public String mediaURL;
+	private boolean atEndOfMedia = false;
 
 	public MediaPanel() {
 		Platform.setImplicitExit(false);
@@ -43,24 +42,21 @@ public class MediaPanel extends JPanel {
 	}
 	
 	// TODO: set background image here if we want
-	@Override
-	  protected void paintComponent(Graphics g) {
-
-		super.paintComponent(g);
-		
-		ImageIcon bgIcon = new ImageIcon("img/videoBG.png");
-		Image bgImage = bgIcon.getImage();		
-		g.drawImage(bgImage, 0, 0, null);
-	}
+//	@Override
+//	  protected void paintComponent(Graphics g) {
+//
+//		super.paintComponent(g);
+//		
+//		ImageIcon bgIcon = new ImageIcon("img/videoBG.png");
+//		Image bgImage = bgIcon.getImage();		
+//		g.drawImage(bgImage, 0, 0, null);
+//	}
 	
 	private Scene createScene(String url) {
 	
 		final Label status = new Label("Init");
 		final MediaPlayer mediaPlayer = createMediaPlayer(url, status);
-		//Timeline FxTimer = new Timeline(new KeyFrame(Duration.millis(2500));
-		mediaPlayer.play();
-		//mediaPlayer.get
-		//mediaPlayer.pause();
+		
 		MediaView view = new MediaView(mediaPlayer);
 		
 		DoubleProperty mvw = view.fitWidthProperty();
@@ -73,23 +69,25 @@ public class MediaPanel extends JPanel {
 		Scene scene  =  new  Scene(root, Color.ALICEBLUE);
 		//((Group)scene.getRoot()).getChildren().add(view);
 		
-		mediaPlayer.setCycleCount(3);
-		mediaPlayer.setAutoPlay(true);
 		scene.addEventFilter(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
-			boolean pause = false;
 			
 		    public void handle(MouseEvent mouseEvent) {
-		    	if(mouseEvent.getClickCount() == 1 && !pause) {
-			    	pause = true;
+		    	
+		    	if(mouseEvent.getClickCount() == 1 && mediaPlayer.getStatus() == Status.PLAYING) {
 			    	mediaPlayer.pause();
 		    	} 
-		    	else if(mouseEvent.getClickCount() == 1 && pause) {
-		    		pause = false;
+		    	else if(mouseEvent.getClickCount() == 1 && 
+		    			(mediaPlayer.getStatus() == Status.PAUSED
+		    					|| mediaPlayer.getStatus() == Status.READY
+		    					//|| mediaPlayer.getStatus() == Status.STOPPED
+		    					//|| mediaPlayer.getStatus() == Status.HALTED
+		    					)){
 			    	mediaPlayer.play();
+			    	mediaPlayer.setCycleCount(100);
 		    	}
 		    }
-		    
-		});
+		    	
+		});	
 		
 		return (scene);
 	}
@@ -113,7 +111,9 @@ public class MediaPanel extends JPanel {
 	    });
 	    mediaPlayer.setOnEndOfMedia(new Runnable() {
 	      @Override public void run() {
+	    	//Duration currentTime = mp.getCurrentTime();
 	        status.setText("Done");
+	        show();
 	      }   	
 	    });
 	    return mediaPlayer;
@@ -126,6 +126,7 @@ public class MediaPanel extends JPanel {
 //		ImageIcon icon = new ImageIcon("img/videoBG.png"); 
 //		JLabel thumb = new JLabel();
 //		thumb.setIcon(icon);
+		
 		add(fxPanel, BorderLayout.CENTER);
 	    initFX(fxPanel, mediaURL);
 		//initFX(fxPanel, "http://www.html5videoplayer.net/videos/toystory.mp4");
