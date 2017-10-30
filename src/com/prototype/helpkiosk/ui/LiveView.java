@@ -49,6 +49,8 @@ class LiveView extends JPanel implements ActionListener {
 		this.device = device;
 		this.width = 240;
 		this.height = 400;
+//		this.width = 180;
+//		this.height = 370;
 
 		this.timer = new Timer(refreshRate, this);
 		this.timer.setInitialDelay(0);
@@ -76,9 +78,13 @@ class LiveView extends JPanel implements ActionListener {
 		JLabel title = new JLabel("<html><br></html>");
 		title.setFont(new Font("Helvetica", Font.BOLD, 23));
 		title.setForeground(new Color(0x3B70A3));
-
-		//ImageIcon img = new ImageIcon("img/nexusoneinhandblur.png");
+		
+		// TODO: finish making live view smaller
+		// status: small version is a little too small, screenshots don't fit properly
+		// will have to redo all the highlighting with new sizing
+//		ImageIcon img = new ImageIcon("img/nexusoneinhandblur.png");
 		ImageIcon img = new ImageIcon("img/nexusoneinhand.png");
+//		ImageIcon img = new ImageIcon("img/nexusoneinhandsmall.png");
 
 		JLabel bg = new JLabel(img);
 		bg.setBackground(Color.WHITE);
@@ -86,13 +92,15 @@ class LiveView extends JPanel implements ActionListener {
 		JPanel rigid = new JPanel();
 		rigid.setOpaque(false);
 		rigid.setLayout(new BoxLayout(rigid, BoxLayout.X_AXIS));
-		rigid.setPreferredSize(new Dimension(100, 30));
+//		rigid.setPreferredSize(new Dimension(100, 23)); // small version
+		rigid.setPreferredSize(new Dimension(100, 30)); 
 		rigid.add(title);
 		bg.add(rigid);
 
 		JPanel rigid2 = new JPanel();
 		rigid2.setOpaque(false);
-		rigid2.setPreferredSize(new Dimension(92, height));
+//		rigid2.setPreferredSize(new Dimension(72, height)); //small version
+		rigid2.setPreferredSize(new Dimension(85, height));
 
 		JPanel rigid3 = new JPanel();
 		rigid3.setOpaque(false);
