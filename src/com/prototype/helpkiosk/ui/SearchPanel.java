@@ -11,14 +11,14 @@ import org.jdesktop.swingx.JXCollapsiblePane;
 import com.prototype.helpkiosk.instruction.InstructionSingleton;
 import com.prototype.helpkiosk.instructioncontrol.InstructionView;
 
-public class SearchPanel extends JPanel {
+public class SearchPanel extends JPanel implements KeyListener {
 
 	private InstructionSingleton instructionSingleton = InstructionSingleton.getInstance();
 
 	private Dimension btnSize = new Dimension(160, 50);
 
 	public SearchPanel(){
-
+		
 	}
 
 	public JPanel createPanel() {
@@ -71,6 +71,8 @@ public class SearchPanel extends JPanel {
 		mainPanel.add(Box.createRigidArea(new Dimension(this.getWidth(), 10)));
 
 		mainPanel.add(galleryPanel());
+		
+		mainPanel.add(restartPanel());
 
 		return mainPanel;
 	}
@@ -92,12 +94,71 @@ public class SearchPanel extends JPanel {
 
 		return instructionFiller;
 	}
+	
+	private JPanel restartPanel() {
+
+		/* Restart Button */
+
+		JPanel restartPanel = new JPanel();
+		restartPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
+		restartPanel.setBackground(Color.WHITE);
+		restartPanel.setSize(new Dimension(this.getWidth(), 70));
+		TransparentButton filler = new TransparentButton("FILL", (float) 0.0);
+		filler.setOpaque(false);
+		restartPanel.add(filler);
+
+		restartPanel.removeAll();
+
+		JButton restartBtn = new JButton("   ");
+		restartBtn.setPreferredSize(new Dimension(12, 12));
+		restartBtn.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent arg0) {
+				
+				// TODO: splash screen is defined here
+				instructionSingleton.highlight("nothing", "nothing");
+				instructionSingleton.showVideo("nothing");
+				ImageIcon messageIcon = new ImageIcon("img/logo.png");;
+				Object[] options = {"Get started!"};
+				
+				JPanel splash = new JPanel();
+				JLabel title = new JLabel("Welcome to HelpKiosk");
+				title.setFont(new Font("Serif", Font.BOLD, 28));
+				JLabel maintext = new JLabel("<html><br><br>Learn to use a Samsung S7, using:<br>"
+						+ "<br>- step-by-step instructions<br>"
+						+ "<br>- demo videos<br>"
+						+ "<br>- a live highlighted view of your phone<br><br>"
+        				+ "<br>To get started, connect your phone and choose a task from the list on the homepage.</html>");
+				maintext.setFont(new Font("Sans Serif", Font.BOLD, 16));
+				
+				splash.setLayout(new BoxLayout(splash, BoxLayout.Y_AXIS));
+				splash.add(title);
+				splash.add(maintext);
+				splash.setPreferredSize(new Dimension(600, 400));
+				
+				JOptionPane.showOptionDialog(null,
+						splash,
+						"Welcome to HelpKiosk!",
+						JOptionPane.YES_NO_OPTION,
+        			    JOptionPane.QUESTION_MESSAGE,
+        			    null,
+        			    options, 
+        			    options[0]);
+			}
+		});
+		
+		restartPanel.add(restartBtn);
+
+		restartPanel.validate();
+		restartPanel.repaint();
+
+		return restartPanel;
+	}
 
 	private JPanel clockPanel() {
 
 		/* Clock */
 
-		JPanel clockPanel = contactPanel();
+		JPanel clockPanel = new JPanel();
 		clockPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
 		clockPanel.setBorder(BorderFactory.createTitledBorder("Clock: "));
 		clockPanel.setBackground(Color.WHITE);
@@ -441,6 +502,24 @@ public class SearchPanel extends JPanel {
 				}
 			});
 		}
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		// TODO Auto-generated method stub
+		System.out.println("Key pressed: " + e.getKeyChar());
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+		// TODO Auto-generated method stub
+		System.out.println("Key typed: " + e.getKeyChar());
 	}
 
 

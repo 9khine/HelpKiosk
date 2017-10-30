@@ -57,7 +57,7 @@ public class Workspace extends JFrame implements WindowListener {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.device = getCurrentDevice();
 		// TODO: Uncomment to hide top bar for use on touch display
-		setUndecorated(true); 
+//		setUndecorated(true); 
 		add(buildMainPanel());
 		pack();
 		
@@ -211,9 +211,9 @@ public class Workspace extends JFrame implements WindowListener {
 
 	@Override
 	public void windowClosing(WindowEvent e) {
-            	System.out.println("exiting");
-                dispose();
-                instructionSingleton.setThreadfinish(true);
-                System.exit(0);
+		System.out.println("exiting");
+		dispose();
+		instructionSingleton.setThreadfinish(true);
+		System.exit(0);
 	}
 }
