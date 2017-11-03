@@ -115,13 +115,13 @@ public class SearchPanel extends JPanel {
 				
 				JPanel splash = new JPanel();
 				JLabel title = new JLabel("Welcome to HelpKiosk");
-				title.setFont(new Font("Serif", Font.BOLD, 28));
-				JLabel maintext = new JLabel("<html><br><br>Learn to use a Samsung S7, using:<br>"
+				title.setFont(new Font("Sans Serif", Font.BOLD, 30));
+				JLabel maintext = new JLabel("<html><br>Learn to use a Samsung S7, using:<br>"
 						+ "<br>- step-by-step instructions<br>"
 						+ "<br>- demo videos<br>"
 						+ "<br>- a live highlighted view of your phone<br><br>"
         				+ "<br>To get started, connect your phone and choose a task from the list on the homepage.</html>");
-				maintext.setFont(new Font("Sans Serif", Font.BOLD, 16));
+				maintext.setFont(new Font("Sans Serif", Font.BOLD, 19));
 				
 				splash.setLayout(new BoxLayout(splash, BoxLayout.Y_AXIS));
 				splash.add(title);
