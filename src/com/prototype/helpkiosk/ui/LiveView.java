@@ -83,7 +83,10 @@ class LiveView extends JPanel implements ActionListener {
 		// status: small version is a little too small, screenshots don't fit properly
 		// will have to redo all the highlighting with new sizing
 //		ImageIcon img = new ImageIcon("img/nexusoneinhandblur.png");
-		ImageIcon img = new ImageIcon("img/nexusoneinhand.png");
+//		ImageIcon img = new ImageIcon("img/nexusoneinhand.png");
+//		ImageIcon img = new ImageIcon("img/nexusoneinhandcropped.png");
+		ImageIcon img = new ImageIcon("img/nexusoneinhandcroppedlight.png");
+//		ImageIcon img = new ImageIcon("img/nexusoneinhandmedium.png");
 //		ImageIcon img = new ImageIcon("img/nexusoneinhandsmall.png");
 
 		JLabel bg = new JLabel(img);
@@ -100,7 +103,7 @@ class LiveView extends JPanel implements ActionListener {
 		JPanel rigid2 = new JPanel();
 		rigid2.setOpaque(false);
 //		rigid2.setPreferredSize(new Dimension(72, height)); //small version
-		rigid2.setPreferredSize(new Dimension(85, height));
+		rigid2.setPreferredSize(new Dimension(90, height));
 
 		JPanel rigid3 = new JPanel();
 		rigid3.setOpaque(false);
@@ -116,7 +119,7 @@ class LiveView extends JPanel implements ActionListener {
 		JPanel rigid4 = new JPanel();
 		rigid4.setLayout(null);
 		rigid4.setOpaque(false);
-		rigid4.setPreferredSize(new Dimension(width, 100));   
+		rigid4.setPreferredSize(new Dimension(width, 47));   
 		instructionSingleton.setLowerContainer(rigid4);
 
 		bg.add(filler);

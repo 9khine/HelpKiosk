@@ -47,7 +47,7 @@ public class Workspace extends JFrame implements WindowListener {
 	
 	final public int default_width = 1600;
 	final public int default_height = 900;
-	private int rightPanel_width_percent = 60;
+	private int rightPanel_width_percent = 50;
 	
 	public Workspace(){
 		super("Help Kiosk");
@@ -113,7 +113,7 @@ public class Workspace extends JFrame implements WindowListener {
 		demoPanel.setBackground(Color.WHITE);
 		demoPanel.setLayout(new BoxLayout(demoPanel, BoxLayout.X_AXIS));
 		
-		demoPanel.add(Box.createRigidArea(new Dimension(10, 10)));
+		demoPanel.add(Box.createRigidArea(new Dimension(10, 10 + 100)));
 
 		JPanel titleFiller = new JPanel();
 		titleFiller.setLayout(new BorderLayout());
@@ -131,8 +131,7 @@ public class Workspace extends JFrame implements WindowListener {
 
 		MediaPanel mediaPanel = new MediaPanel();
 		mediaPanel.setBackground(Color.WHITE);
-		mediaPanel.setPreferredSize(new Dimension(445, 250));
-		// video format: MPEG, 320x240, FrameRate=29.9, Length=115200
+		mediaPanel.setPreferredSize(new Dimension(445 + 100, 250));
 		mediaPanel.setVisible(true);
 		instructionSingleton.setMediaContainer(mediaPanel);
 				

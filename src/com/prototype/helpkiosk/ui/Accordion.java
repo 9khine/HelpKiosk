@@ -54,8 +54,8 @@ public class Accordion extends JPanel {
 	private void addTabs(JSCAccordion accordion){
 		searchPanel = new SearchPanel();
 		learnDoPanel = new LearnDoPanel();
-		accordion.addTab("Step 2: Learn/Do", learnDoPanel.createPanel());
-		accordion.addTab("Step 1: Find Info", searchPanel.createPanel());
+		accordion.addTab("Step 2: Complete Task Steps", learnDoPanel.createPanel());
+		accordion.addTab("Step 1: Choose a Task", searchPanel.createPanel());
 		accordion.setSelectedIndex(1);
 	}
 	

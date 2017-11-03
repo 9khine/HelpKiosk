@@ -11,7 +11,7 @@ import org.jdesktop.swingx.JXCollapsiblePane;
 import com.prototype.helpkiosk.instruction.InstructionSingleton;
 import com.prototype.helpkiosk.instructioncontrol.InstructionView;
 
-public class SearchPanel extends JPanel implements KeyListener {
+public class SearchPanel extends JPanel {
 
 	private InstructionSingleton instructionSingleton = InstructionSingleton.getInstance();
 
@@ -56,23 +56,23 @@ public class SearchPanel extends JPanel implements KeyListener {
 		mainPanel.add(instructionPanel());
 
 		mainPanel.add(contactPanel());
-		mainPanel.add(Box.createRigidArea(new Dimension(this.getWidth(), 10)));
+		mainPanel.add(Box.createRigidArea(new Dimension(this.getWidth(), 5)));
 
 		mainPanel.add(cameraPanel());
-		mainPanel.add(Box.createRigidArea(new Dimension(this.getWidth(), 10)));
+		mainPanel.add(Box.createRigidArea(new Dimension(this.getWidth(), 5)));
 
 		mainPanel.add(messagesPanel());
-		mainPanel.add(Box.createRigidArea(new Dimension(this.getWidth(), 10)));
+		mainPanel.add(Box.createRigidArea(new Dimension(this.getWidth(), 5)));
 
 		mainPanel.add(phonePanel());
-		mainPanel.add(Box.createRigidArea(new Dimension(this.getWidth(), 10)));	
+		mainPanel.add(Box.createRigidArea(new Dimension(this.getWidth(), 5)));	
 		
 		mainPanel.add(clockPanel());
-		mainPanel.add(Box.createRigidArea(new Dimension(this.getWidth(), 10)));
+		mainPanel.add(Box.createRigidArea(new Dimension(this.getWidth(), 5)));
 
 		mainPanel.add(galleryPanel());
 		
-		mainPanel.add(restartPanel());
+		mainPanel.add(restartButton());
 
 		return mainPanel;
 	}
@@ -81,42 +81,35 @@ public class SearchPanel extends JPanel implements KeyListener {
 		JPanel instructionFiller = new JPanel();
 		instructionFiller.setBackground(Color.WHITE);
 		instructionFiller.setLayout(new FlowLayout((FlowLayout.LEFT)));
-		instructionFiller.add(Box.createRigidArea(new Dimension(this.getWidth(), 10)));
-		JLabel instruction = new JLabel();
+//		instructionFiller.add(Box.createRigidArea(new Dimension(this.getWidth(), 10)));
+		JLabel heading = new JLabel();
+		heading.setText("Start by choosing a task.");
+		heading.setFont(new Font("Helvetica", Font.BOLD,  22));
+		heading.setForeground(Color.DARK_GRAY);
+		
+		JLabel subheading = new JLabel();
+		subheading.setText("      * Please click the home button at the bottom of the phone to return to the home screen.");
+		subheading.setFont(new Font("Helvetica", Font.ITALIC,  14));
+		subheading.setForeground(Color.DARK_GRAY);
 
-		// TODO: this changes the title of the "Search Panel"
-		instruction.setText("Start by choosing an application...");
-		instruction.setFont(new Font("Helvetica", Font.BOLD,  22));
-		instruction.setForeground(Color.DARK_GRAY);
-
-		instructionFiller.add(instruction);
+		instructionFiller.add(heading);
+		instructionFiller.add(subheading);
 		instructionFiller.add(Box.createRigidArea(new Dimension(this.getWidth(), 10)));
 
 		return instructionFiller;
 	}
 	
-	private JPanel restartPanel() {
+	private JButton restartButton() {
 
-		/* Restart Button */
-
-		JPanel restartPanel = new JPanel();
-		restartPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
-		restartPanel.setBackground(Color.WHITE);
-		restartPanel.setSize(new Dimension(this.getWidth(), 70));
-		TransparentButton filler = new TransparentButton("FILL", (float) 0.0);
-		filler.setOpaque(false);
-		restartPanel.add(filler);
-
-		restartPanel.removeAll();
+		/* Restart Button to show splash screen */
 
 		JButton restartBtn = new JButton("   ");
 		restartBtn.setPreferredSize(new Dimension(12, 12));
+		restartBtn.setMaximumSize(new Dimension(1,1));
 		restartBtn.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0) {
 				
 				// TODO: splash screen is defined here
-				instructionSingleton.highlight("nothing", "nothing");
-				instructionSingleton.showVideo("nothing");
 				ImageIcon messageIcon = new ImageIcon("img/logo.png");;
 				Object[] options = {"Get started!"};
 				
@@ -146,12 +139,7 @@ public class SearchPanel extends JPanel implements KeyListener {
 			}
 		});
 		
-		restartPanel.add(restartBtn);
-
-		restartPanel.validate();
-		restartPanel.repaint();
-
-		return restartPanel;
+		return restartBtn;
 	}
 
 	private JPanel clockPanel() {
@@ -393,7 +381,7 @@ public class SearchPanel extends JPanel implements KeyListener {
 						if(!view.isActive()){
 							if(instructionSingleton.getAccordion().getAccordion().getSelectedIndex()!=0)
 								instructionSingleton.getAccordion().getAccordion().setSelectedIndex(0);
-							instructionSingleton.getContainer().removeAll();
+							//instructionSingleton.getContainer().removeAll();
 							instructionSingleton.setActiveView(view);
 							instructionSingleton.setMaxID(instructionSingleton.getActiveView().instruction.length-1);
 						}else{
@@ -446,13 +434,17 @@ public class SearchPanel extends JPanel implements KeyListener {
 		{
 			instructionSingleton.getCameraView().setActive(false);
 		}
+				
 		instructionSingleton.getContainer().removeAll();
-		instructionSingleton.getMoreHelpContainer().removeAll();
+		
+		// TODO MORE HELP (remove more help panel for now)
+		//instructionSingleton.getMoreHelpContainer().removeAll();
+		//instructionSingleton.showMoreHelpPanel(true);
+
 		instructionSingleton.updateInstructionView();
-		instructionSingleton.showMoreHelpPanel(true);
 	}
 
-	class TransparentButton extends JButton {
+	public class TransparentButton extends JButton {
 		private float opacity;
 		public TransparentButton(String text, float opacity) { 
 			super(text);
@@ -503,25 +495,6 @@ public class SearchPanel extends JPanel implements KeyListener {
 			});
 		}
 	}
-
-	@Override
-	public void keyPressed(KeyEvent e) {
-		// TODO Auto-generated method stub
-		System.out.println("Key pressed: " + e.getKeyChar());
-	}
-
-	@Override
-	public void keyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void keyTyped(KeyEvent e) {
-		// TODO Auto-generated method stub
-		System.out.println("Key typed: " + e.getKeyChar());
-	}
-
 
 	//	public JPanel createPanel() {
 	//		JPanel mainPanel = new JPanel();

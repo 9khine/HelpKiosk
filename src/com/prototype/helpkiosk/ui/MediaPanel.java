@@ -2,6 +2,7 @@ package com.prototype.helpkiosk.ui;
 // Fig 21.6: MediaPanel.java
 // A JPanel the plays media from a URL
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
 
@@ -27,7 +28,6 @@ import javafx.scene.paint.Color;
 public class MediaPanel extends JPanel {
 	
 	public String mediaURL;
-	private boolean atEndOfMedia = false;
 
 	public MediaPanel() {
 		Platform.setImplicitExit(false);
@@ -63,6 +63,9 @@ public class MediaPanel extends JPanel {
 		DoubleProperty mvh = view.fitHeightProperty();
 		mvw.bind(Bindings.selectDouble(view.sceneProperty(), "width"));
 		mvh.bind(Bindings.selectDouble(view.sceneProperty(), "height"));
+		
+		// TODO: change height and width here?
+		
 		view.setPreserveRatio(true);
 
 		Group root  =  new  Group(view);	
@@ -111,9 +114,7 @@ public class MediaPanel extends JPanel {
 	    });
 	    mediaPlayer.setOnEndOfMedia(new Runnable() {
 	      @Override public void run() {
-	    	//Duration currentTime = mp.getCurrentTime();
 	        status.setText("Done");
-	        show();
 	      }   	
 	    });
 	    return mediaPlayer;
@@ -121,12 +122,8 @@ public class MediaPanel extends JPanel {
 	
 	public void show() {
 		final JFXPanel fxPanel = new JFXPanel();
-		
-		// TODO: add background image here?
-//		ImageIcon icon = new ImageIcon("img/videoBG.png"); 
-//		JLabel thumb = new JLabel();
-//		thumb.setIcon(icon);
-		
+		fxPanel.setPreferredSize(new Dimension(445 + 100, 250 + 200));
+
 		add(fxPanel, BorderLayout.CENTER);
 	    initFX(fxPanel, mediaURL);
 		//initFX(fxPanel, "http://www.html5videoplayer.net/videos/toystory.mp4");

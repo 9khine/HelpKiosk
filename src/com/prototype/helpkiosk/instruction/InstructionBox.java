@@ -27,8 +27,8 @@ public class InstructionBox
 	public JButton box, step, instructionArea, instructionArea_parent, step_parent;
 	public Instruction instruction;
 	public int instructionID;
-	public JPanel container_moreHelp = instructionSingleton.getMoreHelpContainer();
 	public JPanel container_instruction = instructionSingleton.getContainer();
+	public JPanel container_moreHelp = instructionSingleton.getMoreHelpContainer();
 	public JButton moreHelpLink;
 	public Border borderIfActive = new CompoundBorder(
 									BorderFactory.createLineBorder(Color.ORANGE, 4),
@@ -47,7 +47,8 @@ public class InstructionBox
 	public InstructionBox(Instruction instruction, final int instructionID){
 		this.instruction = instruction;
 		this.instructionID = instructionID;
-		
+
+		// TODO MORE HELP (remove more help panel for now)
 		moreHelpLink = new JButton("Show More Help");
 		moreHelpLink.setVisible(false);
 		moreHelpLink.addActionListener(
@@ -138,6 +139,7 @@ public class InstructionBox
 		instructionArea_parent.add(instructionArea);
 		step_parent.add(step);
 		
+		// TODO MORE HELP (remove more help panel for now)
 		//show or not show more help panel
 		if(instruction.isHasMoreHelp())
 		{
@@ -145,8 +147,8 @@ public class InstructionBox
 			filler.setForeground(Color.WHITE);
 			styleButton(filler);
 			
-			instructionArea_parent.add(Box.createRigidArea(new Dimension(0, 10)));
-			instructionArea_parent.add(moreHelpLink);
+//			instructionArea_parent.add(Box.createRigidArea(new Dimension(0, 10)));
+//			instructionArea_parent.add(moreHelpLink);
 			
 			step_parent.add(Box.createRigidArea(new Dimension(0, 10)));
 			step_parent.add(filler);
@@ -159,12 +161,14 @@ public class InstructionBox
 	}
 
 	protected void setActive(int id) {
+		// TODO MORE HELP (remove more help panel for now)
 		MoreHelp moreHelp = instructionSingleton.getMoreHelp();
 		
 		int activeID = instructionSingleton.getActiveID();
 		int maxID = instructionSingleton.getMaxID();
 		
-		container_moreHelp.removeAll();
+		// TODO MORE HELP (remove more help panel for now)
+		//container_moreHelp.removeAll();
 		
 		//activate this instruction with instruction id = id
 		setBoxActive(true, false);
@@ -182,16 +186,18 @@ public class InstructionBox
 		}
 		
 		//building more help view related to this instruction
-		instructionSingleton.buildMoreHelpView(
-			moreHelp.getMoreHelpSet(instruction.getMoreHelpID()), 
-			moreHelp.getAnswerSet(instruction.getMoreHelpID())
-		);
+		// TODO MORE HELP (remove more help panel for now)
+//		instructionSingleton.buildMoreHelpView(
+//			moreHelp.getMoreHelpSet(instruction.getMoreHelpID()), 
+//			moreHelp.getAnswerSet(instruction.getMoreHelpID())
+//		);
 		
 		container_instruction.revalidate();
 		container_instruction.repaint();
 		
-		container_moreHelp.revalidate();
-		container_moreHelp.repaint();
+		// TODO MORE HELP (remove more help panel for now)
+//		container_moreHelp.revalidate();
+//		container_moreHelp.repaint();
 		
 	}
 	
@@ -205,12 +211,14 @@ public class InstructionBox
 		
 		if (active && !done){
 			box.setBorder(borderIfActive);
-			if(instruction.isHasMoreHelp()){
-				instructionSingleton.showMoreHelpPanel(false);
-				moreHelpLink.setVisible(true);
-			}else if(!instruction.isHasMoreHelp()){
-				instructionSingleton.showMoreHelpPanel(false);
-			}
+			
+			// TODO MORE HELP (remove more help panel for now)
+//			if(instruction.isHasMoreHelp()){
+//				instructionSingleton.showMoreHelpPanel(false);
+//				moreHelpLink.setVisible(true);
+//			}else if(!instruction.isHasMoreHelp()){
+//				instructionSingleton.showMoreHelpPanel(false);
+//			}
 			
 			String type = null;
 			String videoType = null;
@@ -325,7 +333,9 @@ public class InstructionBox
 			instructionSingleton.highlight(type, name);
 			instructionSingleton.showVideo(videoType);
 			
-		}else if (!active){
+		}
+		
+		else if (!active){
 			moreHelpLink.setVisible(false);
 			box.setBorder(borderIfInactive);
 			step.setFont(new Font("Helvetica", Font.PLAIN, 22));

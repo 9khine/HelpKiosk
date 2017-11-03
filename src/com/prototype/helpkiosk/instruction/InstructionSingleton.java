@@ -49,7 +49,6 @@ public class InstructionSingleton {
 	private InstructionView PHONEVIEW;
 	private InstructionView GALLERYVIEW;
 	
-	private MoreHelpView MOREHELPVIEW;
 	
 	private JPanel container;
 	private JPanel container_noshow;
@@ -58,14 +57,16 @@ public class InstructionSingleton {
 	private JPanel highlightContainer;
 	private MediaPanel mediaContainer;
 	
-	private JPanel moreHelpContainer;
 	private Accordion accordion;
 	
 	private JPanel lowerContainer;
 	private JPanel lowerPanel;
 	private Component lowerBox = Box.createRigidArea(new Dimension(0, 70));
 	
+	private JPanel moreHelpContainer;
 	private MoreHelp moreHelp;
+	private MoreHelpView moreHelpView;
+
 	private InstructionView activeView = null;
 	private int activeID = -1;
 	private int maxID = 0;
@@ -119,7 +120,7 @@ public class InstructionSingleton {
 		this.PHONEVIEW = new InstructionView(this.getContainer(), "PHONE");
 		this.GALLERYVIEW = new InstructionView(this.getContainer(), "GALLERY");
 		
-		this.MOREHELPVIEW = new MoreHelpView(this.getMoreHelpContainer());
+		this.moreHelpView = new MoreHelpView(this.getMoreHelpContainer());
 		this.moreHelp = new MoreHelp();		
 	}
 	
@@ -354,25 +355,21 @@ public class InstructionSingleton {
 	public void buildAppView(InstructionView view){
 		view.buildView(getContainer());
 	}
-	
-//	public void buildContactView(){
-//		this.CONTACTVIEW.buildView(getContainer());
-//	}
-	
+
 	public void buildMoreHelpView(String[] questions, String[] answers){
 		if (questions[0]=="") {
 			buildEmptyMoreHelpView();
 		} else {
-			this.MOREHELPVIEW.createFloorTab(getMoreHelpContainer(), questions, answers);
+			this.moreHelpView.createFloorTab(getMoreHelpContainer(), questions, answers);
 		}
 	}
 	
 	public void buildEmptyMoreHelpView(){
-		this.MOREHELPVIEW.createEmptyFloorTab(getMoreHelpContainer());
+		this.moreHelpView.createEmptyFloorTab(getMoreHelpContainer());
 	}
 	
 	public void buildEmptyMoreHelpView(JPanel container){
-		this.MOREHELPVIEW.createEmptyFloorTab(container);
+		this.moreHelpView.createEmptyFloorTab(container);
 	}
 
 	public void setAddContactInstruction(Instruction[] addContactInstruction) {
@@ -455,7 +452,8 @@ public class InstructionSingleton {
 	
 	public void updateInstructionView(){
 		SwingUtilities.updateComponentTreeUI(this.getContainer());
-		SwingUtilities.updateComponentTreeUI(this.getMoreHelpContainer());
+		// TODO MORE HELP (remove more help panel for now)
+		//SwingUtilities.updateComponentTreeUI(this.getMoreHelpContainer());
 	}
 
 	public void setAccordion(Accordion accordion) {
@@ -503,11 +501,11 @@ public class InstructionSingleton {
 	}
 
 	public void setMOREHELPVIEW(MoreHelpView mOREHELPVIEW) {
-		MOREHELPVIEW = mOREHELPVIEW;
+		moreHelpView = mOREHELPVIEW;
 	}
 
 	public MoreHelpView getMOREHELPVIEW() {
-		return MOREHELPVIEW;
+		return moreHelpView;
 	}
 
 	public void setActiveID(int activeID) {

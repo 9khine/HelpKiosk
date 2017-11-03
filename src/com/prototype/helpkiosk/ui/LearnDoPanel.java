@@ -16,6 +16,7 @@ import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 
 import com.prototype.helpkiosk.instruction.InstructionSingleton;
+import com.prototype.helpkiosk.ui.SearchPanel.TransparentButton;
 
 public class LearnDoPanel {
 
@@ -45,8 +46,9 @@ public class LearnDoPanel {
 		panel.add(Box.createRigidArea(new Dimension(10, 0)));
 		panel.add(createInstructionPanel());
 		panel.add(Box.createRigidArea(new Dimension(10, 0)));
-		panel.add(createMoreHelpPanel());
-		panel.add(Box.createRigidArea(new Dimension(10, 0)));
+		// TODO remove more help panel for now
+		//panel.add(createMoreHelpPanel());
+		//panel.add(Box.createRigidArea(new Dimension(10, 0)));
 
 	}
 
@@ -61,23 +63,20 @@ public class LearnDoPanel {
 
 		this.child_instructionPanel = new JPanel();
 		instructionPanel.add(this.child_instructionPanel);
-		return instructionPanel;
-	}
-
-	private JPanel createMoreHelpPanel(){
-		moreHelpPanel = new JPanel();
-
-		TitledBorder titleBorder = new TitledBorder("More Help");
-		titleBorder.setTitleFont(new Font("Helvetica", Font.ITALIC, 20));
-
-		moreHelpPanel.setLayout(new BoxLayout(moreHelpPanel, BoxLayout.Y_AXIS));
-		moreHelpPanel.add(Box.createRigidArea(new Dimension(0, 20)));
-		JButton toSearch = new JButton("Go back to Find Info panel");
+		
+		// Add go back to search button here
+		
+		JButton toSearch = new JButton("<html><center> Go back to Find Info panel </center></html>");
+		toSearch.setMaximumSize(new Dimension(instructionpanel_width, 50));
 		toSearch.setPreferredSize(toSearch.getMaximumSize());
+		toSearch.setBackground(Color.white);
+		toSearch.setBorder(new LineBorder(Color.BLACK));
+		toSearch.setContentAreaFilled(false);
+		toSearch.setFocusPainted(true);
+		Font font = new Font("Helvetica", Font.BOLD, 17);
+		toSearch.setFont(font);
 		toSearch.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0) {
-				instructionSingleton.highlight("nothing", "nothing");
-				instructionSingleton.showVideo("nothing");
 				if (instructionSingleton.getActiveView() == null) {
 					// do nothing
 				} else {
@@ -89,14 +88,52 @@ public class LearnDoPanel {
 			}
 		});
 
-		JPanel toSearchPanel = new JPanel();
-		toSearchPanel.setLayout(new BoxLayout(toSearchPanel, BoxLayout.X_AXIS));
-		toSearchPanel.setOpaque(false);
-		toSearchPanel.add(Box.createRigidArea(new Dimension(50, 20)));
-		toSearchPanel.add(toSearch);
-		toSearchPanel.add(Box.createRigidArea(new Dimension(10,20)));
+//		JPanel toSearchPanel = new JPanel();
+//		toSearchPanel.setLayout(new BoxLayout(toSearchPanel, BoxLayout.X_AXIS));
+//		toSearchPanel.setOpaque(true);
+//		toSearchPanel.add(Box.createRigidArea(new Dimension(instructionpanel_width + 100, 10)));
+//		toSearchPanel.add(toSearch);
 
-		moreHelpPanel.add(toSearchPanel);
+		instructionPanel.add(toSearch);
+		return instructionPanel;
+	}
+
+	private JPanel createMoreHelpPanel(){
+		moreHelpPanel = new JPanel();
+
+		TitledBorder titleBorder = new TitledBorder("More Help");
+		titleBorder.setTitleFont(new Font("Helvetica", Font.ITALIC, 20));
+
+		moreHelpPanel.setLayout(new BoxLayout(moreHelpPanel, BoxLayout.Y_AXIS));
+		moreHelpPanel.add(Box.createRigidArea(new Dimension(0, 20)));
+		
+		// move this to createInstructionPanel
+
+//		JButton toSearch = new JButton("Go back to Find Info panel");
+//		toSearch.setPreferredSize(toSearch.getMaximumSize());
+//		toSearch.addActionListener(new ActionListener(){
+//			public void actionPerformed(ActionEvent arg0) {
+//				instructionSingleton.highlight("nothing", "nothing");
+//				instructionSingleton.showVideo("nothing");
+//				if (instructionSingleton.getActiveView() == null) {
+//					// do nothing
+//				} else {
+//					for (int i = 0 ; i < instructionSingleton.getActiveView().instruction.length;  i++) {
+//						instructionSingleton.getActiveView().getInstructionBox(i).setBoxInactive();
+//					}
+//				}
+//				instructionSingleton.getAccordion().getAccordion().setSelectedIndex(1);
+//			}
+//		});
+//
+//		JPanel toSearchPanel = new JPanel();
+//		toSearchPanel.setLayout(new BoxLayout(toSearchPanel, BoxLayout.X_AXIS));
+//		toSearchPanel.setOpaque(false);
+//		toSearchPanel.add(Box.createRigidArea(new Dimension(50, 20)));
+//		toSearchPanel.add(toSearch);
+//		toSearchPanel.add(Box.createRigidArea(new Dimension(10,20)));
+
+		//moreHelpPanel.add(toSearchPanel);
 		moreHelpPanel.add(Box.createRigidArea(new Dimension(0, 20)));
 
 		child_moreHelpPanel = new JPanel();
@@ -122,6 +159,7 @@ public class LearnDoPanel {
 		child_instructionPanel.setBackground(Color.WHITE);
 
 		instructionSingleton.setContainer(child_instructionPanel);
+		// TODO MORE HELP (remove more help panel for now)
 		instructionSingleton.setContainer_parent(moreHelpPanel);
 		instructionSingleton.setContainer_noshow(child_moreHelpPanel_noshow);
 
