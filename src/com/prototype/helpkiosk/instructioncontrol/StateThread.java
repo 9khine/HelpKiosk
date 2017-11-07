@@ -78,7 +78,7 @@ public class StateThread extends Thread
 			try 
 			{				
 				String home = System.getProperty("user.home");
-				// TODO: change this to work on display (we should rename the android-sdk folder to -sdks on the Windows to solve this problem
+				// TODO: switch Mac/Windows
 				// Windows version:
 				Runtime.getRuntime().exec(home + "/android-sdk/platform-tools/adb logcat -c");
 				Process p = Runtime.getRuntime().exec(home + "/android-sdk/platform-tools/adb logcat ActivityManager:I AlarmMainActivity:D AlarmListView:D ComposerPerformance:D *:S");
@@ -179,13 +179,6 @@ public class StateThread extends Thread
 								instructionSingleton.updateLowerPanel("menu", false);
 							}
 							
-							// TODO: Enter new information
-							else if (getCmp().equals(CMP_NEW_CONTACT)){
-								instructionSingleton.getActiveView().getInstructionBox(1).instruction.setDone(true);
-								instructionSingleton.highlight("nothing", "contact");
-								instructionSingleton.updateLowerPanel("menu", false);
-							}
-							
 							/*
 							 * ------------------   CAMERA   -------------------
 							 */
@@ -193,6 +186,7 @@ public class StateThread extends Thread
 							else if (getCmp().equals(CMP_LAUNCH_CAMERA)){
 								System.out.println("CAMERA ACTIVE " + ++count_camera + " TIMES ");
 								instructionSingleton.getActiveView().getInstructionBox(0).instruction.setDone(true);
+								instructionSingleton.getActiveView().getInstructionBox(1).instruction.setDone(true);
 								instructionSingleton.highlight("nothing", "contact");
 							}
 							
@@ -231,9 +225,7 @@ public class StateThread extends Thread
 							/*
 							 * ------------------   CLOCK   -------------------
 							 */
-							
-							// TODO: check if this is working....
-							
+														
 							//LAUNCH CLOCK
 							else if (getCmp().equals(CMP_LAUNCH_CLOCK)) {
 								System.out.println("CLOCK ACTIVE " + ++count_clock + " TIMES ");
@@ -243,6 +235,8 @@ public class StateThread extends Thread
 
 							}
 						} else {
+							// THE FOLLOWING IS LOGIC FOR THE GOLD S7
+							
 							/*
 							 * ------------------   HOME   -------------------
 							 * 10-12 15:09:47.193  1351  1452 I ActivityManager: Displayed com.sec.android.app.launcher/.activities.LauncherActivity: +209ms

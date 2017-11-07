@@ -28,8 +28,8 @@ public class Phone {
 						true, new int[]{0}, "makeCall", 1, false);
 		
 		phoneInstruction[2] = new Instruction("<html>Tap <img src=\"http://i.imgur.com/rW0SoDK.png\" width=\"40\" height=\"40\"> "
-				+ "to make a voice call, or tap <img src=\"http://i.imgur.com/TKvVvHN.png\" width=\"40\" height=\"40\"> "
-				+ "to make a video call.</html>", 
+				+ "to make a voice call.</html>",
+				// ", or tap <img src=\"http://i.imgur.com/TKvVvHN.png\" width=\"40\" height=\"40\"> to make a video call."
 				true, new int[]{0}, "makeCall", 2, false);
 	}
 
