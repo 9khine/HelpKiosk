@@ -263,13 +263,14 @@ public class InstructionBox
 				
 			} else if (instruction.getType()=="takePicture") {
 				name = "camera";
+				
 				if (instruction.getId()==1) {
 					type = "focus";
-					videoType = "takePicture";
+					videoType = "previewPicture";
 				}
 				if (instruction.getId()==2) {
 					type = "shutter";
-					videoType = "nothing";
+					videoType = "takePicture";
 				}
 				
 			} else if (instruction.getType()=="clock") {
@@ -315,6 +316,7 @@ public class InstructionBox
 					type = "showMenus";
 					videoType = "menuTap";
 				}
+				
 			} else if (instruction.getType()=="makeCall") {
 				name = "makeCall";
 				if (instruction.getId()==1) {

@@ -113,6 +113,7 @@ public class SearchPanel extends JPanel {
 				Object[] options = {"Get started!"};
 				
 				JPanel splash = new JPanel();
+				
 				ImageIcon img = new ImageIcon("img/splash01.png");
 				JLabel image = new JLabel(img);
 				splash.setOpaque(false);

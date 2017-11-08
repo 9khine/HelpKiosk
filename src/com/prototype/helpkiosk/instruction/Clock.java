@@ -28,10 +28,10 @@ public class Clock {
 		clockInstruction[1] = new Instruction("<html>Touch Alarm <img src=\"http://i.imgur.com/W5xzbuc.png\" width=\"40\" height=\"40\"/></html>",
 				false, new int[]{0}, "clock", 1, true);
 		
-		clockInstruction[2] = new Instruction("<html>Tap ADD.</html>",
+		clockInstruction[2] = new Instruction("<html>Tap ADD, and set an alarm time.</html>",
 				false, new int[]{14,15,16}, "clock", 2, false);
 		
-		clockInstruction[3] = new Instruction("<html>Set an alarm time, then tap <b>Save</b>.</html>",
+		clockInstruction[3] = new Instruction("<html>Tap <b>Save</b>.</html>",
 				true, new int[]{14,15,16}, "clock", 3, false);
 	}
 	

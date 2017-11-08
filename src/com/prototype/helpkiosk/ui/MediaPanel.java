@@ -142,70 +142,88 @@ public class MediaPanel extends JPanel {
 		// MAC 
 		//String videoUrl = "file:///"+ home.replace("\\", "/") + "/git/HelpKiosk/video";
 		
-		// Contact
-		if (type=="openContact") {
-			videoUrl = videoUrl +"/contacts/contact_open_app.mp4";
-		} else if(type=="newContact"){
-			videoUrl = videoUrl +"/contacts/contact_new_contact.mp4";
-		} else if(type=="enterInfo"){
-			videoUrl = videoUrl +"/contacts/contact_enter_info.mp4";
-		} else if(type=="saveContact"){
-			videoUrl = videoUrl +"/contacts/contact_save.mp4";
-		} 
-
-		// Camera
-		else if(type=="openCam"){
-			videoUrl = videoUrl +"/camera/camera_open_app.mp4";
-		} else if(type=="previewPicture"){
-			videoUrl = videoUrl +"/camera/camera_focus.mp4";
-		} else if(type=="takePicture"){
-			videoUrl = videoUrl +"/camera/camera_take_photo.mp4";
-		} 
-
-		// Clock
-		else if(type=="openClock"){
-			videoUrl = videoUrl +"/clock/clock_open_app.mp4";
-		} else if(type=="touchAlarm"){
-			videoUrl = videoUrl +"/clock/clock_tap_alarm.mp4";
-		} else if(type=="setAlarm"){
-			videoUrl = videoUrl +"/clock/clock_set_alarm.mp4";
-		} else if(type=="saveAlarm"){
-	        videoUrl = videoUrl +"/clock/clock_save.mp4";
+		switch(type) {
+			// Contact
+			case "openContact":
+				videoUrl = videoUrl +"/contacts/contact_open_app.mp4";
+				break;
+			case "newContact":
+				videoUrl = videoUrl +"/contacts/contact_new_contact.mp4";
+				break;
+			case "enterInfo":
+				videoUrl = videoUrl +"/contacts/contact_enter_info.mp4";
+				break;
+			case "saveContact":
+				videoUrl = videoUrl +"/contacts/contact_save.mp4";
+				break;
+				
+			// Camera
+			case "openCam":
+				videoUrl = videoUrl +"/camera/camera_open_app.mp4";
+				break;
+			case "previewPicture":
+				videoUrl = videoUrl +"/camera/camera_focus.mp4";
+				break;
+			case "takePicture":
+				videoUrl = videoUrl +"/camera/camera_take_photo.mp4";
+				break;
+				
+			// Clock
+			case "openClock":
+				videoUrl = videoUrl +"/clock/clock_open_app.mp4";
+				break;
+			case "touchAlarm":
+				videoUrl = videoUrl +"/clock/clock_tap_alarm.mp4";
+				break;
+			case "setAlarm":
+				videoUrl = videoUrl +"/clock/clock_set_alarm.mp4";
+				break;
+			case "saveAlarm":
+		        videoUrl = videoUrl +"/clock/clock_save.mp4";
+				break;
+				
+			// Message
+			case "openMessage":
+				videoUrl = videoUrl +"/message/message_open_app.mp4";
+				break;
+			case "newMessage":
+				videoUrl = videoUrl +"/message/message_new.mp4";
+				break;
+			case "enterMessage":
+				videoUrl = videoUrl +"/message/message_enter.mp4";
+				break;
+			case "send":
+				videoUrl = videoUrl +"/message/message_send.mp4";
+				break;
+				
+			// Phone
+			case "openPhone":
+				videoUrl = videoUrl +"/phone/phone_open_app.mp4";
+				break;
+			case "enterNumber":
+				videoUrl = videoUrl +"/phone/phone_enter_num.mp4";
+				break;
+			case "call":
+				videoUrl = videoUrl +"/phone/phone_call.mp4";
+				break;
+				
+			// Gallery
+			case "openGallery":
+				videoUrl = videoUrl +"/gallery/gallery_open_app.mp4";
+				break;
+			case "select":
+				videoUrl = videoUrl +"/gallery/gallery_select.mp4";
+				break;
+			case "menuTap":
+				videoUrl = videoUrl +"/gallery/gallery_menu_tap.mp4";
+				break;
+			
+			// nothing
+			default:
+				videoUrl = "";
+				break;
 		}
-
-		// Message
-		else if(type=="openMessage"){
-			videoUrl = videoUrl +"/message/message_open_app.mp4";
-		} else if(type=="newMessage"){
-			videoUrl = videoUrl +"/message/message_new.mp4";
-		} else if(type=="enterMessage"){
-			videoUrl = videoUrl +"/message/message_enter.mp4";
-		} else if(type=="send"){
-			videoUrl = videoUrl +"/message/message_send.mp4";
-		}
-
-		// Phone
-		else if(type=="openPhone"){
-			videoUrl = videoUrl +"/phone/phone_open_app.mp4";
-		} else if(type=="enterNumber"){
-			videoUrl = videoUrl +"/phone/phone_enter_num.mp4";
-		} else if(type=="call"){
-			videoUrl = videoUrl +"/phone/phone_tap_call.mp4";
-		} 
-
-		// Gallery
-		else if(type=="openGallery"){
-			videoUrl = videoUrl +"/gallery/gallery_open_app.mp4";
-		} else if(type=="select"){
-			videoUrl = videoUrl +"/gallery/gallery_select.mp4";
-		} else if(type=="menuTap"){
-			videoUrl = videoUrl +"/gallery/gallery_menu_tap.mp4";
-		} 
-
-		// None
-		else if(type=="nothing"){
-			videoUrl = "";
-		}
+		
 
 		return videoUrl;
 	}
@@ -214,184 +232,4 @@ public class MediaPanel extends JPanel {
 		this.mediaURL = mediaURL;
 	}
 
-} // end class MediaPanel
-	
-// ----------------------------------------------------------------------------------------------	
-	
-//	public void show() {
-//		// Use lightweight components for Swing compatibility
-//		Manager.setHint( Manager.LIGHTWEIGHT_RENDERER, true );
-//
-//		try {
-//			
-//			if (mediaURL != null) {
-//				
-//				System.out.println("mediaURL is: " + mediaURL);
-//				// create a player to play the media specified in the URL
-//				mediaPlayer = Manager.createRealizedPlayer(mediaURL);
-//				
-//				System.out.println("mediaPlayer vis component: " + mediaPlayer.getVisualComponent());
-//				// get the components for the video and the play-back controls
-//				Component video = mediaPlayer.getVisualComponent();
-//				//video.setVisible(true);
-//				mediaPlayer.getGainControl();
-//				mediaPlayer.addControllerListener((ControllerListener) mediaPlayer);
-//				Component controls = mediaPlayer.getControlPanelComponent();
-//
-//				controls.setPreferredSize(new Dimension(controls.getWidth(), 20));
-//
-//				video.addMouseListener(
-//						new MouseAdapter() {
-//							public void mouseEntered(MouseEvent evt) {
-//								mediaPlayer.prefetch();
-//								mediaPlayer.setMediaTime(new Time(0));
-//								mediaPlayer.start();
-//							}
-//							public void mouseExited(MouseEvent evt) {
-//								System.out.println("!!! What is media state - " + mediaPlayer.getState());
-//								mediaPlayer.stop();
-//							}
-//							public void mouseClicked(MouseEvent evt) {
-//								mediaPlayer.prefetch();
-//								mediaPlayer.setMediaTime(new Time(0));
-//								mediaPlayer.start();
-//								//mediaPlayer.stop();
-//							}
-//							public void mousePressed(MouseEvent evt) {
-//								//Time pausedTime = mediaPlayer.getMediaTime();
-//								//mediaPlayer.stop();
-//								//mediaPlayer.setMediaTime(pausedTime);
-//								//mediaPlayer.start();
-//							}
-//
-//							public void mouseReleased(MouseEvent evt) {
-//								//mediaPlayer.start();
-//							}	
-//						});	
-//
-//				if ( video != null ) {
-//					add( video, BorderLayout.CENTER ); // add video component
-//					System.out.println("video is in CENTER");
-//				}
-//
-//				if ( controls != null ) {
-//					add( controls, BorderLayout.SOUTH ); // add controls
-//					System.out.println("controls are in SOUTH");
-//				}
-//			}
-//		} // end try
-//		catch ( NoPlayerException noPlayerException )
-//		{
-//			System.err.println( "No media player found" );
-//		} // end catch
-//		catch ( CannotRealizeException cannotRealizeException )
-//		{
-//			System.err.println( "Could not realize media player" );
-//		} // end catch
-//		catch ( IOException iOException )
-//		{
-//			System.err.println( "Error reading from the source" );
-//		} // end catch
-//	}
-	
-	
-	
-	// Use lightweight components for Swing compatibility
-//	Manager.setHint( Manager.LIGHTWEIGHT_RENDERER, true );
-//	try {
-//
-//		if (mediaURL != null) {
-//			
-//			//----------------------------------------------------
-//			//			player videos on desktop
-//			//								String home = System.getProperty("user.home");
-//			//								String videoFolder = home + "/git/HelpKiosk/video";	
-//			//								String filename = videoFolder+"/old_videos/openclock.MPG";
-//			//								
-//			//								//System.out.println(filename);
-//			//								
-//			//								File vid = new File(filename);
-//			//								Desktop.getDesktop().open(vid);
-//			//----------------------------------------------------
-//			
-//		
-//			// --------------------------------------------------
-//			
-//			System.out.println("mediaURL is: " + mediaURL);
-//			// create a player to play the media specified in the URL
-//			mediaPlayer = Manager.createRealizedPlayer(mediaURL);
-//			
-//			System.out.println("mediaPlayer is: " + mediaPlayer);
-//			System.out.println("mediaPlayer vis component: " + mediaPlayer.getVisualComponent());
-//			// get the components for the video and the play-back controls
-//			Component video = mediaPlayer.getVisualComponent();
-//			//video.setVisible(true);
-//			mediaPlayer.getGainControl();
-//			mediaPlayer.addControllerListener((ControllerListener) mediaPlayer);
-//			Component controls = mediaPlayer.getControlPanelComponent();
-//
-//			controls.setPreferredSize(new Dimension(controls.getWidth(), 20));
-//			
-//			//---------------     	!!!!! 	ERROR ZONE 	!!!!! ----------------------------
-//			//				video.addMouseListener(
-//			//						new MouseAdapter() {
-//			//							public void mouseClicked(MouseEvent evt) {
-//			//								mediaPlayer.setMediaTime(new Time(0));
-//			//								mediaPlayer.start();
-//			//								mediaPlayer.stop();
-//			//							}
-//			//
-//			//							public void mouseReleased(MouseEvent evt) {
-//			//							}
-//			//						});	
-//			//
-//			//				if ( video != null ) {
-//			//					add( video, BorderLayout.CENTER ); // add video component
-//			//					System.out.println("video is in CENTER");
-//			//				}
-//			//
-//			//				if ( controls != null ) {
-//			//					add( controls, BorderLayout.SOUTH ); // add controls
-//			//					System.out.println("controls are in SOUTH");
-////			}
-//			//---------------     	!!!!! 	ERROR ZONE 	!!!!! ----------------------------
-//			
-//			
-//		}
-//	} // end try
-//	catch ( NoPlayerException noPlayerException )
-//	{
-//		System.err.println( "No media player found" );
-//	} // end catch
-//	catch ( CannotRealizeException cannotRealizeException )
-//	{
-//		System.err.println( "Could not realize media player" );
-//	} // end catch
-//	catch ( IOException iOException )
-//	{
-//		System.err.println( "Error reading from the source" );
-//	} // end catch
-//	catch (Exception e) {
-//		e.printStackTrace();
-//	}
-
-
-	//	//	https://stackoverflow.com/questions/20440484/embed-a-youtube-video-to-jframe
-	//	// 	http://djproject.sourceforge.net/ns/
-	//	public JPanel getBrowserPanel() {
-	//	    JPanel webBrowserPanel = new JPanel(new BorderLayout());
-	//	    JWebBrowser webBrowser = new JWebBrowser();
-	//	    webBrowserPanel.add(webBrowser, BorderLayout.CENTER);
-	//	    webBrowser.setBarsVisible(false);
-	//	    webBrowser.navigate("https://www.youtube.com/watch?v=3tmd-ClpJxA");
-	//	    return webBrowserPanel;
-	//	}
-
-
-	//	http://lethalman.blogspot.ca/2009/02/jmf-and-mpeg.html
-	//	http://jffmpeg.sourceforge.net/
-	//	Format[] inFormats = { new VideoFormat ("MPEG") };
-	//	PlugInManager.addPlugIn ("net.sourceforge.jffmpeg.VideoDecoder", inFormats, null, PlugInManager.CODEC);
-	//	PlugInManager.commit ();
-
-
+} 
