@@ -125,8 +125,9 @@ public class StateThread extends Thread
 //						/Users/pablo/android-sdks/platform-tools/adb logcat -v brief AlarmListView:D *:S
 						
 //						System.out.println("Alarm pane active");
-						if (line.indexOf("resizeLayoutWithDrag : 2")==55) {														
+						if (line.indexOf("resizeLayoutWithDrag : 2")==48) {														
 							instructionSingleton.getActiveView().getInstructionBox(2).instruction.setDone(true);
+							instructionSingleton.getActiveView().getInstructionBox(3).instruction.setDone(true);
 							instructionSingleton.highlight("nothing", "contact");
 						}
 					} else if (line.indexOf("D ComposerPerformance")==31) {
@@ -134,6 +135,7 @@ public class StateThread extends Thread
 						// 10-16 15:53:52.384  4408  4408 D ComposerPerformance: create new message
 						
 						instructionSingleton.getActiveView().getInstructionBox(1).instruction.setDone(true);
+						instructionSingleton.getActiveView().getInstructionBox(2).instruction.setDone(true);
 						instructionSingleton.highlight("nothing", "contact");
 					} else if (line.indexOf("I ActivityManager")==31) {
 //						System.out.println(line);
@@ -175,6 +177,7 @@ public class StateThread extends Thread
 							//Click on new contact
 							else if (getCmp().equals(CMP_NEW_CONTACT)){
 								instructionSingleton.getActiveView().getInstructionBox(1).instruction.setDone(true);
+								instructionSingleton.getActiveView().getInstructionBox(2).instruction.setDone(true);
 								instructionSingleton.highlight("nothing", "contact");
 								instructionSingleton.updateLowerPanel("menu", false);
 							}
