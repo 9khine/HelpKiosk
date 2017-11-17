@@ -24,7 +24,7 @@ public class Contact {
 						false, new int[]{0}, "addContact", 0, true);
 
 		contactInstruction[1] = new Instruction
-				("<html>Tap <img src=\"http://i.imgur.com/bkvC2B6.png\" width=\"40\" height=\"40\">.</html>", 
+				("<html>Tap <img src=\"http://i.imgur.com/bkvC2B6.png\" width=\"40\" height=\"40\"></html>", 
 						false, new int[]{0}, "addContact", 1, true);
 
 		contactInstruction[2] = new Instruction("<html>Enter contact information.</html>", 

@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
+import com.prototype.helpkiosk.instruction.InstructionBox;
 import com.prototype.helpkiosk.instruction.InstructionSingleton;
 
 public class StateThread extends Thread 
@@ -111,6 +112,7 @@ public class StateThread extends Thread
 											
 						if (line.indexOf("onResume")==29) {														
 							instructionSingleton.getActiveView().getInstructionBox(1).instruction.setDone(true);
+							instructionSingleton.getActiveView().getInstructionBox(1).box.setBorder(InstructionBox.borderIfDone);
 							instructionSingleton.highlight("nothing", "contact");
 						}
 					} else if (line.indexOf("D AlarmListView")==31) {
@@ -127,6 +129,7 @@ public class StateThread extends Thread
 //						System.out.println("Alarm pane active");
 						if (line.indexOf("resizeLayoutWithDrag : 2")==48) {														
 							instructionSingleton.getActiveView().getInstructionBox(2).instruction.setDone(true);
+							instructionSingleton.getActiveView().getInstructionBox(2).box.setBorder(InstructionBox.borderIfDone);
 							instructionSingleton.getActiveView().getInstructionBox(3).instruction.setDone(true);
 							instructionSingleton.highlight("nothing", "contact");
 						}
@@ -135,6 +138,7 @@ public class StateThread extends Thread
 						// 10-16 15:53:52.384  4408  4408 D ComposerPerformance: create new message
 						
 						instructionSingleton.getActiveView().getInstructionBox(1).instruction.setDone(true);
+						instructionSingleton.getActiveView().getInstructionBox(1).box.setBorder(InstructionBox.borderIfDone);
 						instructionSingleton.getActiveView().getInstructionBox(2).instruction.setDone(true);
 						instructionSingleton.highlight("nothing", "contact");
 					} else if (line.indexOf("I ActivityManager")==31) {
@@ -171,12 +175,14 @@ public class StateThread extends Thread
 							else if (getCmp().equals(CMP_LAUNCH_CONTACTS)){
 								System.out.println("CONTACTS ACTIVE " + ++count_contacts + " TIMES ");
 								instructionSingleton.getActiveView().getInstructionBox(0).instruction.setDone(true);
+								instructionSingleton.getActiveView().getInstructionBox(0).box.setBorder(InstructionBox.borderIfDone);
 								instructionSingleton.highlight("nothing", "contact");
 							}
 							
 							//Click on new contact
 							else if (getCmp().equals(CMP_NEW_CONTACT)){
 								instructionSingleton.getActiveView().getInstructionBox(1).instruction.setDone(true);
+								instructionSingleton.getActiveView().getInstructionBox(1).box.setBorder(InstructionBox.borderIfDone);
 								instructionSingleton.getActiveView().getInstructionBox(2).instruction.setDone(true);
 								instructionSingleton.highlight("nothing", "contact");
 								instructionSingleton.updateLowerPanel("menu", false);
@@ -189,6 +195,7 @@ public class StateThread extends Thread
 							else if (getCmp().equals(CMP_LAUNCH_CAMERA)){
 								System.out.println("CAMERA ACTIVE " + ++count_camera + " TIMES ");
 								instructionSingleton.getActiveView().getInstructionBox(0).instruction.setDone(true);
+								instructionSingleton.getActiveView().getInstructionBox(0).box.setBorder(InstructionBox.borderIfDone);
 								instructionSingleton.getActiveView().getInstructionBox(1).instruction.setDone(true);
 								instructionSingleton.highlight("nothing", "contact");
 							}
@@ -200,6 +207,7 @@ public class StateThread extends Thread
 							else if (getCmp().equals(CMP_LAUNCH_MESSAGES)){
 								System.out.println("MESSAGES ACTIVE " + ++count_messages + " TIMES ");
 								instructionSingleton.getActiveView().getInstructionBox(0).instruction.setDone(true);
+								instructionSingleton.getActiveView().getInstructionBox(0).box.setBorder(InstructionBox.borderIfDone);
 								instructionSingleton.highlight("nothing", "contact");
 							}
 							
@@ -210,6 +218,7 @@ public class StateThread extends Thread
 							else if (getCmp().equals(CMP_LAUNCH_PHONE)){
 								System.out.println("PHONE ACTIVE " + ++count_phone + " TIMES ");
 								instructionSingleton.getActiveView().getInstructionBox(0).instruction.setDone(true);
+								instructionSingleton.getActiveView().getInstructionBox(0).box.setBorder(InstructionBox.borderIfDone);
 								instructionSingleton.getActiveView().getInstructionBox(1).instruction.setDone(true);
 								instructionSingleton.highlight("nothing", "contact");
 							}
@@ -221,6 +230,7 @@ public class StateThread extends Thread
 							else if (getCmp().equals(CMP_LAUNCH_GALLERY)){
 								System.out.println("GALLERY ACTIVE " + ++count_gallery + " TIMES ");
 								instructionSingleton.getActiveView().getInstructionBox(0).instruction.setDone(true);
+								instructionSingleton.getActiveView().getInstructionBox(0).box.setBorder(InstructionBox.borderIfDone);
 								instructionSingleton.getActiveView().getInstructionBox(1).instruction.setDone(true);
 								instructionSingleton.highlight("nothing", "contact");
 							}
@@ -233,6 +243,7 @@ public class StateThread extends Thread
 							else if (getCmp().equals(CMP_LAUNCH_CLOCK)) {
 								System.out.println("CLOCK ACTIVE " + ++count_clock + " TIMES ");
 								instructionSingleton.getActiveView().getInstructionBox(0).instruction.setDone(true);
+								instructionSingleton.getActiveView().getInstructionBox(0).box.setBorder(InstructionBox.borderIfDone);
 								instructionSingleton.getActiveView().getInstructionBox(1).instruction.setDone(true);
 								instructionSingleton.highlight("nothing", "contact");
 

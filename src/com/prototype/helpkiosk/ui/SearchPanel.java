@@ -83,13 +83,15 @@ public class SearchPanel extends JPanel {
 		instructionFiller.setLayout(new FlowLayout((FlowLayout.LEFT)));
 //		instructionFiller.add(Box.createRigidArea(new Dimension(this.getWidth(), 10)));
 		JLabel heading = new JLabel();
-		heading.setText("Start by choosing a task.");
+		heading.setText("Start by choosing a task... ");
 		heading.setFont(new Font("Helvetica", Font.BOLD,  22));
 		heading.setForeground(Color.DARK_GRAY);
 		
 		JLabel subheading = new JLabel();
-		subheading.setText("      * Please click the home button at the bottom of the phone to return to the home screen.");
-		subheading.setFont(new Font("Helvetica", Font.ITALIC,  14));
+		//subheading.setText("      * Please click the home button at the bottom of the phone to return to the home screen.");
+		//subheading.setFont(new Font("Helvetica", Font.ITALIC,  14));
+		subheading.setText("      * To return to the home screen, please click on the home button at the bottom of the phone.");
+		subheading.setFont(new Font("Helvetica", Font.HANGING_BASELINE,  14));
 		subheading.setForeground(Color.DARK_GRAY);
 
 		instructionFiller.add(heading);

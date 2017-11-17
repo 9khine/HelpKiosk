@@ -54,7 +54,7 @@ public class Instruction {
 	}
 
 	public void setDone(boolean isDone) {
-		System.out.println("instruction id="+this.id+" is set to be " + isDone);
+//		System.out.println("instruction id="+this.id+" is set to be " + isDone);
 		this.isDone = isDone;
 	}
 

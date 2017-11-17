@@ -20,9 +20,9 @@ import javax.swing.SwingConstants;
 import javax.swing.border.Border;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
 
-public class InstructionBox
-{
+public class InstructionBox{
 	private InstructionSingleton instructionSingleton = InstructionSingleton.getInstance();
 	public JButton box, step, instructionArea, instructionArea_parent, step_parent;
 	public Instruction instruction;
@@ -33,8 +33,8 @@ public class InstructionBox
 	public Border borderIfActive = new CompoundBorder(
 									BorderFactory.createLineBorder(Color.ORANGE, 4),
 									new EmptyBorder(2, 5, 1, 1));
-	public Border borderIfDone = new CompoundBorder(
-			BorderFactory.createLineBorder(Color.GREEN, 4),
+	public static Border borderIfDone = new CompoundBorder(
+			BorderFactory.createLineBorder(new Color(113,228,132), 4),
 			new EmptyBorder(2, 5, 1, 1));
 	public Border borderIfInactive = new EmptyBorder(2,6,1,1);
 	
@@ -66,12 +66,16 @@ public class InstructionBox
 		styleButton(box);
 		addActionListener(box);
 		
-		step = new JButton("Step " + (instructionID+1) + " : ");
+		step = new JButton(" Step " + (instructionID+1) + " ");
 		step.setLayout(new FlowLayout());
 		step.setVerticalAlignment(SwingConstants.TOP);
 		step.setFont(new Font("Helvetica", Font.PLAIN, 22));
 		addActionListener(step);
 		styleButton(step);
+		Border raisedBorder = BorderFactory.createRaisedBevelBorder();
+		step.setBorder(new LineBorder(Color.BLACK));
+		step.setBorder(raisedBorder);
+		step.setContentAreaFilled(true);
 		
 		instructionArea = new JButton(instruction.getInstruction());
 		instructionArea.setFont(new Font("Helvetica", Font.PLAIN, 22));
@@ -175,13 +179,17 @@ public class InstructionBox
 		instructionSingleton.setActiveID(id);
 		activeID = id;
 		
-		// TODO: De-activate other instructions -- set as "Done"
 		for (int i=0 ; i<=maxID ;  i++) {
 			if (i != activeID) {
 				instructionSingleton.getActiveView().getInstructionBox(i).setBoxInactive();
 				if(instructionSingleton.getActiveView().getInstructionBox(i).instruction.isActive()) {
 					instructionSingleton.getActiveView().getInstructionBox(i).setBoxActive(false, true);
 				}
+			}
+			
+			// TODO: set as "Done"
+			if (i < activeID) {
+				instructionSingleton.getActiveView().getInstructionBox(i).box.setBorder(borderIfDone);
 			}
 		}
 		
@@ -209,7 +217,7 @@ public class InstructionBox
 	public void setBoxActive(boolean active, boolean done) {
 		instruction.setActive(active);
 		
-		if (active && !done){
+		if (active && !done) {
 			box.setBorder(borderIfActive);
 			
 			// TODO MORE HELP (remove more help panel for now)
@@ -335,9 +343,7 @@ public class InstructionBox
 			instructionSingleton.highlight(type, name);
 			instructionSingleton.showVideo(videoType);
 			
-		}
-		
-		else if (!active){
+		} else if (!active) {
 			moreHelpLink.setVisible(false);
 			box.setBorder(borderIfInactive);
 			step.setFont(new Font("Helvetica", Font.PLAIN, 22));
@@ -377,11 +383,11 @@ public class InstructionBox
 		button.setBackground(Color.WHITE);
 	}
 	
-	public JButton getBoxArea(){
+	public JButton getBoxArea() {
 		return box;
 	}
 	
-	public JButton getInstructionArea(){
+	public JButton getInstructionArea() {
 		return this.instructionArea;
 	}
 	

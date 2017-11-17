@@ -66,13 +66,16 @@ public class LearnDoPanel {
 		
 		// Add go back to search button here
 		
-		JButton toSearch = new JButton("<html><center> Go back to Find Info panel </center></html>");
+		JButton toSearch = new JButton("<html><center> Go back to Choose Task panel </center></html>");
 		toSearch.setMaximumSize(new Dimension(instructionpanel_width, 50));
 		toSearch.setPreferredSize(toSearch.getMaximumSize());
-		toSearch.setBackground(Color.white);
-		toSearch.setBorder(new LineBorder(Color.BLACK));
-		toSearch.setContentAreaFilled(false);
+		//toSearch.setBorder(new LineBorder(Color.BLACK));
+		toSearch.setBackground(Color.LIGHT_GRAY);
+		toSearch.setContentAreaFilled(true);
 		toSearch.setFocusPainted(true);
+		Border raisedBorder = BorderFactory.createRaisedBevelBorder();
+		toSearch.setBorder(raisedBorder);
+		//toSearch.setBorder(new LineBorder(Color.BLACK));
 		Font font = new Font("Helvetica", Font.BOLD, 17);
 		toSearch.setFont(font);
 		toSearch.addActionListener(new ActionListener(){

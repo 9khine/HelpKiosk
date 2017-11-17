@@ -37,7 +37,7 @@ public class Message {
 		messageInstruction[0] = new Instruction("<html>Tap Messages <img src=\"http://i.imgur.com/z5swwBJ.png\" width=\"40\" height=\"40\"> on the Apps screen.</html>", 
 				false, new int[]{0}, "sendMessage", 0, true);
 		
-		messageInstruction[1] = new Instruction("<html>Tap <img src=\"https://i.imgur.com/MASLyvC.png\" width=\"40\" height=\"40\">.</html>",
+		messageInstruction[1] = new Instruction("<html>Tap <img src=\"https://i.imgur.com/MASLyvC.png\" width=\"40\" height=\"40\"></html>",
 				false, new int[]{0}, "sendMessage", 1, true);
 		
 		messageInstruction[2] = new Instruction("<html>Add recipients and enter a message.</html>", 
