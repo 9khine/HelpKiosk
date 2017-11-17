@@ -71,11 +71,12 @@ public class InstructionBox{
 		step.setVerticalAlignment(SwingConstants.TOP);
 		step.setFont(new Font("Helvetica", Font.PLAIN, 22));
 		addActionListener(step);
-		styleButton(step);
-		Border raisedBorder = BorderFactory.createRaisedBevelBorder();
+//		styleButton(step);
+//		Border raisedBorder = BorderFactory.createRaisedBevelBorder();
 		step.setBorder(new LineBorder(Color.BLACK));
-		step.setBorder(raisedBorder);
-		step.setContentAreaFilled(true);
+		step.setPreferredSize(new Dimension(160, 50));
+//		step.setBorder(raisedBorder);
+//		step.setContentAreaFilled(true);
 		
 		instructionArea = new JButton(instruction.getInstruction());
 		instructionArea.setFont(new Font("Helvetica", Font.PLAIN, 22));
