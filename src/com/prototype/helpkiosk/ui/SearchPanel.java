@@ -16,6 +16,8 @@ public class SearchPanel extends JPanel {
 	private InstructionSingleton instructionSingleton = InstructionSingleton.getInstance();
 
 	private Dimension btnSize = new Dimension(160, 50);
+	private Font btnFont = new Font("Helvetica", Font.PLAIN, 17);
+	private Font panelTitles = new Font("Helvetica", Font.BOLD, 17);
 
 	public SearchPanel(){
 		
@@ -84,7 +86,7 @@ public class SearchPanel extends JPanel {
 //		instructionFiller.add(Box.createRigidArea(new Dimension(this.getWidth(), 10)));
 		JLabel heading = new JLabel();
 		heading.setText("Start by choosing a task... ");
-		heading.setFont(new Font("Helvetica", Font.BOLD,  22));
+		heading.setFont(new Font("Helvetica", Font.BOLD,  24));
 		heading.setForeground(Color.DARK_GRAY);
 
 		instructionFiller.add(heading);
@@ -149,6 +151,8 @@ public class SearchPanel extends JPanel {
 		JPanel clockPanel = new JPanel();
 		clockPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
 		clockPanel.setBorder(BorderFactory.createTitledBorder("Clock: "));
+		((javax.swing.border.TitledBorder) clockPanel.getBorder()).setTitleFont(panelTitles);
+
 		clockPanel.setBackground(Color.WHITE);
 		clockPanel.setSize(new Dimension(this.getWidth(), 70));
 		TransparentButton filler = new TransparentButton("FILL", (float) 0.0);
@@ -182,6 +186,7 @@ public class SearchPanel extends JPanel {
 		JPanel contactPanel = new JPanel();
 		contactPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
 		contactPanel.setBorder(BorderFactory.createTitledBorder("Contacts: "));
+		((javax.swing.border.TitledBorder) contactPanel.getBorder()).setTitleFont(panelTitles);
 		contactPanel.setBackground(Color.WHITE);
 		contactPanel.setSize(new Dimension(this.getWidth(), 70));
 		TransparentButton filler = new TransparentButton("FILL", (float) 0.0);
@@ -215,6 +220,7 @@ public class SearchPanel extends JPanel {
 		JPanel cameraPanel = new JPanel();
 		cameraPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
 		cameraPanel.setBorder(BorderFactory.createTitledBorder("Camera: "));
+		((javax.swing.border.TitledBorder) cameraPanel.getBorder()).setTitleFont(panelTitles);
 		cameraPanel.setBackground(Color.WHITE);
 		cameraPanel.setSize(new Dimension(this.getWidth(), 70));
 		TransparentButton filler = new TransparentButton("FILL", (float) 0.0);
@@ -226,7 +232,7 @@ public class SearchPanel extends JPanel {
 		takePicture.setPreferredSize(btnSize);
 		JButton takeVideo = new JButton("<html><body style=\"text-align: center\">Taking<br>Videos</html>");
 		takeVideo.setPreferredSize(btnSize);
-		JButton lockScreenPic = new JButton("<html><body style=\"text-align: center\">Launching Camera<br>on Lock Screen</html>");
+		JButton lockScreenPic = new JButton("<html><body style=\"text-align: center\">Launch Camera<br>on Lock Screen</html>");
 		lockScreenPic.setPreferredSize(btnSize);
 
 		cameraPanel.add(instructionView(takePicture, 2));
@@ -248,6 +254,7 @@ public class SearchPanel extends JPanel {
 		messagesPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
 		messagesPanel.setSize(new Dimension(this.getWidth(), 70));
 		messagesPanel.setBorder(BorderFactory.createTitledBorder("Messages: "));
+		((javax.swing.border.TitledBorder) messagesPanel.getBorder()).setTitleFont(panelTitles);
 		messagesPanel.setBackground(Color.WHITE);
 		TransparentButton filler = new TransparentButton("FILL", (float) 0.0);
 		filler.setOpaque(false);
@@ -278,6 +285,7 @@ public class SearchPanel extends JPanel {
 		phonePanel.setLayout(new FlowLayout(FlowLayout.LEFT));
 		phonePanel.setSize(new Dimension(this.getWidth(), 70));
 		phonePanel.setBorder(BorderFactory.createTitledBorder("Phone: "));
+		((javax.swing.border.TitledBorder) phonePanel.getBorder()).setTitleFont(panelTitles);
 		phonePanel.setBackground(Color.WHITE);
 		TransparentButton filler = new TransparentButton("FILL", (float) 0.0);
 		filler.setOpaque(false);
@@ -309,6 +317,7 @@ public class SearchPanel extends JPanel {
 		galleryPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
 		galleryPanel.setSize(new Dimension(this.getWidth(), 70));
 		galleryPanel.setBorder(BorderFactory.createTitledBorder("Gallery: "));
+		((javax.swing.border.TitledBorder) galleryPanel.getBorder()).setTitleFont(panelTitles);
 		galleryPanel.setBackground(Color.WHITE);
 		TransparentButton filler = new TransparentButton("FILL", (float) 0.0);
 		filler.setOpaque(false);
@@ -336,7 +345,9 @@ public class SearchPanel extends JPanel {
 	}
 
 	private JButton instructionView(JButton button, final int appNumber) {
-
+		
+		button.setFont(btnFont);
+		
 		button.addActionListener(
 				new ActionListener(){
 					public void actionPerformed(ActionEvent e){
