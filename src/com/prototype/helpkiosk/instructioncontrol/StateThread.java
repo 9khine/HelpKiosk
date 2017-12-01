@@ -79,7 +79,7 @@ public class StateThread extends Thread
 				// TODO: switch Mac/Windows
 				// Windows version:
 				Runtime.getRuntime().exec(home + "/android-sdk/platform-tools/adb logcat -c");
-				Process p = Runtime.getRuntime().exec(home + "/android-sdk/platform-tools/adb logcat ActivityManager:I AlarmMainActivity:D AlarmListView:D ComposerPerformance:D TextFieldsEditorView:D ContactEditorFragment:D *:S");
+				Process p = Runtime.getRuntime().exec(home + "/android-sdk/platform-tools/adb logcat ActivityManager:I AlarmMainActivity:D AlarmListView:D ComposerPerformance:D TextFieldsEditorView:D ContactEditorFragment:D Mms/BottomPanel:I Mms/WorkingMessage:D *:S");
 				// Mac version:
 //				Runtime.getRuntime().exec(home + "/android-sdks/platform-tools/adb logcat -c");
 //				Process p = Runtime.getRuntime().exec(home + "/android-sdks/platform-tools/adb logcat ActivityManager:I AlarmProvider:D ComposerPerformance:D *:S");
@@ -107,20 +107,28 @@ public class StateThread extends Thread
 						}
 					} else if (line.indexOf("afterPhoneNumberFormattingTextWatcher")==55) {
 						/* CONTACT INFO ENTERED */
-						// 11-30 17:59:04.439 10645 10645 D TextFieldsEditorView: afterPhoneNumberFormattingTextWatcher :
-						System.out.println(line);
 						instructionSingleton.getActiveView().getInstructionBox(2).instruction.setDone(true);
 						instructionSingleton.getActiveView().getInstructionBox(2).box.setBorder(InstructionBox.borderIfDone);
 					} else if (line.indexOf("contact save button clicked")==56) {
 						/* CONTACT SAVED */
-						// 11-30 18:08:36.129 11078 11078 D ContactEditorFragment: contact save button clicked
 						instructionSingleton.getActiveView().getInstructionBox(3).instruction.setDone(true);
 						instructionSingleton.getActiveView().getInstructionBox(3).box.setBorder(InstructionBox.borderIfDone);
 					} else if (line.indexOf("D ComposerPerformance")==31) {
-						/* COMPOSE MESSAGE */
+						/* NEW MESSAGE */
 						instructionSingleton.getActiveView().getInstructionBox(1).instruction.setDone(true);
 						instructionSingleton.getActiveView().getInstructionBox(1).box.setBorder(InstructionBox.borderIfDone);
-//						instructionSingleton.getActiveView().getInstructionBox(2).instruction.setDone(true);
+						instructionSingleton.highlight("nothing", "contact");
+					} else if (line.indexOf("android.widget.EditText")==69) {
+						/* COMPOSE MESSAGE */
+						// 11-30 18:23:02.919 11768 11768 I Mms/BottomPanel: onTouch() - View = android.widget.EditText{26cf68d VFED..CL. ...p.... 0,0-892,174 #7f10055a app:id/editor_body}
+						instructionSingleton.getActiveView().getInstructionBox(2).instruction.setDone(true);
+						instructionSingleton.getActiveView().getInstructionBox(2).box.setBorder(InstructionBox.borderIfDone);
+						instructionSingleton.highlight("nothing", "contact");
+					} else if (line.indexOf("[SEND]")==53) {
+						/* SEND MESSAGE */
+						// 11-30 18:29:01.709 11883 11883 D Mms/WorkingMessage: [SEND]
+						instructionSingleton.getActiveView().getInstructionBox(3).instruction.setDone(true);
+						instructionSingleton.getActiveView().getInstructionBox(3).box.setBorder(InstructionBox.borderIfDone);
 						instructionSingleton.highlight("nothing", "contact");
 					} else if (line.indexOf("I ActivityManager")==31) {
 						setInfo(line);
