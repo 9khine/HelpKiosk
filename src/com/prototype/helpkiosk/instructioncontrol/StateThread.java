@@ -47,9 +47,7 @@ public class StateThread extends Thread
 		// 06-23 12:00:29.986 12047 12047 D AlarmProvider: setAlarmActive() - id: 4,willChangeButtonActive: true,activeNow: 0
 		public static String DEACTIVATE_ALARM_CODE = "";
 		// 06-21 13:14:57.024 23640 23640 D AlarmProvider: setAlarmActive to false
-		
-		private String alarmCode = null;
-		
+				
 		/*CONTACTS*/
 		public static String CMP_NEW_CONTACT = "com.android.contacts/.activities.ContactEditorActivity";
 		
@@ -76,40 +74,24 @@ public class StateThread extends Thread
 			int count_gallery = 0;
 			int count_home = 0;
 			
-			try 
-			{				
+			try {				
 				String home = System.getProperty("user.home");
 				// TODO: switch Mac/Windows
 				// Windows version:
 				Runtime.getRuntime().exec(home + "/android-sdk/platform-tools/adb logcat -c");
-				Process p = Runtime.getRuntime().exec(home + "/android-sdk/platform-tools/adb logcat ActivityManager:I AlarmMainActivity:D AlarmListView:D ComposerPerformance:D *:S");
+				Process p = Runtime.getRuntime().exec(home + "/android-sdk/platform-tools/adb logcat ActivityManager:I AlarmMainActivity:D AlarmListView:D ComposerPerformance:D TextFieldsEditorView:D ContactEditorFragment:D *:S");
 				// Mac version:
 //				Runtime.getRuntime().exec(home + "/android-sdks/platform-tools/adb logcat -c");
 //				Process p = Runtime.getRuntime().exec(home + "/android-sdks/platform-tools/adb logcat ActivityManager:I AlarmProvider:D ComposerPerformance:D *:S");
-				
-				
+
 				InputStream is = p.getInputStream();
 				InputStreamReader isr = new InputStreamReader(is);
 				BufferedReader br = new BufferedReader(isr);
-	
 				String line = null;
 	
-				while ((line = br.readLine()) != null) 
-				{
-					if(line.indexOf(this.DONE_TYPE)==0) {
-						instructionSingleton.highlight("nothing", "contact");
-					}
-					
-					if(line.indexOf(this.SNAPSHOT)==0) {
-						instructionSingleton.highlight("nothing", "contact");
-					}
-					
+				while ((line = br.readLine()) != null) {
 					if (line.indexOf("D AlarmMainActivity")==31) {
 						/* SET ALARM PANE ACTIVE */
-						
-						// D/AlarmProvider(15694): setAlarmActive() - id: 11,willChangeButtonActive: true,activeNow: 0   INDEX OF T = 74
-						// D/AlarmMainActivity(16490): onResume()
-											
 						if (line.indexOf("onResume")==29) {														
 							instructionSingleton.getActiveView().getInstructionBox(1).instruction.setDone(true);
 							instructionSingleton.getActiveView().getInstructionBox(1).box.setBorder(InstructionBox.borderIfDone);
@@ -117,38 +99,32 @@ public class StateThread extends Thread
 						}
 					} else if (line.indexOf("D AlarmListView")==31) {
 						/* ADD NEW ALARM */
-						
-						// D/AlarmListView(16751): resizeLayoutWithDrag : 2
-						
-//						/Users/pablo/android-sdks/platform-tools/adb logcat -v brief AlarmManager:V *:S
-//						/Users/pablo/android-sdks/platform-tools/adb logcat -v brief AlarmProvider:D *:S
-//						/Users/pablo/android-sdks/platform-tools/adb logcat -v brief AlarmMainActivity:D *:S  D/AlarmCursorAdapter  D/AlarmListView
-//						/Users/pablo/android-sdks/platform-tools/adb logcat -v brief AlarmCursorAdapter:D *:S
-//						/Users/pablo/android-sdks/platform-tools/adb logcat -v brief AlarmListView:D *:S
-						
-//						System.out.println("Alarm pane active");
 						if (line.indexOf("resizeLayoutWithDrag : 2")==48) {														
 							instructionSingleton.getActiveView().getInstructionBox(2).instruction.setDone(true);
 							instructionSingleton.getActiveView().getInstructionBox(2).box.setBorder(InstructionBox.borderIfDone);
 							instructionSingleton.getActiveView().getInstructionBox(3).instruction.setDone(true);
 							instructionSingleton.highlight("nothing", "contact");
 						}
+					} else if (line.indexOf("afterPhoneNumberFormattingTextWatcher")==55) {
+						/* CONTACT INFO ENTERED */
+						// 11-30 17:59:04.439 10645 10645 D TextFieldsEditorView: afterPhoneNumberFormattingTextWatcher :
+						System.out.println(line);
+						instructionSingleton.getActiveView().getInstructionBox(2).instruction.setDone(true);
+						instructionSingleton.getActiveView().getInstructionBox(2).box.setBorder(InstructionBox.borderIfDone);
+					} else if (line.indexOf("contact save button clicked")==56) {
+						/* CONTACT SAVED */
+						// 11-30 18:08:36.129 11078 11078 D ContactEditorFragment: contact save button clicked
+						instructionSingleton.getActiveView().getInstructionBox(3).instruction.setDone(true);
+						instructionSingleton.getActiveView().getInstructionBox(3).box.setBorder(InstructionBox.borderIfDone);
 					} else if (line.indexOf("D ComposerPerformance")==31) {
 						/* COMPOSE MESSAGE */
-						// 10-16 15:53:52.384  4408  4408 D ComposerPerformance: create new message
-						
 						instructionSingleton.getActiveView().getInstructionBox(1).instruction.setDone(true);
 						instructionSingleton.getActiveView().getInstructionBox(1).box.setBorder(InstructionBox.borderIfDone);
-						instructionSingleton.getActiveView().getInstructionBox(2).instruction.setDone(true);
+//						instructionSingleton.getActiveView().getInstructionBox(2).instruction.setDone(true);
 						instructionSingleton.highlight("nothing", "contact");
 					} else if (line.indexOf("I ActivityManager")==31) {
-//						System.out.println(line);
 						setInfo(line);
 	
-//						System.out.println("*** act = "+ this.act);
-//						System.out.println("*** cat = "+ this.cat);
-//						System.out.println("*** cmp = "+ this.cmp);
-						
 						if (getCmp()!=null) {	
 							//LAUNCHER
 							if (getCmp().equals(CMP_LAUNCH_HOME)) {
@@ -165,7 +141,6 @@ public class StateThread extends Thread
 										instructionSingleton.getActiveView().getInstructionBox(i).getInstructionArea().repaint();
 									}
 								}
-								
 							}
 							
 							/*
@@ -183,7 +158,6 @@ public class StateThread extends Thread
 							else if (getCmp().equals(CMP_NEW_CONTACT)){
 								instructionSingleton.getActiveView().getInstructionBox(1).instruction.setDone(true);
 								instructionSingleton.getActiveView().getInstructionBox(1).box.setBorder(InstructionBox.borderIfDone);
-								instructionSingleton.getActiveView().getInstructionBox(2).instruction.setDone(true);
 								instructionSingleton.highlight("nothing", "contact");
 								instructionSingleton.updateLowerPanel("menu", false);
 							}
@@ -247,109 +221,6 @@ public class StateThread extends Thread
 								instructionSingleton.getActiveView().getInstructionBox(1).instruction.setDone(true);
 								instructionSingleton.highlight("nothing", "contact");
 
-							}
-						} else {
-							// THE FOLLOWING IS LOGIC FOR THE GOLD S7
-							
-							/*
-							 * ------------------   HOME   -------------------
-							 * 10-12 15:09:47.193  1351  1452 I ActivityManager: Displayed com.sec.android.app.launcher/.activities.LauncherActivity: +209ms
-							 */
-							if (line.indexOf("LauncherActivity")==101) {
-								System.out.println("HOME ACTIVE " + ++count_home + " TIMES ");
-								
-								//reset learn/do panel
-								if (instructionSingleton.getActiveView()!=null) {
-									for (int i=0 ; i<=instructionSingleton.getMaxID() ; i++) {
-										//instructionSingleton.getActiveView().getInstructionBox(i).setBoxActive(false, false);
-										instructionSingleton.getActiveView().getInstructionBox(i).setBoxActive(true, true);
-										instructionSingleton.getActiveView().getInstructionBox(i).getInstructionArea().validate();
-										instructionSingleton.getActiveView().getInstructionBox(i).getInstructionArea().repaint();
-									}
-								}
-							}
-							
-							/*
-							 * ------------------   CONTACTS   -------------------
-							 * 
-							 * 10-12 15:17:56.723  1351  1452 I ActivityManager: Displayed com.android.contacts/.activities.PeopleActivity: +455ms
-							 */
-
-							else if (line.indexOf("PeopleActivity")==93) {
-								System.out.println("CONTACTS ACTIVE " + ++count_contacts + " TIMES ");
-								instructionSingleton.getActiveView().getInstructionBox(0).instruction.setDone(true);
-								instructionSingleton.highlight("nothing", "contact");
-							}
-							
-							/* 
-							 * 10-16 16:07:12.944  1363  1503 I ActivityManager: Displayed com.android.contacts/.activities.ContactEditorActivity: +260ms
-							 */
-							
-							else if (line.indexOf("ContactEditorActivity")==93) {
-								instructionSingleton.getActiveView().getInstructionBox(1).instruction.setDone(true);
-								instructionSingleton.highlight("nothing", "contact");
-								instructionSingleton.updateLowerPanel("menu", false);
-							}
-							
-							/*
-							 * ------------------   CLOCK   -------------------
-							 * 10-16 16:18:56.764  1363  1503 I ActivityManager: Displayed com.sec.android.app.clockpackage/.ClockPackage: +84ms
-							 */
-														
-							//LAUNCH CLOCK
-							else if (line.indexOf("clockpackage")==80) {
-								System.out.println("CLOCK ACTIVE " + ++count_clock + " TIMES ");
-								instructionSingleton.getActiveView().getInstructionBox(0).instruction.setDone(true);
-								instructionSingleton.getActiveView().getInstructionBox(1).instruction.setDone(true);
-								instructionSingleton.highlight("nothing", "contact");
-
-							}
-							
-							/*
-							 * ------------------   CAMERA   -------------------
-							 * 10-12 15:32:43.733  1351  1452 I ActivityManager: Displayed com.sec.android.app.camera/.Camera: +763ms
-							 */
-							//LAUNCH CAMERA
-							else if (line.indexOf("Camera")==88) {
-								System.out.println("CAMERA ACTIVE " + ++count_camera + " TIMES ");
-								instructionSingleton.getActiveView().getInstructionBox(0).instruction.setDone(true);
-								instructionSingleton.getActiveView().getInstructionBox(1).instruction.setDone(true);
-								instructionSingleton.highlight("nothing", "contact");
-							}
-							
-							/*
-							 * ------------------   MESSAGE   -------------------
-							 * 10-12 15:35:10.383  1351  1452 I ActivityManager: Displayed com.android.mms/.ui.ConversationComposer: +279ms
-							 */
-							//LAUNCH MESSAGES
-							else if (line.indexOf("ConversationComposer")==80) {
-								System.out.println("MESSAGES ACTIVE " + ++count_messages + " TIMES ");
-								instructionSingleton.getActiveView().getInstructionBox(0).instruction.setDone(true);
-								instructionSingleton.highlight("nothing", "contact");
-							}
-							
-							/*
-							 * ------------------   PHONE   -------------------
-							 * 10-12 15:37:28.683  1351  1452 I ActivityManager: Displayed com.android.contacts/com.android.dialer.DialtactsActivity: +366ms
-							 */
-							//LAUNCH PHONE
-							else if (line.indexOf("DialtactsActivity")==100) {
-								System.out.println("PHONE ACTIVE " + ++count_phone + " TIMES ");
-								instructionSingleton.getActiveView().getInstructionBox(0).instruction.setDone(true);
-								instructionSingleton.getActiveView().getInstructionBox(1).instruction.setDone(true);
-								instructionSingleton.highlight("nothing", "contact");
-							}
-							
-							/*
-							 * ------------------   GALLERY   -------------------
-							 * 10-12 15:38:28.593  1351  1452 I ActivityManager: Displayed com.sec.android.gallery3d/.app.GalleryOpaqueActivity: +291ms
-							 */
-							//LAUNCH GALLERY
-							else if (line.indexOf("GalleryOpaqueActivity")==91) {
-								System.out.println("GALLERY ACTIVE " + ++count_gallery + " TIMES ");
-								instructionSingleton.getActiveView().getInstructionBox(0).instruction.setDone(true);
-								instructionSingleton.getActiveView().getInstructionBox(1).instruction.setDone(true);
-								instructionSingleton.highlight("nothing", "contact");
 							}
 						}
 					}

@@ -74,8 +74,6 @@ public class SearchPanel extends JPanel {
 
 		mainPanel.add(galleryPanel());
 		
-		mainPanel.add(restartButton());
-
 		return mainPanel;
 	}
 
@@ -93,55 +91,6 @@ public class SearchPanel extends JPanel {
 		instructionFiller.add(Box.createRigidArea(new Dimension(this.getWidth(), 10)));
 
 		return instructionFiller;
-	}
-	
-	private JButton restartButton() {
-
-		/* Restart Button to show splash screen */
-
-		JButton restartBtn = new JButton("   ");
-		restartBtn.setPreferredSize(new Dimension(12, 12));
-		restartBtn.setMaximumSize(new Dimension(1,1));
-		restartBtn.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent arg0) {
-				
-				// TODO: splash screen is defined here 
-				Object[] options = {"Get started!"};
-				
-				JPanel splash = new JPanel();
-				
-				ImageIcon img = new ImageIcon("img/splash01.png");
-				JLabel image = new JLabel(img);
-				splash.setOpaque(false);
-				splash.add(image);
-				
-//				JLabel title = new JLabel("Welcome to HelpKiosk");
-//				title.setFont(new Font("Sans Serif", Font.BOLD, 30));
-//				JLabel maintext = new JLabel("<html><br>Learn to use a Samsung S7, using:<br>"
-//						+ "<br>- step-by-step instructions<br>"
-//						+ "<br>- demo videos<br>"
-//						+ "<br>- a live highlighted view of your phone<br><br>"
-//        				+ "<br>To get started, connect your phone and choose a task from the list on the homepage.</html>");
-//				maintext.setFont(new Font("Sans Serif", Font.BOLD, 19));
-//				splash.setLayout(new BoxLayout(splash, BoxLayout.Y_AXIS));
-//				splash.add(title);
-//				splash.add(maintext);
-				
-				
-				splash.setPreferredSize(new Dimension(600, 400));
-				
-				JOptionPane.showOptionDialog(null,
-						splash,
-						"Welcome to HelpKiosk!",
-						JOptionPane.YES_NO_OPTION,
-        			    JOptionPane.QUESTION_MESSAGE,
-        			    null,
-        			    options, 
-        			    options[0]);
-			}
-		});
-		
-		return restartBtn;
 	}
 
 	private JPanel clockPanel() {

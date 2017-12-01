@@ -66,7 +66,7 @@ public class LearnDoPanel {
 		
 		// Add go back to search button here
 		
-		JButton toSearch = new JButton("<html><body style=\"text-align: center\"><p>Click the home button on the phone,</p><p>then click here to choose another task.</p></html>");
+		JButton toSearch = new JButton("<html><body style=\"text-align: center\"><p>Click the home button on the phone,</p><p>then touch here to choose another task.</p></html>");
 		toSearch.setMaximumSize(new Dimension(instructionpanel_width, 50));
 		toSearch.setPreferredSize(toSearch.getMaximumSize());
 		toSearch.setBorder(new LineBorder(Color.BLACK));
