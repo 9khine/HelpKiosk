@@ -90,7 +90,9 @@ public class StateThread extends Thread
 						+ " Mms/WorkingMessage:D" // message sent
 						+ " DialpadFragment:I" // phone number dialed
 						+ " Telecom:I" // call placed
-						+ " Camera5:V" // camera focusing
+						+ " Camera5:V" // camera
+						+ " Gallery_Performance:I" // view gallery image
+						+ " PhotoView:D" // show image menues
 						+ " *:S");
 						// TODO: gallery, camera
 				// Mac version:
@@ -152,12 +154,21 @@ public class StateThread extends Thread
 						instructionSingleton.getActiveView().getInstructionBox(1).instruction.setDone(true);
 						instructionSingleton.getActiveView().getInstructionBox(1).box.setBorder(InstructionBox.borderIfDone);
 						instructionSingleton.highlight("nothing", "contact");
-						// I/Telecom ( 1354): : perf - placeCall()
 					} else if (line.indexOf("I Telecom : : perf - placeCall")==31) {
 						/* CALL NUMBER */
 						instructionSingleton.getActiveView().getInstructionBox(2).instruction.setDone(true);
 						instructionSingleton.getActiveView().getInstructionBox(2).box.setBorder(InstructionBox.borderIfDone);
 						instructionSingleton.highlight("nothing", "contact");
+					} else if (line.indexOf("I Gallery_Performance: DetailViewState")==31) {
+						/* VIEW IMAGE */
+						instructionSingleton.getActiveView().getInstructionBox(1).instruction.setDone(true);
+						instructionSingleton.getActiveView().getInstructionBox(1).box.setBorder(InstructionBox.borderIfDone);
+						instructionSingleton.highlight("nothing", "contact");
+					} else if (line.indexOf("D PhotoView")==31) {
+						/* SHOW IMAGE MENUES */
+						instructionSingleton.getActiveView().getInstructionBox(2).instruction.setDone(true);
+						instructionSingleton.getActiveView().getInstructionBox(2).box.setBorder(InstructionBox.borderIfDone);
+						instructionSingleton.highlight("nothing", "contact");	
 					} else if (line.indexOf("V Camera5")==31) {
 						if (line.indexOf("initQuickViewTouch")==43) {
 							/* FOCUS CAMERA */
