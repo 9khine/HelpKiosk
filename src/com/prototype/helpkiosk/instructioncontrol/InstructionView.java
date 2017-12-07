@@ -86,6 +86,9 @@ public class InstructionView extends JPanel {
 			panel.add(createInstructionArea(instruction[i], i));
 			panel.add(Box.createRigidArea(this.rigidAreaDimension));
 		}
+		
+		instructionSingleton.getActiveView().getInstructionBox(0).setBoxActive(true, false);
+		
 	}
 	
 	public JLabel createTitleArea(){

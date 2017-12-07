@@ -35,10 +35,10 @@ public class InstructionBox{
 									new EmptyBorder(2, 5, 1, 1));
 	
 	// TODO: change to toggle highlighting
-	public static Border borderIfDone = new CompoundBorder(
-			BorderFactory.createLineBorder(new Color(113,228,132), 4),
-			new EmptyBorder(2, 5, 1, 1));
-//	public static Border borderIfDone = new EmptyBorder(2, 5, 1, 1);
+//	public static Border borderIfDone = new CompoundBorder(
+//			BorderFactory.createLineBorder(new Color(113,228,132), 4),
+//			new EmptyBorder(2, 5, 1, 1));
+	public static Border borderIfDone = new EmptyBorder(2, 5, 1, 1);
 	public Border borderIfInactive = new EmptyBorder(2,6,1,1);
 	
 	public JLabel checkmark = new JLabel( new ImageIcon("img/checkmark.png") );
