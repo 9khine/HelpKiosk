@@ -79,7 +79,20 @@ public class StateThread extends Thread
 				// TODO: switch Mac/Windows
 				// Windows version:
 				Runtime.getRuntime().exec(home + "/android-sdk/platform-tools/adb logcat -c");
-				Process p = Runtime.getRuntime().exec(home + "/android-sdk/platform-tools/adb logcat ActivityManager:I AlarmMainActivity:D AlarmListView:D ComposerPerformance:D TextFieldsEditorView:D ContactEditorFragment:D Mms/BottomPanel:I Mms/WorkingMessage:D *:S");
+				Process p = Runtime.getRuntime().exec(home + "/android-sdk/platform-tools/adb logcat"
+						+ " ActivityManager:I" // update cmp/act/cat codes - see below for details
+						+ " AlarmMainActivity:D" // alarm panel selected
+						+ " AlarmListView:D" // new alarm created
+						+ " TextFieldsEditorView:D" // contact edited
+						+ " ContactEditorFragment:D" // contact saved
+						+ " ComposerPerformance:D" // new message created
+						+ " Mms/BottomPanel:I" // message typed
+						+ " Mms/WorkingMessage:D" // message sent
+						+ " DialpadFragment:I" // phone number dialed
+						+ " Telecom:I" // call placed
+						+ " Camera5:V" // camera focusing
+						+ " *:S");
+						// TODO: gallery, camera
 				// Mac version:
 //				Runtime.getRuntime().exec(home + "/android-sdks/platform-tools/adb logcat -c");
 //				Process p = Runtime.getRuntime().exec(home + "/android-sdks/platform-tools/adb logcat ActivityManager:I AlarmProvider:D ComposerPerformance:D *:S");
@@ -92,9 +105,16 @@ public class StateThread extends Thread
 				while ((line = br.readLine()) != null) {
 					if (line.indexOf("D AlarmMainActivity")==31) {
 						/* SET ALARM PANE ACTIVE */
-						if (line.indexOf("onResume")==29) {														
+						if (line.indexOf("onResume")==52) {														
 							instructionSingleton.getActiveView().getInstructionBox(1).instruction.setDone(true);
 							instructionSingleton.getActiveView().getInstructionBox(1).box.setBorder(InstructionBox.borderIfDone);
+							instructionSingleton.highlight("nothing", "contact");
+						}
+						// D/AlarmMainActivity(10704): createNewAlarm()
+						if (line.indexOf("createNewAlarm()")==52) {
+							// 12-06 17:47:05.793 10704 10704 D AlarmMainActivity: createNewAlarm()
+							instructionSingleton.getActiveView().getInstructionBox(3).instruction.setDone(true);
+							instructionSingleton.getActiveView().getInstructionBox(3).box.setBorder(InstructionBox.borderIfDone);
 							instructionSingleton.highlight("nothing", "contact");
 						}
 					} else if (line.indexOf("D AlarmListView")==31) {
@@ -102,7 +122,6 @@ public class StateThread extends Thread
 						if (line.indexOf("resizeLayoutWithDrag : 2")==48) {														
 							instructionSingleton.getActiveView().getInstructionBox(2).instruction.setDone(true);
 							instructionSingleton.getActiveView().getInstructionBox(2).box.setBorder(InstructionBox.borderIfDone);
-							instructionSingleton.getActiveView().getInstructionBox(3).instruction.setDone(true);
 							instructionSingleton.highlight("nothing", "contact");
 						}
 					} else if (line.indexOf("afterPhoneNumberFormattingTextWatcher")==55) {
@@ -120,17 +139,40 @@ public class StateThread extends Thread
 						instructionSingleton.highlight("nothing", "contact");
 					} else if (line.indexOf("android.widget.EditText")==69) {
 						/* COMPOSE MESSAGE */
-						// 11-30 18:23:02.919 11768 11768 I Mms/BottomPanel: onTouch() - View = android.widget.EditText{26cf68d VFED..CL. ...p.... 0,0-892,174 #7f10055a app:id/editor_body}
 						instructionSingleton.getActiveView().getInstructionBox(2).instruction.setDone(true);
 						instructionSingleton.getActiveView().getInstructionBox(2).box.setBorder(InstructionBox.borderIfDone);
 						instructionSingleton.highlight("nothing", "contact");
 					} else if (line.indexOf("[SEND]")==53) {
 						/* SEND MESSAGE */
-						// 11-30 18:29:01.709 11883 11883 D Mms/WorkingMessage: [SEND]
 						instructionSingleton.getActiveView().getInstructionBox(3).instruction.setDone(true);
 						instructionSingleton.getActiveView().getInstructionBox(3).box.setBorder(InstructionBox.borderIfDone);
 						instructionSingleton.highlight("nothing", "contact");
+					} else if (line.indexOf("I DialpadFragment: currNumber")==31) {
+						/* DIAL NUMBER */
+						instructionSingleton.getActiveView().getInstructionBox(1).instruction.setDone(true);
+						instructionSingleton.getActiveView().getInstructionBox(1).box.setBorder(InstructionBox.borderIfDone);
+						instructionSingleton.highlight("nothing", "contact");
+						// I/Telecom ( 1354): : perf - placeCall()
+					} else if (line.indexOf("I Telecom : : perf - placeCall")==31) {
+						/* CALL NUMBER */
+						instructionSingleton.getActiveView().getInstructionBox(2).instruction.setDone(true);
+						instructionSingleton.getActiveView().getInstructionBox(2).box.setBorder(InstructionBox.borderIfDone);
+						instructionSingleton.highlight("nothing", "contact");
+					} else if (line.indexOf("V Camera5")==31) {
+						if (line.indexOf("initQuickViewTouch")==43) {
+							/* FOCUS CAMERA */
+							instructionSingleton.getActiveView().getInstructionBox(1).instruction.setDone(true);
+							instructionSingleton.getActiveView().getInstructionBox(1).box.setBorder(InstructionBox.borderIfDone);
+							instructionSingleton.highlight("nothing", "contact");
+						}
+						if (line.indexOf("handleShutterKeyReleased")==43) {
+							/* TAKE PICTURE */
+							instructionSingleton.getActiveView().getInstructionBox(2).instruction.setDone(true);
+							instructionSingleton.getActiveView().getInstructionBox(2).box.setBorder(InstructionBox.borderIfDone);
+							instructionSingleton.highlight("nothing", "contact");
+						}
 					} else if (line.indexOf("I ActivityManager")==31) {
+						/* update cmp/cat/act codes */
 						setInfo(line);
 	
 						if (getCmp()!=null) {	
@@ -227,6 +269,7 @@ public class StateThread extends Thread
 								instructionSingleton.getActiveView().getInstructionBox(0).instruction.setDone(true);
 								instructionSingleton.getActiveView().getInstructionBox(0).box.setBorder(InstructionBox.borderIfDone);
 								instructionSingleton.getActiveView().getInstructionBox(1).instruction.setDone(true);
+								instructionSingleton.getActiveView().getInstructionBox(1).box.setBorder(InstructionBox.borderIfDone);
 								instructionSingleton.highlight("nothing", "contact");
 
 							}
