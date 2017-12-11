@@ -30,9 +30,28 @@ public class HelpKiosk {
 				JPanel splash = new JPanel();
 				ImageIcon img = new ImageIcon("img/splash01.png");
 				JLabel image = new JLabel(img);
+				JLabel html = new JLabel("<html>"
+						+ "<div width=\"1160\" height=\"100\" style=\"border: 1px solid black; background-color: #518AC0; color: white;\">"
+							+ "<h1 style=\"padding: 20px;\">Welcome to HelpKiosk!</h1>"
+						+ "</div>"
+						+ "<div style=\"padding: 20px 0px 0px 60px;\">"
+							+ "<p></p>"
+							+ "<h2>Learn to us your Samsung S7 smartphone with the help of:</h2>"
+							+ "<p></p>"
+							+ "<h2> - Step by step instructions</h2>"
+							+ "<p></p>"
+							+ "<h2> - A live view highlighting  what to click</h2>"
+							+ "<p></p>"
+							+ "<h2> - Demo videos showing how to complete steps</h2>"
+							+ "<p></p>"
+							+ "<p></p>"
+							+ "<p></p>"
+						+ "</div>"
+						+ "<h2 style=\"text-align: center; color: #518AC0;\">Get started by clicking the button below.</h2>"
+						+ "</html>");
 				splash.setOpaque(false);
-				splash.add(image);
-				splash.setPreferredSize(new Dimension(600, 400));
+				splash.add(html);
+				splash.setPreferredSize(new Dimension(1200, 720));
 				JOptionPane.showOptionDialog(null,
 						splash,
 						"Welcome to HelpKiosk!",
