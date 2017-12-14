@@ -18,6 +18,11 @@ public class SearchPanel extends JPanel {
 	private Dimension btnSize = new Dimension(160, 50);
 	private Font btnFont = new Font("Helvetica", Font.PLAIN, 17);
 	private Font panelTitles = new Font("Helvetica", Font.BOLD, 17);
+	
+	// TODO: change this for task A vs task B participants
+	// True: group a tasks listed firts
+	// False: group b tasks listed first
+	private Boolean TaskA = true;
 
 	public SearchPanel(){
 		
@@ -56,23 +61,44 @@ public class SearchPanel extends JPanel {
 		 * Instruction
 		 */	
 		mainPanel.add(instructionPanel());
-
-		mainPanel.add(contactPanel());
-		mainPanel.add(Box.createRigidArea(new Dimension(this.getWidth(), 5)));
-
-		mainPanel.add(cameraPanel());
-		mainPanel.add(Box.createRigidArea(new Dimension(this.getWidth(), 5)));
-
-		mainPanel.add(messagesPanel());
-		mainPanel.add(Box.createRigidArea(new Dimension(this.getWidth(), 5)));
-
-		mainPanel.add(phonePanel());
-		mainPanel.add(Box.createRigidArea(new Dimension(this.getWidth(), 5)));	
 		
-		mainPanel.add(clockPanel());
-		mainPanel.add(Box.createRigidArea(new Dimension(this.getWidth(), 5)));
+		
+		// TODO: set task order for each group - make first 3 tasks = groups tasks
+		if (TaskA) {
+			mainPanel.add(messagesPanel());
+			mainPanel.add(Box.createRigidArea(new Dimension(this.getWidth(), 5)));
 
-		mainPanel.add(galleryPanel());
+			mainPanel.add(phonePanel());
+			mainPanel.add(Box.createRigidArea(new Dimension(this.getWidth(), 5)));
+
+			mainPanel.add(clockPanel());
+			mainPanel.add(Box.createRigidArea(new Dimension(this.getWidth(), 5)));
+
+			mainPanel.add(cameraPanel());
+			mainPanel.add(Box.createRigidArea(new Dimension(this.getWidth(), 5)));	
+			
+			mainPanel.add(contactPanel());
+			mainPanel.add(Box.createRigidArea(new Dimension(this.getWidth(), 5)));
+
+			mainPanel.add(galleryPanel());
+		} else {
+			mainPanel.add(contactPanel());
+			mainPanel.add(Box.createRigidArea(new Dimension(this.getWidth(), 5)));
+
+			mainPanel.add(cameraPanel());
+			mainPanel.add(Box.createRigidArea(new Dimension(this.getWidth(), 5)));
+
+			mainPanel.add(galleryPanel());
+			mainPanel.add(Box.createRigidArea(new Dimension(this.getWidth(), 5)));
+
+			mainPanel.add(phonePanel());
+			mainPanel.add(Box.createRigidArea(new Dimension(this.getWidth(), 5)));	
+			
+			mainPanel.add(clockPanel());
+			mainPanel.add(Box.createRigidArea(new Dimension(this.getWidth(), 5)));
+
+			mainPanel.add(messagesPanel());
+		}
 		
 		return mainPanel;
 	}

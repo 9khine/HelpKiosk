@@ -7,6 +7,10 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
+
+import java.awt.Font; 
+import javax.swing.plaf.FontUIResource; 
 
 import com.prototype.helpkiosk.ui.Workspace;
 
@@ -26,7 +30,7 @@ public class HelpKiosk {
 		        workspace.setVisible(true);
 		        
 		        // Splash screen
-		        Object[] options = {"Get started!"};
+		        Object[] options = {"    Get started!    "};
 				JPanel splash = new JPanel();
 				ImageIcon img = new ImageIcon("img/splash01.png");
 				JLabel image = new JLabel(img);
@@ -51,7 +55,8 @@ public class HelpKiosk {
 						+ "</html>");
 				splash.setOpaque(false);
 				splash.add(html);
-				splash.setPreferredSize(new Dimension(1200, 720));
+				splash.setPreferredSize(new Dimension(1480, 720));
+				UIManager.put("OptionPane.buttonFont", new FontUIResource(new Font("ARIAL",Font.BOLD,24))); 
 				JOptionPane.showOptionDialog(null,
 						splash,
 						"Welcome to HelpKiosk!",
@@ -60,6 +65,7 @@ public class HelpKiosk {
         			    null,
         			    options, 
         			    options[0]);
+				UIManager.put("OptionPane.buttonFont", new FontUIResource(new Font("ARIAL",Font.BOLD,14))); 
 		      }
 		    });
 	}
