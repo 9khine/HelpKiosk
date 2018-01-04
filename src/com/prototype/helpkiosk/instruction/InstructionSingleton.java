@@ -200,29 +200,20 @@ public class InstructionSingleton {
 			} else if (type=="new-contact") {
 				box.setPreferredSize(new Dimension(50,50));
 				this.updateLowerPanel("menu", false);
-				glass.add(Box.createRigidArea(new Dimension(350, 350)));
+				glass.add(Box.createRigidArea(new Dimension(330, 330)));
 				filler.add(Box.createRigidArea(new Dimension(170, 50)));
-				// Example of adding a label to the highlighting
-//					JLabel two = new JLabel(" 2 ");
-//					two.setOpaque(true);
-//					two.setBackground(Color.ORANGE);
-//					two.setForeground(Color.WHITE);
-//					two.setFont(new Font("Helvetica", Font.BOLD, 22));
-//				filler.add(two);
 				filler.add(box);
-//				this.updateLowerPanel("menu", true);
 			} else if (type=="new-name") {
 				this.updateLowerPanel("menu", false);
-				box.setPreferredSize(new Dimension(230,70));
-				glass.add(Box.createRigidArea(new Dimension(250, 130)));
+				box.setPreferredSize(new Dimension(230,130));
+				glass.add(Box.createRigidArea(new Dimension(250, 80)));
 				filler.add(box);
-				filler.add(Box.createRigidArea(new Dimension(50, 100)));
-			} else if (type=="done") {
+			} else if (type=="saveContact") {
 				this.updateLowerPanel("menu", false);
-				box.setPreferredSize(new Dimension(180,50));
-				glass.add(Box.createRigidArea(new Dimension(250, 180)));
+				box.setPreferredSize(new Dimension(90,35));
+				glass.add(Box.createRigidArea(new Dimension(250, 4)));
+				filler.add(Box.createRigidArea(new Dimension(120, 35)));
 				filler.add(box);
-				filler.add(Box.createRigidArea(new Dimension(150, 50)));
 			}
 		}
 		

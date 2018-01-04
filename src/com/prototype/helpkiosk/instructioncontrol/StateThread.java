@@ -94,7 +94,6 @@ public class StateThread extends Thread
 						+ " Gallery_Performance:I" // view gallery image
 						+ " PhotoView:D" // show image menues
 						+ " *:S");
-						// TODO: gallery, camera
 				// Mac version:
 //				Runtime.getRuntime().exec(home + "/android-sdks/platform-tools/adb logcat -c");
 //				Process p = Runtime.getRuntime().exec(home + "/android-sdks/platform-tools/adb logcat ActivityManager:I AlarmProvider:D ComposerPerformance:D *:S");

@@ -191,7 +191,6 @@ public class InstructionBox{
 				}
 			}
 			
-			// TODO: set as "Done"
 			if (i < activeID) {
 				instructionSingleton.getActiveView().getInstructionBox(i).box.setBorder(borderIfDone);
 			}
