@@ -2,6 +2,10 @@ package com.prototype.helpkiosk.ui;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 
 import javax.swing.*;
 import javax.swing.border.*;
@@ -64,41 +68,22 @@ public class SearchPanel extends JPanel {
 		
 		
 		// TODO: set task order for each group - make first 3 tasks = groups tasks
-		if (TaskA) {
-			mainPanel.add(messagesPanel());
-			mainPanel.add(Box.createRigidArea(new Dimension(this.getWidth(), 5)));
+		mainPanel.add(messagesPanel());
+		mainPanel.add(Box.createRigidArea(new Dimension(this.getWidth(), 5)));
 
-			mainPanel.add(phonePanel());
-			mainPanel.add(Box.createRigidArea(new Dimension(this.getWidth(), 5)));
+		mainPanel.add(phonePanel());
+		mainPanel.add(Box.createRigidArea(new Dimension(this.getWidth(), 5)));
 
-			mainPanel.add(clockPanel());
-			mainPanel.add(Box.createRigidArea(new Dimension(this.getWidth(), 5)));
+		mainPanel.add(clockPanel());
+		mainPanel.add(Box.createRigidArea(new Dimension(this.getWidth(), 5)));
 
-			mainPanel.add(cameraPanel());
-			mainPanel.add(Box.createRigidArea(new Dimension(this.getWidth(), 5)));	
-			
-			mainPanel.add(contactPanel());
-			mainPanel.add(Box.createRigidArea(new Dimension(this.getWidth(), 5)));
+		mainPanel.add(cameraPanel());
+		mainPanel.add(Box.createRigidArea(new Dimension(this.getWidth(), 5)));	
 
-			mainPanel.add(galleryPanel());
-		} else {
-			mainPanel.add(contactPanel());
-			mainPanel.add(Box.createRigidArea(new Dimension(this.getWidth(), 5)));
+		mainPanel.add(contactPanel());
+		mainPanel.add(Box.createRigidArea(new Dimension(this.getWidth(), 5)));
 
-			mainPanel.add(cameraPanel());
-			mainPanel.add(Box.createRigidArea(new Dimension(this.getWidth(), 5)));
-
-			mainPanel.add(galleryPanel());
-			mainPanel.add(Box.createRigidArea(new Dimension(this.getWidth(), 5)));
-
-			mainPanel.add(phonePanel());
-			mainPanel.add(Box.createRigidArea(new Dimension(this.getWidth(), 5)));	
-			
-			mainPanel.add(clockPanel());
-			mainPanel.add(Box.createRigidArea(new Dimension(this.getWidth(), 5)));
-
-			mainPanel.add(messagesPanel());
-		}
+		mainPanel.add(galleryPanel());
 		
 		return mainPanel;
 	}
@@ -328,6 +313,15 @@ public class SearchPanel extends JPanel {
 					public void actionPerformed(ActionEvent e){
 						cleanPanel();
 						InstructionView view;
+						
+//						System.out.println("Starting task: " + e.getActionCommand() + "; at time: " + System.nanoTime());
+						
+						String log = String.format("Starting task: " + e.getActionCommand() + "%ntime = " + System.nanoTime() + "%n");
+						try {
+							Files.write(Paths.get("log.txt"), log.getBytes(), StandardOpenOption.APPEND);
+						} catch (IOException f) {
+							f.printStackTrace();
+						}
 
 						/*
 						 * appNumber reference:

@@ -5,6 +5,10 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -82,6 +86,16 @@ public class LearnDoPanel {
 						instructionSingleton.getActiveView().getInstructionBox(i).setBoxInactive();
 					}
 				}
+				
+//				System.out.println("Ended task; at time: " + System.nanoTime());
+
+				String log = String.format("Ended task%ntime = " + System.nanoTime() + "%n%n");
+				try {
+					Files.write(Paths.get("log.txt"), log.getBytes(), StandardOpenOption.APPEND);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+								
 				instructionSingleton.getAccordion().getAccordion().setSelectedIndex(1);
 			}
 		});

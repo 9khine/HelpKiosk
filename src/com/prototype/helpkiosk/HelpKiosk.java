@@ -9,7 +9,12 @@ import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 
-import java.awt.Font; 
+import java.awt.Font;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
+
 import javax.swing.plaf.FontUIResource; 
 
 import com.prototype.helpkiosk.ui.Workspace;
@@ -28,6 +33,13 @@ public class HelpKiosk {
 		        workspace.setDefaultCloseOperation(3);
 		        workspace.setLocationRelativeTo(null);
 		        workspace.setVisible(true);
+		        
+		        String log = String.format("===========================%nStarting new session%ntime = " + System.currentTimeMillis() + "%n%n");
+				try {
+					Files.write(Paths.get("log.txt"), log.getBytes(), StandardOpenOption.APPEND);
+				} catch (IOException f) {
+					f.printStackTrace();
+				}
 		        
 		        // Splash screen
 		        Object[] options = {"    Get started!    "};

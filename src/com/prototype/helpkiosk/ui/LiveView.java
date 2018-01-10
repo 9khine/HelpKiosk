@@ -1,5 +1,6 @@
 package com.prototype.helpkiosk.ui;
 
+import java.awt.AlphaComposite;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -158,7 +159,7 @@ class LiveView extends JPanel implements ActionListener {
 		protected Boolean doInBackground() throws Exception {
 			/*
 			 * Script to run in background:
-			 * screenstream.bat in the admin-mux home directory
+			 * screenstream.bat in the admin-mux/git/HelpKiosk directory
 			 */
 			
 			long startTime = System.nanoTime();
@@ -177,10 +178,11 @@ class LiveView extends JPanel implements ActionListener {
 			
 				if (scaledIcon != null) {
 					resize = true;
-					LiveView.this.image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+					LiveView.this.image = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
 					
 				    // Draw the image on to the buffered image
 				    Graphics2D bGr = LiveView.this.image.createGraphics();
+				    bGr.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.7f));
 				    bGr.drawImage(scaledImage, 0, 0, null);
 				    bGr.dispose();
 				}
