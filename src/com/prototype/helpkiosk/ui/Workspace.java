@@ -68,9 +68,12 @@ public class Workspace extends JFrame implements WindowListener {
 		this.mainPanel = new JPanel();
 		this.mainPanel.setBackground(Color.WHITE);
 		this.mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.X_AXIS));
-		this.mainPanel.setPreferredSize(new Dimension(default_width, default_height));
+		//this.mainPanel.setPreferredSize(new Dimension(default_width, default_height));
+		mainPanel.setPreferredSize(new Dimension(this.default_width * this.rightPanel_width_percent/100
+				, this.default_height));
 		mainPanel.add(createRightPanel());
-		mainPanel.add(createLeftPanel());
+		// TODO left panel disabled - for vysor integration
+		//mainPanel.add(createLeftPanel());
 		
 		
 		return mainPanel;

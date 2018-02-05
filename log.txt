@@ -1,0 +1,36 @@
+===========================
+Starting new session
+time = 1517788638863
+
+===========================
+Starting new session
+time = 1517788783650
+
+===========================
+Starting new session
+time = 1517788869650
+
+Starting task: <html><body style="text-align: center">Send<br>Messages</html>
+time = 537144382952370
+Ended task
+time = 537158834221724
+
+Starting task: <html><body style="text-align: center">Send<br>Messages</html>
+time = 537161065551332
+Starting task: <html><body style="text-align: center">Making<br>Calls</html>
+time = 537166685341147
+===========================
+Starting new session
+time = 1517788985211
+
+===========================
+Starting new session
+time = 1517789001904
+
+Starting task: <html><body style="text-align: center">Making<br>Calls</html>
+time = 537272950929087
+Ended task
+time = 537323036624197
+
+Starting task: <html><body style="text-align: center">Taking<br>Pictures</html>
+time = 537324473556704
