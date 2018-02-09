@@ -23,7 +23,7 @@ public class SearchPanel extends JPanel {
 	private Font btnFont = new Font("Helvetica", Font.PLAIN, 17);
 	private Font panelTitles = new Font("Helvetica", Font.BOLD, 17);
 	
-	// TODO: change this for task A vs task B participants
+	// Change this for task A vs task B participants
 	// True: group a tasks listed firts
 	// False: group b tasks listed first
 	private Boolean TaskA = true;

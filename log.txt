@@ -1,0 +1,116 @@
+===========================
+Starting new session
+time = 1517859339094
+
+Starting task: <html><body style="text-align: center">Send<br>Messages</html>
+time = 3062284853638
+===========================
+Starting new session
+time = 1517859408717
+
+Starting task: <html><body style="text-align: center">Send<br>Messages</html>
+time = 3130038550170
+===========================
+Starting new session
+time = 1517859413106
+
+Ended task
+time = 3156771084897
+
+===========================
+Starting new session
+time = 1517859972623
+
+===========================
+Starting new session
+time = 1517860531845
+
+Starting task: <html><body style="text-align: center">Send<br>Messages</html>
+time = 4270661289104
+===========================
+Starting new session
+time = 1517860576286
+
+Starting task: <html><body style="text-align: center">Send<br>Messages</html>
+time = 4299720528759
+Ended task
+time = 4314409668945
+
+Starting task: <html><body style="text-align: center">Making<br>Calls</html>
+time = 4323141798766
+Starting task: <html><body style="text-align: center">Taking<br>Pictures</html>
+time = 4326391298393
+Ended task
+time = 4341150291989
+
+Starting task: <html><body style="text-align: center">Send<br>Messages</html>
+time = 4366309725307
+Ended task
+time = 4368645307458
+
+Starting task: <html><body style="text-align: center">Taking<br>Pictures</html>
+time = 4370323596235
+Ended task
+time = 4388252053652
+
+Starting task: <html><body style="text-align: center">Taking<br>Pictures</html>
+time = 4390318599970
+Ended task
+time = 4391613532324
+
+Starting task: <html><body style="text-align: center">Adding<br>Contacts</html>
+time = 4392802799017
+===========================
+Starting new session
+time = 1518029415796
+
+Starting task: <html><body style="text-align: center">Send<br>Messages</html>
+time = 71066734740366
+===========================
+Starting new session
+time = 1518029608025
+
+Starting task: <html><body style="text-align: center">Send<br>Messages</html>
+time = 71125350535829
+===========================
+Starting new session
+time = 1518029650592
+
+Starting task: <html><body style="text-align: center">Send<br>Messages</html>
+time = 71167051627115
+===========================
+Starting new session
+time = 1518137389370
+
+===========================
+Starting new session
+time = 1518137455152
+
+===========================
+Starting new session
+time = 1518137584227
+
+===========================
+Starting new session
+time = 1518137607362
+
+===========================
+Starting new session
+time = 1518137706609
+
+===========================
+Starting new session
+time = 1518137809468
+
+===========================
+Starting new session
+time = 1518137835957
+
+===========================
+Starting new session
+time = 1518137873722
+
+===========================
+Starting new session
+time = 1518137970126
+

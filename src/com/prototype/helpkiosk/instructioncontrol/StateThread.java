@@ -16,7 +16,6 @@ public class StateThread extends Thread
 		private static String cat;
 		private static String cmp;
 		
-		// TODO: update camera items for S7
 		public String DONE_TYPE = "W/EntityModifier";
 		public String SNAPSHOT = "V/camera  (  573): Start autofocus.";
 		
@@ -39,7 +38,6 @@ public class StateThread extends Thread
 		public static String CMP_ACTIVATE_ALARM = "com.google.android.deskclock/com.android.deskclock.AlarmClock";
 		public static String CMP_SET_ALARM = "com.google.android.deskclock/com.android.deskclock.SetAlarm";
 		
-		// TODO: find new way to set alarm codes
 		public static String NEW_ALARM_CODE = "";
 		// 06-21 13:24:35.594 23640 23640 D AlarmListView: resizeLayoutWithDrag : 2
 		// 06-21 13:25:54.054 23640 23640 D AlarmMainActivity: onSaveAlarm()
@@ -105,6 +103,8 @@ public class StateThread extends Thread
 				
 				while ((line = br.readLine()) != null) {
 					
+					// TODO: unhighlight steps after active too (in addition to previous step)
+					
 					if (line.indexOf("D AlarmMainActivity")==31) {
 						/* SET ALARM PANE ACTIVE */
 						if (line.indexOf("onResume")==52) {														
@@ -145,6 +145,7 @@ public class StateThread extends Thread
 						instructionSingleton.getActiveView().getInstructionBox(1).box.setBorder(InstructionBox.borderIfDone);
 						instructionSingleton.highlight("nothing", "contact");
 						instructionSingleton.getActiveView().getInstructionBox(2).setBoxActive(true, false);
+						
 					} else if (line.indexOf("android.widget.EditText")==69) {
 						/* COMPOSE MESSAGE */
 						instructionSingleton.getActiveView().getInstructionBox(2).instruction.setDone(true);
