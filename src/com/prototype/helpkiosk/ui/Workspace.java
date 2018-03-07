@@ -73,7 +73,7 @@ public class Workspace extends JFrame implements WindowListener {
 				, this.default_height));
 		mainPanel.add(createRightPanel());
 		// TODO left panel disabled - for vysor integration
-		//mainPanel.add(createLeftPanel());
+		mainPanel.add(createLeftPanel());
 		
 		
 		return mainPanel;

@@ -34,3 +34,56 @@ time = 537323036624197
 
 Starting task: <html><body style="text-align: center">Taking<br>Pictures</html>
 time = 537324473556704
+===========================
+Starting new session
+time = 1520381892771
+
+===========================
+Starting new session
+time = 1520382070275
+
+===========================
+Starting new session
+time = 1520382121757
+
+===========================
+Starting new session
+time = 1520382146896
+
+Starting task: <html><body style="text-align: center">Send<br>Messages</html>
+time = 4274400646570
+Ended task
+time = 4301228495884
+
+Starting task: <html><body style="text-align: center">Viewing<br>Images</html>
+time = 4305112975834
+Ended task
+time = 4307783009187
+
+Starting task: <html><body style="text-align: center">Send<br>Messages</html>
+time = 4309570381043
+Ended task
+time = 4311064959174
+
+===========================
+Starting new session
+time = 1520382271634
+
+Starting task: <html><body style="text-align: center">Send<br>Messages</html>
+time = 4394168161351
+Ended task
+time = 4512469921480
+
+Starting task: <html><body style="text-align: center">Taking<br>Pictures</html>
+time = 4525632922723
+===========================
+Starting new session
+time = 1520382496245
+
+Starting task: <html><body style="text-align: center">Send<br>Messages</html>
+time = 4570951714539
+Ended task
+time = 4576617095089
+
+Starting task: <html><body style="text-align: center">Send<br>Messages</html>
+time = 4578684211065
