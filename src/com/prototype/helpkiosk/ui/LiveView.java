@@ -13,7 +13,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.IOException;
 import java.util.concurrent.ExecutionException;
 
 import javax.swing.BorderFactory;
@@ -28,15 +27,13 @@ import javax.swing.Timer;
 import org.jdesktop.swingworker.SwingWorker;
 
 import com.android.ddmlib.IDevice;
-import com.android.ddmlib.RawImage;
 import com.prototype.helpkiosk.instruction.InstructionSingleton;
 
+@SuppressWarnings("serial")
 class LiveView extends JPanel implements ActionListener {
-	private IDevice device;
 	private GetScreenshotTask task;
 	private BufferedImage image;
 	private volatile boolean isLoading;
-	private Crosshair crosshair;
 	private Timer timer;
 	private int refreshRate = 500;
 	private InstructionSingleton instructionSingleton = InstructionSingleton.getInstance();
@@ -44,19 +41,20 @@ class LiveView extends JPanel implements ActionListener {
 
 	LiveView (IDevice device) {
 		setLayout(new FlowLayout());
-		setOpaque(true);
 		setBackground(Color.WHITE);
+		// TODO
+		//setOpaque(true);
+		setOpaque(false);
+		
 
-		this.device = device;
 		this.width = 240;
 		this.height = 400;
-//		this.width = 180;
-//		this.height = 370;
 
 		this.timer = new Timer(refreshRate, this);
 		this.timer.setInitialDelay(0);
 		this.timer.setRepeats(true);
 
+		// TODO remove live view panel here
 		JPanel panel = buildViewerAndControls();
 		add(panel);
 
@@ -73,37 +71,33 @@ class LiveView extends JPanel implements ActionListener {
 
 		Crosshair viewPanel = new Crosshair(new ScreenshotViewer());
 		viewPanel.setBackground(Color.WHITE);
-		viewPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
-		viewPanel.setBounds(0, 0, width, height);
+		//viewPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
+		//viewPanel.setBounds(0, 0, width, height);
+		viewPanel.setOpaque(false);
 
 		JLabel title = new JLabel("<html><br></html>");
 		title.setFont(new Font("Helvetica", Font.BOLD, 23));
 		title.setForeground(new Color(0x3B70A3));
 		
-		// TODO: finish making live view smaller
-		// status: small version is a little too small, screenshots don't fit properly
-		// will have to redo all the highlighting with new sizing
-//		ImageIcon img = new ImageIcon("img/nexusoneinhandblur.png");
-//		ImageIcon img = new ImageIcon("img/nexusoneinhand.png");
-//		ImageIcon img = new ImageIcon("img/nexusoneinhandcropped.png");
 		ImageIcon img = new ImageIcon("img/nexusoneinhandcroppedlight.png");
-//		ImageIcon img = new ImageIcon("img/nexusoneinhandmedium.png");
-//		ImageIcon img = new ImageIcon("img/nexusoneinhandsmall.png");
-
-		JLabel bg = new JLabel(img);
-		bg.setBackground(Color.WHITE);
+		//JLabel bg = new JLabel(img);
+		JPanel bg = new JPanel();
 		bg.setLayout(new BoxLayout(bg, BoxLayout.Y_AXIS));
+		bg.setPreferredSize(new Dimension(width, height));
+		//bg.setBackground(Color.WHITE);
+		// TODO
+		bg.setOpaque(false);
+	
 		JPanel rigid = new JPanel();
 		rigid.setOpaque(false);
 		rigid.setLayout(new BoxLayout(rigid, BoxLayout.X_AXIS));
-//		rigid.setPreferredSize(new Dimension(100, 23)); // small version
-		rigid.setPreferredSize(new Dimension(100, 30)); 
+		//rigid.setPreferredSize(new Dimension(100, 30)); 
 		rigid.add(title);
-		bg.add(rigid);
+		
+		//bg.add(rigid);
 
 		JPanel rigid2 = new JPanel();
 		rigid2.setOpaque(false);
-//		rigid2.setPreferredSize(new Dimension(72, height)); //small version
 		rigid2.setPreferredSize(new Dimension(90, height));
 
 		JPanel rigid3 = new JPanel();
@@ -123,9 +117,11 @@ class LiveView extends JPanel implements ActionListener {
 		rigid4.setPreferredSize(new Dimension(width, 47));   
 		instructionSingleton.setLowerContainer(rigid4);
 
-		bg.add(filler);
-		bg.add(rigid4);
-
+		// TODO
+//		bg.add(filler);
+//		bg.add(rigid4);
+		
+		bg.add(viewPanel);
 		panel.add(bg);
 		return panel;
 	}
@@ -162,7 +158,6 @@ class LiveView extends JPanel implements ActionListener {
 			 * screenstream.bat in the admin-mux/git/HelpKiosk directory
 			 */
 			
-			long startTime = System.nanoTime();
 			String home = System.getProperty("user.home");
 			File newestImg = this.lastFileModified(home + "/git/HelpKiosk/screenshots/");
 			ImageIcon screenshot = new ImageIcon(newestImg.getPath());
@@ -170,11 +165,7 @@ class LiveView extends JPanel implements ActionListener {
 			Image scaledImage = screenShotImg.getScaledInstance(width,height,Image.SCALE_SMOOTH);
 			ImageIcon scaledIcon = new ImageIcon(scaledImage);
 
-			long endTime = System.nanoTime();
-			long duration3 = ((endTime - startTime)/1000000);
-			
 			boolean resize = false;
-			boolean landscape = false;
 			
 				if (scaledIcon != null) {
 					resize = true;
@@ -221,7 +212,10 @@ class LiveView extends JPanel implements ActionListener {
 	class ScreenshotViewer extends JComponent {
 
 		ScreenshotViewer() {
-			setOpaque(true);
+			//TODO
+			//setOpaque(true);
+			setOpaque(false);
+
 			setBounds(0,0,width,height);
 
 			setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
@@ -239,17 +233,17 @@ class LiveView extends JPanel implements ActionListener {
 			add(glass);
 		}
 
-		protected void paintComponent(Graphics g) {
-			g.fillRect(0, 0, width, height);
-			if (LiveView.this.isLoading) {
-				return;
-			}
-
-			if (LiveView.this.image != null) {
-				// if live view not null paint new image - this should be called every second
-				g.drawImage(LiveView.this.image, 0, 0, width, height, null);
-			}
-		}
+//		protected void paintComponent(Graphics g) {
+//			g.fillRect(0, 0, width, height);
+//			if (LiveView.this.isLoading) {
+//				return;
+//			}
+//
+//			if (LiveView.this.image != null) {
+//				// if live view not null paint new image - this should be called every second
+//				g.drawImage(LiveView.this.image, 0, 0, width, height, null);
+//			}
+//		}
 
 		public Dimension getPreferredSize() {
 			return new Dimension(width, height);
@@ -261,7 +255,10 @@ class LiveView extends JPanel implements ActionListener {
 
 		Crosshair(LiveView.ScreenshotViewer screenshotViewer) {
 			this.screenshotViewer = screenshotViewer;
-			setOpaque(true);
+			// TODO
+			//setOpaque(true);
+			setOpaque(false);
+			
 			setLayout(new BorderLayout());
 			setBounds(0,0,width, height);
 			add(screenshotViewer);

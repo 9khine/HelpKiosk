@@ -6,7 +6,6 @@ import java.awt.Font;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -18,6 +17,7 @@ import com.prototype.helpkiosk.instruction.Instruction;
 import com.prototype.helpkiosk.instruction.InstructionBox;
 import com.prototype.helpkiosk.instruction.InstructionSingleton;
 
+@SuppressWarnings("serial")
 public class InstructionView extends JPanel {
 	
 	private String _CONTACT = "CONTACT";

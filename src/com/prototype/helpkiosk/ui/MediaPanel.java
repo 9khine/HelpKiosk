@@ -1,12 +1,7 @@
 package com.prototype.helpkiosk.ui;
-// Fig 21.6: MediaPanel.java
-// A JPanel the plays media from a URL
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.Image;
 
-import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 import javafx.application.Platform;
@@ -25,32 +20,20 @@ import javafx.scene.media.MediaView;
 import javafx.scene.paint.Color;
 
 
+@SuppressWarnings("serial")
 public class MediaPanel extends JPanel {
 	
 	public String mediaURL;
 
 	public MediaPanel() {
 		Platform.setImplicitExit(false);
-		setLayout(new BorderLayout()); // use a BorderLayout
-		
+		setLayout(new BorderLayout());
 	}
 	
 	private void initFX(JFXPanel fxPanel, String url) {
-		// This method is invoked on the JavaFX thread
 		Scene scene = createScene(url);
 		fxPanel.setScene(scene);
 	}
-	
-	// TODO: set background image here if we want
-//	@Override
-//	  protected void paintComponent(Graphics g) {
-//
-//		super.paintComponent(g);
-//		
-//		ImageIcon bgIcon = new ImageIcon("img/videoBG.png");
-//		Image bgImage = bgIcon.getImage();		
-//		g.drawImage(bgImage, 0, 0, null);
-//	}
 	
 	private Scene createScene(String url) {
 	
@@ -64,14 +47,10 @@ public class MediaPanel extends JPanel {
 		mvw.bind(Bindings.selectDouble(view.sceneProperty(), "width"));
 		mvh.bind(Bindings.selectDouble(view.sceneProperty(), "height"));
 		
-		// TODO: change height and width here?
-		
 		view.setPreserveRatio(true);
 
 		Group root  =  new  Group(view);	
 		Scene scene  =  new  Scene(root, Color.ALICEBLUE);
-		//((Group)scene.getRoot()).getChildren().add(view);
-		
 		scene.addEventFilter(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
 			
 		    public void handle(MouseEvent mouseEvent) {
@@ -82,8 +61,6 @@ public class MediaPanel extends JPanel {
 		    	else if(mouseEvent.getClickCount() == 1 && 
 		    			(mediaPlayer.getStatus() == Status.PAUSED
 		    					|| mediaPlayer.getStatus() == Status.READY
-		    					//|| mediaPlayer.getStatus() == Status.STOPPED
-		    					//|| mediaPlayer.getStatus() == Status.HALTED
 		    					)){
 			    	mediaPlayer.play();
 			    	mediaPlayer.setCycleCount(100);
@@ -136,7 +113,7 @@ public class MediaPanel extends JPanel {
 		//String videoFolder = home + "/git/HelpKioskKhine/video";
 		//String videoFolder = home.replace("\\", "/") + "/git/HelpKiosk/video";	
 		
-		// TODO WINDOW switch url file path 
+		// WINDOW switch url file path 
 		String videoUrl = "file:///"+ home.replace("\\", "/") + "/eclipse-workspace/HelpKiosk/video";
 		
 		// MAC 

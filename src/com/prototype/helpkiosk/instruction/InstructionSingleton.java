@@ -6,8 +6,6 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
-import java.net.MalformedURLException;
-import java.net.URL;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -97,7 +95,6 @@ public class InstructionSingleton {
 		
 		accordion = new Accordion();
 		
-		// TODO: add arguments here, arguments go direct to the application classes
 		this.contact = new Contact();
 		this.camera = new Camera();
 		this.clock = new Clock();
@@ -120,7 +117,7 @@ public class InstructionSingleton {
 		this.PHONEVIEW = new InstructionView(this.getContainer(), "PHONE");
 		this.GALLERYVIEW = new InstructionView(this.getContainer(), "GALLERY");
 		
-		this.moreHelpView = new MoreHelpView(this.getMoreHelpContainer());
+		//this.moreHelpView = new MoreHelpView(this.getMoreHelpContainer());
 		this.moreHelp = new MoreHelp();		
 	}
 	

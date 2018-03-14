@@ -15,9 +15,9 @@ import com.javaswingcomponents.accordion.plaf.steel.SteelVerticalTabRenderer;
 import com.javaswingcomponents.framework.painters.configurationbound.GradientColorPainter;
 import com.javaswingcomponents.framework.painters.text.TextFormattingRuleBuilder;
 import com.javaswingcomponents.framework.painters.text.TextFormattingInfo.Weight;
-import com.prototype.helpkiosk.instruction.InstructionBox;
 import com.prototype.helpkiosk.instruction.InstructionSingleton;
 
+@SuppressWarnings("serial")
 public class Accordion extends JPanel {
 	private InstructionSingleton instructionSingleton = InstructionSingleton.getInstance();
 	private int tabHeight = 50;
@@ -161,7 +161,6 @@ public class Accordion extends JPanel {
 	}
 
 	public int getSelectedIndex() {
-		// TODO Auto-generated method stub
 		return accordion.getSelectedIndex();
 	}
 	

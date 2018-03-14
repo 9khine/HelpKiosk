@@ -16,18 +16,15 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 
-import com.prototype.helpkiosk.instruction.InstructionSingleton;
-
-
 
 public class MoreHelpView{
 	
-	private InstructionSingleton instructionSingleton = InstructionSingleton.getInstance();
-	private JPanel panel;
+	//private InstructionSingleton instructionSingleton = InstructionSingleton.getInstance();
+	//private JPanel panel;
 	
-	public MoreHelpView(JPanel panel){
-		this.panel = panel;
-	}
+//	public MoreHelpView(JPanel panel){
+//		this.panel = panel;
+//	}
 	
 	public void createEmptyFloorTab(JPanel panel){
 		FloorTab ft = new FloorTab();
@@ -60,6 +57,7 @@ public class MoreHelpView{
 	}
 }
 
+@SuppressWarnings("serial")
 class FloorTab extends JPanel implements ActionListener {
 	GridBagConstraints gbc = new GridBagConstraints(0,1,1,1,1.0,1.0,
 			GridBagConstraints.CENTER,

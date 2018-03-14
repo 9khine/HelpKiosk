@@ -11,7 +11,6 @@ import java.awt.event.WindowListener;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
-import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -29,8 +28,8 @@ import com.android.hierarchyviewerlib.device.DeviceBridge;
 
 import com.prototype.helpkiosk.instruction.InstructionSingleton;
 
-//import chrriis.dj.nativeswing.swtimpl.components.JWebBrowser;
 
+@SuppressWarnings("serial")
 public class Workspace extends JFrame implements WindowListener {
 	
 	private JPanel mainPanel;
@@ -56,8 +55,8 @@ public class Workspace extends JFrame implements WindowListener {
 		setFont(new Font("Helvetica", Font.PLAIN, 18));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.device = getCurrentDevice();
-		// TODO: Uncomment to hide top bar for use on touch display
-//		setUndecorated(true); 
+		// Uncomment to hide top bar for use on touch display
+		// setUndecorated(true); 
 		add(buildMainPanel());
 		pack();
 		
@@ -71,8 +70,8 @@ public class Workspace extends JFrame implements WindowListener {
 		//this.mainPanel.setPreferredSize(new Dimension(default_width, default_height));
 		mainPanel.setPreferredSize(new Dimension(this.default_width * this.rightPanel_width_percent/100
 				, this.default_height));
+		// disable left or right panel here
 		mainPanel.add(createRightPanel());
-		// TODO left panel disabled - for vysor integration
 		mainPanel.add(createLeftPanel());
 		
 		
@@ -117,10 +116,15 @@ public class Workspace extends JFrame implements WindowListener {
 		demoPanel.setLayout(new BoxLayout(demoPanel, BoxLayout.X_AXIS));
 		
 		demoPanel.add(Box.createRigidArea(new Dimension(10, 10 + 100)));
+		// TODO
+		demoPanel.setOpaque(false);
 
 		JPanel titleFiller = new JPanel();
 		titleFiller.setLayout(new BorderLayout());
 		titleFiller.setBackground(Color.WHITE);
+		// TODO
+		titleFiller.setOpaque(false);
+		
 		JLabel title = new JLabel("<html><br>DEMO<br>VIDEO</html>");
 		title.setFont(new Font("Arial", Font.BOLD, 32));
 		title.setForeground(new Color(0x3B70A3));
@@ -179,7 +183,6 @@ public class Workspace extends JFrame implements WindowListener {
 
 	@Override
 	public void windowActivated(WindowEvent arg0) {
-		// TODO Auto-generated method stub
 		
 	}
 
@@ -189,25 +192,21 @@ public class Workspace extends JFrame implements WindowListener {
 
 	@Override
 	public void windowDeactivated(WindowEvent arg0) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void windowDeiconified(WindowEvent arg0) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void windowIconified(WindowEvent arg0) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void windowOpened(WindowEvent arg0) {
-		// TODO Auto-generated method stub
 		
 	}
 
