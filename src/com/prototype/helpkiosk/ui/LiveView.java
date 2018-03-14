@@ -41,12 +41,6 @@ class LiveView extends JPanel implements ActionListener {
 
 	LiveView (IDevice device) {
 		setLayout(new FlowLayout());
-		setBackground(Color.WHITE);
-		// TODO
-		//setOpaque(true);
-		setOpaque(false);
-		
-
 		this.width = 240;
 		this.height = 400;
 
@@ -56,6 +50,7 @@ class LiveView extends JPanel implements ActionListener {
 
 		// TODO remove live view panel here
 		JPanel panel = buildViewerAndControls();
+		panel.setOpaque(false);
 		add(panel);
 
 		SwingUtilities.invokeLater(new Runnable() {
@@ -70,7 +65,7 @@ class LiveView extends JPanel implements ActionListener {
 		JPanel panel = new JPanel();
 
 		Crosshair viewPanel = new Crosshair(new ScreenshotViewer());
-		viewPanel.setBackground(Color.WHITE);
+		//viewPanel.setBackground(Color.WHITE);
 		//viewPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
 		//viewPanel.setBounds(0, 0, width, height);
 		viewPanel.setOpaque(false);
@@ -80,10 +75,12 @@ class LiveView extends JPanel implements ActionListener {
 		title.setForeground(new Color(0x3B70A3));
 		
 		ImageIcon img = new ImageIcon("img/nexusoneinhandcroppedlight.png");
-		//JLabel bg = new JLabel(img);
-		JPanel bg = new JPanel();
+		JLabel bg = new JLabel(img);
+		// TODO
+		//JPanel bg = new JPanel();
+		bg.setOpaque(false);
 		bg.setLayout(new BoxLayout(bg, BoxLayout.Y_AXIS));
-		bg.setPreferredSize(new Dimension(width, height));
+		//bg.setPreferredSize(new Dimension(width, height));
 		//bg.setBackground(Color.WHITE);
 		// TODO
 		bg.setOpaque(false);
@@ -120,8 +117,9 @@ class LiveView extends JPanel implements ActionListener {
 		// TODO
 //		bg.add(filler);
 //		bg.add(rigid4);
-		
 		bg.add(viewPanel);
+		bg.add(title);
+		
 		panel.add(bg);
 		return panel;
 	}
@@ -137,17 +135,14 @@ class LiveView extends JPanel implements ActionListener {
 	public void actionPerformed(ActionEvent event) {
 		// if no current task, start a new GetScreenshot task
 		if ((this.task != null) && (!this.task.isDone())) {
-//			System.out.println("Existing task, no new one");
 			return;
 		}
-		//System.out.println("New screenshot task created!");
 		this.task = new GetScreenshotTask();
 		this.task.execute();
 	}
 
 	private class GetScreenshotTask extends SwingWorker<Boolean, Void> {
 		// SwingWorkers are essentially new threads, creating a new one adds a new task to a free worker thread
-		
 		private GetScreenshotTask() {
 			
 		}
@@ -212,12 +207,7 @@ class LiveView extends JPanel implements ActionListener {
 	class ScreenshotViewer extends JComponent {
 
 		ScreenshotViewer() {
-			//TODO
-			//setOpaque(true);
-			setOpaque(false);
-
 			setBounds(0,0,width,height);
-
 			setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 			
 			// For highlighting the live view?

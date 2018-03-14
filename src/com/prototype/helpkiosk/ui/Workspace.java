@@ -65,11 +65,13 @@ public class Workspace extends JFrame implements WindowListener {
 	private JComponent buildMainPanel(){
 		
 		this.mainPanel = new JPanel();
-		this.mainPanel.setBackground(Color.WHITE);
 		this.mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.X_AXIS));
-		//this.mainPanel.setPreferredSize(new Dimension(default_width, default_height));
-		mainPanel.setPreferredSize(new Dimension(this.default_width * this.rightPanel_width_percent/100
-				, this.default_height));
+		// TODO
+		//this.mainPanel.setBackground(Color.WHITE);
+		this.mainPanel.setPreferredSize(new Dimension(default_width, default_height));
+//		mainPanel.setPreferredSize(new Dimension(this.default_width * this.rightPanel_width_percent/100
+//				, this.default_height));
+
 		// disable left or right panel here
 		mainPanel.add(createRightPanel());
 		mainPanel.add(createLeftPanel());
@@ -116,14 +118,10 @@ public class Workspace extends JFrame implements WindowListener {
 		demoPanel.setLayout(new BoxLayout(demoPanel, BoxLayout.X_AXIS));
 		
 		demoPanel.add(Box.createRigidArea(new Dimension(10, 10 + 100)));
-		// TODO
-		demoPanel.setOpaque(false);
 
 		JPanel titleFiller = new JPanel();
 		titleFiller.setLayout(new BorderLayout());
 		titleFiller.setBackground(Color.WHITE);
-		// TODO
-		titleFiller.setOpaque(false);
 		
 		JLabel title = new JLabel("<html><br>DEMO<br>VIDEO</html>");
 		title.setFont(new Font("Arial", Font.BOLD, 32));
