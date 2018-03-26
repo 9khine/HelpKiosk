@@ -1,23 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="lib" path="lib/ddmlib-25.3.2.jar"/>
-	<classpathentry kind="lib" path="lib/ddms-25.3.2.jar"/>
-	<classpathentry kind="lib" path="lib/ddmuilib-25.3.2.jar"/>
 	<classpathentry kind="lib" path="lib/framework-1.0.jar"/>
-	<classpathentry kind="lib" path="lib/guava-19.0.jar"/>
-	<classpathentry kind="lib" path="lib/hierarchyviewer2lib-25.3.2.jar"/>
-	<classpathentry kind="lib" path="lib/jffmpeg-1.1.0.jar"/>
 	<classpathentry kind="lib" path="lib/jmf.jar"/>
 	<classpathentry kind="lib" path="lib/org-netbeans-api-visual.jar"/>
 	<classpathentry kind="lib" path="lib/org-openide-util.jar"/>
 	<classpathentry kind="lib" path="lib/swing-worker-1.1.jar"/>
-	<classpathentry kind="lib" path="lib/swing-worker.jar"/>
-	<classpathentry kind="lib" path="lib/swingx-1.6.1.jar"/>
-	<classpathentry kind="lib" path="lib/swt-debug.jar"/>
-	<classpathentry kind="lib" path="lib/swt.jar"/>
 	<classpathentry kind="lib" path="lib/timingframework-1.0.jar"/>
 	<classpathentry kind="lib" path="lib/accordion-1.0.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="C:/Users/admin-mux/git/HelpKiosk/lib/guava-19.0.jar"/>
+	<classpathentry kind="lib" path="lib/hierarchyviewer.jar"/>
+	<classpathentry kind="lib" path="C:/Users/admin-mux/git/HelpKiosk/lib/swing-worker.jar"/>
+	<classpathentry kind="lib" path="C:/Users/admin-mux/git/HelpKiosk/lib/swing-worker-1.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/admin-mux/git/HelpKiosk/lib/swingx-1.6.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/admin-mux/git/HelpKiosk/lib/swt.jar"/>
+	<classpathentry kind="lib" path="C:/Users/admin-mux/git/HelpKiosk/lib/hierarchyviewer2lib-25.3.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/admin-mux/git/HelpKiosk/lib/ddmlib-25.3.2.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
