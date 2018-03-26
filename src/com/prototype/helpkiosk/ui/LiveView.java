@@ -75,44 +75,42 @@ class LiveView extends JPanel implements ActionListener {
 		title.setForeground(new Color(0x3B70A3));
 		
 		ImageIcon img = new ImageIcon("img/nexusoneinhandcroppedlight.png");
-		JLabel bg = new JLabel(img);
+		//JLabel bg = new JLabel(img);
 		// TODO
-		//JPanel bg = new JPanel();
+		JPanel bg = new JPanel();
+		bg.setBackground(Color.WHITE);
 		bg.setOpaque(false);
 		bg.setLayout(new BoxLayout(bg, BoxLayout.Y_AXIS));
-		//bg.setPreferredSize(new Dimension(width, height));
-		//bg.setBackground(Color.WHITE);
-		// TODO
-		bg.setOpaque(false);
+		bg.setPreferredSize(new Dimension(width, height));
 	
-		JPanel rigid = new JPanel();
-		rigid.setOpaque(false);
-		rigid.setLayout(new BoxLayout(rigid, BoxLayout.X_AXIS));
-		//rigid.setPreferredSize(new Dimension(100, 30)); 
-		rigid.add(title);
+//		JPanel rigid = new JPanel();
+//		rigid.setOpaque(false);
+//		rigid.setLayout(new BoxLayout(rigid, BoxLayout.X_AXIS));
+//		rigid.setPreferredSize(new Dimension(100, 30)); 
+//		rigid.add(title);
 		
 		//bg.add(rigid);
 
-		JPanel rigid2 = new JPanel();
-		rigid2.setOpaque(false);
-		rigid2.setPreferredSize(new Dimension(90, height));
+//		JPanel rigid2 = new JPanel();
+//		rigid2.setOpaque(false);
+//		rigid2.setPreferredSize(new Dimension(90, height));
+//
+//		JPanel rigid3 = new JPanel();
+//		rigid3.setOpaque(false);
+//		rigid3.setPreferredSize(new Dimension(10, height));
+//
+//		JPanel filler = new JPanel();
+//		filler.setLayout(new BoxLayout(filler, BoxLayout.X_AXIS));
+//		filler.setOpaque(false);
+//		filler.add(rigid2);
+//		filler.add(viewPanel);
+//		filler.add(rigid3);
 
-		JPanel rigid3 = new JPanel();
-		rigid3.setOpaque(false);
-		rigid3.setPreferredSize(new Dimension(10, height));
-
-		JPanel filler = new JPanel();
-		filler.setLayout(new BoxLayout(filler, BoxLayout.X_AXIS));
-		filler.setOpaque(false);
-		filler.add(rigid2);
-		filler.add(viewPanel);
-		filler.add(rigid3);
-
-		JPanel rigid4 = new JPanel();
-		rigid4.setLayout(null);
-		rigid4.setOpaque(false);
-		rigid4.setPreferredSize(new Dimension(width, 47));   
-		instructionSingleton.setLowerContainer(rigid4);
+//		JPanel rigid4 = new JPanel();
+//		rigid4.setLayout(null);
+//		rigid4.setOpaque(false);
+//		rigid4.setPreferredSize(new Dimension(width, 47));   
+//		instructionSingleton.setLowerContainer(rigid4);
 
 		// TODO
 //		bg.add(filler);

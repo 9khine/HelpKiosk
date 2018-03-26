@@ -343,7 +343,8 @@ public class InstructionBox{
 				videoType = "nothing";
 			}
 			
-			instructionSingleton.highlight(type, name);
+			// TODO - remove highlight temoprarily for live-view remove
+			//instructionSingleton.highlight(type, name);
 			instructionSingleton.showVideo(videoType);
 			
 		} else if (!active) {

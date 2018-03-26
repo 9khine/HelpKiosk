@@ -75,7 +75,6 @@ public class InstructionView extends JPanel {
 	public void buildView(JPanel panel){
 		panel.add(Box.createRigidArea(this.rigidAreaDimension));
 		panel.add(createTitleArea());
-		//JLabel guide = new JLabel("<html>Please touch on a step to show a demo video<br>and/or to move on to the next step.</html>");
 		JLabel guide = new JLabel("<html> Select the steps below to continue...</html>");
 		guide.setFont(new Font("Helvetica", Font.ITALIC, 18));
 		panel.add(guide);

@@ -46,7 +46,7 @@ public class Workspace extends JFrame implements WindowListener {
 	
 	final public int default_width = 1600;
 	final public int default_height = 900;
-	private int rightPanel_width_percent = 50;
+	private int rightPanel_width_percent = 70;
 	
 	public Workspace(){
 		super("Help Kiosk");
@@ -67,19 +67,39 @@ public class Workspace extends JFrame implements WindowListener {
 		this.mainPanel = new JPanel();
 		this.mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.X_AXIS));
 		// TODO
-		//this.mainPanel.setBackground(Color.WHITE);
+		this.mainPanel.setBackground(Color.WHITE);
 		this.mainPanel.setPreferredSize(new Dimension(default_width, default_height));
 //		mainPanel.setPreferredSize(new Dimension(this.default_width * this.rightPanel_width_percent/100
 //				, this.default_height));
 
 		// disable left or right panel here
-		mainPanel.add(createRightPanel());
-		mainPanel.add(createLeftPanel());
+		// right - instruction panel
+		// left - live view & demo video
 		
+		mainPanel.add(Box.createRigidArea(new Dimension(10, 26)));
+
+		JPanel liveViewPanel = new JPanel();
+		liveViewPanel.setOpaque(false);
+		liveViewPanel.setPreferredSize(new Dimension(this.default_width/3 + 200, this.default_height));
+//		liveViewPanel.setLayout(new BoxLayout(liveViewPanel, BoxLayout.X_AXIS));
+		liveViewPanel.add(Box.createRigidArea(new Dimension(10, 26)));
+		liveViewPanel.setBorder(new CompoundBorder(new EmptyBorder(0, 0, 26, 15),
+				BorderFactory.createLineBorder(new Color(0x3B70A3), 2)));
+		JLabel title = new JLabel("<html><br>LIVE VIEW</html>");
+		title.setFont(new Font("Arial", Font.BOLD, 32));
+		title.setForeground(new Color(0x3B70A3));
+		liveViewPanel.add(title);
+		
+		mainPanel.add(liveViewPanel);
+		mainPanel.add(createRightPanel());
+		mainPanel.add(createLeftPanel());		
 		
 		return mainPanel;
 	}
 	
+	/*
+	 * left panel - live view & demo video panel
+	 */
 	private JPanel createLeftPanel(){
 		
 		leftPanel= new JPanel();
@@ -87,21 +107,31 @@ public class Workspace extends JFrame implements WindowListener {
 		leftPanel.setPreferredSize(new Dimension(this.default_width * (100-this.rightPanel_width_percent)/100
 												, this.default_height));
 		
-		this.leftPanel.setLayout(new BoxLayout(leftPanel, BoxLayout.Y_AXIS));
-		leftPanel.add(Box.createRigidArea(new Dimension(10, 26)));
-		leftPanel.add(createLiveViewPanel());
+		//leftPanel.setPreferredSize(new Dimension(default_width/3, default_height/3));
+
+		leftPanel.setLayout(new BoxLayout(leftPanel, BoxLayout.Y_AXIS));
+		//leftPanel.add(Box.createRigidArea(new Dimension(10, 26)));
+
+		// TODO - REMOVE LIVE VIEW TEMOPORARILY
+		//leftPanel.add(createLiveViewPanel());
 		leftPanel.add(createDemoPanel());
 		
 		
 		return leftPanel;
 	}	
 
+	/*
+	 * Right panel - instruction texts panel
+	 */
 	private Container createRightPanel(){
 		
 		rightPanel= new JPanel(new BorderLayout());
 		rightPanel.setBackground(Color.WHITE);
 		rightPanel.setPreferredSize(new Dimension(this.default_width * this.rightPanel_width_percent/100
 												, this.default_height));
+		
+		//rightPanel.setPreferredSize(new Dimension(default_width/3, default_height/3));
+
 		accordion = instructionSingleton.getAccordion();
 		accordion.setBackground(Color.WHITE);
 		rightPanel.add(accordion, BorderLayout.CENTER);
@@ -115,34 +145,42 @@ public class Workspace extends JFrame implements WindowListener {
 		demoPanel.setBorder(new CompoundBorder(new EmptyBorder(0, 0, 26, 15),
 				BorderFactory.createLineBorder(new Color(0x3B70A3), 2)));
 		demoPanel.setBackground(Color.WHITE);
-		demoPanel.setLayout(new BoxLayout(demoPanel, BoxLayout.X_AXIS));
+		//demoPanel.setLayout(new BoxLayout(demoPanel, BoxLayout.X_AXIS));
 		
-		demoPanel.add(Box.createRigidArea(new Dimension(10, 10 + 100)));
+		//demoPanel.add(Box.createRigidArea(new Dimension(10, 10 + 100)));
 
 		JPanel titleFiller = new JPanel();
 		titleFiller.setLayout(new BorderLayout());
 		titleFiller.setBackground(Color.WHITE);
 		
-		JLabel title = new JLabel("<html><br>DEMO<br>VIDEO</html>");
+		//JLabel title = new JLabel("<html><br>DEMO<br>VIDEO</html>");
+		JLabel title = new JLabel("<html><br>DEMO VIDEO</html>");
 		title.setFont(new Font("Arial", Font.BOLD, 32));
 		title.setForeground(new Color(0x3B70A3));
 		titleFiller.add(title, BorderLayout.PAGE_START);
-		JLabel ins = new JLabel("<html><br>Select a step to<br>play a demo<br>video.<br><br>Tap video to<br>play & pause.</html>");
-		ins.setFont(new Font("Arial", Font.ITALIC, 18));
-		ins.setForeground(new Color(0x3B70A3));
-		titleFiller.add(ins, BorderLayout.LINE_START);
-		titleFiller.add(Box.createRigidArea(new Dimension(20, 200)), BorderLayout.PAGE_END);
+		
+		// TODO - remove label for live-view remove 
+		//JLabel ins = new JLabel("<html><br>Select a step to<br>play a demo<br>video.<br><br>Tap video to<br>play & pause.</html>");
+		//ins.setFont(new Font("Arial", Font.ITALIC, 18));
+		//ins.setForeground(new Color(0x3B70A3));
+		
+		//titleFiller.add(ins, BorderLayout.LINE_START);
+		//titleFiller.add(Box.createRigidArea(new Dimension(20, 200)), BorderLayout.PAGE_END);
+		
 		demoPanel.add(titleFiller);
 
 		MediaPanel mediaPanel = new MediaPanel();
 		mediaPanel.setBackground(Color.WHITE);
-		mediaPanel.setPreferredSize(new Dimension(445 + 100, 250));
+		// TODO
+		mediaPanel.setPreferredSize(new Dimension(450, 550));
 		mediaPanel.setVisible(true);
 		instructionSingleton.setMediaContainer(mediaPanel);
 				
-		demoPanel.add(mediaPanel);
-		demoPanel.add(Box.createRigidArea(new Dimension(10, 10)));
 		
+		demoPanel.add(Box.createRigidArea(new Dimension(400, 150)));
+		demoPanel.add(mediaPanel);
+
+		//demoPanel.add(Box.createRigidArea(new Dimension(10, 10)));
 		return demoPanel;
 	}
 	
