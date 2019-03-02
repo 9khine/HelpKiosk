@@ -23,6 +23,8 @@ Design Principles:
 - Offer opportunities to explore and practice safely → Exploratory mode (TBD)
 - Minimize demands on working memory
 
+## Demo instruction:
+https://docs.google.com/document/d/1VmxjpEzZnLsamrDokGBJI6N-KizkFwtpe55h7uqgExk/edit?usp=sharing 
 
 ## Set up instruction:
 1. Install Eclipse (or any other java IDE)
